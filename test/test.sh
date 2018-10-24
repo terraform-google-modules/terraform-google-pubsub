@@ -16,6 +16,7 @@
 
 set -e
 
+bundle install
 bundle exec kitchen create
 bundle exec kitchen converge
 bundle exec kitchen verify
