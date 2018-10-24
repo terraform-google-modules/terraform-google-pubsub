@@ -110,7 +110,7 @@ The tests will do the following:
 You can use the following command to run the integration test in the root directory.
 
 ```sh
-$ make test
+$ make test_integration
 ```
 
 ## Linting

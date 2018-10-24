@@ -65,6 +65,6 @@ check_headers:
 generate_docs:
 	@source test/make.sh && generate_docs
 
-.PHONY: test
-test:
+.PHONY: test_integration
+test_integration:
 	@source test/test.sh
