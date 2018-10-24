@@ -16,6 +16,3 @@ name: cloud-pubsub
 title: Google Cloud Pub/Sub
 version: 0.1.0
 inspec_version: '~> 2.3.24'
-depends:
-  - name: inspec-terraform
-    git: https://github.com/lagrange-automation/inspec-terraform
