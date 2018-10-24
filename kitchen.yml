@@ -13,21 +13,25 @@
 # limitations under the License.
 
 ---
-driver:
-  name: terraform
-  root_module_directory: test/fixtures
 
 provisioner:
   name: terraform
 
 transport:
   name: exec
+  connection_timeout: 60
 
 verifier:
-  name: inspec
+  name: terraform
+  systems:
+    - name: system
+      backend: local
 
 platforms:
   - name: local
 
 suites:
   - name: default
+    driver:
+      name: terraform
+      root_module_directory: test/fixtures
