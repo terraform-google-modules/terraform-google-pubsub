@@ -90,9 +90,8 @@ The integration tests for this module leverage kitchen-terraform and kitchen-ins
 
 You must set up by manually before running the integration test:
 
-- Copy from `test/integration/default/sample.sh` to `mine.sh`.
-- Modify values having the `TF_VAR` prefix to match your environment.
-- Perform `source ./mine.sh` to configure required environment variables.
+- Copy from `test/fixtures/terraform.tfvars.sample` to `test/fixtures/terraform.tfvars`.
+- Modify values to match your environment.
 
 The tests will do the following:
 

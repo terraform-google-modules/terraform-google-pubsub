@@ -17,3 +17,7 @@
 output "project_id" {
   value = "${var.project}"
 }
+
+output "topic_name" {
+  value = "${var.topic_name}"
+}

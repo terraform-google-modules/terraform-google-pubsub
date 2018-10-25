@@ -1,4 +1,3 @@
-#!/bin/bash
 # Copyright 2018 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -19,6 +18,6 @@
 #################################################################
 
 ## These values you *MUST* modify to match your environment
-export TF_VAR_credentials_file_path="test/integration/default/sa-key.json"
-export TF_VAR_project="tf-proj"
-export TF_VAR_topic_name="$TF_VAR_project-topic"
+credentials_file_path="../integration/default/sa-key.json"
+project="tf-proj"
+topic_name="tf-proj-topic"

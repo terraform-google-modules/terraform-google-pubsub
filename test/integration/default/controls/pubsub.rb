@@ -12,8 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-project_id = attribute('project_id', default: ENV['TF_VAR_project'])
-topic      = attribute('topic_name', default: ENV['TF_VAR_topic_name'])
+project_id = attribute('project_id')
+topic      = attribute('topic_name')
 
 describe command("gcloud --project='#{project_id}' pubsub topics describe #{topic}") do
   its(:exit_status) { should be_zero }
