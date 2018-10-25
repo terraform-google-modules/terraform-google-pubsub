@@ -15,9 +15,8 @@
  */
 
 provider "google" {
-  version     = "~> 1.19"
-  credentials = "${file("${var.credentials_file_path}")}"
-  region      = "us-central1"
+  version = "~> 1.19"
+  region  = "us-central1"
 }
 
 module "pubsub" {

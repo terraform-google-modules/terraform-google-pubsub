@@ -68,6 +68,16 @@ In order to operate with the Service Account you must activate the following API
 
 - Cloud Pub/Sub API
 
+#### Service Account Credentials
+
+You can pass the service account credentials into this module by setting the following environment variables:
+
+* `GOOGLE_CREDENTIALS`
+* `GOOGLE_CLOUD_KEYFILE_JSON`
+* `GCLOUD_KEYFILE_JSON`
+
+See more [details](https://www.terraform.io/docs/providers/google/provider_reference.html#configuration-reference).
+
 ## Testing
 
 ### Requirements
