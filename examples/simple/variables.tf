@@ -14,21 +14,10 @@
  * limitations under the License.
  */
 
-provider "google" {
-  version     = "~> 1.19"
-  credentials = "${file("${var.credentials_file_path}")}"
-  region      = "us-central1"
+variable "project_id" {
+  description = "The project id to run tests against"
 }
 
-module "pubsub" {
-  source     = "../../"
-  topic      = "${var.topic_name}"
-  project_id = "${var.project_id}"
-
-  pull_subscriptions = [
-    {
-      name                 = "pull"
-      ack_deadline_seconds = 20
-    },
-  ]
+variable "topic_name" {
+  description = "The name for the topic"
 }
