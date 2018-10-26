@@ -36,7 +36,7 @@ module "pubsub" {
       name                 = "push"
       ack_deadline_seconds = 20
       push_endpoint        = "https://${var.project_id}.appspot.com"
-      attributes           = "x-goog-version:v1beta1"
+      x-goog-version       = "v1beta1"
     },
   ]
 }

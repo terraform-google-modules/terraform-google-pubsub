@@ -36,7 +36,7 @@ resource "google_pubsub_subscription" "push_subscriptions" {
     // FIXME: This should be programmable, but nested map isn't supported at this time.
     //   https://github.com/hashicorp/terraform/issues/2114
     attributes = {
-      x-goog-version = "${element(split(":", lookup(var.push_subscriptions[count.index], "attributes", "x-goog-version:v1")), 1)}"
+      x-goog-version = "${lookup(var.push_subscriptions[count.index], "x-goog-version", "v1")}"
     }
   }
 
