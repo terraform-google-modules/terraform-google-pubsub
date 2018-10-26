@@ -16,6 +16,7 @@ module "pubsub" {
       name                 = "push"   // required
       ack_deadline_seconds = 20 // optonal
       push_endpoint        = "https://example.com"
+      attributes           = "x-goog-version:v1beta1"
     }
   ]
   pull_subscriptions = [
