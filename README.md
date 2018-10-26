@@ -14,7 +14,7 @@ module "pubsub" {
   push_subscriptions = [
     {
       name                 = "push"   // required
-      ack_deadline_seconds = 20 // optonal
+      ack_deadline_seconds = 20 // optional
       push_endpoint        = "https://example.com" // required
       x-goog-version       = "v1beta1" // optional
     }
