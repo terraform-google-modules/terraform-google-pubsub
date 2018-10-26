@@ -43,7 +43,8 @@ module "pubsub" {
 
 | Name | Description |
 |------|-------------|
-| subscriptions | The name list of Pub/Sub subscriptions |
+| subscription_names | The name list of Pub/Sub subscriptions |
+| subscription_paths | The path list of Pub/Sub subscriptions |
 | topic | The name of the Pub/Sub topic |
 
 [^]: (autogen_docs_end)

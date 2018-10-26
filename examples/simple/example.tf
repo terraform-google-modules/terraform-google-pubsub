@@ -30,6 +30,7 @@ module "pubsub" {
       ack_deadline_seconds = 20
     },
   ]
+
   push_subscriptions = [
     {
       name                 = "push"
