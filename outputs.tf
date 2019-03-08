@@ -24,6 +24,11 @@ output "id" {
   description = "The ID of the Pub/Sub topic"
 }
 
+output "uri" {
+  value       = "pubsub.googleapis.com/${google_pubsub_topic.topic.id}"
+  description = "The URI of the Pub/Sub topic"
+}
+
 output "subscription_names" {
   value = "${concat(
     google_pubsub_subscription.push_subscriptions.*.name,
