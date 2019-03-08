@@ -19,7 +19,7 @@ output "topic" {
   description = "The name of the Pub/Sub topic"
 }
 
-output "topic_link" {
+output "id" {
   value       = "${google_pubsub_topic.topic.id}"
   description = "The URI of the Pub/Sub topic"
 }
