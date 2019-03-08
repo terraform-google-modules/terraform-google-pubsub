@@ -21,7 +21,7 @@ output "topic" {
 
 output "id" {
   value       = "${google_pubsub_topic.topic.id}"
-  description = "The URI of the Pub/Sub topic"
+  description = "The ID of the Pub/Sub topic"
 }
 
 output "subscription_names" {
