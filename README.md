@@ -8,7 +8,9 @@ This is a simple usage of the module. Please see also a simple setup provided in
 
 ```hcl
 module "pubsub" {
-  source             = "github.com/terraform-google-modules/terraform-google-pubsub"
+  source  = "terraform-google-modules/pubsub/google"
+  version = "~> 0.2.0"
+
   topic              = "tf-topic"
   project_id         = "my-pubsub-project"
   push_subscriptions = [
