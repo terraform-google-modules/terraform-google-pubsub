@@ -15,41 +15,30 @@
  */
 
 provider "google" {
-  credentials = "${file(var.credentials_file_path)}"
+  version = "~> 2.7.0"
 }
 
 module "iot" {
-  source     = "../../../modules/cloudiot"
-  project_id = "${var.project}"
-  name       = var.registry_name
-  region     = "${var.region}"
+  source     = "../../modules/cloudiot"
+  name       = "sample-iot"
+  region     = "us-central1"
+  project_id = "kunpei-sandbox"
   mqtt_enabled_state = "MQTT_ENABLED"
-  public_key_certificates = [
-    {
-      format = "X509_CERTIFICATE_PEM"
-      certificate = file("./rsa_cert1.pem")
-    },
-    {
-      format = "X509_CERTIFICATE_PEM"
-      certificate = file("./rsa_cert2.pem")
-    },
-  ]
+  http_enabled_state = "HTTP_DISABLED"
   event_notification_config = {
-    topic = "${var.registry_name}-event-topic"
+    topic = "iot-event-topic"
     pull_subscriptions = [
       {
-        name = "${var.registry_name}-event-pull"
+        name = "iot-event-pull"
         ack_deadline_seconds = 20
-      }
+      },
     ]
   }
   state_notification_config = {
-    topic = "${var.registry_name}-state-topic"
-    push_subscriptions = [
+    topic = "iot-state-topic"
+    pull_subscriptions = [
       {
-        name                 = "${var.registry_name}-state-push"
-        push_endpoint        = "https://${var.project}.appspot.com/"
-        x-goog-version       = "v1beta1"
+        name = "iot-state-pull"
         ack_deadline_seconds = 20
       },
     ]
