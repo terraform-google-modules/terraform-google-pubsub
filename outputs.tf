@@ -15,22 +15,22 @@
  */
 
 output "topic" {
-  value       = google_pubsub_topic.topic.name
+  value       = google_pubsub_topic.topic.0.name
   description = "The name of the Pub/Sub topic"
 }
 
 output "topic_labels" {
-  value       = google_pubsub_topic.topic.labels
+  value       = google_pubsub_topic.topic.0.labels
   description = "Labels assigned to the Pub/Sub topic"
 }
 
 output "id" {
-  value       = google_pubsub_topic.topic.id
+  value       = google_pubsub_topic.topic.0.id
   description = "The ID of the Pub/Sub topic"
 }
 
 output "uri" {
-  value       = "pubsub.googleapis.com/${google_pubsub_topic.topic.id}"
+  value       = "pubsub.googleapis.com/${google_pubsub_topic.topic.0.id}"
   description = "The URI of the Pub/Sub topic"
 }
 
