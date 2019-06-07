@@ -24,3 +24,23 @@ module "example" {
   }
 }
 
+module "pubsub" {
+  source     = "../../../"
+  project_id = "${var.project}"
+  topic      = "${var.topic_name}"
+
+  push_subscriptions = [
+    {
+      name                 = "push"
+      push_endpoint        = "https://${var.project}.appspot.com/"
+      x-goog-version       = "v1beta1"
+      ack_deadline_seconds = 20
+    },
+  ]
+
+  pull_subscriptions = [
+    {
+      name = "pull"
+    },
+  ]
+}
