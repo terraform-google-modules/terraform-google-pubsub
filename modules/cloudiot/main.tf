@@ -50,8 +50,8 @@ resource "google_cloudiot_registry" "default" {
 }
 
 module "event_notification_topic" {
-  source             = "../../"
-  project_id         = var.project_id
+  source     = "../../"
+  project_id = var.project_id
 
   // NOTE: if the topic is empty, then this resource should be skipped.
   topic              = lookup(var.event_notification_config, "topic", "")
@@ -60,8 +60,8 @@ module "event_notification_topic" {
 }
 
 module "state_notification_topic" {
-  source             = "../../"
-  project_id         = var.project_id
+  source     = "../../"
+  project_id = var.project_id
 
   // NOTE: if the topic is empty, then this resource should be skipped.
   topic              = lookup(var.state_notification_config, "topic", "")

@@ -44,7 +44,7 @@ variable "public_key_certificates" {
 variable "event_notification_config" {
   description = <<EOF
   The event notification configuration for the Cloud IoT registry.
-  TODO: add explanation about nested arguments here
+  This contains `topic`, `pull_subscriptions` and `push_subscriptions`.
 EOF
   default = {}
 }
@@ -52,7 +52,7 @@ EOF
 variable "state_notification_config" {
   description = <<EOF
   The event notification configuration for the Cloud IoT registry.
-  TODO: add explanation about nested arguments here
+  This contains `topic`, `pull_subscriptions` and `push_subscriptions`.
 EOF
   default = {}
 }
