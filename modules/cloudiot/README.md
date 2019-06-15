@@ -40,7 +40,9 @@ module "iot" {
 }
 ```
 
-[^]: (autogen_docs_start)## Inputs
+
+[^]: (autogen_docs_start)
+## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
@@ -67,6 +69,7 @@ module "iot" {
 | state_notification_subscription_paths | The path list of Pub/Sub subscriptions associated with the registry |
 | state_notification_topic | The name of the Pub/Sub topic associated with the registry |
 | state_notification_topic_id | The id of the Pub/Sub topic associated with the registry |
+
 
 
 [^]: (autogen_docs_end)
