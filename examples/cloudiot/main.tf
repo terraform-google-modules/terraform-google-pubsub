@@ -22,7 +22,7 @@ module "iot" {
   source     = "../../modules/cloudiot"
   name       = "sample-iot"
   region     = "us-central1"
-  project_id = "kunpei-sandbox"
+  project_id = "tf-proj"
   mqtt_enabled_state = "MQTT_ENABLED"
   http_enabled_state = "HTTP_DISABLED"
   event_notification_config = {
