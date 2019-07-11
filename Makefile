@@ -15,6 +15,11 @@
 # Make will use bash instead of sh
 SHELL := /usr/bin/env bash
 
+# Docker build config variables
+CREDENTIALS_PATH					?= /cft/workdir/credentials.json
+DOCKER_ORG							:= gcr.io/cloud-foundation-cicd
+DOCKER_TAG_BASE_KITCHEN_TERRAFORM	?= 1.0.0
+
 # All is the first target in the file so it will get picked up when you just run 'make' on its own
 all: check_shell check_python check_golang check_terraform check_docker check_base_files check_trailing_whitespace generate_docs
 
@@ -68,3 +73,53 @@ generate_docs:
 .PHONY: test_integration
 test_integration:
 	@source test/test.sh
+
+# Run docker
+.PHONY: docker_run
+docker_run:
+	docker run --rm -it \
+		-e CLOUDSDK_AUTH_CREDENTIAL_FILE_OVERRIDE=${CREDENTIALS_PATH} \
+		-e TF_VAR_credentials_file_path=${CREDENTIALS_PATH} \
+		-v $(CURDIR):/cft/workdir \
+		${DOCKER_REPO_BASE_KITCHEN_TERRAFORM} \
+		/bin/bash
+
+.PHONY: docker_create
+docker_create:
+	docker run --rm -it \
+		-e CLOUDSDK_AUTH_CREDENTIAL_FILE_OVERRIDE=${CREDENTIALS_PATH} \
+		-e TF_VAR_credentials_file_path=${CREDENTIALS_PATH} \
+		-v $(CURDIR):/cft/workdir \
+		${DOCKER_REPO_BASE_KITCHEN_TERRAFORM} \
+		/bin/bash -c "kitchen create"
+
+.PHONY: docker_converge
+docker_converge:
+	docker run --rm -it \
+		-e CLOUDSDK_AUTH_CREDENTIAL_FILE_OVERRIDE=${CREDENTIALS_PATH} \
+		-e TF_VAR_credentials_file_path=${CREDENTIALS_PATH} \
+		-v $(CURDIR):/cft/workdir \
+		${DOCKER_REPO_BASE_KITCHEN_TERRAFORM} \
+		/bin/bash -c "kitchen converge && kitchen converge"
+
+.PHONY: docker_verify
+docker_verify:
+	docker run --rm -it \
+		-e CLOUDSDK_AUTH_CREDENTIAL_FILE_OVERRIDE=${CREDENTIALS_PATH} \
+		-e TF_VAR_credentials_file_path=${CREDENTIALS_PATH} \
+		-v $(CURDIR):/cft/workdir \
+		${DOCKER_REPO_BASE_KITCHEN_TERRAFORM} \
+		/bin/bash -c "kitchen verify"
+
+.PHONY: docker_destroy
+docker_destroy:
+	docker run --rm -it \
+		-e CLOUDSDK_AUTH_CREDENTIAL_FILE_OVERRIDE=${CREDENTIALS_PATH} \
+		-e TF_VAR_credentials_file_path=${CREDENTIALS_PATH} \
+		-v $(CURDIR):/cft/workdir \
+		${DOCKER_REPO_BASE_KITCHEN_TERRAFORM} \
+		/bin/bash -c "kitchen destroy"
+
+.PHONY: test_integration_docker
+test_integration_docker: docker_create docker_converge docker_verify docker_destroy
+	@echo "Running test-kitchen tests in docker"

@@ -25,7 +25,7 @@ module "pubsub" {
 
   push_subscriptions = [
     {
-      name                 = "push"
+      name                 = "pushy"
       push_endpoint        = "https://${var.project}.appspot.com/"
       x-goog-version       = "v1beta1"
       ack_deadline_seconds = 20
@@ -34,7 +34,7 @@ module "pubsub" {
 
   pull_subscriptions = [
     {
-      name = "pull"
+      name = "pulley"
     },
   ]
 }

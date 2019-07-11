@@ -13,25 +13,25 @@
 # limitations under the License.
 
 project_id = attribute('project_id')
-topic      = attribute('topic_name')
+topic      = attribute('topic')
 
 describe command("gcloud --project='#{project_id}' pubsub topics describe #{topic}") do
   its(:exit_status) { should be_zero }
   it { expect(subject.stdout).to match(%r{name: projects/#{project_id}/topics/#{topic}}) }
 end
 
-describe command("gcloud --project='#{project_id}' pubsub subscriptions describe pull --format=json") do
+describe command("gcloud --project='#{project_id}' pubsub subscriptions describe pulley --format=json") do
   let(:stdout) { JSON.parse(subject.stdout, symbolize_names: true) }
   its(:exit_status) { should be_zero }
-  it { expect(stdout).to include(name: "projects/#{project_id}/subscriptions/pull") }
+  it { expect(stdout).to include(name: "projects/#{project_id}/subscriptions/pulley") }
   it { expect(stdout).to include(topic: "projects/#{project_id}/topics/#{topic}") }
   it { expect(stdout).to include(ackDeadlineSeconds: 10) }
 end
 
-describe command("gcloud --project='#{project_id}' pubsub subscriptions describe push --format=json") do
+describe command("gcloud --project='#{project_id}' pubsub subscriptions describe pushy --format=json") do
   let(:stdout) { JSON.parse(subject.stdout, symbolize_names: true) }
   its(:exit_status) { should be_zero }
-  it { expect(stdout).to include(name: "projects/#{project_id}/subscriptions/push") }
+  it { expect(stdout).to include(name: "projects/#{project_id}/subscriptions/pushy") }
   it { expect(stdout).to include(topic: "projects/#{project_id}/topics/#{topic}") }
   it { expect(stdout).to include(pushConfig: { pushEndpoint: "https://#{project_id}.appspot.com/" }) }
   it { expect(stdout).to include(ackDeadlineSeconds: 20) }

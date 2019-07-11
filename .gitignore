@@ -1,2 +1,4 @@
 .kitchen/
 .kitchen.local.yml
+.terraform/
+credentials.json

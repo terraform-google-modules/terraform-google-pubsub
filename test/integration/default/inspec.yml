@@ -15,12 +15,12 @@
 name: cloud-pubsub
 title: Google Cloud Pub/Sub
 version: 0.1.0
-inspec_version: '~> 2.3.24'
+inspec_version: '~> 3.0.64'
 attributes:
   - name: project_id
     type: string
     required: true
-  - name: topic_name
+  - name: topic
     type: string
     required: true
   - name: credentials_file_path
