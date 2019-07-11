@@ -46,3 +46,18 @@ output "subscription_paths" {
 
   description = "The path list of Pub/Sub subscriptions"
 }
+
+output "subscriptions" {
+  value = "${merge(
+    zipmap(
+      google_pubsub_subscription.push_subscriptions.*.name,
+      google_pubsub_subscription.push_subscriptions.*.path
+    ),
+    zipmap(
+      google_pubsub_subscription.pull_subscriptions.*.name,
+      google_pubsub_subscription.pull_subscriptions.*.path
+    )
+  )}"
+
+  description = "A map containing the name and path key-value pairs of each created Pub/Sub subscription"
+}
