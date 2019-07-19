@@ -1,2 +1,4 @@
 .kitchen/
 .kitchen.local.yml
+Gemfile.lock
+credentials.json

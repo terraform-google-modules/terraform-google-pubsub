@@ -14,25 +14,6 @@
  * limitations under the License.
  */
 
-variable "project_id" {
-  type        = string
-  description = "The project ID to manage the Pub/Sub resources"
+terraform {
+  required_version = ">= 0.12"
 }
-
-variable "topic" {
-  type        = string
-  description = "The Pub/Sub topic name"
-}
-
-variable "push_subscriptions" {
-  type        = list(map(string))
-  description = "The list of the push subscriptions"
-  default     = []
-}
-
-variable "pull_subscriptions" {
-  type        = list(map(string))
-  description = "The list of the pull subscriptions"
-  default     = []
-}
-

@@ -14,25 +14,30 @@
  * limitations under the License.
  */
 
-variable "project_id" {
-  type        = string
-  description = "The project ID to manage the Pub/Sub resources"
+provider "google" {
+  version = "~> 2.7"
+  region  = "us-central1"
 }
 
-variable "topic" {
-  type        = string
-  description = "The Pub/Sub topic name"
-}
+module "pubsub" {
+  source     = "../../"
+  project_id = "${var.project_id}"
+  topic      = "${var.topic_name}"
 
-variable "push_subscriptions" {
-  type        = list(map(string))
-  description = "The list of the push subscriptions"
-  default     = []
-}
+  pull_subscriptions = [
+    {
+      name                 = "pull"
+      ack_deadline_seconds = 20
+    },
+  ]
 
-variable "pull_subscriptions" {
-  type        = list(map(string))
-  description = "The list of the pull subscriptions"
-  default     = []
-}
+  push_subscriptions = [
+    {
+      name                 = "push"
+      push_endpoint        = "https://${var.project_id}.appspot.com/"
+      x-goog-version       = "v1beta1"
+      ack_deadline_seconds = 20
+    },
+  ]
 
+}

@@ -15,9 +15,11 @@
  */
 
 variable "project_id" {
-  description = "The project id to run tests against"
+  type        = string
+  description = "The project ID to manage the Pub/Sub resources"
 }
 
 variable "topic_name" {
-  description = "The name for the topic"
+  type        = string
+  description = "The name for the Pub/Sub topic"
 }

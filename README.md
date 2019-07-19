@@ -2,6 +2,11 @@
 
 This module makes it easy to create Google Cloud Pub/Sub topic and subscriptions associated with the topic.
 
+## Compatibility
+
+This module is meant for use with Terraform 0.12. If you haven't [upgraded][terraform-0.12-upgrade] and need a Terraform 0.11.x-compatible version of this module, the last released version intended for Terraform 0.11.x
+is [0.2.0][v0.2.0].
+
 ## Usage
 
 This is a simple usage of the module. Please see also a simple setup provided in the example directory.
@@ -30,35 +35,34 @@ module "pubsub" {
 }
 ```
 
-[^]: (autogen_docs_start)
-
+<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| project_id | The project ID to manage the Pub/Sub resources | string | - | yes |
-| pull_subscriptions | The list of the pull subscriptions | list | `<list>` | no |
-| push_subscriptions | The list of the push subscriptions | list | `<list>` | no |
-| topic | The Pub/Sub topic name | string | - | yes |
+| project\_id | The project ID to manage the Pub/Sub resources | string | n/a | yes |
+| pull\_subscriptions | The list of the pull subscriptions | list(map(string)) | `<list>` | no |
+| push\_subscriptions | The list of the push subscriptions | list(map(string)) | `<list>` | no |
+| topic | The Pub/Sub topic name | string | n/a | yes |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
 | id | The ID of the Pub/Sub topic |
-| subscription_names | The name list of Pub/Sub subscriptions |
-| subscription_paths | The path list of Pub/Sub subscriptions |
+| subscription\_names | The name list of Pub/Sub subscriptions |
+| subscription\_paths | The path list of Pub/Sub subscriptions |
 | topic | The name of the Pub/Sub topic |
 | uri | The URI of the Pub/Sub topic |
 
-[^]: (autogen_docs_end)
+<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 ## Requirements
 
 ### Installation Dependencies
 
-- [terraform](https://www.terraform.io/downloads.html) 0.11.x
-- [terraform-provider-google](https://github.com/terraform-providers/terraform-provider-google) plugin v1.12.x
+- [terraform](https://www.terraform.io/downloads.html) 0.12.x
+- [terraform-provider-google](https://github.com/terraform-providers/terraform-provider-google) plugin v2.7.x
 
 ### Configure a Service Account
 
@@ -160,3 +164,6 @@ are as follows:
 -s a compiled language so there is no standard linter.
 - Terraform - terraform has a built-in linter in the `terraform validate` command.
 - Dockerfiles - hadolint. Can be found in homebrew
+
+[v0.2.0]: https://registry.terraform.io/modules/terraform-google-modules/pubsub/google/0.2.0
+[terraform-0.12-upgrade]: https://www.terraform.io/upgrade-guides/0-12.html

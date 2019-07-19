@@ -18,6 +18,5 @@
 #################################################################
 
 ## These values you *MUST* modify to match your environment
-credentials_file_path="../integration/default/sa-key.json"
 project="tf-proj"
 topic_name="tf-proj-topic"
