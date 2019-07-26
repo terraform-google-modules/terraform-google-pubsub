@@ -15,5 +15,6 @@
 source 'https://rubygems.org/'
 
 gem 'test-kitchen'
-gem 'kitchen-terraform', '~> 4.0.3'
+gem 'kitchen-terraform', '~> 4.9.0'
 gem 'kitchen-inspec'
+

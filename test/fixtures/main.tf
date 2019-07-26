@@ -14,19 +14,15 @@
  * limitations under the License.
  */
 
-provider "google" {
-  credentials = "${file(var.credentials_file_path)}"
-}
-
 module "pubsub" {
   source     = "../../"
-  project_id = "${var.project}"
-  topic      = "${var.topic_name}"
+  project_id = var.project_id
+  topic      = var.topic_name
 
   push_subscriptions = [
     {
       name                 = "push"
-      push_endpoint        = "https://${var.project}.appspot.com/"
+      push_endpoint        = "https://${var.project_id}.appspot.com/"
       x-goog-version       = "v1beta1"
       ack_deadline_seconds = 20
     },

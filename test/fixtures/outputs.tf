@@ -15,9 +15,9 @@
  */
 
 output "project_id" {
-  value = "${var.project}"
+  value = var.project_id
 }
 
 output "topic_name" {
-  value = "${var.topic_name}"
+  value = var.topic_name
 }
