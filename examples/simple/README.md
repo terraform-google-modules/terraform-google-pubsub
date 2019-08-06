@@ -8,6 +8,7 @@ This example illustrates how to use the `pubsub` module.
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
 | project\_id | The project ID to manage the Pub/Sub resources | string | n/a | yes |
+| topic\_labels | A map of labels to assign to the Pub/Sub topic | map(string) | `<map>` | no |
 | topic\_name | The name for the Pub/Sub topic | string | n/a | yes |
 
 ## Outputs
@@ -15,6 +16,7 @@ This example illustrates how to use the `pubsub` module.
 | Name | Description |
 |------|-------------|
 | project\_id | The project ID |
+| topic\_labels | The labels of the Pub/Sub topic created |
 | topic\_name | The name of the Pub/Sub topic created |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

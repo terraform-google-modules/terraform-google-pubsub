@@ -9,6 +9,8 @@ and this project adheres to
 
 ## [Unreleased]
 
+- Added node_labels variable to define map of key/value label pairs to assign to Pub/Sub topic. [#11]
+
 ## [1.0.0] - 2019-07-26
 
 ### Changed
@@ -34,3 +36,4 @@ and this project adheres to
 
 [#7]: https://github.com/terraform-google-modules/terraform-google-pubsub/pull/7
 [#2]: https://github.com/terraform-google-modules/terraform-google-pubsub/pull/2
+[#11]: https://github.com/terraform-google-modules/terraform-google-pubsub/pull/11

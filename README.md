@@ -44,6 +44,7 @@ module "pubsub" {
 | pull\_subscriptions | The list of the pull subscriptions | list(map(string)) | `<list>` | no |
 | push\_subscriptions | The list of the push subscriptions | list(map(string)) | `<list>` | no |
 | topic | The Pub/Sub topic name | string | n/a | yes |
+| topic\_labels | A map of labels to assign to the Pub/Sub topic | map(string) | `<map>` | no |
 
 ## Outputs
 
@@ -53,6 +54,7 @@ module "pubsub" {
 | subscription\_names | The name list of Pub/Sub subscriptions |
 | subscription\_paths | The path list of Pub/Sub subscriptions |
 | topic | The name of the Pub/Sub topic |
+| topic\_labels | Labels assigned to the Pub/Sub topic |
 | uri | The URI of the Pub/Sub topic |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

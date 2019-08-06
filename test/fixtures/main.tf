@@ -14,23 +14,13 @@
  * limitations under the License.
  */
 
-module "pubsub" {
-  source     = "../../"
+module "example" {
+  source     = "../../examples/simple"
   project_id = var.project_id
-  topic      = var.topic_name
-
-  push_subscriptions = [
-    {
-      name                 = "push"
-      push_endpoint        = "https://${var.project_id}.appspot.com/"
-      x-goog-version       = "v1beta1"
-      ack_deadline_seconds = 20
-    },
-  ]
-
-  pull_subscriptions = [
-    {
-      name = "pull"
-    },
-  ]
+  topic_name = var.topic_name
+  topic_labels = {
+    foo_label = "foo_value"
+    bar_label = "bar_value"
+  }
 }
+

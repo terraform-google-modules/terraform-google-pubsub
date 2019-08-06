@@ -24,6 +24,12 @@ variable "topic" {
   description = "The Pub/Sub topic name"
 }
 
+variable "topic_labels" {
+  type        = map(string)
+  description = "A map of labels to assign to the Pub/Sub topic"
+  default     = {}
+}
+
 variable "push_subscriptions" {
   type        = list(map(string))
   description = "The list of the push subscriptions"

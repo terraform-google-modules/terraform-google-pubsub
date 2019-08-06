@@ -19,8 +19,9 @@ locals {
 }
 
 resource "google_pubsub_topic" "topic" {
-  name    = var.topic
   project = var.project_id
+  name    = var.topic
+  labels  = var.topic_labels
 }
 
 resource "google_pubsub_subscription" "push_subscriptions" {
