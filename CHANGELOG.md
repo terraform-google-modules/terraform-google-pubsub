@@ -15,7 +15,7 @@ and this project adheres to
 
 - Supported version of Terraform is 0.12. [#7]
 
-## [0.2.0] - 2019-03-8
+## [0.2.0] - 2019-03-08
 
 ### Added
 
