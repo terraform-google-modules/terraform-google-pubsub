@@ -9,7 +9,9 @@ and this project adheres to
 
 ## [Unreleased]
 
-- Added node_labels variable to define map of key/value label pairs to assign to Pub/Sub topic. [#11]
+## [1.1.0] - 2019-09-11
+
+- Added topic_labels variable to define map of key/value label pairs to assign to Pub/Sub topic. [#11]
 
 ## [1.0.0] - 2019-07-26
 
@@ -30,6 +32,7 @@ and this project adheres to
 - Initial release
 
 [Unreleased]: https://github.com/terraform-google-modules/terraform-google-pubsub/compare/v1.0.0...HEAD
+[1.1.0]: https://github.com/terraform-google-modules/terraform-google-pubsub/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/terraform-google-modules/terraform-google-pubsub/compare/v0.2.0...v1.0.0
 [0.2.0]: https://github.com/terraform-google-modules/terraform-google-pubsub/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/terraform-google-modules/terraform-google-pubsub/releases/tag/v0.1.0
