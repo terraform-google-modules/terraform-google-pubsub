@@ -20,14 +20,15 @@ provider "google" {
 }
 
 module "pubsub" {
-  source     = "../../"
-  project_id = "${var.project_id}"
-  topic      = "${var.topic_name}"
+  source       = "../../"
+  project_id   = var.project_id
+  topic        = var.topic_name
+  topic_labels = var.topic_labels
 
   pull_subscriptions = [
     {
       name                 = "pull"
-      ack_deadline_seconds = 20
+      ack_deadline_seconds = 10
     },
   ]
 
