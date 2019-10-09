@@ -40,35 +40,34 @@ module "iot" {
 }
 ```
 
-
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| event_notification_config | The event notification configuration for the Cloud IoT registry.   This contains `topic`, `pull_subscriptions` and `push_subscriptions`. | map | `<map>` | no |
-| http_enabled_state | The field allows HTTP_ENABLED or HTTP_DISABLED | string | `HTTP_DISABLED` | no |
-| mqtt_enabled_state | The field allows MQTT_ENABLED or MQTT_DISABLED | string | `MQTT_ENABLED` | no |
-| name | The Cloud IoT registry name | string | - | yes |
-| project_id | The project ID to manage the Cloud IoT resources | string | - | yes |
-| public_key_certificates | The list for public key certificates | list | `<list>` | no |
-| region | The region to host the registry | string | - | yes |
-| state_notification_config | The event notification configuration for the Cloud IoT registry.   This contains `topic`, `pull_subscriptions` and `push_subscriptions`. | map | `<map>` | no |
+| event\_notification\_config | The event notification configuration for the Cloud IoT registry. This contains `topic`, `pull\_subscriptions` and `push\_subscriptions`. | map | `<map>` | no |
+| http\_enabled\_state | The field allows HTTP\_ENABLED or HTTP\_DISABLED | string | `"HTTP_DISABLED"` | no |
+| mqtt\_enabled\_state | The field allows MQTT\_ENABLED or MQTT\_DISABLED | string | `"MQTT_ENABLED"` | no |
+| name | The Cloud IoT registry name | string | n/a | yes |
+| project\_id | The project ID to manage the Cloud IoT resources | string | n/a | yes |
+| public\_key\_certificates | The list for public key certificates | list | `<list>` | no |
+| region | The region to host the registry | string | n/a | yes |
+| state\_notification\_config | The event notification configuration for the Cloud IoT registry. This contains `topic`, `pull\_subscriptions` and `push\_subscriptions`. | map | `<map>` | no |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
 | credentials | The credentials for Cloud IoT registry |
-| event_notification_subscription_names | The name list of Pub/Sub subscriptions associated with the registry |
-| event_notification_subscription_paths | The path list of Pub/Sub subscriptions associated with the registry |
-| event_notification_topic | The name of the Pub/Sub topic associated with the registry |
-| event_notification_topic_id | The id of the Pub/Sub topic associated with the registry |
+| event\_notification\_subscription\_names | The name list of Pub/Sub subscriptions associated with the registry |
+| event\_notification\_subscription\_paths | The path list of Pub/Sub subscriptions associated with the registry |
+| event\_notification\_topic | The name of the Pub/Sub topic associated with the registry |
+| event\_notification\_topic\_id | The id of the Pub/Sub topic associated with the registry |
 | name | The name of the Cloud IoT registry |
-| state_notification_subscription_names | The name list of Pub/Sub subscriptions associated with the registry |
-| state_notification_subscription_paths | The path list of Pub/Sub subscriptions associated with the registry |
-| state_notification_topic | The name of the Pub/Sub topic associated with the registry |
-| state_notification_topic_id | The id of the Pub/Sub topic associated with the registry |
+| state\_notification\_subscription\_names | The name list of Pub/Sub subscriptions associated with the registry |
+| state\_notification\_subscription\_paths | The path list of Pub/Sub subscriptions associated with the registry |
+| state\_notification\_topic | The name of the Pub/Sub topic associated with the registry |
+| state\_notification\_topic\_id | The id of the Pub/Sub topic associated with the registry |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
