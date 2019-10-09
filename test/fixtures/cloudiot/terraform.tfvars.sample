@@ -20,3 +20,5 @@
 ## These values you *MUST* modify to match your environment
 project="tf-proj"
 topic_name="tf-proj-topic"
+rsa_cert1_path="../../../rsa_cert1.pem"
+rsa_cert2_path="../../../rsa_cert2.pem"
