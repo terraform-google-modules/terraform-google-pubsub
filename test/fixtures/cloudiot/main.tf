@@ -14,10 +14,6 @@
  * limitations under the License.
  */
 
-provider "google" {
-  credentials = "${file(var.credentials_file_path)}"
-}
-
 module "iot" {
   source     = "../../../modules/cloudiot"
   project_id = "${var.project}"
@@ -27,11 +23,11 @@ module "iot" {
   public_key_certificates = [
     {
       format = "X509_CERTIFICATE_PEM"
-      certificate = file("./rsa_cert1.pem")
+      certificate = file(var.rsa_cert1_path)
     },
     {
       format = "X509_CERTIFICATE_PEM"
-      certificate = file("./rsa_cert2.pem")
+      certificate = file(var.rsa_cert1_path)
     },
   ]
   event_notification_config = {

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-variable "project_id" {
+variable "project" {
   type        = string
   description = "The project to run tests against"
 }
