@@ -15,22 +15,27 @@
  */
 
 variable "project" {
+  type        = string
   description = "The project to run tests against"
 }
 
 variable "region" {
+  type        = string
   description = "The region for hosting the registry"
   default     = "us-central1"
 }
 
 variable "registry_name" {
+  type        = string
   description = "The project to run tests against"
 }
 
 variable "rsa_cert1_path" {
+  type        = string
   description = "The path of first rsa certificate"
 }
 
 variable "rsa_cert2_path" {
+  type        = string
   description = "The path of second rsa certificate"
 }

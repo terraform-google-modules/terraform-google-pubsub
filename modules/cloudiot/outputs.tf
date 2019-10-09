@@ -15,51 +15,51 @@
  */
 
 output "name" {
-  value       = "${google_cloudiot_registry.default.name}"
+  value       = google_cloudiot_registry.default.name
   description = "The name of the Cloud IoT registry"
 }
 
 output "credentials" {
-  value       = ["${google_cloudiot_registry.default.credentials.*}"]
+  value       = google_cloudiot_registry.default.credentials.*
   description = "The credentials for Cloud IoT registry"
 }
 
 output "event_notification_topic" {
-  value       = "${module.event_notification_topic.topic}"
+  value       = module.event_notification_topic.topic
   description = "The name of the Pub/Sub topic associated with the registry"
 }
 
 output "event_notification_topic_id" {
-  value       = "${module.event_notification_topic.id}"
+  value       = module.event_notification_topic.id
   description = "The id of the Pub/Sub topic associated with the registry"
 }
 
 output "event_notification_subscription_names" {
-  value       = ["${module.event_notification_topic.subscription_names}"]
+  value       = module.event_notification_topic.subscription_names
   description = "The name list of Pub/Sub subscriptions associated with the registry"
 }
 
 output "event_notification_subscription_paths" {
-  value       = ["${module.event_notification_topic.subscription_paths}"]
+  value       = module.event_notification_topic.subscription_paths
   description = "The path list of Pub/Sub subscriptions associated with the registry"
 }
 
 output "state_notification_topic" {
-  value       = "${module.state_notification_topic.topic}"
+  value       = module.state_notification_topic.topic
   description = "The name of the Pub/Sub topic associated with the registry"
 }
 
 output "state_notification_topic_id" {
-  value       = "${module.state_notification_topic.id}"
+  value       = module.state_notification_topic.id
   description = "The id of the Pub/Sub topic associated with the registry"
 }
 
 output "state_notification_subscription_names" {
-  value       = ["${module.state_notification_topic.subscription_names}"]
+  value       = module.state_notification_topic.subscription_names
   description = "The name list of Pub/Sub subscriptions associated with the registry"
 }
 
 output "state_notification_subscription_paths" {
-  value       = ["${module.state_notification_topic.subscription_paths}"]
+  value       = module.state_notification_topic.subscription_paths
   description = "The path list of Pub/Sub subscriptions associated with the registry"
 }

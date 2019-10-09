@@ -15,28 +15,34 @@
  */
 
 variable "project_id" {
+  type        = string
   description = "The project ID to manage the Cloud IoT resources"
 }
 
 variable "region" {
+  type        = string
   description = "The region to host the registry"
 }
 
 variable "name" {
+  type        = string
   description = "The Cloud IoT registry name"
 }
 
 variable "mqtt_enabled_state" {
+  type        = string
   description = "The field allows MQTT_ENABLED or MQTT_DISABLED"
   default     = "MQTT_ENABLED"
 }
 
 variable "http_enabled_state" {
+  type        = string
   description = "The field allows HTTP_ENABLED or HTTP_DISABLED"
   default     = "HTTP_DISABLED"
 }
 
 variable "public_key_certificates" {
+  type        = list(object({format = string, certificate = string}))
   description = "The list for public key certificates"
   default     = []
 }
