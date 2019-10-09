@@ -41,7 +41,7 @@ module "iot" {
 ```
 
 
-[^]: (autogen_docs_start)
+<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Inputs
 
 | Name | Description | Type | Default | Required |
@@ -70,9 +70,7 @@ module "iot" {
 | state_notification_topic | The name of the Pub/Sub topic associated with the registry |
 | state_notification_topic_id | The id of the Pub/Sub topic associated with the registry |
 
-
-
-[^]: (autogen_docs_end)
+<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 ## Requirements
 
