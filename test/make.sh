@@ -94,9 +94,6 @@ function check_terraform() {
   local rval=125
   # fmt is before validate for faster feedback, validate requires terraform
   # init which takes time.
-  echo "Running terraform validate"
-  #shellcheck disable=SC2156
-  find . -name "*.tf" -exec bash -c 'PWD=$(dirname "{}") terraform validate' \;
   echo "Running terraform fmt"
   find_files . -name "*.tf" -print0 \
     | compat_xargs -0 -n1 dirname \
