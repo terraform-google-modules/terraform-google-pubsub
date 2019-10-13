@@ -14,13 +14,16 @@
  * limitations under the License.
  */
 
+resource "random_id" "random_suffix" {
+  byte_length = 2
+}
+
 module "example" {
   source     = "../../examples/simple"
   project_id = var.project_id
-  topic_name = var.topic_name
+  topic_name = "ci-int-topic-${random_id.random_suffix.hex}"
   topic_labels = {
     foo_label = "foo_value"
     bar_label = "bar_value"
   }
 }
-
