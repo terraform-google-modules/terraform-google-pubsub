@@ -18,7 +18,7 @@ topic      = attribute('topic_name')
 describe command("gcloud --project='#{project_id}' pubsub topics describe #{topic}") do
   its(:exit_status) { should be_zero }
   it { expect(subject.stdout).to match(%r{name: projects/#{project_id}/topics/#{topic}}) }
-  it { expect(subject.stdout).to match(%r{labels:\n  bar_label: bar_value\n  foo_label: foo_value\nname}) }
+  it { expect(subject.stdout).to match(/labels:\n  bar_label: bar_value\n  foo_label: foo_value\n.*name/m) }
 end
 
 describe command("gcloud --project='#{project_id}' pubsub subscriptions describe pull --format=json") do
