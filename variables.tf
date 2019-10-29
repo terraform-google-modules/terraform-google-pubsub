@@ -42,8 +42,8 @@ variable "pull_subscriptions" {
   default     = []
 }
 
-variable "allowed_persistence_regions" {
-  type        = list(string)
-  description = "A list of IDs of GCP regions where messages that are published to the topic may be persisted in storage. Default - all available regions."
-  default     = null
+variable "message_storage_policy" {
+  type        = map
+  description = "A map of storage policies. Default - inherit from organization's Resource Location Restriction policy."
+  default     = {}
 }

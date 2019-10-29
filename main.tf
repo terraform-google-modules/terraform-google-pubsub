@@ -16,11 +16,6 @@
 
 locals {
   default_ack_deadline_seconds = 10
-  allowed_persistence_regions  = var.allowed_persistence_regions == null ? data.google_compute_regions.available.names : var.allowed_persistence_regions
-}
-
-data "google_compute_regions" "available" {
-  project = var.project_id
 }
 
 resource "google_pubsub_topic" "topic" {
@@ -28,8 +23,11 @@ resource "google_pubsub_topic" "topic" {
   name    = var.topic
   labels  = var.topic_labels
 
-  message_storage_policy {
-    allowed_persistence_regions = local.allowed_persistence_regions
+  dynamic "message_storage_policy" {
+    for_each = var.message_storage_policy
+    content {
+      allowed_persistence_regions = message_storage_policy.key == "allowed_persistence_regions" ? message_storage_policy.value : null
+    }
   }
 }
 

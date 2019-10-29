@@ -17,7 +17,6 @@
 locals {
   int_required_roles = [
     "roles/pubsub.editor",
-    "roles/dataproc.viewer", // Required to get avaible regions
   ]
 }
 
