@@ -40,6 +40,7 @@ module "pubsub" {
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
+| message\_storage\_policy | A map of storage policies. Default - inherit from organization's Resource Location Restriction policy. | map | `<map>` | no |
 | project\_id | The project ID to manage the Pub/Sub resources | string | n/a | yes |
 | pull\_subscriptions | The list of the pull subscriptions | list(map(string)) | `<list>` | no |
 | push\_subscriptions | The list of the push subscriptions | list(map(string)) | `<list>` | no |
@@ -64,7 +65,7 @@ module "pubsub" {
 ### Installation Dependencies
 
 - [terraform](https://www.terraform.io/downloads.html) 0.12.x
-- [terraform-provider-google](https://github.com/terraform-providers/terraform-provider-google) plugin v2.7.x
+- [terraform-provider-google](https://github.com/terraform-providers/terraform-provider-google) plugin >= v2.13
 
 ### Configure a Service Account
 

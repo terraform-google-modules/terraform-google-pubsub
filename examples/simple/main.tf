@@ -15,7 +15,7 @@
  */
 
 provider "google" {
-  version = "~> 2.7"
+  version = "~> 2.13"
   region  = "us-central1"
 }
 
