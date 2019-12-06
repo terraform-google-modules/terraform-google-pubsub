@@ -19,17 +19,17 @@ provider "google" {
 }
 
 module "iot" {
-  source     = "../../modules/cloudiot"
-  name       = "sample-iot"
-  region     = "us-central1"
-  project_id = "tf-proj"
+  source             = "../../modules/cloudiot"
+  name               = "sample-iot"
+  region             = "us-central1"
+  project_id         = "tf-proj"
   mqtt_enabled_state = "MQTT_ENABLED"
   http_enabled_state = "HTTP_DISABLED"
   event_notification_config = {
     topic = "iot-event-topic"
     pull_subscriptions = [
       {
-        name = "iot-event-pull"
+        name                 = "iot-event-pull"
         ack_deadline_seconds = 20
       },
     ]
@@ -38,7 +38,7 @@ module "iot" {
     topic = "iot-state-topic"
     pull_subscriptions = [
       {
-        name = "iot-state-pull"
+        name                 = "iot-state-pull"
         ack_deadline_seconds = 20
       },
     ]

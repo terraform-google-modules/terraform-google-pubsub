@@ -42,17 +42,17 @@ variable "http_enabled_state" {
 }
 
 variable "public_key_certificates" {
-  type        = list(object({format = string, certificate = string}))
+  type        = list(object({ format = string, certificate = string }))
   description = "The list for public key certificates"
   default     = []
 }
 
 variable "event_notification_config" {
   description = "The event notification configuration for the Cloud IoT registry. This contains `topic`, `pull_subscriptions` and `push_subscriptions`."
-  default = {}
+  default     = {}
 }
 
 variable "state_notification_config" {
   description = "The event notification configuration for the Cloud IoT registry. This contains `topic`, `pull_subscriptions` and `push_subscriptions`."
-  default = {}
+  default     = {}
 }

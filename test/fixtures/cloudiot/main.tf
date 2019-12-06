@@ -15,18 +15,18 @@
  */
 
 module "iot" {
-  source     = "../../../modules/cloudiot"
-  project_id = var.project_id
-  name       = var.registry_name
-  region     = var.region
+  source             = "../../../modules/cloudiot"
+  project_id         = var.project_id
+  name               = var.registry_name
+  region             = var.region
   mqtt_enabled_state = "MQTT_ENABLED"
   public_key_certificates = [
     {
-      format = "X509_CERTIFICATE_PEM"
+      format      = "X509_CERTIFICATE_PEM"
       certificate = file(var.rsa_cert1_path)
     },
     {
-      format = "X509_CERTIFICATE_PEM"
+      format      = "X509_CERTIFICATE_PEM"
       certificate = file(var.rsa_cert1_path)
     },
   ]
@@ -34,7 +34,7 @@ module "iot" {
     topic = "${var.registry_name}-event-topic"
     pull_subscriptions = [
       {
-        name = "${var.registry_name}-event-pull"
+        name                 = "${var.registry_name}-event-pull"
         ack_deadline_seconds = 20
       }
     ]
