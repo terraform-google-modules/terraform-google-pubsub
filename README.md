@@ -40,6 +40,7 @@ module "pubsub" {
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
+| message\_storage\_policy | A map of storage policies. Default - inherit from organization's Resource Location Restriction policy. | map | `<map>` | no |
 | project\_id | The project ID to manage the Pub/Sub resources | string | n/a | yes |
 | pull\_subscriptions | The list of the pull subscriptions | list(map(string)) | `<list>` | no |
 | push\_subscriptions | The list of the push subscriptions | list(map(string)) | `<list>` | no |
@@ -64,7 +65,7 @@ module "pubsub" {
 ### Installation Dependencies
 
 - [terraform](https://www.terraform.io/downloads.html) 0.12.x
-- [terraform-provider-google](https://github.com/terraform-providers/terraform-provider-google) plugin v2.7.x
+- [terraform-provider-google](https://github.com/terraform-providers/terraform-provider-google) plugin >= v2.13
 
 ### Configure a Service Account
 
@@ -90,94 +91,3 @@ You can pass the service account credentials into this module by setting the fol
 
 See more [details](https://www.terraform.io/docs/providers/google/provider_reference.html#configuration-reference).
 
-## Testing
-
-### Requirements
-
-- [bundler](https://bundler.io/)
-- [ruby](https://www.ruby-lang.org/) 2.5.x
-- [python](https://www.python.org/getit/) 2.7.x
-- [terraform-docs](https://github.com/segmentio/terraform-docs) 0.4.5
-- [google-cloud-sdk](https://cloud.google.com/sdk/)
-
-### Generate docs automatically
-
-```sh
-$ make generate_docs
-```
-
-### Integration Test
-
-The integration tests for this module leverage kitchen-terraform and kitchen-inspec.
-
-You must set up by manually before running the integration test:
-
-- Copy from `test/fixtures/terraform.tfvars.sample` to `test/fixtures/terraform.tfvars`.
-- Modify values to match your environment.
-
-And if you'd like to run cloudiot test, you need to generate two certificates by the following actions:
-
-```sh
-for i in {1..2}; do
-  openssl genpkey -algorithm RSA -out rsa_private$i.pem -pkeyopt rsa_keygen_bits:2048
-  openssl rsa -in rsa_private$i.pem -pubout -out rsa_public$i.pem
-  openssl req -x509 -nodes -newkey rsa:2048 -keyout rsa_private$i.pem \
-    -out rsa_cert$i.pem -subj "/CN=unused"
-done
-```
-And then, you need to set `rsa_cert1_path` and `rsa_cert2_path` in `test/fixtures/cloudiot/terraform.tfvars`
-
-The tests will do the following:
-
-- Perform `bundle install` command
-  - Installs `test-kitchen`, `kitchen-terraform` and `kitchen-inspec`
-- Perform `bundle exec kitchen create` command
-  - Performs `terraform init`
-- Perform `bundle exec kitchen converge` command
-  - Performs `terraform apply -auto-approve`
-- Perform `bundle exec kitchen verify` command
-  - Performs inspec tests
-- Perform `bundle exec kitchen destroy` command
-  - Performs `terraform destroy -force`
-
-You can use the following command to run the integration test in the root directory.
-
-```sh
-$ make test_integration
-```
-
-## Linting
-
-The makefile in this project will lint or sometimes just format any shell, Python, golang, Terraform, or Dockerfiles. The linters will only be run if the makefile finds files with the appropriate file extension.
-
-All of the linter checks are in the default make target, so you just have to run
-
-```sh
-$ make -s
-```
-
-The -s is for 'silent'. Successful output looks like this
-
-```
-Running shellcheck
-Running flake8
-Running go fmt and go vet
-Running terraform validate
-Running terraform fmt
-Running hadolint on Dockerfiles
-Checking for required files
-The following lines have trailing whitespace
-Generating markdown docs with terraform-docs
-```
-
-The linters
-are as follows:
-- Shell - shellcheck. Can be found in homebrew
-- Python - flake8. Can be installed with `pip install flake8`
-- Golang - gofmt. gofmt comes with the standard golang installation. golang
--s a compiled language so there is no standard linter.
-- Terraform - terraform has a built-in linter in the `terraform validate` command.
-- Dockerfiles - hadolint. Can be found in homebrew
-
-[v0.2.0]: https://registry.terraform.io/modules/terraform-google-modules/pubsub/google/0.2.0
-[terraform-0.12-upgrade]: https://www.terraform.io/upgrade-guides/0-12.html

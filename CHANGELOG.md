@@ -9,6 +9,10 @@ and this project adheres to
 
 ## [Unreleased]
 
+### Added
+
+- Add support for message_storage_policy to customize locations [#15]
+
 ## [1.1.0] - 2019-09-11
 
 - Added topic_labels variable to define map of key/value label pairs to assign to Pub/Sub topic. [#11]
@@ -37,6 +41,7 @@ and this project adheres to
 [0.2.0]: https://github.com/terraform-google-modules/terraform-google-pubsub/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/terraform-google-modules/terraform-google-pubsub/releases/tag/v0.1.0
 
+[#15]: https://github.com/terraform-google-modules/terraform-google-pubsub/pull/15
 [#7]: https://github.com/terraform-google-modules/terraform-google-pubsub/pull/7
 [#2]: https://github.com/terraform-google-modules/terraform-google-pubsub/pull/2
 [#11]: https://github.com/terraform-google-modules/terraform-google-pubsub/pull/11

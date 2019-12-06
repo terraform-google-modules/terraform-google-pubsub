@@ -1,5 +1,5 @@
 /**
- * Copyright 2018 Google LLC
+ * Copyright 2019 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,32 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-provider "google" {
-  version = "~> 2.13"
-  region  = "us-central1"
+variable "org_id" {
+  description = "The numeric organization id"
 }
 
-module "pubsub" {
-  source       = "../../"
-  project_id   = var.project_id
-  topic        = var.topic_name
-  topic_labels = var.topic_labels
+variable "folder_id" {
+  description = "The folder to deploy in"
+}
 
-  pull_subscriptions = [
-    {
-      name                 = "pull"
-      ack_deadline_seconds = 10
-    },
-  ]
-
-  push_subscriptions = [
-    {
-      name                 = "push"
-      push_endpoint        = "https://${var.project_id}.appspot.com/"
-      x-goog-version       = "v1beta1"
-      ack_deadline_seconds = 20
-    },
-  ]
-
+variable "billing_account" {
+  description = "The billing account id associated with the project, e.g. XXXXXX-YYYYYY-ZZZZZZ"
 }

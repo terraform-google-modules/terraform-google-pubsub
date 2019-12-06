@@ -1,5 +1,5 @@
 /**
- * Copyright 2018 Google LLC
+ * Copyright 2019 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,31 +14,19 @@
  * limitations under the License.
  */
 
-provider "google" {
-  version = "~> 2.13"
-  region  = "us-central1"
-}
+module "project-ci-int-pubsub" {
+  source  = "terraform-google-modules/project-factory/google"
+  version = "~> 3.0"
 
-module "pubsub" {
-  source       = "../../"
-  project_id   = var.project_id
-  topic        = var.topic_name
-  topic_labels = var.topic_labels
+  name              = "ci-int-pubsub"
+  random_project_id = true
+  org_id            = var.org_id
+  folder_id         = var.folder_id
+  billing_account   = var.billing_account
 
-  pull_subscriptions = [
-    {
-      name                 = "pull"
-      ack_deadline_seconds = 10
-    },
+  activate_apis = [
+    "cloudresourcemanager.googleapis.com",
+    "pubsub.googleapis.com",
+    "serviceusage.googleapis.com"
   ]
-
-  push_subscriptions = [
-    {
-      name                 = "push"
-      push_endpoint        = "https://${var.project_id}.appspot.com/"
-      x-goog-version       = "v1beta1"
-      ack_deadline_seconds = 20
-    },
-  ]
-
 }
