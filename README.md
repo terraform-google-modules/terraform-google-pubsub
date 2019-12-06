@@ -91,3 +91,5 @@ You can pass the service account credentials into this module by setting the fol
 
 See more [details](https://www.terraform.io/docs/providers/google/provider_reference.html#configuration-reference).
 
+[v0.2.0]: https://registry.terraform.io/modules/terraform-google-modules/pubsub/google/0.2.0
+[terraform-0.12-upgrade]: https://www.terraform.io/upgrade-guides/0-12.html
