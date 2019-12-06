@@ -22,3 +22,8 @@ echo "export TF_VAR_project_id='$project_id'" >> ../source.sh
 sa_json=$(terraform output sa_key)
 # shellcheck disable=SC2086
 echo "export SERVICE_ACCOUNT_JSON='$(echo $sa_json | base64 --decode)'" >> ../source.sh
+
+echo "export TF_VAR_topic_name='tf-proj-topic'" >> ../source.sh
+echo "export TF_VAR_registry_name='tf-proj-iot-registry'" >> ../source.sh
+echo "export TF_VAR_rsa_cert1_path='../../../rsa_cert1.pem'" >> ../source.sh
+echo "export TF_VAR_rsa_cert2_path='../../../rsa_cert2.pem'" >> ../source.sh
