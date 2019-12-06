@@ -20,7 +20,7 @@ project_id=$(terraform output project_id)
 echo "export TF_VAR_project_id='$project_id'" >> ../source.sh
 
 sa_json=$(terraform output sa_key)
-# shellcheck disable=SC2086
+# shellcheck disable=SC2086,SC2129
 echo "export SERVICE_ACCOUNT_JSON='$(echo $sa_json | base64 --decode)'" >> ../source.sh
 
 echo "export TF_VAR_topic_name='tf-proj-topic'" >> ../source.sh
