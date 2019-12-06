@@ -16,7 +16,7 @@
 
 provider "google" {
   version = "~> 2.13"
-  region  = "us-central1"
+  region  = var.region
 }
 
 module "iot" {
