@@ -45,14 +45,14 @@ module "iot" {
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| event\_notification\_config | The event notification configuration for the Cloud IoT registry. This contains `topic`, `pull\_subscriptions` and `push\_subscriptions`. | map | `<map>` | no |
-| http\_enabled\_state | The field allows HTTP\_ENABLED or HTTP\_DISABLED | string | `"HTTP_DISABLED"` | no |
-| mqtt\_enabled\_state | The field allows MQTT\_ENABLED or MQTT\_DISABLED | string | `"MQTT_ENABLED"` | no |
+| event\_notification\_config | The event notification configuration for the Cloud IoT registry. This contains `topic`, `pull_subscriptions` and `push_subscriptions`. | map | `<map>` | no |
+| http\_enabled\_state | The field allows HTTP_ENABLED or HTTP_DISABLED | string | `"HTTP_DISABLED"` | no |
+| mqtt\_enabled\_state | The field allows MQTT_ENABLED or MQTT_DISABLED | string | `"MQTT_ENABLED"` | no |
 | name | The Cloud IoT registry name | string | n/a | yes |
 | project\_id | The project ID to manage the Cloud IoT resources | string | n/a | yes |
-| public\_key\_certificates | The list for public key certificates | list | `<list>` | no |
+| public\_key\_certificates | The list for public key certificates | object | `<list>` | no |
 | region | The region to host the registry | string | n/a | yes |
-| state\_notification\_config | The event notification configuration for the Cloud IoT registry. This contains `topic`, `pull\_subscriptions` and `push\_subscriptions`. | map | `<map>` | no |
+| state\_notification\_config | The event notification configuration for the Cloud IoT registry. This contains `topic`, `pull_subscriptions` and `push_subscriptions`. | map | `<map>` | no |
 
 ## Outputs
 

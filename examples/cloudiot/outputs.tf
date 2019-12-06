@@ -1,5 +1,5 @@
 /**
- * Copyright 2019 Google LLC
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,11 +14,17 @@
  * limitations under the License.
  */
 
-module "iot" {
-  source         = "../../../examples/cloudiot"
-  project_id     = var.project_id
-  name           = var.registry_name
-  region         = var.region
-  rsa_cert1_path = var.rsa_cert1_path
-  rsa_cert2_path = var.rsa_cert2_path
+output "project_id" {
+  value       = var.project_id
+  description = "The project ID"
+}
+
+output "region" {
+  value       = var.region
+  description = "The region for the IoT resources"
+}
+
+output "registry_name" {
+  value       = module.iot.name
+  description = "The name of the Pub/Sub topic created"
 }
