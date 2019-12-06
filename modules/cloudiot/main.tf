@@ -25,7 +25,7 @@ resource "google_cloudiot_registry" "default" {
   mqtt_config = {
     mqtt_enabled_state = var.mqtt_enabled_state
   }
-  event_notification_config = {
+  event_notification_configs {
     pubsub_topic_name = "projects/${var.project_id}/topics/${module.event_notification_topic.topic}"
   }
   state_notification_config = {
