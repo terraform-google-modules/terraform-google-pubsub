@@ -25,5 +25,5 @@ echo "export SERVICE_ACCOUNT_JSON='$(echo $sa_json | base64 --decode)'" >> ../so
 
 echo "export TF_VAR_topic_name='tf-proj-topic'" >> ../source.sh
 echo "export TF_VAR_registry_name='tf-proj-iot-registry'" >> ../source.sh
-echo "export TF_VAR_rsa_cert1_path='../../../rsa_cert1.pem'" >> ../source.sh
-echo "export TF_VAR_rsa_cert2_path='../../../rsa_cert2.pem'" >> ../source.sh
+echo "export TF_VAR_rsa_cert1_path='rsa_cert1.pem'" >> ../source.sh
+echo "export TF_VAR_rsa_cert2_path='rsa_cert2.pem'" >> ../source.sh
