@@ -15,13 +15,13 @@
  */
 
 output "project_id" {
-  value = "${var.project}"
+  value = var.project_id
 }
 
 output "registry_name" {
-  value = "${var.registry_name}"
+  value = var.registry_name
 }
 
 output "region" {
-  value = "${var.region}"
+  value = var.region
 }
