@@ -16,9 +16,9 @@
 
 module "iot" {
   source     = "../../../modules/cloudiot"
-  project_id = "${var.project}"
+  project_id = var.project_id
   name       = var.registry_name
-  region     = "${var.region}"
+  region     = var.region
   mqtt_enabled_state = "MQTT_ENABLED"
   public_key_certificates = [
     {
@@ -44,7 +44,7 @@ module "iot" {
     push_subscriptions = [
       {
         name                 = "${var.registry_name}-state-push"
-        push_endpoint        = "https://${var.project}.appspot.com/"
+        push_endpoint        = "https://${var.project_id}.appspot.com/"
         x-goog-version       = "v1beta1"
         ack_deadline_seconds = 20
       },

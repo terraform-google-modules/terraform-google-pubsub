@@ -19,7 +19,7 @@ locals {
 }
 
 resource "google_pubsub_topic" "topic" {
-  count   = "${var.topic == "" ? 0 : 1}"
+  count   = var.topic == "" ? 0 : 1
   project = var.project_id
   name    = var.topic
   labels  = var.topic_labels
