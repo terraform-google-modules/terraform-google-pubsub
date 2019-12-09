@@ -14,6 +14,26 @@
  * limitations under the License.
  */
 
+locals {
+  state_notification_enabled = var.state_notification_config.topic != "" ? "enabled" : "disabled"
+  state_notification_configs = {
+    disabled = null
+    enabled = {
+      pubsub_topic_name = "projects/${var.project_id}/topics/${var.state_notification_config.topic}"
+    }
+  }
+  state_notification_config = local.state_notification_configs[local.state_notification_enabled]
+
+  event_notification_enabled = var.event_notification_config.topic != "" ? "enabled" : "disabled"
+  event_notification_configs = {
+    disabled = []
+    enabled = [{
+      pubsub_topic_name = "projects/${var.project_id}/topics/${var.event_notification_config.topic}"
+    }]
+  }
+  event_notification_config = local.event_notification_configs[local.event_notification_enabled]
+}
+
 resource "google_cloudiot_registry" "default" {
   name    = var.name
   project = var.project_id
@@ -25,12 +45,16 @@ resource "google_cloudiot_registry" "default" {
   mqtt_config = {
     mqtt_enabled_state = var.mqtt_enabled_state
   }
-  event_notification_configs {
-    pubsub_topic_name = "projects/${var.project_id}/topics/${module.event_notification_topic.topic}"
+
+  dynamic "event_notification_configs" {
+    for_each = local.event_notification_config
+    iterator = c
+    content {
+      pubsub_topic_name = c.value.pubsub_topic_name
+    }
   }
-  state_notification_config = {
-    pubsub_topic_name = "projects/${var.project_id}/topics/${module.state_notification_topic.topic}"
-  }
+
+  state_notification_config = local.state_notification_config
 
   dynamic "credentials" {
     for_each = [for c in var.public_key_certificates : {
@@ -53,18 +77,18 @@ module "event_notification_topic" {
   source     = "../../"
   project_id = var.project_id
 
-  // NOTE: if the topic is empty, then this resource should be skipped.
-  topic              = lookup(var.event_notification_config, "topic", "")
-  push_subscriptions = lookup(var.event_notification_config, "push_subscriptions", [])
-  pull_subscriptions = lookup(var.event_notification_config, "pull_subscriptions", [])
+  topic              = var.event_notification_config.topic
+  topic_labels       = var.event_notification_config.topic_labels
+  push_subscriptions = var.event_notification_config.push_subscriptions
+  pull_subscriptions = var.event_notification_config.pull_subscriptions
 }
 
 module "state_notification_topic" {
   source     = "../../"
   project_id = var.project_id
 
-  // NOTE: if the topic is empty, then this resource should be skipped.
-  topic              = lookup(var.state_notification_config, "topic", "")
-  push_subscriptions = lookup(var.state_notification_config, "push_subscriptions", [])
-  pull_subscriptions = lookup(var.state_notification_config, "pull_subscriptions", [])
+  topic              = var.state_notification_config.topic
+  topic_labels       = var.state_notification_config.topic_labels
+  push_subscriptions = var.state_notification_config.push_subscriptions
+  pull_subscriptions = var.state_notification_config.pull_subscriptions
 }

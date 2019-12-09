@@ -48,11 +48,33 @@ variable "public_key_certificates" {
 }
 
 variable "event_notification_config" {
+  type = object({
+    topic              = string
+    topic_labels       = map(string)
+    push_subscriptions = list(map(string))
+    pull_subscriptions = list(map(string))
+  })
   description = "The event notification configuration for the Cloud IoT registry. This contains `topic`, `pull_subscriptions` and `push_subscriptions`."
-  default     = {}
+  default = {
+    topic              = ""
+    topic_labels       = {}
+    push_subscriptions = []
+    pull_subscriptions = []
+  }
 }
 
 variable "state_notification_config" {
+  type = object({
+    topic              = string
+    topic_labels       = map(string)
+    push_subscriptions = list(map(string))
+    pull_subscriptions = list(map(string))
+  })
   description = "The event notification configuration for the Cloud IoT registry. This contains `topic`, `pull_subscriptions` and `push_subscriptions`."
-  default     = {}
+  default = {
+    topic              = ""
+    topic_labels       = {}
+    push_subscriptions = []
+    pull_subscriptions = []
+  }
 }

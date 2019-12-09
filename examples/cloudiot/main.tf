@@ -37,7 +37,9 @@ module "iot" {
     },
   ]
   event_notification_config = {
-    topic = "${var.name}-event-topic"
+    topic              = "${var.name}-event-topic"
+    topic_labels       = {}
+    push_subscriptions = []
     pull_subscriptions = [
       {
         name                 = "${var.name}-event-pull"
@@ -46,7 +48,8 @@ module "iot" {
     ]
   }
   state_notification_config = {
-    topic = "${var.name}-state-topic"
+    topic        = "${var.name}-state-topic"
+    topic_labels = {}
     push_subscriptions = [
       {
         name                 = "${var.name}-state-push"
@@ -55,5 +58,6 @@ module "iot" {
         ack_deadline_seconds = 20
       },
     ]
+    pull_subscriptions = []
   }
 }
