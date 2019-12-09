@@ -19,6 +19,11 @@ output "name" {
   description = "The name of the Cloud IoT registry"
 }
 
+output "registry" {
+  value       = google_cloudiot_registry.default
+  description = "The registry being created by this module"
+}
+
 output "credentials" {
   value       = google_cloudiot_registry.default.credentials.*
   description = "The credentials for Cloud IoT registry"
