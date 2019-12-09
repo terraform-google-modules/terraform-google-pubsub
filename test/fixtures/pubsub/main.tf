@@ -17,7 +17,7 @@
 module "example" {
   source     = "../../../examples/simple"
   project_id = var.project_id
-  topic_name = var.topic_name
+  topic_name = "cft-tf-pubsub-topic"
   topic_labels = {
     foo_label = "foo_value"
     bar_label = "bar_value"

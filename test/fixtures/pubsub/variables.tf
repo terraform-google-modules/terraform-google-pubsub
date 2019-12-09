@@ -18,8 +18,3 @@ variable "project_id" {
   type        = string
   description = "The project to run tests against"
 }
-
-variable "topic_name" {
-  type        = string
-  description = "The topic of the PubSub resource"
-}

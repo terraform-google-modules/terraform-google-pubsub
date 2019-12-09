@@ -15,13 +15,16 @@
  */
 
 output "project_id" {
-  value = var.project_id
+  value       = var.project_id
+  description = "The project ID"
 }
 
 output "registry_name" {
-  value = var.registry_name
+  value       = module.iot.registry_name
+  description = "The name of the IoT registry"
 }
 
 output "region" {
-  value = var.region
+  value       = module.iot.region
+  description = "The region of the IoT registry"
 }

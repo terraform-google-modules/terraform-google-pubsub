@@ -20,7 +20,7 @@ output "project_id" {
 }
 
 output "region" {
-  value       = var.region
+  value       = module.iot.region
   description = "The region for the IoT resources"
 }
 

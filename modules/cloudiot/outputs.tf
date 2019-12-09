@@ -24,6 +24,11 @@ output "registry" {
   description = "The registry being created by this module"
 }
 
+output "region" {
+  value       = google_cloudiot_registry.default.region
+  description = "The region of the Cloud IoT registry"
+}
+
 output "credentials" {
   value       = google_cloudiot_registry.default.credentials.*
   description = "The credentials for Cloud IoT registry"

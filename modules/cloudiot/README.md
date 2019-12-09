@@ -78,6 +78,7 @@ module "iot" {
 | event\_notification\_topic | The name of the Pub/Sub topic associated with the registry |
 | event\_notification\_topic\_id | The id of the Pub/Sub topic associated with the registry |
 | name | The name of the Cloud IoT registry |
+| region | The region of the Cloud IoT registry |
 | registry | The registry being created by this module |
 | state\_notification\_subscription\_names | The name list of Pub/Sub subscriptions associated with the registry |
 | state\_notification\_subscription\_paths | The path list of Pub/Sub subscriptions associated with the registry |

@@ -34,8 +34,8 @@ resource "tls_self_signed_cert" "certs" {
 module "iot" {
   source        = "../../../examples/cloudiot"
   project_id    = var.project_id
-  name          = var.registry_name
-  region        = var.region
+  name          = "cft-ci-iot-registry"
+  region        = "us-central1"
   rsa_cert1_pem = tls_self_signed_cert.certs[0].cert_pem
   rsa_cert2_pem = tls_self_signed_cert.certs[1].cert_pem
 }
