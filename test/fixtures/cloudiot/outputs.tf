@@ -25,7 +25,3 @@ output "registry_name" {
 output "region" {
   value = var.region
 }
-
-output "registry" {
-  value = module.iot.registry
-}
