@@ -19,6 +19,23 @@ provider "google" {
   region  = var.region
 }
 
+resource "tls_private_key" "private_keys" {
+  count     = 2
+  algorithm = "RSA"
+}
+
+resource "tls_self_signed_cert" "certs" {
+  count           = 2
+  key_algorithm   = "RSA"
+  private_key_pem = tls_private_key.private_keys[count.index].private_key_pem
+  subject {
+    common_name  = "example.com"
+    organization = "ACME Examples, Inc"
+  }
+  validity_period_hours = 12
+  allowed_uses          = []
+}
+
 module "iot" {
   source             = "../../modules/cloudiot"
   name               = var.name
@@ -29,11 +46,11 @@ module "iot" {
   public_key_certificates = [
     {
       format      = "X509_CERTIFICATE_PEM"
-      certificate = var.rsa_cert1_pem
+      certificate = tls_self_signed_cert.certs[0].cert_pem
     },
     {
       format      = "X509_CERTIFICATE_PEM"
-      certificate = var.rsa_cert2_pem
+      certificate = tls_self_signed_cert.certs[1].cert_pem
     },
   ]
   event_notification_config = {
