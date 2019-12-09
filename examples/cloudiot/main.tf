@@ -39,6 +39,7 @@ module "iot" {
   event_notification_config = {
     topic              = "${var.name}-event-topic"
     topic_labels       = {}
+    create_topic       = true
     push_subscriptions = []
     pull_subscriptions = [
       {
@@ -50,6 +51,7 @@ module "iot" {
   state_notification_config = {
     topic        = "${var.name}-state-topic"
     topic_labels = {}
+    create_topic = true
     push_subscriptions = [
       {
         name                 = "${var.name}-state-push"
