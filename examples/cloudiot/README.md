@@ -8,8 +8,8 @@
 | name | The name for the Cloud IoT registry | string | n/a | yes |
 | project\_id | The project ID to manage the Pub/Sub resources | string | n/a | yes |
 | region | The region for the IoT resources | string | n/a | yes |
-| rsa\_cert1\_path | The path of first certificate for Cloud IoT registry | string | n/a | yes |
-| rsa\_cert2\_path | The path of second certificate for Cloud IoT registry | string | n/a | yes |
+| rsa\_cert1\_pem | The first certificate for Cloud IoT registry | string | n/a | yes |
+| rsa\_cert2\_pem | The second certificate for Cloud IoT registry | string | n/a | yes |
 
 ## Outputs
 

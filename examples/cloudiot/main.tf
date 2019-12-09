@@ -29,11 +29,11 @@ module "iot" {
   public_key_certificates = [
     {
       format      = "X509_CERTIFICATE_PEM"
-      certificate = file(var.rsa_cert1_path)
+      certificate = var.rsa_cert1_pem
     },
     {
       format      = "X509_CERTIFICATE_PEM"
-      certificate = file(var.rsa_cert2_path)
+      certificate = var.rsa_cert2_pem
     },
   ]
   event_notification_config = {

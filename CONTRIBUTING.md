@@ -56,18 +56,6 @@ With these settings in place, you can prepare a test project using Docker:
 make docker_test_prepare
 ```
 
-If you'd like to run cloudiot test, you need to generate two certificates by the following actions:
-
-```sh
-for i in {1..2}; do
-  openssl genpkey -algorithm RSA -out rsa_private$i.pem -pkeyopt rsa_keygen_bits:2048
-  openssl rsa -in rsa_private$i.pem -pubout -out rsa_public$i.pem
-  openssl req -x509 -nodes -newkey rsa:2048 -keyout rsa_private$i.pem \
-    -out rsa_cert$i.pem -subj "/CN=unused"
-done
-```
-And then, you need to set `rsa_cert1_path` and `rsa_cert2_path` in `test/fixtures/cloudiot/terraform.tfvars`
-
 ### Noninteractive Execution
 
 Run `make docker_test_integration` to test all of the example modules

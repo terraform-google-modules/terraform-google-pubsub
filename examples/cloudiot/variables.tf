@@ -29,12 +29,12 @@ variable "name" {
   description = "The name for the Cloud IoT registry"
 }
 
-variable "rsa_cert1_path" {
+variable "rsa_cert1_pem" {
   type        = string
-  description = "The path of first certificate for Cloud IoT registry"
+  description = "The first certificate for Cloud IoT registry"
 }
 
-variable "rsa_cert2_path" {
+variable "rsa_cert2_pem" {
   type        = string
-  description = "The path of second certificate for Cloud IoT registry"
+  description = "The second certificate for Cloud IoT registry"
 }
