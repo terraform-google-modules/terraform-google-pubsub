@@ -45,10 +45,10 @@ resource "google_service_account_key" "int_test" {
 
 // Even if granting roles/cloudiot.admin to the service account in advance,
 // the roles cannot be applied immediately. As a result, our test will fail.
-// To avoid that, we use null_resource for `sleep`ing 60 seconds.
+// To avoid that, we use null_resource for `sleep`ing 90 seconds.
 resource "null_resource" "delay" {
   provisioner "local-exec" {
-    command = "sleep 60"
+    command = "sleep 90"
   }
   depends_on = [google_project_iam_member.int_test]
 }
