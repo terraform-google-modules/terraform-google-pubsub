@@ -28,4 +28,5 @@ variable "region" {
 variable "registry_name" {
   type        = string
   description = "The project to run tests against"
+  default     = "cft-ci-iot-registry"
 }
