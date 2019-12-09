@@ -55,7 +55,7 @@ variable "event_notification_config" {
     pull_subscriptions = list(map(string))
     create_topic       = bool
   })
-  description = "The event notification configuration for the Cloud IoT registry. This contains `topic`, `pull_subscriptions` and `push_subscriptions`."
+  description = "The event notification configuration for the Cloud IoT registry. This contains `topic`, `topic_labels`, `pull_subscriptions` and `push_subscriptions` and `create_topic`."
   default = {
     topic              = ""
     topic_labels       = {}
@@ -73,7 +73,7 @@ variable "state_notification_config" {
     pull_subscriptions = list(map(string))
     create_topic       = bool
   })
-  description = "The event notification configuration for the Cloud IoT registry. This contains `topic`, `pull_subscriptions` and `push_subscriptions`."
+  description = "The state notification configuration for the Cloud IoT registry. This contains `topic`, `topic_labels`, `pull_subscriptions` and `push_subscriptions` and `create_topic`."
   default = {
     topic              = ""
     topic_labels       = {}

@@ -19,17 +19,31 @@ module "iot" {
 
   mqtt_enabled_state = "MQTT_ENABLED"
   http_enabled_state = "HTTP_DISABLED"
+
+  public_key_certificates = [
+    {
+      format      = "X509_CERTIFICATE_PEM"
+      certificate = file(var.cert_path)
+    },
+  ]
+
   event_notification_config = {
-    topic = "iot-event-topic"
+    topic              = "iot-event-topic"
+    topic_labels       = {}
+    create_topic       = true
+    push_subscriptions = []
     pull_subscriptions = [
       {
-        name = "iot-event-pull"
+        name                 = "iot-event-pull"
         ack_deadline_seconds = 20
       },
     ]
   }
   state_notification_config = {
-    topic = "iot-state-topic"
+    topic              = "iot-state-topic"
+    topic_labels       = {}
+    create_topic       = true
+    push_subscriptions = []
     pull_subscriptions = [
       {
         name = "iot-state-pull"
@@ -45,14 +59,14 @@ module "iot" {
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| event\_notification\_config | The event notification configuration for the Cloud IoT registry. This contains `topic`, `pull_subscriptions` and `push_subscriptions`. | object | `<map>` | no |
+| event\_notification\_config | The event notification configuration for the Cloud IoT registry. This contains `topic`, `topic_labels`, `pull_subscriptions` and `push_subscriptions` and `create_topic`. | object | `<map>` | no |
 | http\_enabled\_state | The field allows HTTP_ENABLED or HTTP_DISABLED | string | `"HTTP_DISABLED"` | no |
 | mqtt\_enabled\_state | The field allows MQTT_ENABLED or MQTT_DISABLED | string | `"MQTT_ENABLED"` | no |
 | name | The Cloud IoT registry name | string | n/a | yes |
 | project\_id | The project ID to manage the Cloud IoT resources | string | n/a | yes |
 | public\_key\_certificates | The list for public key certificates | object | `<list>` | no |
 | region | The region to host the registry | string | n/a | yes |
-| state\_notification\_config | The event notification configuration for the Cloud IoT registry. This contains `topic`, `pull_subscriptions` and `push_subscriptions`. | object | `<map>` | no |
+| state\_notification\_config | The state notification configuration for the Cloud IoT registry. This contains `topic`, `topic_labels`, `pull_subscriptions` and `push_subscriptions` and `create_topic`. | object | `<map>` | no |
 
 ## Outputs
 
