@@ -9,9 +9,12 @@ and this project adheres to
 
 ## [Unreleased]
 
+## [1.2.0] - 2019-12-09
+
 ### Added
 
 - Add support for message_storage_policy to customize locations [#15]
+- Add support for configuring Cloud IoT through [new submodule](./modules/cloudiot) [#4](https://github.com/terraform-google-modules/terraform-google-pubsub/pull/4)
 
 ## [1.1.0] - 2019-09-11
 
@@ -35,7 +38,8 @@ and this project adheres to
 
 - Initial release
 
-[Unreleased]: https://github.com/terraform-google-modules/terraform-google-pubsub/compare/v1.0.0...HEAD
+[Unreleased]: https://github.com/terraform-google-modules/terraform-google-pubsub/compare/v1.2.0...HEAD
+[1.2.0]: https://github.com/terraform-google-modules/terraform-google-pubsub/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/terraform-google-modules/terraform-google-pubsub/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/terraform-google-modules/terraform-google-pubsub/compare/v0.2.0...v1.0.0
 [0.2.0]: https://github.com/terraform-google-modules/terraform-google-pubsub/compare/v0.1.0...v0.2.0
