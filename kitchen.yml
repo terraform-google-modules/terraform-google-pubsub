@@ -31,7 +31,11 @@ platforms:
   - name: local
 
 suites:
-  - name: default
+  - name: pubsub
     driver:
       name: terraform
-      root_module_directory: test/fixtures
+      root_module_directory: test/fixtures/pubsub
+  - name: cloudiot
+    driver:
+      name: terraform
+      root_module_directory: test/fixtures/cloudiot

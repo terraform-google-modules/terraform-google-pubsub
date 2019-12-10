@@ -1,5 +1,5 @@
 /**
- * Copyright 2018 Google LLC
+ * Copyright 2019 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,16 +14,7 @@
  * limitations under the License.
  */
 
-resource "random_id" "random_suffix" {
-  byte_length = 2
-}
-
-module "example" {
-  source     = "../../examples/simple"
-  project_id = var.project_id
-  topic_name = "ci-int-topic-${random_id.random_suffix.hex}"
-  topic_labels = {
-    foo_label = "foo_value"
-    bar_label = "bar_value"
-  }
+variable "project_id" {
+  type        = string
+  description = "The project to run tests against"
 }

@@ -1,5 +1,5 @@
 /**
- * Copyright 2019 Google LLC
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,20 +14,17 @@
  * limitations under the License.
  */
 
-module "project-ci-int-pubsub" {
-  source  = "terraform-google-modules/project-factory/google"
-  version = "~> 3.0"
+output "project_id" {
+  value       = var.project_id
+  description = "The project ID"
+}
 
-  name              = "ci-int-pubsub"
-  random_project_id = true
-  org_id            = var.org_id
-  folder_id         = var.folder_id
-  billing_account   = var.billing_account
+output "region" {
+  value       = module.iot.region
+  description = "The region for the IoT resources"
+}
 
-  activate_apis = [
-    "cloudiot.googleapis.com",
-    "cloudresourcemanager.googleapis.com",
-    "pubsub.googleapis.com",
-    "serviceusage.googleapis.com"
-  ]
+output "registry_name" {
+  value       = module.iot.name
+  description = "The name of the Pub/Sub topic created"
 }

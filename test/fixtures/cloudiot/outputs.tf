@@ -14,20 +14,17 @@
  * limitations under the License.
  */
 
-module "project-ci-int-pubsub" {
-  source  = "terraform-google-modules/project-factory/google"
-  version = "~> 3.0"
+output "project_id" {
+  value       = var.project_id
+  description = "The project ID"
+}
 
-  name              = "ci-int-pubsub"
-  random_project_id = true
-  org_id            = var.org_id
-  folder_id         = var.folder_id
-  billing_account   = var.billing_account
+output "registry_name" {
+  value       = module.iot.registry_name
+  description = "The name of the IoT registry"
+}
 
-  activate_apis = [
-    "cloudiot.googleapis.com",
-    "cloudresourcemanager.googleapis.com",
-    "pubsub.googleapis.com",
-    "serviceusage.googleapis.com"
-  ]
+output "region" {
+  value       = module.iot.region
+  description = "The region of the IoT registry"
 }

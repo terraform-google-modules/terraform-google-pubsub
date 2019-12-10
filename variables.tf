@@ -24,6 +24,12 @@ variable "topic" {
   description = "The Pub/Sub topic name"
 }
 
+variable "create_topic" {
+  type        = bool
+  description = "Specify true if you want to create a topic"
+  default     = true
+}
+
 variable "topic_labels" {
   type        = map(string)
   description = "A map of labels to assign to the Pub/Sub topic"

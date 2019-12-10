@@ -14,20 +14,9 @@
  * limitations under the License.
  */
 
-module "project-ci-int-pubsub" {
-  source  = "terraform-google-modules/project-factory/google"
-  version = "~> 3.0"
-
-  name              = "ci-int-pubsub"
-  random_project_id = true
-  org_id            = var.org_id
-  folder_id         = var.folder_id
-  billing_account   = var.billing_account
-
-  activate_apis = [
-    "cloudiot.googleapis.com",
-    "cloudresourcemanager.googleapis.com",
-    "pubsub.googleapis.com",
-    "serviceusage.googleapis.com"
-  ]
+module "iot" {
+  source     = "../../../examples/cloudiot"
+  project_id = var.project_id
+  name       = "cft-ci-iot-registry"
+  region     = "us-central1"
 }
