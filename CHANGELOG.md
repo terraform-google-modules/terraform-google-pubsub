@@ -9,6 +9,12 @@ and this project adheres to
 
 ## [Unreleased]
 
+## [1.2.1] - 2019-12-18
+
+### Fixed
+
+- Output values from destroyed resources no longer cause errors. [#16]
+
 ## [1.2.0] - 2019-12-09
 
 ### Added
@@ -38,13 +44,15 @@ and this project adheres to
 
 - Initial release
 
-[Unreleased]: https://github.com/terraform-google-modules/terraform-google-pubsub/compare/v1.2.0...HEAD
+[Unreleased]: https://github.com/terraform-google-modules/terraform-google-pubsub/compare/v1.2.1...HEAD
+[1.2.1]: https://github.com/terraform-google-modules/terraform-google-pubsub/compare/v1.2.0...v1.2.1
 [1.2.0]: https://github.com/terraform-google-modules/terraform-google-pubsub/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/terraform-google-modules/terraform-google-pubsub/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/terraform-google-modules/terraform-google-pubsub/compare/v0.2.0...v1.0.0
 [0.2.0]: https://github.com/terraform-google-modules/terraform-google-pubsub/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/terraform-google-modules/terraform-google-pubsub/releases/tag/v0.1.0
 
+[#16]: https://github.com/terraform-google-modules/terraform-google-pubsub/issues/16
 [#15]: https://github.com/terraform-google-modules/terraform-google-pubsub/pull/15
 [#7]: https://github.com/terraform-google-modules/terraform-google-pubsub/pull/7
 [#2]: https://github.com/terraform-google-modules/terraform-google-pubsub/pull/2
