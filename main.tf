@@ -16,6 +16,7 @@
 
 locals {
   default_ack_deadline_seconds = 10
+  default_message_retention_duration = "604800s" // One week
 }
 
 resource "google_pubsub_topic" "topic" {
@@ -42,6 +43,11 @@ resource "google_pubsub_subscription" "push_subscriptions" {
     "ack_deadline_seconds",
     local.default_ack_deadline_seconds,
   )
+  message_retention_duration = lookup(
+    var.push_subscriptions[count.index],
+    "message_retention_duration",
+    local.default_message_retention_duration,
+  )
 
   push_config {
     push_endpoint = var.push_subscriptions[count.index]["push_endpoint"]
@@ -65,6 +71,11 @@ resource "google_pubsub_subscription" "pull_subscriptions" {
     var.pull_subscriptions[count.index],
     "ack_deadline_seconds",
     local.default_ack_deadline_seconds,
+  )
+  message_retention_duration = lookup(
+    var.push_subscriptions[count.index],
+    "message_retention_duration",
+    local.default_message_retention_duration,
   )
 
   depends_on = [google_pubsub_topic.topic]
