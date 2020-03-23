@@ -45,6 +45,7 @@ module "pubsub" {
 | project\_id | The project ID to manage the Pub/Sub resources | string | n/a | yes |
 | pull\_subscriptions | The list of the pull subscriptions | list(map(string)) | `<list>` | no |
 | push\_subscriptions | The list of the push subscriptions | list(map(string)) | `<list>` | no |
+| oidc\_service\_account | Service account email to be used for generating the OIDC token for push subscriptions (**enables authentication**) | string | `null` | no |
 | topic | The Pub/Sub topic name | string | n/a | yes |
 | topic\_labels | A map of labels to assign to the Pub/Sub topic | map(string) | `<map>` | no |
 

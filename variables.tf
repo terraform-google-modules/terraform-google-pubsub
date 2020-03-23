@@ -53,3 +53,15 @@ variable "message_storage_policy" {
   description = "A map of storage policies. Default - inherit from organization's Resource Location Restriction policy."
   default     = {}
 }
+
+variable "oidc_service_account" {
+  type = string
+  description = "Service account email to be used for generating the OIDC token"
+  default = null
+}
+
+variable "oidc_audience" {
+  type = string
+  description = "Audience to be used when generating an OIDC token"
+  default = null
+}

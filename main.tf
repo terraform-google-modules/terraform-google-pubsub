@@ -56,6 +56,15 @@ resource "google_pubsub_subscription" "push_subscriptions" {
     attributes = {
       x-goog-version = lookup(var.push_subscriptions[count.index], "x-goog-version", "v1")
     }
+
+    dynamic "oidc_token" {
+      for_each = [var.oidc_service_account]
+      content {
+        service_account_email = var.oidc_service_account
+        audience = var.oidc_audience
+      }
+    }
+
   }
 
   depends_on = [google_pubsub_topic.topic]
@@ -76,6 +85,5 @@ resource "google_pubsub_subscription" "pull_subscriptions" {
     "message_retention_duration",
     null,
   )
-
   depends_on = [google_pubsub_topic.topic]
 }
