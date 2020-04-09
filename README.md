@@ -41,6 +41,7 @@ module "pubsub" {
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
 | create\_topic | Specify true if you want to create a topic | bool | `"true"` | no |
+| default\_ack\_deadline\_seconds | Set a default acknowledge deadline (in seconds) which will be used if such is not defined by the subscriptions | number | `"10"` | no |
 | message\_storage\_policy | A map of storage policies. Default - inherit from organization's Resource Location Restriction policy. | map | `<map>` | no |
 | project\_id | The project ID to manage the Pub/Sub resources | string | n/a | yes |
 | pull\_subscriptions | The list of the pull subscriptions | list(map(string)) | `<list>` | no |

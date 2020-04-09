@@ -14,10 +14,6 @@
  * limitations under the License.
  */
 
-locals {
-  default_ack_deadline_seconds = 10
-}
-
 resource "google_pubsub_topic" "topic" {
   count   = var.create_topic ? 1 : 0
   project = var.project_id
@@ -40,7 +36,7 @@ resource "google_pubsub_subscription" "push_subscriptions" {
   ack_deadline_seconds = lookup(
     var.push_subscriptions[count.index],
     "ack_deadline_seconds",
-    local.default_ack_deadline_seconds,
+    var.default_ack_deadline_seconds,
   )
   message_retention_duration = lookup(
     var.push_subscriptions[count.index],
@@ -69,7 +65,7 @@ resource "google_pubsub_subscription" "pull_subscriptions" {
   ack_deadline_seconds = lookup(
     var.pull_subscriptions[count.index],
     "ack_deadline_seconds",
-    local.default_ack_deadline_seconds,
+    var.default_ack_deadline_seconds,
   )
   message_retention_duration = lookup(
     var.pull_subscriptions[count.index],

@@ -53,3 +53,13 @@ variable "message_storage_policy" {
   description = "A map of storage policies. Default - inherit from organization's Resource Location Restriction policy."
   default     = {}
 }
+
+variable "default_ack_deadline_seconds" {
+  type        = number
+  description = "Set a default acknowledge deadline (in seconds) which will be used if such is not defined by the subscriptions"
+  default     = 10
+  validation {
+    condition = (var.default_ack_deadline_seconds >= 10) && (var.default_ack_deadline_seconds <= 600)
+    error_message = "Must be an integer between 10 to 600"
+  }
+}
