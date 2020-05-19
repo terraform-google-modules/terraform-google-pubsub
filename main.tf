@@ -19,10 +19,11 @@ locals {
 }
 
 resource "google_pubsub_topic" "topic" {
-  count   = var.create_topic ? 1 : 0
-  project = var.project_id
-  name    = var.topic
-  labels  = var.topic_labels
+  count        = var.create_topic ? 1 : 0
+  project      = var.project_id
+  name         = var.topic
+  labels       = var.topic_labels
+  kms_key_name = var.topic_kms_key_name
 
   dynamic "message_storage_policy" {
     for_each = var.message_storage_policy
