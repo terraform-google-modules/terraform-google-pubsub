@@ -14,7 +14,7 @@ This is a simple usage of the module. Please see also a simple setup provided in
 ```hcl
 module "pubsub" {
   source  = "terraform-google-modules/pubsub/google"
-  version = "~> 1.0"
+  version = "~> 1.3"
 
   topic              = "tf-topic"
   project_id         = "my-pubsub-project"
@@ -47,6 +47,7 @@ module "pubsub" {
 | pull\_subscriptions | The list of the pull subscriptions | list(map(string)) | `<list>` | no |
 | push\_subscriptions | The list of the push subscriptions | list(map(string)) | `<list>` | no |
 | topic | The Pub/Sub topic name | string | n/a | yes |
+| topic\_kms\_key\_name | The resource name of the Cloud KMS CryptoKey to be used to protect access to messages published on this topic. | string | `"null"` | no |
 | topic\_labels | A map of labels to assign to the Pub/Sub topic | map(string) | `<map>` | no |
 
 ## Outputs

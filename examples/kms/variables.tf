@@ -19,15 +19,9 @@ variable "project_id" {
   description = "The project ID to manage the Pub/Sub resources"
 }
 
-variable "topic" {
+variable "topic_name" {
   type        = string
-  description = "The Pub/Sub topic name"
-}
-
-variable "create_topic" {
-  type        = bool
-  description = "Specify true if you want to create a topic"
-  default     = true
+  description = "The name for the Pub/Sub topic"
 }
 
 variable "topic_labels" {
@@ -36,26 +30,12 @@ variable "topic_labels" {
   default     = {}
 }
 
-variable "push_subscriptions" {
-  type        = list(map(string))
-  description = "The list of the push subscriptions"
-  default     = []
-}
-
-variable "pull_subscriptions" {
-  type        = list(map(string))
-  description = "The list of the pull subscriptions"
-  default     = []
-}
-
-variable "message_storage_policy" {
-  type        = map
-  description = "A map of storage policies. Default - inherit from organization's Resource Location Restriction policy."
-  default     = {}
-}
-
-variable "topic_kms_key_name" {
+variable "kms_key_name" {
   type        = string
-  description = "The resource name of the Cloud KMS CryptoKey to be used to protect access to messages published on this topic."
-  default     = null
+  description = "Name of KMS key to use for pubsub topic"
+}
+
+variable "kms_keyring_name" {
+  type        = string
+  description = "Name of KMS key ring to use for pubsub topic"
 }
