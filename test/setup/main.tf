@@ -16,7 +16,7 @@
 
 module "project-ci-int-pubsub" {
   source  = "terraform-google-modules/project-factory/google"
-  version = "~> 3.0"
+  version = "~> 8.0"
 
   name              = "ci-int-pubsub"
   random_project_id = true
