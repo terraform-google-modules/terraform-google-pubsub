@@ -24,6 +24,7 @@ module "pubsub" {
       ack_deadline_seconds = 20 // optional
       push_endpoint        = "https://example.com" // required
       x-goog-version       = "v1beta1" // optional
+      expiration_policy    = "1209600s" // optional
     }
   ]
   pull_subscriptions = [
