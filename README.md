@@ -26,6 +26,7 @@ module "pubsub" {
       x-goog-version       = "v1beta1" // optional
       oidc_service_account = "sa@example.com" // optional
       audience             = "example" // optional
+      expiration_policy    = "1209600s" // optional
     }
   ]
   pull_subscriptions = [

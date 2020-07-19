@@ -48,6 +48,13 @@ resource "google_pubsub_subscription" "push_subscriptions" {
     "message_retention_duration",
     null,
   )
+  dynamic "expiration_policy" {
+    // check if the 'expiration_policy' key exists, if yes, return a list containing it.
+    for_each = contains(keys(var.push_subscriptions[count.index]), "expiration_policy") ? [var.push_subscriptions[count.index].expiration_policy] : []
+    content {
+      ttl = expiration_policy.value
+    }
+  }
 
   push_config {
     push_endpoint = var.push_subscriptions[count.index]["push_endpoint"]
@@ -84,6 +91,13 @@ resource "google_pubsub_subscription" "pull_subscriptions" {
     "message_retention_duration",
     null,
   )
+  dynamic "expiration_policy" {
+    // check if the 'expiration_policy' key exists, if yes, return a list containing it.
+    for_each = contains(keys(var.pull_subscriptions[count.index]), "expiration_policy") ? [var.pull_subscriptions[count.index].expiration_policy] : []
+    content {
+      ttl = expiration_policy.value
+    }
+  }
 
   depends_on = [google_pubsub_topic.topic]
 }
