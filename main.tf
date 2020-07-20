@@ -64,8 +64,15 @@ resource "google_pubsub_subscription" "push_subscriptions" {
     attributes = {
       x-goog-version = lookup(var.push_subscriptions[count.index], "x-goog-version", "v1")
     }
-  }
 
+    dynamic "oidc_token" {
+      for_each = (lookup(var.push_subscriptions[count.index], "oidc_service_account_email", "") != "") ? [true] : []
+      content {
+        service_account_email = lookup(var.push_subscriptions[count.index], "oidc_service_account_email", "")
+        audience              = lookup(var.push_subscriptions[count.index], "audience", "")
+      }
+    }
+  }
   depends_on = [google_pubsub_topic.topic]
 }
 
