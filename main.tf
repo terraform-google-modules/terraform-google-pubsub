@@ -57,7 +57,7 @@ resource "google_pubsub_subscription" "push_subscriptions" {
   }
 
   dynamic "dead_letter_policy" {
-    for_each = contains(keys(var.push_subscriptions[count.index]), "dead_letter_topic") ? [var.push_subscriptions[count.index].dead_letter_topic] : []
+    for_each = (lookup(var.push_subscriptions[count.index], "dead_letter_topic", "") != "") ? [var.push_subscriptions[count.index].dead_letter_topic] : []
     content {
       dead_letter_topic     = lookup(var.push_subscriptions[count.index], "dead_letter_topic", "")
       max_delivery_attempts = lookup(var.push_subscriptions[count.index], "max_delivery_attempts", "5")
@@ -108,7 +108,7 @@ resource "google_pubsub_subscription" "pull_subscriptions" {
   }
 
   dynamic "dead_letter_policy" {
-    for_each = contains(keys(var.pull_subscriptions[count.index]), "dead_letter_topic") ? [var.pull_subscriptions[count.index].dead_letter_topic] : []
+    for_each = (lookup(var.pull_subscriptions[count.index], "dead_letter_topic", "") != "") ? [var.pull_subscriptions[count.index].dead_letter_topic] : []
     content {
       dead_letter_topic     = lookup(var.pull_subscriptions[count.index], "dead_letter_topic", "")
       max_delivery_attempts = lookup(var.pull_subscriptions[count.index], "max_delivery_attempts", "5")
