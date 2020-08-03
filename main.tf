@@ -14,8 +14,51 @@
  * limitations under the License.
  */
 
+data "google_project" "project" {
+  project_id = var.project_id
+}
+
 locals {
   default_ack_deadline_seconds = 10
+  pubsub_svc_account_email     = "service-${data.google_project.project.number}@gcp-sa-pubsub.iam.gserviceaccount.com"
+}
+
+resource "google_pubsub_topic_iam_binding" "push_topic_binding" {
+  count   = var.create_topic ? length(var.push_subscriptions) : 0
+  project = var.project_id
+  topic   = lookup(var.push_subscriptions[count.index], "dead_letter_topic", "projects/${var.project_id}/topics/${var.topic}")
+  role    = "roles/pubsub.publisher"
+  members = [
+    "serviceAccount:${local.pubsub_svc_account_email}",
+  ]
+}
+
+resource "google_pubsub_topic_iam_binding" "pull_topic_binding" {
+  count   = var.create_topic ? length(var.pull_subscriptions) : 0
+  project = var.project_id
+  topic   = lookup(var.pull_subscriptions[count.index], "dead_letter_topic", "projects/${var.project_id}/topics/${var.topic}")
+  role    = "roles/pubsub.publisher"
+  members = [
+    "serviceAccount:${local.pubsub_svc_account_email}",
+  ]
+}
+
+resource "google_pubsub_subscription_iam_binding" "pull_subscription_binding" {
+  count        = var.create_topic ? length(var.pull_subscriptions) : 0
+  subscription = var.pull_subscriptions[count.index].name
+  role         = "roles/pubsub.subscriber"
+  members = [
+    "serviceAccount:${local.pubsub_svc_account_email}",
+  ]
+}
+
+resource "google_pubsub_subscription_iam_binding" "push_subscription_binding" {
+  count        = var.create_topic ? length(var.push_subscriptions) : 0
+  subscription = var.push_subscriptions[count.index].name
+  role         = "roles/pubsub.subscriber"
+  members = [
+    "serviceAccount:${local.pubsub_svc_account_email}",
+  ]
 }
 
 resource "google_pubsub_topic" "topic" {
