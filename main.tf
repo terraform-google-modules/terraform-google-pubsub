@@ -31,6 +31,7 @@ resource "google_pubsub_topic_iam_binding" "push_topic_binding" {
   members = [
     "serviceAccount:${local.pubsub_svc_account_email}",
   ]
+  depends_on = [google_pubsub_topic.topic]
 }
 
 resource "google_pubsub_topic_iam_binding" "pull_topic_binding" {
@@ -41,6 +42,7 @@ resource "google_pubsub_topic_iam_binding" "pull_topic_binding" {
   members = [
     "serviceAccount:${local.pubsub_svc_account_email}",
   ]
+  depends_on = [google_pubsub_topic.topic]
 }
 
 resource "google_pubsub_subscription_iam_binding" "pull_subscription_binding" {
@@ -50,6 +52,7 @@ resource "google_pubsub_subscription_iam_binding" "pull_subscription_binding" {
   members = [
     "serviceAccount:${local.pubsub_svc_account_email}",
   ]
+  depends_on = [google_pubsub_topic.topic]
 }
 
 resource "google_pubsub_subscription_iam_binding" "push_subscription_binding" {
@@ -59,6 +62,7 @@ resource "google_pubsub_subscription_iam_binding" "push_subscription_binding" {
   members = [
     "serviceAccount:${local.pubsub_svc_account_email}",
   ]
+  depends_on = [google_pubsub_topic.topic]
 }
 
 resource "google_pubsub_topic" "topic" {
