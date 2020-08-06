@@ -26,43 +26,53 @@ locals {
 resource "google_pubsub_topic_iam_binding" "push_topic_binding" {
   count   = var.create_topic ? length(var.push_subscriptions) : 0
   project = var.project_id
-  topic   = lookup(var.push_subscriptions[count.index], "dead_letter_topic", "projects/${var.project_id}/topics/${var.push_subscriptions[count.index].name}")
+  topic   = lookup(var.push_subscriptions[count.index], "dead_letter_topic", "projects/${var.project_id}/topics/${var.topic}")
   role    = "roles/pubsub.publisher"
   members = [
     "serviceAccount:${local.pubsub_svc_account_email}",
   ]
-  depends_on = [google_pubsub_topic.topic]
+  depends_on = [
+    google_pubsub_topic.topic,
+  ]
 }
 
 resource "google_pubsub_topic_iam_binding" "pull_topic_binding" {
   count   = var.create_topic ? length(var.pull_subscriptions) : 0
   project = var.project_id
-  topic   = lookup(var.pull_subscriptions[count.index], "dead_letter_topic", "projects/${var.project_id}/topics/${var.pull_subscriptions[count.index].name}")
+  topic   = lookup(var.pull_subscriptions[count.index], "dead_letter_topic", "projects/${var.project_id}/topics/${var.topic}")
   role    = "roles/pubsub.publisher"
   members = [
     "serviceAccount:${local.pubsub_svc_account_email}",
   ]
-  depends_on = [google_pubsub_topic.topic]
+  depends_on = [
+    google_pubsub_topic.topic,
+  ]
 }
 
 resource "google_pubsub_subscription_iam_binding" "pull_subscription_binding" {
   count        = var.create_topic ? length(var.pull_subscriptions) : 0
+  project      = var.project_id
   subscription = var.pull_subscriptions[count.index].name
   role         = "roles/pubsub.subscriber"
   members = [
     "serviceAccount:${local.pubsub_svc_account_email}",
   ]
-  depends_on = [google_pubsub_topic.topic]
+  depends_on = [
+    google_pubsub_subscription.pull_subscriptions,
+  ]
 }
 
 resource "google_pubsub_subscription_iam_binding" "push_subscription_binding" {
   count        = var.create_topic ? length(var.push_subscriptions) : 0
+  project      = var.project_id
   subscription = var.push_subscriptions[count.index].name
   role         = "roles/pubsub.subscriber"
   members = [
     "serviceAccount:${local.pubsub_svc_account_email}",
   ]
-  depends_on = [google_pubsub_topic.topic]
+  depends_on = [
+    google_pubsub_subscription.push_subscriptions,
+  ]
 }
 
 resource "google_pubsub_topic" "topic" {
@@ -128,7 +138,9 @@ resource "google_pubsub_subscription" "push_subscriptions" {
       }
     }
   }
-  depends_on = [google_pubsub_topic.topic]
+  depends_on = [
+    google_pubsub_topic.topic,
+  ]
 }
 
 resource "google_pubsub_subscription" "pull_subscriptions" {
@@ -162,5 +174,7 @@ resource "google_pubsub_subscription" "pull_subscriptions" {
     }
   }
 
-  depends_on = [google_pubsub_topic.topic]
+  depends_on = [
+    google_pubsub_topic.topic,
+  ]
 }
