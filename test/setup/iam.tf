@@ -17,7 +17,7 @@
 locals {
   int_required_roles = [
     "roles/cloudiot.admin",
-    "roles/pubsub.editor"
+    "roles/pubsub.admin"
   ]
 }
 
