@@ -101,6 +101,10 @@ resource "google_pubsub_subscription" "push_subscriptions" {
     "message_retention_duration",
     null,
   )
+  retain_acked_messages = lookup(
+    var.push_subscriptions[count.index],
+    "retain_acked_messages", null,
+  )
   dynamic "expiration_policy" {
     // check if the 'expiration_policy' key exists, if yes, return a list containing it.
     for_each = contains(keys(var.push_subscriptions[count.index]), "expiration_policy") ? [var.push_subscriptions[count.index].expiration_policy] : []
@@ -153,6 +157,10 @@ resource "google_pubsub_subscription" "pull_subscriptions" {
     var.pull_subscriptions[count.index],
     "message_retention_duration",
     null,
+  )
+  retain_acked_messages = lookup(
+    var.pull_subscriptions[count.index],
+    "retain_acked_messages", null,
   )
   dynamic "expiration_policy" {
     // check if the 'expiration_policy' key exists, if yes, return a list containing it.
