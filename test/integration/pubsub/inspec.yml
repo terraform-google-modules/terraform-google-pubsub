@@ -15,7 +15,6 @@
 name: cloud-pubsub
 title: Google Cloud Pub/Sub
 version: 0.1.0
-inspec_version: '~> 3.9.3'
 attributes:
   - name: project_id
     type: string
