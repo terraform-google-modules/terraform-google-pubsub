@@ -101,6 +101,11 @@ resource "google_pubsub_subscription" "push_subscriptions" {
     "message_retention_duration",
     null,
   )
+  enable_message_ordering = lookup(
+    var.pull_subscriptions[count.index],
+    "enable_message_ordering",
+    false,
+  )
   dynamic "expiration_policy" {
     // check if the 'expiration_policy' key exists, if yes, return a list containing it.
     for_each = contains(keys(var.push_subscriptions[count.index]), "expiration_policy") ? [var.push_subscriptions[count.index].expiration_policy] : []
@@ -114,6 +119,14 @@ resource "google_pubsub_subscription" "push_subscriptions" {
     content {
       dead_letter_topic     = lookup(var.push_subscriptions[count.index], "dead_letter_topic", "")
       max_delivery_attempts = lookup(var.push_subscriptions[count.index], "max_delivery_attempts", "5")
+    }
+  }
+
+  dynamic "retry_policy" {
+    for_each = (lookup(var.pull_subscriptions[count.index], "minimum_backoff", "") != "") ? [var.pull_subscriptions[count.index].minimum_backoff] : []
+    content {
+      minimum_backoff = lookup(var.pull_subscriptions[count.index], "minimum_backoff", "")
+      maximum_backoff = lookup(var.pull_subscriptions[count.index], "maximum_backoff", "")
     }
   }
 
@@ -154,6 +167,11 @@ resource "google_pubsub_subscription" "pull_subscriptions" {
     "message_retention_duration",
     null,
   )
+  enable_message_ordering = lookup(
+    var.pull_subscriptions[count.index],
+    "enable_message_ordering",
+    false,
+  )
   dynamic "expiration_policy" {
     // check if the 'expiration_policy' key exists, if yes, return a list containing it.
     for_each = contains(keys(var.pull_subscriptions[count.index]), "expiration_policy") ? [var.pull_subscriptions[count.index].expiration_policy] : []
@@ -167,6 +185,14 @@ resource "google_pubsub_subscription" "pull_subscriptions" {
     content {
       dead_letter_topic     = lookup(var.pull_subscriptions[count.index], "dead_letter_topic", "")
       max_delivery_attempts = lookup(var.pull_subscriptions[count.index], "max_delivery_attempts", "5")
+    }
+  }
+
+  dynamic "retry_policy" {
+    for_each = (lookup(var.pull_subscriptions[count.index], "minimum_backoff", "") != "") ? [var.pull_subscriptions[count.index].minimum_backoff] : []
+    content {
+      minimum_backoff = lookup(var.pull_subscriptions[count.index], "minimum_backoff", "")
+      maximum_backoff = lookup(var.pull_subscriptions[count.index], "maximum_backoff", "")
     }
   }
 
