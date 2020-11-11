@@ -58,15 +58,15 @@ module "iot" {
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|:----:|:-----:|:-----:|
-| event\_notification\_config | The event notification configuration for the Cloud IoT registry. This contains `topic`, `topic_labels`, `pull_subscriptions` and `push_subscriptions` and `create_topic`. | object | `<map>` | no |
-| http\_enabled\_state | The field allows HTTP_ENABLED or HTTP_DISABLED | string | `"HTTP_DISABLED"` | no |
-| mqtt\_enabled\_state | The field allows MQTT_ENABLED or MQTT_DISABLED | string | `"MQTT_ENABLED"` | no |
-| name | The Cloud IoT registry name | string | n/a | yes |
-| project\_id | The project ID to manage the Cloud IoT resources | string | n/a | yes |
-| public\_key\_certificates | The list for public key certificates | object | `<list>` | no |
-| region | The region to host the registry | string | n/a | yes |
-| state\_notification\_config | The state notification configuration for the Cloud IoT registry. This contains `topic`, `topic_labels`, `pull_subscriptions` and `push_subscriptions` and `create_topic`. | object | `<map>` | no |
+|------|-------------|------|---------|:--------:|
+| event\_notification\_config | The event notification configuration for the Cloud IoT registry. This contains `topic`, `topic_labels`, `pull_subscriptions` and `push_subscriptions` and `create_topic`. | <pre>object({<br>    topic              = string<br>    topic_labels       = map(string)<br>    push_subscriptions = list(map(string))<br>    pull_subscriptions = list(map(string))<br>    create_topic       = bool<br>  })</pre> | <pre>{<br>  "create_topic": false,<br>  "pull_subscriptions": [],<br>  "push_subscriptions": [],<br>  "topic": "",<br>  "topic_labels": {}<br>}</pre> | no |
+| http\_enabled\_state | The field allows HTTP\_ENABLED or HTTP\_DISABLED | `string` | `"HTTP_DISABLED"` | no |
+| mqtt\_enabled\_state | The field allows MQTT\_ENABLED or MQTT\_DISABLED | `string` | `"MQTT_ENABLED"` | no |
+| name | The Cloud IoT registry name | `string` | n/a | yes |
+| project\_id | The project ID to manage the Cloud IoT resources | `string` | n/a | yes |
+| public\_key\_certificates | The list for public key certificates | `list(object({ format = string, certificate = string }))` | `[]` | no |
+| region | The region to host the registry | `string` | n/a | yes |
+| state\_notification\_config | The state notification configuration for the Cloud IoT registry. This contains `topic`, `topic_labels`, `pull_subscriptions` and `push_subscriptions` and `create_topic`. | <pre>object({<br>    topic              = string<br>    topic_labels       = map(string)<br>    push_subscriptions = list(map(string))<br>    pull_subscriptions = list(map(string))<br>    create_topic       = bool<br>  })</pre> | <pre>{<br>  "create_topic": false,<br>  "pull_subscriptions": [],<br>  "push_subscriptions": [],<br>  "topic": "",<br>  "topic_labels": {}<br>}</pre> | no |
 
 ## Outputs
 
