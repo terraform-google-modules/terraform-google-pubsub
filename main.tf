@@ -102,7 +102,7 @@ resource "google_pubsub_subscription" "push_subscriptions" {
     null,
   )
   enable_message_ordering = lookup(
-    var.pull_subscriptions[count.index],
+    var.push_subscriptions[count.index],
     "enable_message_ordering",
     false,
   )
@@ -123,10 +123,10 @@ resource "google_pubsub_subscription" "push_subscriptions" {
   }
 
   dynamic "retry_policy" {
-    for_each = (lookup(var.pull_subscriptions[count.index], "minimum_backoff", "") != "") ? [var.pull_subscriptions[count.index].minimum_backoff] : []
+    for_each = (lookup(var.push_subscriptions[count.index], "minimum_backoff", "") != "") ? [var.push_subscriptions[count.index].minimum_backoff] : []
     content {
-      minimum_backoff = lookup(var.pull_subscriptions[count.index], "minimum_backoff", "")
-      maximum_backoff = lookup(var.pull_subscriptions[count.index], "maximum_backoff", "")
+      minimum_backoff = lookup(var.push_subscriptions[count.index], "minimum_backoff", "")
+      maximum_backoff = lookup(var.push_subscriptions[count.index], "maximum_backoff", "")
     }
   }
 
