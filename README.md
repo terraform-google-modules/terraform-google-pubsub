@@ -29,6 +29,8 @@ module "pubsub" {
       expiration_policy     = "1209600s" // optional
       dead_letter_topic     = "example-dl-topic" // optional
       max_delivery_attempts = 5 // optional
+      maximum_backoff       = "600s" // optional
+      minimum_backoff       = "300s" // optional
     }
   ]
   pull_subscriptions = [
@@ -37,6 +39,8 @@ module "pubsub" {
       ack_deadline_seconds  = 20 // optional
       dead_letter_topic     = "example-dl-topic" // optional
       max_delivery_attempts = 5 // optional
+      maximum_backoff       = "600s" // optional
+      minimum_backoff       = "300s" // optional
     }
   ]
 }
