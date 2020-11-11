@@ -4,10 +4,10 @@
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|:----:|:-----:|:-----:|
-| name | The name for the Cloud IoT registry | string | n/a | yes |
-| project\_id | The project ID to manage the Pub/Sub resources | string | n/a | yes |
-| region | The region for the IoT resources | string | n/a | yes |
+|------|-------------|------|---------|:--------:|
+| name | The name for the Cloud IoT registry | `string` | n/a | yes |
+| project\_id | The project ID to manage the Pub/Sub resources | `string` | n/a | yes |
+| region | The region for the IoT resources | `string` | n/a | yes |
 
 ## Outputs
 
