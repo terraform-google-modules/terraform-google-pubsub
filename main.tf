@@ -23,6 +23,15 @@ locals {
   pubsub_svc_account_email     = "service-${data.google_project.project.number}@gcp-sa-pubsub.iam.gserviceaccount.com"
 }
 
+resource "google_project_iam_member" "token_creator_binding" {
+  project = var.project_id
+  role    = "roles/iam.serviceAccountTokenCreator"
+  member  = "serviceAccount:${local.pubsub_svc_account_email}"
+  depends_on = [
+    google_pubsub_subscription.push_subscriptions,
+  ]
+}
+
 resource "google_pubsub_topic_iam_member" "push_topic_binding" {
   count   = var.create_topic ? length(var.push_subscriptions) : 0
   project = var.project_id
