@@ -7,6 +7,14 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.5.0](https://www.github.com/terraform-google-modules/terraform-google-pubsub/compare/v1.4.0...v1.5.0) (2020-09-21)
+
+
+### Features
+
+* Add iam bindings to the default pub/sub service account ([#34](https://www.github.com/terraform-google-modules/terraform-google-pubsub/issues/34)) ([c3b08e4](https://www.github.com/terraform-google-modules/terraform-google-pubsub/commit/c3b08e47a72b8d238d8ba2b16a31e6ad5f760aed))
+* Add support for dead_letter_policy to subscription resources ([#32](https://www.github.com/terraform-google-modules/terraform-google-pubsub/issues/32)) ([5005366](https://www.github.com/terraform-google-modules/terraform-google-pubsub/commit/500536636fee1b4a8cfe909b42276a341b8533b3))
+
 ## [1.4.0](https://www.github.com/terraform-google-modules/terraform-google-pubsub/compare/v1.3.0...v1.4.0) (2020-07-20)
 
 
@@ -22,8 +30,6 @@ and this project adheres to
 
 * Add custom KMS key support ([#25](https://www.github.com/terraform-google-modules/terraform-google-pubsub/issues/25)) ([9516ff1](https://www.github.com/terraform-google-modules/terraform-google-pubsub/commit/9516ff1cd7109adac92225caf819178e61281ff1))
 * Add support for message_retention_duration ([#19](https://www.github.com/terraform-google-modules/terraform-google-pubsub/issues/19)) ([71a81ac](https://www.github.com/terraform-google-modules/terraform-google-pubsub/commit/71a81ac4607d89ef7bedf839810cce978fb50eb6))
-
-## [Unreleased]
 
 ## [1.2.1] - 2019-12-18
 

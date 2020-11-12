@@ -23,6 +23,15 @@ locals {
   pubsub_svc_account_email     = "service-${data.google_project.project.number}@gcp-sa-pubsub.iam.gserviceaccount.com"
 }
 
+resource "google_project_iam_member" "token_creator_binding" {
+  project = var.project_id
+  role    = "roles/iam.serviceAccountTokenCreator"
+  member  = "serviceAccount:${local.pubsub_svc_account_email}"
+  depends_on = [
+    google_pubsub_subscription.push_subscriptions,
+  ]
+}
+
 resource "google_pubsub_topic_iam_member" "push_topic_binding" {
   count   = var.create_topic ? length(var.push_subscriptions) : 0
   project = var.project_id
@@ -121,6 +130,14 @@ resource "google_pubsub_subscription" "push_subscriptions" {
     }
   }
 
+  dynamic "retry_policy" {
+    for_each = (lookup(var.push_subscriptions[count.index], "maximum_backoff", "") != "") ? [var.push_subscriptions[count.index].maximum_backoff] : []
+    content {
+      maximum_backoff = lookup(var.push_subscriptions[count.index], "maximum_backoff", "")
+      minimum_backoff = lookup(var.push_subscriptions[count.index], "minimum_backoff", "")
+    }
+  }
+
   push_config {
     push_endpoint = var.push_subscriptions[count.index]["push_endpoint"]
 
@@ -175,6 +192,14 @@ resource "google_pubsub_subscription" "pull_subscriptions" {
     content {
       dead_letter_topic     = lookup(var.pull_subscriptions[count.index], "dead_letter_topic", "")
       max_delivery_attempts = lookup(var.pull_subscriptions[count.index], "max_delivery_attempts", "5")
+    }
+  }
+
+  dynamic "retry_policy" {
+    for_each = (lookup(var.pull_subscriptions[count.index], "maximum_backoff", "") != "") ? [var.pull_subscriptions[count.index].maximum_backoff] : []
+    content {
+      maximum_backoff = lookup(var.pull_subscriptions[count.index], "maximum_backoff", "")
+      minimum_backoff = lookup(var.pull_subscriptions[count.index], "minimum_backoff", "")
     }
   }
 
