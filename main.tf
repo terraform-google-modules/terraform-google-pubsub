@@ -54,27 +54,23 @@ resource "google_pubsub_topic_iam_member" "pull_topic_binding" {
   ]
 }
 
-resource "google_pubsub_subscription_iam_binding" "pull_subscription_binding" {
+resource "google_pubsub_subscription_iam_member" "pull_subscription_binding" {
   count        = var.create_topic ? length(var.pull_subscriptions) : 0
   project      = var.project_id
   subscription = var.pull_subscriptions[count.index].name
   role         = "roles/pubsub.subscriber"
-  members = [
-    "serviceAccount:${local.pubsub_svc_account_email}",
-  ]
+  member       = "serviceAccount:${local.pubsub_svc_account_email}"
   depends_on = [
     google_pubsub_subscription.pull_subscriptions,
   ]
 }
 
-resource "google_pubsub_subscription_iam_binding" "push_subscription_binding" {
+resource "google_pubsub_subscription_iam_member" "push_subscription_binding" {
   count        = var.create_topic ? length(var.push_subscriptions) : 0
   project      = var.project_id
   subscription = var.push_subscriptions[count.index].name
   role         = "roles/pubsub.subscriber"
-  members = [
-    "serviceAccount:${local.pubsub_svc_account_email}",
-  ]
+  member       = "serviceAccount:${local.pubsub_svc_account_email}"
   depends_on = [
     google_pubsub_subscription.push_subscriptions,
   ]
