@@ -59,3 +59,9 @@ variable "topic_kms_key_name" {
   description = "The resource name of the Cloud KMS CryptoKey to be used to protect access to messages published on this topic."
   default     = null
 }
+
+variable "grant_token_creator" {
+  type        = bool
+  description = "Specify true if you want to add token creator role to the default Pub/Sub SA"
+  default     = false
+}
