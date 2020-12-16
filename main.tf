@@ -24,6 +24,7 @@ locals {
 }
 
 resource "google_project_iam_member" "token_creator_binding" {
+  count   = var.grant_token_creator ? 1 : 0
   project = var.project_id
   role    = "roles/iam.serviceAccountTokenCreator"
   member  = "serviceAccount:${local.pubsub_svc_account_email}"
