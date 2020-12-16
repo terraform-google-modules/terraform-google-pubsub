@@ -87,7 +87,7 @@ In order to execute this module you must have a Service Account with the followi
 
 #### Roles
 
-- `roles/pubsub.editor`
+- `roles/pubsub.admin`
 
 ### Enable APIs
 
