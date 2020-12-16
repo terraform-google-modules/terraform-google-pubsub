@@ -63,5 +63,5 @@ variable "topic_kms_key_name" {
 variable "grant_token_creator" {
   type        = bool
   description = "Specify true if you want to add token creator role to the default Pub/Sub SA"
-  default     = false
+  default     = true
 }
