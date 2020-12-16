@@ -7,6 +7,13 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+### [1.6.1](https://www.github.com/terraform-google-modules/terraform-google-pubsub/compare/v1.6.0...v1.6.1) (2020-12-16)
+
+
+### Bug Fixes
+
+* Add flag to control token creator role binding ([#48](https://www.github.com/terraform-google-modules/terraform-google-pubsub/issues/48)) ([6a89f24](https://www.github.com/terraform-google-modules/terraform-google-pubsub/commit/6a89f24f5591b9f6a0499919a594e64fbf732726))
+
 ## [1.6.0](https://www.github.com/terraform-google-modules/terraform-google-pubsub/compare/v1.5.0...v1.6.0) (2020-11-13)
 
 
