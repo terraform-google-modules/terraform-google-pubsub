@@ -16,31 +16,35 @@ module "pubsub" {
   source  = "terraform-google-modules/pubsub/google"
   version = "~> 1.6"
 
-  topic              = "tf-topic"
-  project_id         = "my-pubsub-project"
+  topic      = "tf-topic"
+  project_id = "my-pubsub-project"
   push_subscriptions = [
     {
-      name                  = "push"   // required
-      ack_deadline_seconds  = 20 // optional
-      push_endpoint         = "https://example.com" // required
-      x-goog-version        = "v1beta1" // optional
-      oidc_service_account  = "sa@example.com" // optional
-      audience              = "example" // optional
-      expiration_policy     = "1209600s" // optional
-      dead_letter_topic     = "example-dl-topic" // optional
-      max_delivery_attempts = 5 // optional
-      maximum_backoff       = "600s" // optional
-      minimum_backoff       = "300s" // optional
+      name                       = "push"                                               // required
+      ack_deadline_seconds       = 20                                                   // optional
+      push_endpoint              = "https://example.com"                                // required
+      x-goog-version             = "v1beta1"                                            // optional
+      oidc_service_account_email = "sa@example.com"                                     // optional
+      audience                   = "example"                                            // optional
+      expiration_policy          = "1209600s"                                           // optional
+      dead_letter_topic          = "projects/my-pubsub-project/topics/example-dl-topic" // optional
+      max_delivery_attempts      = 5                                                    // optional
+      maximum_backoff            = "600s"                                               // optional
+      minimum_backoff            = "300s"                                               // optional
+      filter                     = "attributes.domain = \"com\""                        // optional
+      enable_message_ordering    = true                                                 // optional
     }
   ]
   pull_subscriptions = [
     {
-      name                  = "pull" // required
-      ack_deadline_seconds  = 20 // optional
-      dead_letter_topic     = "example-dl-topic" // optional
-      max_delivery_attempts = 5 // optional
-      maximum_backoff       = "600s" // optional
-      minimum_backoff       = "300s" // optional
+      name                    = "pull"                                               // required
+      ack_deadline_seconds    = 20                                                   // optional
+      dead_letter_topic       = "projects/my-pubsub-project/topics/example-dl-topic" // optional
+      max_delivery_attempts   = 5                                                    // optional
+      maximum_backoff         = "600s"                                               // optional
+      minimum_backoff         = "300s"                                               // optional
+      filter                  = "attributes.domain = \"com\""                        // optional
+      enable_message_ordering = true                                                 // optional
     }
   ]
 }
@@ -53,7 +57,7 @@ module "pubsub" {
 |------|-------------|------|---------|:--------:|
 | create\_topic | Specify true if you want to create a topic | `bool` | `true` | no |
 | grant\_token\_creator | Specify true if you want to add token creator role to the default Pub/Sub SA | `bool` | `true` | no |
-| message\_storage\_policy | A map of storage policies. Default - inherit from organization's Resource Location Restriction policy. | `map` | `{}` | no |
+| message\_storage\_policy | A map of storage policies. Default - inherit from organization's Resource Location Restriction policy. | `map(any)` | `{}` | no |
 | project\_id | The project ID to manage the Pub/Sub resources | `string` | n/a | yes |
 | pull\_subscriptions | The list of the pull subscriptions | `list(map(string))` | `[]` | no |
 | push\_subscriptions | The list of the push subscriptions | `list(map(string))` | `[]` | no |

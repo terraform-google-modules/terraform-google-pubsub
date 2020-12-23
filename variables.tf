@@ -49,7 +49,7 @@ variable "pull_subscriptions" {
 }
 
 variable "message_storage_policy" {
-  type        = map
+  type        = map(any)
   description = "A map of storage policies. Default - inherit from organization's Resource Location Restriction policy."
   default     = {}
 }
