@@ -7,6 +7,19 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.7.0](https://www.github.com/terraform-google-modules/terraform-google-pubsub/compare/v1.6.0...v1.7.0) (2020-12-23)
+
+
+### Features
+
+* Add support to filter and enable_message_ordering ([#52](https://www.github.com/terraform-google-modules/terraform-google-pubsub/issues/52)) ([cb9700b](https://www.github.com/terraform-google-modules/terraform-google-pubsub/commit/cb9700bc1d1addda284423add2ada00046ffa4f3))
+
+
+### Bug Fixes
+
+* Add flag to control token creator role binding ([#48](https://www.github.com/terraform-google-modules/terraform-google-pubsub/issues/48)) ([6a89f24](https://www.github.com/terraform-google-modules/terraform-google-pubsub/commit/6a89f24f5591b9f6a0499919a594e64fbf732726))
+* Fix oidc_service_account_email on readme ([#54](https://www.github.com/terraform-google-modules/terraform-google-pubsub/issues/54)) ([17dcf2a](https://www.github.com/terraform-google-modules/terraform-google-pubsub/commit/17dcf2ada8587941be4fe78891e9b191d2c66528))
+
 ## [1.6.0](https://www.github.com/terraform-google-modules/terraform-google-pubsub/compare/v1.5.0...v1.6.0) (2020-11-13)
 
 
