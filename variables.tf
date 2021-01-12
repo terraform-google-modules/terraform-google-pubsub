@@ -48,6 +48,12 @@ variable "pull_subscriptions" {
   default     = []
 }
 
+variable "subscription_labels" {
+  type        = map(string)
+  description = "A map of labels to assign to every Pub/Sub subscription"
+  default     = {}
+}
+
 variable "message_storage_policy" {
   type        = map(any)
   description = "A map of storage policies. Default - inherit from organization's Resource Location Restriction policy."
