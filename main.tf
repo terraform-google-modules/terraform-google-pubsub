@@ -24,6 +24,7 @@ locals {
 }
 
 resource "google_project_iam_member" "token_creator_binding" {
+  count   = var.grant_token_creator ? 1 : 0
   project = var.project_id
   role    = "roles/iam.serviceAccountTokenCreator"
   member  = "serviceAccount:${local.pubsub_svc_account_email}"
@@ -96,6 +97,7 @@ resource "google_pubsub_subscription" "push_subscriptions" {
   name    = var.push_subscriptions[count.index].name
   topic   = google_pubsub_topic.topic.0.name
   project = var.project_id
+  labels  = var.subscription_labels
   ack_deadline_seconds = lookup(
     var.push_subscriptions[count.index],
     "ack_deadline_seconds",
@@ -109,6 +111,15 @@ resource "google_pubsub_subscription" "push_subscriptions" {
   retain_acked_messages = lookup(
     var.push_subscriptions[count.index],
     "retain_acked_messages", null,
+  filter = lookup(
+    var.push_subscriptions[count.index],
+    "filter",
+    null,
+  )
+  enable_message_ordering = lookup(
+    var.push_subscriptions[count.index],
+    "enable_message_ordering",
+    null,
   )
   dynamic "expiration_policy" {
     // check if the 'expiration_policy' key exists, if yes, return a list containing it.
@@ -161,6 +172,7 @@ resource "google_pubsub_subscription" "pull_subscriptions" {
   name    = var.pull_subscriptions[count.index].name
   topic   = google_pubsub_topic.topic.0.name
   project = var.project_id
+  labels  = var.subscription_labels
   ack_deadline_seconds = lookup(
     var.pull_subscriptions[count.index],
     "ack_deadline_seconds",
@@ -174,6 +186,15 @@ resource "google_pubsub_subscription" "pull_subscriptions" {
   retain_acked_messages = lookup(
     var.pull_subscriptions[count.index],
     "retain_acked_messages", null,
+  filter = lookup(
+    var.pull_subscriptions[count.index],
+    "filter",
+    null,
+  )
+  enable_message_ordering = lookup(
+    var.pull_subscriptions[count.index],
+    "enable_message_ordering",
+    null,
   )
   dynamic "expiration_policy" {
     // check if the 'expiration_policy' key exists, if yes, return a list containing it.
