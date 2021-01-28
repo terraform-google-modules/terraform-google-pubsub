@@ -7,6 +7,13 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.8.0](https://www.github.com/terraform-google-modules/terraform-google-pubsub/compare/v1.7.0...v1.8.0) (2021-01-20)
+
+
+### Features
+
+* Add labels to every subscription ([#55](https://www.github.com/terraform-google-modules/terraform-google-pubsub/issues/55)) ([ca431e4](https://www.github.com/terraform-google-modules/terraform-google-pubsub/commit/ca431e46356019fce8e9fee0d0356ff85948ab86))
+
 ## [1.7.0](https://www.github.com/terraform-google-modules/terraform-google-pubsub/compare/v1.6.0...v1.7.0) (2020-12-23)
 
 
