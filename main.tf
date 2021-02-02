@@ -110,7 +110,9 @@ resource "google_pubsub_subscription" "push_subscriptions" {
   )
   retain_acked_messages = lookup(
     var.push_subscriptions[count.index],
-    "retain_acked_messages", null,
+    "retain_acked_messages",
+    null,
+  )
   filter = lookup(
     var.push_subscriptions[count.index],
     "filter",
@@ -185,7 +187,9 @@ resource "google_pubsub_subscription" "pull_subscriptions" {
   )
   retain_acked_messages = lookup(
     var.pull_subscriptions[count.index],
-    "retain_acked_messages", null,
+    "retain_acked_messages",
+    null,
+  )
   filter = lookup(
     var.pull_subscriptions[count.index],
     "filter",
