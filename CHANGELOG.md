@@ -7,6 +7,13 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.9.0](https://www.github.com/terraform-google-modules/terraform-google-pubsub/compare/v1.8.0...v1.9.0) (2021-02-02)
+
+
+### Features
+
+* allow the module to control retain_acked_messages ([#36](https://www.github.com/terraform-google-modules/terraform-google-pubsub/issues/36)) ([8d44bfd](https://www.github.com/terraform-google-modules/terraform-google-pubsub/commit/8d44bfddfa5070c50c68c033f173245ab55feed4))
+
 ## [1.8.0](https://www.github.com/terraform-google-modules/terraform-google-pubsub/compare/v1.7.0...v1.8.0) (2021-01-20)
 
 
