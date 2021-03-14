@@ -3,9 +3,10 @@
 This module makes it easy to create Google Cloud Pub/Sub topic and subscriptions associated with the topic.
 
 ## Compatibility
-
-This module is meant for use with Terraform 0.12. If you haven't [upgraded][terraform-0.12-upgrade] and need a Terraform 0.11.x-compatible version of this module, the last released version intended for Terraform 0.11.x
-is [0.2.0][v0.2.0].
+This module is meant for use with Terraform 0.13. If you haven't
+[upgraded](https://www.terraform.io/upgrade-guides/0-13.html) and need a Terraform
+0.12.x-compatible version of this module, the last released version
+intended for Terraform 0.12.x is [v1.9.0](https://registry.terraform.io/modules/terraform-google-modules/-pubsub/google/v1.9.0).
 
 ## Usage
 
@@ -83,7 +84,7 @@ module "pubsub" {
 
 ### Installation Dependencies
 
-- [terraform](https://www.terraform.io/downloads.html) 0.12.x
+- [Terraform](https://www.terraform.io/downloads.html) >= 0.13.0
 - [terraform-provider-google](https://github.com/terraform-providers/terraform-provider-google) plugin >= v2.13
 
 ### Configure a Service Account
