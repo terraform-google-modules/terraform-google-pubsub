@@ -34,9 +34,10 @@ resource "google_project_iam_member" "token_creator_binding" {
 }
 
 resource "google_pubsub_topic_iam_member" "push_topic_binding" {
-  count   = var.create_topic ? length(var.push_subscriptions) : 0
+  for_each = { for i in var.push_subscriptions : i.name => i if var.create_topic }
+
   project = var.project_id
-  topic   = lookup(var.push_subscriptions[count.index], "dead_letter_topic", "projects/${var.project_id}/topics/${var.topic}")
+  topic   = lookup(each.value, "dead_letter_topic", "projects/${var.project_id}/topics/${var.topic}")
   role    = "roles/pubsub.publisher"
   member  = "serviceAccount:${local.pubsub_svc_account_email}"
   depends_on = [
@@ -45,9 +46,10 @@ resource "google_pubsub_topic_iam_member" "push_topic_binding" {
 }
 
 resource "google_pubsub_topic_iam_member" "pull_topic_binding" {
-  count   = var.create_topic ? length(var.pull_subscriptions) : 0
+  for_each = { for i in var.pull_subscriptions : i.name => i if var.create_topic }
+
   project = var.project_id
-  topic   = lookup(var.pull_subscriptions[count.index], "dead_letter_topic", "projects/${var.project_id}/topics/${var.topic}")
+  topic   = lookup(each.value, "dead_letter_topic", "projects/${var.project_id}/topics/${var.topic}")
   role    = "roles/pubsub.publisher"
   member  = "serviceAccount:${local.pubsub_svc_account_email}"
   depends_on = [
@@ -56,9 +58,10 @@ resource "google_pubsub_topic_iam_member" "pull_topic_binding" {
 }
 
 resource "google_pubsub_subscription_iam_member" "pull_subscription_binding" {
-  count        = var.create_topic ? length(var.pull_subscriptions) : 0
+  for_each = { for i in var.pull_subscriptions : i.name => i if var.create_topic }
+
   project      = var.project_id
-  subscription = var.pull_subscriptions[count.index].name
+  subscription = each.value.name
   role         = "roles/pubsub.subscriber"
   member       = "serviceAccount:${local.pubsub_svc_account_email}"
   depends_on = [
@@ -67,9 +70,10 @@ resource "google_pubsub_subscription_iam_member" "pull_subscription_binding" {
 }
 
 resource "google_pubsub_subscription_iam_member" "push_subscription_binding" {
-  count        = var.create_topic ? length(var.push_subscriptions) : 0
+  for_each = { for i in var.push_subscriptions : i.name => i if var.create_topic }
+
   project      = var.project_id
-  subscription = var.push_subscriptions[count.index].name
+  subscription = each.value.name
   role         = "roles/pubsub.subscriber"
   member       = "serviceAccount:${local.pubsub_svc_account_email}"
   depends_on = [
