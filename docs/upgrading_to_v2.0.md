@@ -25,5 +25,5 @@ terraform state mv 'google_pubsub_subscription.push_subscriptions[1]' 'google_pu
 
 ### Topic and subscription IAM member
 
-The `google_pubsub_topic_iam_member` and `google_pubsub_subscription_iam_member` resources also has been updated to use `for_each` instead of `count`.
+The `google_pubsub_topic_iam_member` and `google_pubsub_subscription_iam_member` resources also have been updated to use `for_each` instead of `count`.
 But recreating these resources with `terraform apply` command instead of state migration is usually fine for most cases.
