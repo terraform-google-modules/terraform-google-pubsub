@@ -9,7 +9,7 @@ The v2.0 release of *terraform-google-pubsub* is a backwards incompatible releas
 ### Pubsub Subscription for_each
 The `google_pubsub_subscription` resource has been updated to use `for_each` instead of `count`. This allows adding/removing subscriptions without causing a diff on unrelated subscriptions.
 
-Updating to this new format requires a state migration. 
+Updating to this new format requires a state migration.
 All `google_pubsub_subscription.pull_subscriptions` and `google_pubsub_subscription.push_subscriptions` resources with numerical indexes in the state need to be moved to resources with named indexes, where each index is the name of the subscription.
 
 For example:
