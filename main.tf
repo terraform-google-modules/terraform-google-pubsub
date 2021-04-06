@@ -93,74 +93,75 @@ resource "google_pubsub_topic" "topic" {
 }
 
 resource "google_pubsub_subscription" "push_subscriptions" {
-  count   = var.create_topic ? length(var.push_subscriptions) : 0
-  name    = var.push_subscriptions[count.index].name
+  for_each = { for i in var.push_subscriptions : i.name => i if var.create_topic }
+
+  name    = each.value.name
   topic   = google_pubsub_topic.topic.0.name
   project = var.project_id
   labels  = var.subscription_labels
   ack_deadline_seconds = lookup(
-    var.push_subscriptions[count.index],
+    each.value,
     "ack_deadline_seconds",
     local.default_ack_deadline_seconds,
   )
   message_retention_duration = lookup(
-    var.push_subscriptions[count.index],
+    each.value,
     "message_retention_duration",
     null,
   )
   retain_acked_messages = lookup(
-    var.push_subscriptions[count.index],
+    each.value,
     "retain_acked_messages",
     null,
   )
   filter = lookup(
-    var.push_subscriptions[count.index],
+    each.value,
     "filter",
     null,
   )
   enable_message_ordering = lookup(
-    var.push_subscriptions[count.index],
+    each.value,
     "enable_message_ordering",
     null,
   )
   dynamic "expiration_policy" {
     // check if the 'expiration_policy' key exists, if yes, return a list containing it.
-    for_each = contains(keys(var.push_subscriptions[count.index]), "expiration_policy") ? [var.push_subscriptions[count.index].expiration_policy] : []
+    for_each = contains(keys(each.value), "expiration_policy") ? [each.value.expiration_policy] : []
     content {
       ttl = expiration_policy.value
     }
   }
 
   dynamic "dead_letter_policy" {
-    for_each = (lookup(var.push_subscriptions[count.index], "dead_letter_topic", "") != "") ? [var.push_subscriptions[count.index].dead_letter_topic] : []
+    for_each = (lookup(each.value, "dead_letter_topic", "") != "") ? [each.value.dead_letter_topic] : []
     content {
-      dead_letter_topic     = lookup(var.push_subscriptions[count.index], "dead_letter_topic", "")
-      max_delivery_attempts = lookup(var.push_subscriptions[count.index], "max_delivery_attempts", "5")
+      dead_letter_topic     = lookup(each.value, "dead_letter_topic", "")
+      max_delivery_attempts = lookup(each.value, "max_delivery_attempts", "5")
     }
   }
 
   dynamic "retry_policy" {
-    for_each = (lookup(var.push_subscriptions[count.index], "maximum_backoff", "") != "") ? [var.push_subscriptions[count.index].maximum_backoff] : []
+    for_each = (lookup(each.value, "maximum_backoff", "") != "") ? [each.value.maximum_backoff] : []
     content {
-      maximum_backoff = lookup(var.push_subscriptions[count.index], "maximum_backoff", "")
-      minimum_backoff = lookup(var.push_subscriptions[count.index], "minimum_backoff", "")
+      maximum_backoff = lookup(each.value, "maximum_backoff", "")
+      minimum_backoff = lookup(each.value, "minimum_backoff", "")
     }
   }
 
   push_config {
-    push_endpoint = var.push_subscriptions[count.index]["push_endpoint"]
+    push_endpoint = each.value["push_endpoint"]
 
     // FIXME: This should be programmable, but nested map isn't supported at this time.
     //   https://github.com/hashicorp/terraform/issues/2114
     attributes = {
-      x-goog-version = lookup(var.push_subscriptions[count.index], "x-goog-version", "v1")
+      x-goog-version = lookup(each.value, "x-goog-version", "v1")
     }
 
     dynamic "oidc_token" {
-      for_each = (lookup(var.push_subscriptions[count.index], "oidc_service_account_email", "") != "") ? [true] : []
+      for_each = (lookup(each.value, "oidc_service_account_email", "") != "") ? [true] : []
       content {
-        service_account_email = lookup(var.push_subscriptions[count.index], "oidc_service_account_email", "")
-        audience              = lookup(var.push_subscriptions[count.index], "audience", "")
+        service_account_email = lookup(each.value, "oidc_service_account_email", "")
+        audience              = lookup(each.value, "audience", "")
       }
     }
   }
@@ -170,57 +171,58 @@ resource "google_pubsub_subscription" "push_subscriptions" {
 }
 
 resource "google_pubsub_subscription" "pull_subscriptions" {
-  count   = var.create_topic ? length(var.pull_subscriptions) : 0
-  name    = var.pull_subscriptions[count.index].name
+  for_each = { for i in var.pull_subscriptions : i.name => i if var.create_topic }
+
+  name    = each.value.name
   topic   = google_pubsub_topic.topic.0.name
   project = var.project_id
   labels  = var.subscription_labels
   ack_deadline_seconds = lookup(
-    var.pull_subscriptions[count.index],
+    each.value,
     "ack_deadline_seconds",
     local.default_ack_deadline_seconds,
   )
   message_retention_duration = lookup(
-    var.pull_subscriptions[count.index],
+    each.value,
     "message_retention_duration",
     null,
   )
   retain_acked_messages = lookup(
-    var.pull_subscriptions[count.index],
+    each.value,
     "retain_acked_messages",
     null,
   )
   filter = lookup(
-    var.pull_subscriptions[count.index],
+    each.value,
     "filter",
     null,
   )
   enable_message_ordering = lookup(
-    var.pull_subscriptions[count.index],
+    each.value,
     "enable_message_ordering",
     null,
   )
   dynamic "expiration_policy" {
     // check if the 'expiration_policy' key exists, if yes, return a list containing it.
-    for_each = contains(keys(var.pull_subscriptions[count.index]), "expiration_policy") ? [var.pull_subscriptions[count.index].expiration_policy] : []
+    for_each = contains(keys(each.value), "expiration_policy") ? [each.value.expiration_policy] : []
     content {
       ttl = expiration_policy.value
     }
   }
 
   dynamic "dead_letter_policy" {
-    for_each = (lookup(var.pull_subscriptions[count.index], "dead_letter_topic", "") != "") ? [var.pull_subscriptions[count.index].dead_letter_topic] : []
+    for_each = (lookup(each.value, "dead_letter_topic", "") != "") ? [each.value.dead_letter_topic] : []
     content {
-      dead_letter_topic     = lookup(var.pull_subscriptions[count.index], "dead_letter_topic", "")
-      max_delivery_attempts = lookup(var.pull_subscriptions[count.index], "max_delivery_attempts", "5")
+      dead_letter_topic     = lookup(each.value, "dead_letter_topic", "")
+      max_delivery_attempts = lookup(each.value, "max_delivery_attempts", "5")
     }
   }
 
   dynamic "retry_policy" {
-    for_each = (lookup(var.pull_subscriptions[count.index], "maximum_backoff", "") != "") ? [var.pull_subscriptions[count.index].maximum_backoff] : []
+    for_each = (lookup(each.value, "maximum_backoff", "") != "") ? [each.value.maximum_backoff] : []
     content {
-      maximum_backoff = lookup(var.pull_subscriptions[count.index], "maximum_backoff", "")
-      minimum_backoff = lookup(var.pull_subscriptions[count.index], "minimum_backoff", "")
+      maximum_backoff = lookup(each.value, "maximum_backoff", "")
+      minimum_backoff = lookup(each.value, "minimum_backoff", "")
     }
   }
 
