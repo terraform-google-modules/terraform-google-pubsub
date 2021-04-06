@@ -228,3 +228,28 @@ resource "google_pubsub_subscription" "pull_subscriptions" {
     google_pubsub_topic.topic,
   ]
 }
+
+
+resource "google_pubsub_subscription_iam_member" "pull_subscription_sa_binding" {
+  for_each = { for i in var.pull_subscriptions : i.name => i if(var.create_topic && lookup(i, "service_account", null) != null) }
+
+  project      = var.project_id
+  subscription = each.value.name
+  role         = "roles/pubsub.subscriber"
+  member       = "serviceAccount:${each.value.service_account}"
+  depends_on = [
+    google_pubsub_subscription.pull_subscriptions,
+  ]
+}
+
+resource "google_pubsub_subscription_iam_member" "pull_subscription_sa_binding_viewer" {
+  for_each = { for i in var.pull_subscriptions : i.name => i if(var.create_topic && lookup(i, "service_account_viewer_role", null) == "true") }
+
+  project      = var.project_id
+  subscription = each.value.name
+  role         = "roles/pubsub.viewer"
+  member       = "serviceAccount:${each.value.service_account}"
+  depends_on = [
+    google_pubsub_subscription.pull_subscriptions,
+  ]
+}

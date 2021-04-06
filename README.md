@@ -38,14 +38,16 @@ module "pubsub" {
   ]
   pull_subscriptions = [
     {
-      name                    = "pull"                                               // required
-      ack_deadline_seconds    = 20                                                   // optional
-      dead_letter_topic       = "projects/my-pubsub-project/topics/example-dl-topic" // optional
-      max_delivery_attempts   = 5                                                    // optional
-      maximum_backoff         = "600s"                                               // optional
-      minimum_backoff         = "300s"                                               // optional
-      filter                  = "attributes.domain = \"com\""                        // optional
-      enable_message_ordering = true                                                 // optional
+      name                        = "pull"                                               // required
+      ack_deadline_seconds        = 20                                                   // optional
+      dead_letter_topic           = "projects/my-pubsub-project/topics/example-dl-topic" // optional
+      max_delivery_attempts       = 5                                                    // optional
+      maximum_backoff             = "600s"                                               // optional
+      minimum_backoff             = "300s"                                               // optional
+      filter                      = "attributes.domain = \"com\""                        // optional
+      enable_message_ordering     = true                                                 // optional
+      service_account             = "service2@project2.iam.gserviceaccount.com"          // optional
+      service_account_viewer_role = true                                                 // optional
     }
   ]
 }
