@@ -25,7 +25,7 @@ terraform {
   }
 
   provider_meta "google" {
-    module_name = "blueprints/terraform/terraform-google-pubsub:cloudiot/v1.0.0"
+    module_name = "blueprints/terraform/terraform-google-pubsub:cloudiot/v2.0.0"
   }
 
 }
