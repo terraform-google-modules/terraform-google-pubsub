@@ -235,9 +235,8 @@ resource "google_pubsub_subscription" "pull_subscriptions" {
   ]
 }
 
-
-resource "google_pubsub_subscription_iam_member" "pull_subscription_sa_binding" {
-  for_each = { for i in var.pull_subscriptions : i.name => i if(var.create_topic && lookup(i, "service_account", null) != null) }
+resource "google_pubsub_subscription_iam_member" "pull_subscription_sa_binding_subscriber" {
+  for_each = var.create_topic ? { for i in var.pull_subscriptions : i.name => i if lookup(i, "service_account", null) != null } : {}
 
   project      = var.project_id
   subscription = each.value.name
@@ -249,7 +248,7 @@ resource "google_pubsub_subscription_iam_member" "pull_subscription_sa_binding" 
 }
 
 resource "google_pubsub_subscription_iam_member" "pull_subscription_sa_binding_viewer" {
-  for_each = { for i in var.pull_subscriptions : i.name => i if(var.create_topic && lookup(i, "service_account_viewer_role", null) == "true") }
+  for_each = var.create_topic ? { for i in var.pull_subscriptions : i.name => i if lookup(i, "service_account", null) != null } : {}
 
   project      = var.project_id
   subscription = each.value.name
