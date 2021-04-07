@@ -46,6 +46,7 @@ module "pubsub" {
       minimum_backoff         = "300s"                                               // optional
       filter                  = "attributes.domain = \"com\""                        // optional
       enable_message_ordering = true                                                 // optional
+      service_account         = "service2@project2.iam.gserviceaccount.com"          // optional
     }
   ]
 }
