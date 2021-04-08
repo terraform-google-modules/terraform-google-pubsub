@@ -7,6 +7,24 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.0](https://www.github.com/terraform-google-modules/terraform-google-pubsub/compare/v1.9.0...v2.0.0) (2021-04-07)
+
+
+### ⚠ BREAKING CHANGES
+
+* The state location for subscriptions has moved, see the [upgrade guide](https://github.com/terraform-google-modules/terraform-google-pubsub/blob/master/docs/upgrading_to_v2.0.md) for details.
+* Add Terraform 0.13 constraint and module attribution (#64)
+
+### Features
+
+* Add Terraform 0.13 constraint and module attribution ([#64](https://www.github.com/terraform-google-modules/terraform-google-pubsub/issues/64)) ([bf6a051](https://www.github.com/terraform-google-modules/terraform-google-pubsub/commit/bf6a051fdc6346ca6966467e56643a3a7a358eb7))
+* Grant pull subscription permissions for external service account ([#68](https://www.github.com/terraform-google-modules/terraform-google-pubsub/issues/68)) ([6cd0fc4](https://www.github.com/terraform-google-modules/terraform-google-pubsub/commit/6cd0fc480ca0db204c741d167a61ea2fa671d753))
+
+
+### Bug Fixes
+
+* Use subscription names as the keys instead of numeric indexes ([#67](https://www.github.com/terraform-google-modules/terraform-google-pubsub/issues/67)) ([b07ab12](https://www.github.com/terraform-google-modules/terraform-google-pubsub/commit/b07ab1225383148e3f7fa8517ffcf87d17e2d405))
+
 ## [1.9.0](https://www.github.com/terraform-google-modules/terraform-google-pubsub/compare/v1.8.0...v1.9.0) (2021-02-02)
 
 
