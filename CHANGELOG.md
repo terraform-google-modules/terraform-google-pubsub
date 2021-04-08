@@ -12,12 +12,12 @@ and this project adheres to
 
 ### ⚠ BREAKING CHANGES
 
-* The state location for subscriptions has moved, see the upgrade guide for details.
-* add Terraform 0.13 constraint and module attribution (#64)
+* The state location for subscriptions has moved, see the [upgrade guide](https://github.com/terraform-google-modules/terraform-google-pubsub/blob/master/docs/upgrading_to_v2.0.md) for details.
+* Add Terraform 0.13 constraint and module attribution (#64)
 
 ### Features
 
-* add Terraform 0.13 constraint and module attribution ([#64](https://www.github.com/terraform-google-modules/terraform-google-pubsub/issues/64)) ([bf6a051](https://www.github.com/terraform-google-modules/terraform-google-pubsub/commit/bf6a051fdc6346ca6966467e56643a3a7a358eb7))
+* Add Terraform 0.13 constraint and module attribution ([#64](https://www.github.com/terraform-google-modules/terraform-google-pubsub/issues/64)) ([bf6a051](https://www.github.com/terraform-google-modules/terraform-google-pubsub/commit/bf6a051fdc6346ca6966467e56643a3a7a358eb7))
 * Grant pull subscription permissions for external service account ([#68](https://www.github.com/terraform-google-modules/terraform-google-pubsub/issues/68)) ([6cd0fc4](https://www.github.com/terraform-google-modules/terraform-google-pubsub/commit/6cd0fc480ca0db204c741d167a61ea2fa671d753))
 
 
