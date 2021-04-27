@@ -40,6 +40,13 @@ resource "google_pubsub_topic_iam_member" "push_topic_binding" {
   topic   = lookup(each.value, "dead_letter_topic", "projects/${var.project_id}/topics/${var.topic}")
   role    = "roles/pubsub.publisher"
   member  = "serviceAccount:${local.pubsub_svc_account_email}"
+  lifecycle {
+    ignore_changes = [
+      # Ignore changes to memeber since it gets recreated with
+      # each subcription.
+      member,
+    ]
+  }
   depends_on = [
     google_pubsub_topic.topic,
   ]
@@ -52,6 +59,13 @@ resource "google_pubsub_topic_iam_member" "pull_topic_binding" {
   topic   = lookup(each.value, "dead_letter_topic", "projects/${var.project_id}/topics/${var.topic}")
   role    = "roles/pubsub.publisher"
   member  = "serviceAccount:${local.pubsub_svc_account_email}"
+  lifecycle {
+    ignore_changes = [
+      # Ignore changes to memeber since it gets recreated with
+      # each subcription.
+      member,
+    ]
+  }
   depends_on = [
     google_pubsub_topic.topic,
   ]
