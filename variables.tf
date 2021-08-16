@@ -22,6 +22,7 @@ variable "project_id" {
 variable "topic" {
   type        = string
   description = "The Pub/Sub topic name"
+  default     = "pubsub-topic"
 }
 
 variable "create_topic" {
@@ -30,6 +31,11 @@ variable "create_topic" {
   default     = true
 }
 
+variable "create_subscriptions" {
+  type        = bool
+  description = "Specify true if you want to create subscriptions"
+  default     = true
+}
 variable "topic_labels" {
   type        = map(string)
   description = "A map of labels to assign to the Pub/Sub topic"

@@ -57,6 +57,7 @@ module "pubsub" {
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| create\_subscriptions | Specify true if you want to create subscriptions | `bool` | `true` | no |
 | create\_topic | Specify true if you want to create a topic | `bool` | `true` | no |
 | grant\_token\_creator | Specify true if you want to add token creator role to the default Pub/Sub SA | `bool` | `true` | no |
 | message\_storage\_policy | A map of storage policies. Default - inherit from organization's Resource Location Restriction policy. | `map(any)` | `{}` | no |
@@ -64,7 +65,7 @@ module "pubsub" {
 | pull\_subscriptions | The list of the pull subscriptions | `list(map(string))` | `[]` | no |
 | push\_subscriptions | The list of the push subscriptions | `list(map(string))` | `[]` | no |
 | subscription\_labels | A map of labels to assign to every Pub/Sub subscription | `map(string)` | `{}` | no |
-| topic | The Pub/Sub topic name | `string` | n/a | yes |
+| topic | The Pub/Sub topic name | `string` | `"pubsub-topic"` | no |
 | topic\_kms\_key\_name | The resource name of the Cloud KMS CryptoKey to be used to protect access to messages published on this topic. | `string` | `null` | no |
 | topic\_labels | A map of labels to assign to the Pub/Sub topic | `map(string)` | `{}` | no |
 

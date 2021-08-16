@@ -19,17 +19,23 @@ provider "google" {
   region  = "us-central1"
 }
 
+resource "google_pubsub_topic" "example" {
+  name    = "terraform-test-topic"
+  project = var.topic_project
+
+}
 module "pubsub" {
-  source       = "../../"
-  project_id   = var.project_id
-  topic        = var.topic_name
-  topic_labels = var.topic_labels
+  source               = "../../"
+  project_id           = var.project_id
+  create_topic         = false
+  create_subscriptions = true
 
 
   pull_subscriptions = [
     {
       name                 = "pull"
       ack_deadline_seconds = 10
+      topic_name           = google_pubsub_topic.example.id
     },
   ]
 
@@ -40,6 +46,7 @@ module "pubsub" {
       x-goog-version       = "v1beta1"
       ack_deadline_seconds = 20
       expiration_policy    = "1209600s" // two weeks
+      topic_name           = google_pubsub_topic.example.id
     },
   ]
 

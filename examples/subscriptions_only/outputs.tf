@@ -14,33 +14,17 @@
  * limitations under the License.
  */
 
-provider "google" {
-  version = "~> 3.51"
-  region  = "us-central1"
+output "project_id" {
+  value       = var.project_id
+  description = "The project ID"
 }
 
-module "pubsub" {
-  source       = "../../"
-  project_id   = var.project_id
-  topic        = var.topic_name
-  topic_labels = var.topic_labels
+output "topic_name" {
+  value       = module.pubsub.topic
+  description = "The name of the Pub/Sub topic created"
+}
 
-
-  pull_subscriptions = [
-    {
-      name                 = "pull"
-      ack_deadline_seconds = 10
-    },
-  ]
-
-  push_subscriptions = [
-    {
-      name                 = "push"
-      push_endpoint        = "https://${var.project_id}.appspot.com/"
-      x-goog-version       = "v1beta1"
-      ack_deadline_seconds = 20
-      expiration_policy    = "1209600s" // two weeks
-    },
-  ]
-
+output "topic_labels" {
+  value       = module.pubsub.topic_labels
+  description = "The labels of the Pub/Sub topic created"
 }
