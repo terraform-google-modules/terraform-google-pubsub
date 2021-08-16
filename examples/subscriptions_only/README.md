@@ -1,6 +1,6 @@
-# Simple Example
+# Simple Example - Creates Subscriptions Only
 
-This example illustrates how to use the `pubsub` module.
+This example illustrates how to use the `pubsub` module  to create only subscriptions.
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Inputs
