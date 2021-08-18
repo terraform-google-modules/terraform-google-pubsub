@@ -29,13 +29,13 @@ module "pubsub" {
   project_id           = var.project_id
   create_topic         = false
   create_subscriptions = true
+  topic                = google_pubsub_topic.example.id
 
 
   pull_subscriptions = [
     {
       name                 = "pull"
       ack_deadline_seconds = 10
-      topic_name           = google_pubsub_topic.example.id
     },
   ]
 
@@ -46,7 +46,6 @@ module "pubsub" {
       x-goog-version       = "v1beta1"
       ack_deadline_seconds = 20
       expiration_policy    = "1209600s" // two weeks
-      topic_name           = google_pubsub_topic.example.id
     },
   ]
 

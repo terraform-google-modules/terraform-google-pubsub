@@ -22,7 +22,6 @@ variable "project_id" {
 variable "topic" {
   type        = string
   description = "The Pub/Sub topic name"
-  default     = "pubsub-topic"
 }
 
 variable "create_topic" {
