@@ -8,8 +8,6 @@ This example illustrates how to use the `pubsub` module  to create only subscrip
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | project\_id | The project ID to manage the Pub/Sub resources | `string` | n/a | yes |
-| topic\_labels | A map of labels to assign to the Pub/Sub topic | `map(string)` | `{}` | no |
-| topic\_name | The name for the Pub/Sub topic | `string` | n/a | yes |
 | topic\_project | The project ID of the topic | `string` | n/a | yes |
 
 ## Outputs

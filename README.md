@@ -65,7 +65,7 @@ module "pubsub" {
 | pull\_subscriptions | The list of the pull subscriptions | `list(map(string))` | `[]` | no |
 | push\_subscriptions | The list of the push subscriptions | `list(map(string))` | `[]` | no |
 | subscription\_labels | A map of labels to assign to every Pub/Sub subscription | `map(string)` | `{}` | no |
-| topic | The Pub/Sub topic name | `string` | `"pubsub-topic"` | no |
+| topic | The Pub/Sub topic name | `string` | n/a | yes |
 | topic\_kms\_key\_name | The resource name of the Cloud KMS CryptoKey to be used to protect access to messages published on this topic. | `string` | `null` | no |
 | topic\_labels | A map of labels to assign to the Pub/Sub topic | `map(string)` | `{}` | no |
 
