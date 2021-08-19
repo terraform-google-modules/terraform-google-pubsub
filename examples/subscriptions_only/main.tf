@@ -19,11 +19,17 @@ provider "google" {
   region  = "us-central1"
 }
 
+resource "google_pubsub_topic" "example" {
+  name    = "terraform-test-topic"
+  project = var.topic_project
+
+}
 module "pubsub" {
-  source       = "../../"
-  project_id   = var.project_id
-  topic        = var.topic_name
-  topic_labels = var.topic_labels
+  source               = "../../"
+  project_id           = var.project_id
+  create_topic         = false
+  create_subscriptions = true
+  topic                = google_pubsub_topic.example.id
 
 
   pull_subscriptions = [
