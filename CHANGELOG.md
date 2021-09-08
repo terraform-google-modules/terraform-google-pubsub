@@ -7,6 +7,17 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.0.0](https://www.github.com/terraform-google-modules/terraform-google-pubsub/compare/v2.0.0...v3.0.0) (2021-09-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* The `create_subscriptions` variable is now used to control whether subscriptions should be created. Set `create_subscriptions = false` *and* `create_topic = false` if you don't want the module to do anything.
+
+### Features
+
+* Allow creating subscriptions without creating topic ([#72](https://www.github.com/terraform-google-modules/terraform-google-pubsub/issues/72)) ([0c25bf2](https://www.github.com/terraform-google-modules/terraform-google-pubsub/commit/0c25bf2f4f736a5008d680a04cc43409993e858b))
+
 ## [2.0.0](https://www.github.com/terraform-google-modules/terraform-google-pubsub/compare/v1.9.0...v2.0.0) (2021-04-07)
 
 
