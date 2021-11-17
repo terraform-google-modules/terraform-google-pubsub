@@ -15,8 +15,7 @@
  */
 
 provider "google" {
-  version = "~> 3.51"
-  region  = var.region
+  region = var.region
 }
 
 resource "tls_private_key" "private_keys" {
