@@ -45,8 +45,8 @@ output "subscription_names" {
 
 output "subscription_paths" {
   value = concat(
-    values({ for k, v in google_pubsub_subscription.push_subscriptions : k => v.path }),
-    values({ for k, v in google_pubsub_subscription.pull_subscriptions : k => v.path }),
+    values({ for k, v in google_pubsub_subscription.push_subscriptions : k => v.id }),
+    values({ for k, v in google_pubsub_subscription.pull_subscriptions : k => v.id }),
   )
 
   description = "The path list of Pub/Sub subscriptions"
