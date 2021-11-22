@@ -15,8 +15,7 @@
  */
 
 provider "google" {
-  version = "~> 3.51"
-  region  = "us-central1"
+  region = "us-central1"
 }
 
 resource "google_pubsub_topic" "example" {
