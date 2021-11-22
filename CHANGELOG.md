@@ -7,6 +7,13 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+### [3.0.1](https://www.github.com/terraform-google-modules/terraform-google-pubsub/compare/v3.0.0...v3.0.1) (2021-11-22)
+
+
+### Bug Fixes
+
+* update subscription_paths op to id which has an identical value ([#78](https://www.github.com/terraform-google-modules/terraform-google-pubsub/issues/78)) ([01413fb](https://www.github.com/terraform-google-modules/terraform-google-pubsub/commit/01413fb8e13a5503e8b73dab7c28bbb2ad850af9))
+
 ## [3.0.0](https://www.github.com/terraform-google-modules/terraform-google-pubsub/compare/v2.0.0...v3.0.0) (2021-09-02)
 
 
