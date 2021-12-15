@@ -94,6 +94,13 @@ resource "google_pubsub_topic" "topic" {
       allowed_persistence_regions = message_storage_policy.key == "allowed_persistence_regions" ? message_storage_policy.value : null
     }
   }
+  dynamic "schema_settings" {
+    for_each = var.schema_settings
+    content {
+      schema   = lookup(schema_settings.value, "schema", null)
+      encoding = lookup(schema_settings.value, "encoding", null)
+    }
+  }
 }
 
 resource "google_pubsub_subscription" "push_subscriptions" {

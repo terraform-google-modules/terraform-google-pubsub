@@ -76,3 +76,10 @@ variable "grant_token_creator" {
   description = "Specify true if you want to add token creator role to the default Pub/Sub SA"
   default     = true
 }
+
+variable "schema_settings" {
+  type        = map(any)
+  description = "Settings for validating messages published against a schema."
+  default     = {}
+}
+
