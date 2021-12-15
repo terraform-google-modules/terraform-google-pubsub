@@ -97,8 +97,8 @@ resource "google_pubsub_topic" "topic" {
   dynamic "schema_settings" {
     for_each = var.schema_settings
     content {
-      schema       = lookup(schema_settings.value, "schema", null)
-      encoding     = lookup(schema_settings.value, "encoding", null)
+      schema   = lookup(schema_settings.value, "schema", null)
+      encoding = lookup(schema_settings.value, "encoding", null)
     }
   }
 }

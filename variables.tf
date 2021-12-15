@@ -82,3 +82,4 @@ variable "schema_settings" {
   description = "Settings for validating messages published against a schema."
   default     = {}
 }
+
