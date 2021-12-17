@@ -19,9 +19,9 @@ provider "google" {
 }
 
 resource "google_pubsub_schema" "example" {
-  project   = var.project_id
-  name = "example"
-  type = "AVRO"
+  project    = var.project_id
+  name       = "example"
+  type       = "AVRO"
   definition = "{\n  \"type\" : \"record\",\n  \"name\" : \"Avro\",\n  \"fields\" : [\n    {\n      \"name\" : \"StringField\",\n      \"type\" : \"string\"\n    },\n    {\n      \"name\" : \"IntField\",\n      \"type\" : \"int\"\n    }\n  ]\n}\n"
 }
 
@@ -50,7 +50,7 @@ module "pubsub" {
   ]
 
   schema_settings = {
-    schema = google_pubsub_schema.example.id
+    schema   = google_pubsub_schema.example.id
     encoding = "JSON"
   }
 
