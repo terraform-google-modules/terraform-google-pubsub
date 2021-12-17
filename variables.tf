@@ -78,8 +78,12 @@ variable "grant_token_creator" {
 }
 
 variable "schema_settings" {
-  type        = map(any)
+  type = object({
+    schema   = string
+    encoding = string
+  })
   description = "Settings for validating messages published against a schema."
-  default     = {}
+  default     = null
+
 }
 
