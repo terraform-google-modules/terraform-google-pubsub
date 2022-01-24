@@ -77,15 +77,6 @@ variable "grant_token_creator" {
   default     = true
 }
 
-//variable "schema_settings" {
-//  type = object({
-//    schema   = string
-//    encoding = string
-//  })
-//  description = "Settings for validating messages published against a schema."
-//  default     = null
-//}
-
 variable "schema" {
   type = object({
     name  = string
@@ -96,12 +87,3 @@ variable "schema" {
   description = "Schema for the topic"
   default     = null
 }
-
-
-//schema = {
-//  name = "example"
-//  type = "AVRO"
-//  definition = "{\n \"type\" : \"record\",\n \"name\" : \"Avro\",\n \"fields\" : [\n {\n \"name\" : \"StringField\",\n \"type\" : \"string\"\n },\n {\n \"name\" : \"IntField\",\n \"type\" : \"int\"\n }\n ]\n}\n"
-//  encoding = "JSON"
-//}
-
