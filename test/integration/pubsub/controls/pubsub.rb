@@ -41,7 +41,8 @@ describe command("gcloud --project='#{project_id}' pubsub subscriptions describe
 end
 
 describe command("gcloud --project='#{project_id}' pubsub schemas describe #{schema_name}") do
-  its(:exit_status) { should not be_zero }
+  its(:exit_status) { should  be_zero }
   it { expect(subject.stdout).to match(%r{name: projects/#{project_id}/schemas/example}) }
 end
+
 
