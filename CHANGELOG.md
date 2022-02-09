@@ -7,6 +7,13 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.2.0](https://github.com/terraform-google-modules/terraform-google-pubsub/compare/v3.1.0...v3.2.0) (2022-02-09)
+
+
+### Features
+
+* add schema support ([#83](https://github.com/terraform-google-modules/terraform-google-pubsub/issues/83)) ([4c9e224](https://github.com/terraform-google-modules/terraform-google-pubsub/commit/4c9e224d4922abc77e01f95f7e9332503984a212))
+
 ## [3.1.0](https://www.github.com/terraform-google-modules/terraform-google-pubsub/compare/v3.0.0...v3.1.0) (2021-11-22)
 
 
