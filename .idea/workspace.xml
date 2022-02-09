@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="55cecf34-d5e2-4867-8c8d-d2f8c4740596" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/variables.tf" beforeDir="false" afterPath="$PROJECT_DIR$/variables.tf" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

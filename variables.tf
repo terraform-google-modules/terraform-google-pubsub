@@ -79,10 +79,10 @@ variable "grant_token_creator" {
 
 variable "schema" {
   type = object({
-    name  = string
-    type = string
+    name       = string
+    type       = string
     definition = string
-    encoding = string
+    encoding   = string
   })
   description = "Schema for the topic"
   default     = null
