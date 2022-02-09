@@ -76,3 +76,14 @@ variable "grant_token_creator" {
   description = "Specify true if you want to add token creator role to the default Pub/Sub SA"
   default     = true
 }
+
+variable "schema" {
+  type = object({
+    name       = string
+    type       = string
+    definition = string
+    encoding   = string
+  })
+  description = "Schema for the topic"
+  default     = null
+}

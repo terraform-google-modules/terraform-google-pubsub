@@ -23,6 +23,15 @@ locals {
   pubsub_svc_account_email     = "service-${data.google_project.project.number}@gcp-sa-pubsub.iam.gserviceaccount.com"
 }
 
+resource "google_pubsub_schema" "schema" {
+  count      = var.schema != null ? 1 : 0
+  project    = var.project_id
+  name       = var.schema.name
+  type       = var.schema.type
+  definition = var.schema.definition
+}
+
+
 resource "google_project_iam_member" "token_creator_binding" {
   count   = var.grant_token_creator ? 1 : 0
   project = var.project_id
@@ -94,6 +103,15 @@ resource "google_pubsub_topic" "topic" {
       allowed_persistence_regions = message_storage_policy.key == "allowed_persistence_regions" ? message_storage_policy.value : null
     }
   }
+
+  dynamic "schema_settings" {
+    for_each = var.schema != null ? [var.schema] : []
+    content {
+      schema   = google_pubsub_schema.schema[0].id
+      encoding = lookup(schema_settings.value, "encoding", null)
+    }
+  }
+  depends_on = [google_pubsub_schema.schema]
 }
 
 resource "google_pubsub_subscription" "push_subscriptions" {
@@ -258,3 +276,4 @@ resource "google_pubsub_subscription_iam_member" "pull_subscription_sa_binding_v
     google_pubsub_subscription.pull_subscriptions,
   ]
 }
+

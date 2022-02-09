@@ -12,8 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-project_id = attribute('project_id')
-topic      = attribute('topic_name')
+project_id  = attribute('project_id')
+topic       = attribute('topic_name')
+schema_name = 'example'
+
 
 describe command("gcloud --project='#{project_id}' pubsub topics describe #{topic}") do
   its(:exit_status) { should be_zero }
@@ -37,3 +39,10 @@ describe command("gcloud --project='#{project_id}' pubsub subscriptions describe
   it { expect(stdout).to include(pushConfig: { pushEndpoint: "https://#{project_id}.appspot.com/" }) }
   it { expect(stdout).to include(ackDeadlineSeconds: 20) }
 end
+
+describe command("gcloud --project='#{project_id}' pubsub schemas describe #{schema_name}") do
+  its(:exit_status) { should  be_zero }
+  it { expect(subject.stdout).to match(%r{name: projects/#{project_id}/schemas/example}) }
+end
+
+

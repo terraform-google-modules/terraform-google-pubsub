@@ -42,4 +42,10 @@ module "pubsub" {
     },
   ]
 
+  schema = {
+    name       = "example"
+    type       = "AVRO"
+    encoding   = "JSON"
+    definition = "{\n  \"type\" : \"record\",\n  \"name\" : \"Avro\",\n  \"fields\" : [\n    {\n      \"name\" : \"StringField\",\n      \"type\" : \"string\"\n    },\n    {\n      \"name\" : \"IntField\",\n      \"type\" : \"int\"\n    }\n  ]\n}\n"
+  }
 }
