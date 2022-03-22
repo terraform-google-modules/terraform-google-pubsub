@@ -7,7 +7,7 @@ This module makes it easy to create Google Cloud Pub/Sub topic and subscriptions
 This module is meant for use with Terraform 0.12. If you haven't [upgraded][terraform-0.12-upgrade] and need a Terraform 0.11.x-compatible version of this module, the last released version intended for Terraform 0.11.x
 is [0.2.0][v0.2.0].
 
-## Usage
+## Usage example
 
 This is a simple usage of the module. Please see also a simple setup provided in the example directory.
 
