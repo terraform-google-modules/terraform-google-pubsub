@@ -21,8 +21,11 @@ provider "google" {
 module "pubsub" {
   source       = "../../"
   project_id   = var.project_id
-  topic        = var.topic_name
-  topic_labels = var.topic_labels
+  topic        = "cft-tf-pubsub-topic"
+  topic_labels = {
+    foo_label = "foo_value"
+    bar_label = "bar_value"
+  }
 
 
   pull_subscriptions = [

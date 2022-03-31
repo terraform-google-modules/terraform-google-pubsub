@@ -18,13 +18,3 @@ variable "project_id" {
   type        = string
   description = "The project ID to manage the Pub/Sub resources"
 }
-
-variable "region" {
-  type        = string
-  description = "The region for the IoT resources"
-}
-
-variable "name" {
-  type        = string
-  description = "The name for the Cloud IoT registry"
-}
