@@ -9,7 +9,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestCloudiot(t *testing.T) {
+func TestCloudIot(t *testing.T) {
 	bpt := tft.NewTFBlueprintTest(t)
 
 	bpt.DefineVerify(func(assert *assert.Assertions) {
