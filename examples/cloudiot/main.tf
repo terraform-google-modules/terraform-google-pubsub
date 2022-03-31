@@ -15,7 +15,7 @@
  */
 
 provider "google" {
-  region = var.region
+  region = "us-central1"
 }
 
 resource "tls_private_key" "private_keys" {
@@ -37,8 +37,8 @@ resource "tls_self_signed_cert" "certs" {
 
 module "iot" {
   source             = "../../modules/cloudiot"
-  name               = var.name
-  region             = var.region
+  name               = "cft-ci-iot-registry"
+  region             = "us-central1"
   project_id         = var.project_id
   mqtt_enabled_state = "MQTT_ENABLED"
   http_enabled_state = "HTTP_DISABLED"
@@ -53,24 +53,24 @@ module "iot" {
     },
   ]
   event_notification_config = {
-    topic              = "${var.name}-event-topic"
+    topic              = "cft-ci-iot-registry-event-topic"
     topic_labels       = {}
     create_topic       = true
     push_subscriptions = []
     pull_subscriptions = [
       {
-        name                 = "${var.name}-event-pull"
+        name                 = "cft-ci-iot-registry-event-pull"
         ack_deadline_seconds = 20
       }
     ]
   }
   state_notification_config = {
-    topic        = "${var.name}-state-topic"
+    topic        = "cft-ci-iot-registry-state-topic"
     topic_labels = {}
     create_topic = true
     push_subscriptions = [
       {
-        name                 = "${var.name}-state-push"
+        name                 = "cft-ci-iot-registry-state-push"
         push_endpoint        = "https://${var.project_id}.appspot.com/"
         x-goog-version       = "v1beta1"
         ack_deadline_seconds = 20
