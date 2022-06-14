@@ -58,18 +58,19 @@ module "pubsub" {
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| create\_subscriptions | Specify true if you want to create subscriptions | `bool` | `true` | no |
-| create\_topic | Specify true if you want to create a topic | `bool` | `true` | no |
-| grant\_token\_creator | Specify true if you want to add token creator role to the default Pub/Sub SA | `bool` | `true` | no |
+| create\_subscriptions | Specify true if you want to create subscriptions. | `bool` | `true` | no |
+| create\_topic | Specify true if you want to create a topic. | `bool` | `true` | no |
+| grant\_token\_creator | Specify true if you want to add token creator role to the default Pub/Sub SA. | `bool` | `true` | no |
 | message\_storage\_policy | A map of storage policies. Default - inherit from organization's Resource Location Restriction policy. | `map(any)` | `{}` | no |
-| project\_id | The project ID to manage the Pub/Sub resources | `string` | n/a | yes |
-| pull\_subscriptions | The list of the pull subscriptions | `list(map(string))` | `[]` | no |
-| push\_subscriptions | The list of the push subscriptions | `list(map(string))` | `[]` | no |
-| schema | Schema for the topic | <pre>object({<br>    name       = string<br>    type       = string<br>    definition = string<br>    encoding   = string<br>  })</pre> | `null` | no |
-| subscription\_labels | A map of labels to assign to every Pub/Sub subscription | `map(string)` | `{}` | no |
-| topic | The Pub/Sub topic name | `string` | n/a | yes |
+| project\_id | The project ID to manage the Pub/Sub resources. | `string` | n/a | yes |
+| pull\_subscriptions | The list of the pull subscriptions. | `list(map(string))` | `[]` | no |
+| push\_subscriptions | The list of the push subscriptions. | `list(map(string))` | `[]` | no |
+| schema | Schema for the topic. | <pre>object({<br>    name       = string<br>    type       = string<br>    definition = string<br>    encoding   = string<br>  })</pre> | `null` | no |
+| subscription\_labels | A map of labels to assign to every Pub/Sub subscription. | `map(string)` | `{}` | no |
+| topic | The Pub/Sub topic name. | `string` | n/a | yes |
 | topic\_kms\_key\_name | The resource name of the Cloud KMS CryptoKey to be used to protect access to messages published on this topic. | `string` | `null` | no |
-| topic\_labels | A map of labels to assign to the Pub/Sub topic | `map(string)` | `{}` | no |
+| topic\_labels | A map of labels to assign to the Pub/Sub topic. | `map(string)` | `{}` | no |
+| topic\_message\_retention\_duration | The minimum duration in seconds to retain a message after it is published to the topic. | `string` | `null` | no |
 
 ## Outputs
 
