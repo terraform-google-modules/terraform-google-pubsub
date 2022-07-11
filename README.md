@@ -70,6 +70,7 @@ module "pubsub" {
 | topic | The Pub/Sub topic name | `string` | n/a | yes |
 | topic\_kms\_key\_name | The resource name of the Cloud KMS CryptoKey to be used to protect access to messages published on this topic. | `string` | `null` | no |
 | topic\_labels | A map of labels to assign to the Pub/Sub topic | `map(string)` | `{}` | no |
+| enable\_exactly\_once\_delivery | Specify true if you want to the message sent to a subscriber is guaranteed not to be resent before the message's acknowledgement deadline expires. | `bool` | `false` | no |
 
 ## Outputs
 
