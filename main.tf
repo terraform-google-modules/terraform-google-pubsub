@@ -91,11 +91,12 @@ resource "google_pubsub_subscription_iam_member" "push_subscription_binding" {
 }
 
 resource "google_pubsub_topic" "topic" {
-  count        = var.create_topic ? 1 : 0
-  project      = var.project_id
-  name         = var.topic
-  labels       = var.topic_labels
-  kms_key_name = var.topic_kms_key_name
+  count                      = var.create_topic ? 1 : 0
+  project                    = var.project_id
+  name                       = var.topic
+  labels                     = var.topic_labels
+  kms_key_name               = var.topic_kms_key_name
+  message_retention_duration = var.topic_message_retention_duration
 
   dynamic "message_storage_policy" {
     for_each = var.message_storage_policy
