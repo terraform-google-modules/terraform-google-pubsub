@@ -93,3 +93,9 @@ variable "schema" {
   description = "Schema for the topic."
   default     = null
 }
+
+variable "enable_exactly_once_delivery" {
+  type        = bool
+  description = "Specify true if you want to the message sent to a subscriber is guaranteed not to be resent before the message's acknowledgement deadline expires."
+  default     = false
+}

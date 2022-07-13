@@ -60,6 +60,7 @@ module "pubsub" {
 |------|-------------|------|---------|:--------:|
 | create\_subscriptions | Specify true if you want to create subscriptions. | `bool` | `true` | no |
 | create\_topic | Specify true if you want to create a topic. | `bool` | `true` | no |
+| enable\_exactly\_once\_delivery | Specify true if you want to the message sent to a subscriber is guaranteed not to be resent before the message's acknowledgement deadline expires. | `bool` | `false` | no |
 | grant\_token\_creator | Specify true if you want to add token creator role to the default Pub/Sub SA. | `bool` | `true` | no |
 | message\_storage\_policy | A map of storage policies. Default - inherit from organization's Resource Location Restriction policy. | `map(any)` | `{}` | no |
 | project\_id | The project ID to manage the Pub/Sub resources. | `string` | n/a | yes |
