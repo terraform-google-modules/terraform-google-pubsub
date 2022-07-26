@@ -12,8 +12,7 @@ and this project adheres to
 
 ### ⚠ BREAKING CHANGES
 
-* Add_enable_exactly_once_delivery_on_a_PubSub_subscription (#94)
-* Add the ability to set the message_retention_duration on a PubSub topic (#93)
+* Increased minimum Google Provider version to 4.17 (#94)
 
 ### Features
 
