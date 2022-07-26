@@ -7,6 +7,18 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.0.0](https://github.com/terraform-google-modules/terraform-google-pubsub/compare/v3.2.0...v4.0.0) (2022-07-26)
+
+
+### ⚠ BREAKING CHANGES
+
+* Increased minimum Google Provider version to 4.17 (#94)
+
+### Features
+
+* Add the ability to set the message_retention_duration on a PubSub topic ([#93](https://github.com/terraform-google-modules/terraform-google-pubsub/issues/93)) ([56ce3fc](https://github.com/terraform-google-modules/terraform-google-pubsub/commit/56ce3fc0354c8194fb699c52a01abaa2784da202))
+* Add_enable_exactly_once_delivery_on_a_PubSub_subscription ([#94](https://github.com/terraform-google-modules/terraform-google-pubsub/issues/94)) ([9b6b913](https://github.com/terraform-google-modules/terraform-google-pubsub/commit/9b6b91383097df226951c48c0e0b3df86795a842))
+
 ## [3.2.0](https://github.com/terraform-google-modules/terraform-google-pubsub/compare/v3.1.0...v3.2.0) (2022-02-09)
 
 
