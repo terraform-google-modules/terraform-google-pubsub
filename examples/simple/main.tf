@@ -30,8 +30,8 @@ module "pubsub" {
 
   pull_subscriptions = [
     {
-      name                 = "pull"
-      ack_deadline_seconds = 10
+      name                         = "pull"
+      ack_deadline_seconds         = 10
       enable_exactly_once_delivery = true
     },
   ]
