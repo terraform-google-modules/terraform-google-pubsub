@@ -32,6 +32,7 @@ module "pubsub" {
     {
       name                 = "pull"
       ack_deadline_seconds = 10
+      enable_exactly_once_delivery = true
     },
   ]
 
