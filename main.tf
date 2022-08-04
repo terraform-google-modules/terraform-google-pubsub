@@ -195,7 +195,11 @@ resource "google_pubsub_subscription" "pull_subscriptions" {
   topic                        = var.create_topic ? google_pubsub_topic.topic.0.name : var.topic
   project                      = var.project_id
   labels                       = var.subscription_labels
-  enable_exactly_once_delivery = var.enable_exactly_once_delivery
+  enable_exactly_once_delivery = lookup(
+    each.value,
+    "enable_exactly_once_delivery",
+    false,
+  )
   ack_deadline_seconds = lookup(
     each.value,
     "ack_deadline_seconds",
