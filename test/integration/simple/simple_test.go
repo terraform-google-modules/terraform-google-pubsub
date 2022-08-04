@@ -40,6 +40,7 @@ func TestSimple(t *testing.T) {
 		assert.Equal(fmt.Sprintf("projects/%s/subscriptions/pull", projectId), op.Get("name").String(), "has expected name")
 		assert.Equal(fmt.Sprintf("projects/%s/topics/cft-tf-pubsub-topic", projectId), op.Get("topic").String(), "has expected topic")
 		assert.Equal("10", op.Get("ackDeadlineSeconds").String(), "has expected ackDeadlineSeconds")
+		assert.Equal(true, op.Get("enableExactlyOnceDelivery").Bool(), "has expected enable_exactly_once_delivery")
 
 		op = gcloud.Runf(t, "pubsub subscriptions describe push --project=%s", projectId)
 		assert.Equal(fmt.Sprintf("projects/%s/subscriptions/push", projectId), op.Get("name").String(), "has expected name")
