@@ -191,10 +191,10 @@ resource "google_pubsub_subscription" "push_subscriptions" {
 resource "google_pubsub_subscription" "pull_subscriptions" {
   for_each = var.create_subscriptions ? { for i in var.pull_subscriptions : i.name => i } : {}
 
-  name                         = each.value.name
-  topic                        = var.create_topic ? google_pubsub_topic.topic.0.name : var.topic
-  project                      = var.project_id
-  labels                       = var.subscription_labels
+  name    = each.value.name
+  topic   = var.create_topic ? google_pubsub_topic.topic.0.name : var.topic
+  project = var.project_id
+  labels  = var.subscription_labels
   enable_exactly_once_delivery = lookup(
     each.value,
     "enable_exactly_once_delivery",
