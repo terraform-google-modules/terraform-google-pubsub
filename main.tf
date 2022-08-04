@@ -198,7 +198,7 @@ resource "google_pubsub_subscription" "pull_subscriptions" {
   enable_exactly_once_delivery = lookup(
     each.value,
     "enable_exactly_once_delivery",
-    false,
+    null,
   )
   ack_deadline_seconds = lookup(
     each.value,
