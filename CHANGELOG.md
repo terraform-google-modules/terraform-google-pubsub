@@ -7,6 +7,14 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.0.1](https://github.com/terraform-google-modules/terraform-google-pubsub/compare/v4.0.0...v4.0.1) (2022-08-06)
+
+
+### Bug Fixes
+
+* Add_enable_exactly_once_delivery_on_a_PubSub_subscription ([#98](https://github.com/terraform-google-modules/terraform-google-pubsub/issues/98)) ([0ad3dd6](https://github.com/terraform-google-modules/terraform-google-pubsub/commit/0ad3dd6816e8b7bd30969bdcb08d12007b600105))
+* remove unused variable and use null as default ([#100](https://github.com/terraform-google-modules/terraform-google-pubsub/issues/100)) ([57e8ea1](https://github.com/terraform-google-modules/terraform-google-pubsub/commit/57e8ea1ba820864d23c05f62cc714994f76e7553))
+
 ## [4.0.0](https://github.com/terraform-google-modules/terraform-google-pubsub/compare/v3.2.0...v4.0.0) (2022-07-26)
 
 
