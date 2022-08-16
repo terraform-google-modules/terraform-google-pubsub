@@ -31,6 +31,19 @@ resource "google_pubsub_schema" "schema" {
   definition = var.schema.definition
 }
 
+resource "google_project_iam_member" "bigquery_metadata_viewer_binding" {
+  count   = length(var.bigquery_subscriptions) != 0 ? 1 : 0
+  project = var.project_id
+  role    = "roles/bigquery.metadataViewer"
+  member  = "serviceAccount:${local.pubsub_svc_account_email}"
+}
+
+resource "google_project_iam_member" "bigquery_data_editor_binding" {
+  count   = length(var.bigquery_subscriptions) != 0 ? 1 : 0
+  project = var.project_id
+  role    = "roles/bigquery.dataEditor"
+  member  = "serviceAccount:${local.pubsub_svc_account_email}"
+}
 
 resource "google_project_iam_member" "token_creator_binding" {
   count   = var.grant_token_creator ? 1 : 0
@@ -251,6 +264,76 @@ resource "google_pubsub_subscription" "pull_subscriptions" {
 
   depends_on = [
     google_pubsub_topic.topic,
+  ]
+}
+
+resource "google_pubsub_subscription" "bigquery_subscriptions" {
+  for_each = var.create_subscriptions ? { for i in var.bigquery_subscriptions : i.name => i } : {}
+
+  name    = each.value.name
+  topic   = var.create_topic ? google_pubsub_topic.topic.0.name : var.topic
+  project = var.project_id
+  labels  = var.subscription_labels
+  ack_deadline_seconds = lookup(
+    each.value,
+    "ack_deadline_seconds",
+    local.default_ack_deadline_seconds,
+  )
+  message_retention_duration = lookup(
+    each.value,
+    "message_retention_duration",
+    null,
+  )
+  retain_acked_messages = lookup(
+    each.value,
+    "retain_acked_messages",
+    null,
+  )
+  filter = lookup(
+    each.value,
+    "filter",
+    null,
+  )
+  enable_message_ordering = lookup(
+    each.value,
+    "enable_message_ordering",
+    null,
+  )
+  dynamic "expiration_policy" {
+    // check if the 'expiration_policy' key exists, if yes, return a list containing it.
+    for_each = contains(keys(each.value), "expiration_policy") ? [each.value.expiration_policy] : []
+    content {
+      ttl = expiration_policy.value
+    }
+  }
+
+  dynamic "dead_letter_policy" {
+    for_each = (lookup(each.value, "dead_letter_topic", "") != "") ? [each.value.dead_letter_topic] : []
+    content {
+      dead_letter_topic     = lookup(each.value, "dead_letter_topic", "")
+      max_delivery_attempts = lookup(each.value, "max_delivery_attempts", "5")
+    }
+  }
+
+  dynamic "retry_policy" {
+    for_each = (lookup(each.value, "maximum_backoff", "") != "") ? [each.value.maximum_backoff] : []
+    content {
+      maximum_backoff = lookup(each.value, "maximum_backoff", "")
+      minimum_backoff = lookup(each.value, "minimum_backoff", "")
+    }
+  }
+
+  bigquery_config {
+    table               = each.value["table"]
+    use_topic_schema    = lookup(each.value, "use_topic_schema", false)
+    write_metadata      = lookup(each.value, "write_metadata", false)
+    drop_unknown_fields = lookup(each.value, "drop_unknown_fields", false)
+  }
+
+  depends_on = [
+    google_pubsub_topic.topic,
+    google_project_iam_member.bigquery_metadata_viewer_binding,
+    google_project_iam_member.bigquery_data_editor_binding
   ]
 }
 

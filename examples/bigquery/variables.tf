@@ -1,5 +1,5 @@
 /**
- * Copyright 2019 Google LLC
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,28 +14,7 @@
  * limitations under the License.
  */
 
-terraform {
-  required_version = ">= 0.13"
-  required_providers {
-    google = {
-      source  = "hashicorp/google"
-      version = "~> 4.23"
-    }
-    google-beta = {
-      source  = "hashicorp/google-beta"
-      version = "~> 4.23"
-    }
-    null = {
-      source = "hashicorp/null"
-    }
-    random = {
-      source = "hashicorp/random"
-    }
-  }
-}
-
-provider "google" {
-}
-
-provider "google-beta" {
+variable "project_id" {
+  type        = string
+  description = "The project ID to manage the Pub/Sub resources"
 }
