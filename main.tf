@@ -14,6 +14,12 @@
  * limitations under the License.
  */
 
+
+
+#impersonate service account
+provider "google" {
+  impersonate_service_account = "terraform@${var.project_id}.iam.gserviceaccount.com"
+}
 data "google_project" "project" {
   project_id = var.project_id
 }
