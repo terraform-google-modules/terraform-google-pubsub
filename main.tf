@@ -46,7 +46,7 @@ resource "google_pubsub_topic_iam_member" "push_topic_binding" {
   for_each = var.create_topic ? { for i in var.push_subscriptions : i.name => i } : {}
 
   project = var.project_id
-  topic   = lookup(each.value, "dead_letter_topic", "projects/${var.project_id}/topics/${var.topic}")
+  topic   = (lookup(each.value, "dead_letter_topic", "") != "") ? each.value.dead_letter_topic : "projects/${var.project_id}/topics/${var.topic}"
   role    = "roles/pubsub.publisher"
   member  = "serviceAccount:${local.pubsub_svc_account_email}"
   depends_on = [
@@ -58,7 +58,7 @@ resource "google_pubsub_topic_iam_member" "pull_topic_binding" {
   for_each = var.create_topic ? { for i in var.pull_subscriptions : i.name => i } : {}
 
   project = var.project_id
-  topic   = lookup(each.value, "dead_letter_topic", "projects/${var.project_id}/topics/${var.topic}")
+  topic   = (lookup(each.value, "dead_letter_topic", "") != "") ? each.value.dead_letter_topic : "projects/${var.project_id}/topics/${var.topic}"
   role    = "roles/pubsub.publisher"
   member  = "serviceAccount:${local.pubsub_svc_account_email}"
   depends_on = [
