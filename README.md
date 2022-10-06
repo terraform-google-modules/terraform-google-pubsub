@@ -49,6 +49,14 @@ module "pubsub" {
       service_account              = "service2@project2.iam.gserviceaccount.com"          // optional
       enable_exactly_once_delivery = true                                                 // optional
     }
+  bigquery_subscriptions = [
+    {
+      name                = "bigquery"              // required
+      table               = "project.dataset.table" // required
+      use_topic_schema    = true                    // optional
+      write_metadata      = false                   // optional
+      drop_unknown_fields = false                   // optional
+    }
   ]
 }
 ```
@@ -58,6 +66,7 @@ module "pubsub" {
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| bigquery\_subscriptions | The list of the bigquery push subscriptions. | `list(map(string))` | `[]` | no |
 | create\_subscriptions | Specify true if you want to create subscriptions. | `bool` | `true` | no |
 | create\_topic | Specify true if you want to create a topic. | `bool` | `true` | no |
 | grant\_token\_creator | Specify true if you want to add token creator role to the default Pub/Sub SA. | `bool` | `true` | no |

@@ -1,5 +1,5 @@
 /**
- * Copyright 2019 Google LLC
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,28 +14,17 @@
  * limitations under the License.
  */
 
-terraform {
-  required_version = ">= 0.13"
-  required_providers {
-    google = {
-      source  = "hashicorp/google"
-      version = "~> 4.23"
-    }
-    google-beta = {
-      source  = "hashicorp/google-beta"
-      version = "~> 4.23"
-    }
-    null = {
-      source = "hashicorp/null"
-    }
-    random = {
-      source = "hashicorp/random"
-    }
-  }
+output "project_id" {
+  value       = var.project_id
+  description = "The project ID"
 }
 
-provider "google" {
+output "topic_name" {
+  value       = module.pubsub.topic
+  description = "The name of the Pub/Sub topic created"
 }
 
-provider "google-beta" {
+output "topic_labels" {
+  value       = module.pubsub.topic_labels
+  description = "The labels of the Pub/Sub topic created"
 }

@@ -53,6 +53,12 @@ variable "pull_subscriptions" {
   default     = []
 }
 
+variable "bigquery_subscriptions" {
+  type        = list(map(string))
+  description = "The list of the bigquery push subscriptions."
+  default     = []
+}
+
 variable "subscription_labels" {
   type        = map(string)
   description = "A map of labels to assign to every Pub/Sub subscription."

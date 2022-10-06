@@ -28,6 +28,7 @@ module "project-ci-int-pubsub" {
     "cloudiot.googleapis.com",
     "cloudresourcemanager.googleapis.com",
     "pubsub.googleapis.com",
-    "serviceusage.googleapis.com"
+    "serviceusage.googleapis.com",
+    "bigquery.googleapis.com",
   ]
 }
