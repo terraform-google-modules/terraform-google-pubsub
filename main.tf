@@ -1,25 +1,13 @@
-/**
- * Copyright 2018 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
-
-
-#impersonate service account
 provider "google" {
+  project                     = var.project_id
   impersonate_service_account = "terraform@${var.project_id}.iam.gserviceaccount.com"
 }
+
+module "airship-providers" {
+  # version control of the various providers
+  source = "github.com/urbanairship/tf-modules-providers?ref=v1"
+}
+
 data "google_project" "project" {
   project_id = var.project_id
 }
@@ -64,12 +52,12 @@ resource "google_pubsub_topic" "topic" {
 }
 
 resource "google_pubsub_subscription" "push_subscriptions" {
-  for_each = var.create_subscriptions ? { for i in var.push_subscriptions : i.subscription_details.name => i } : {}
+  for_each = var.create_subscriptions ? {for i in var.push_subscriptions : i.subscription_details.name => i} : {}
 
   name    = each.value.subscription_details.name
   topic   = var.create_topic ? google_pubsub_topic.topic.0.name : var.topic
   project = var.project_id
-  labels = merge(local.default_subscription_label,each.value.subscription_labels)
+  labels  = merge(local.default_subscription_label, each.value.subscription_labels)
 
   ack_deadline_seconds = lookup(
     each.value.subscription_details,
@@ -93,14 +81,18 @@ resource "google_pubsub_subscription" "push_subscriptions" {
   )
   dynamic "expiration_policy" {
     // check if the 'expiration_policy' key exists, if yes, return a list containing it.
-    for_each = contains(keys(each.value.subscription_details), "expiration_policy") ? [each.value.subscription_details.expiration_policy] : []
+    for_each = contains(keys(each.value.subscription_details), "expiration_policy") ? [
+      each.value.subscription_details.expiration_policy
+    ] : []
     content {
       ttl = expiration_policy.value
     }
   }
 
   dynamic "dead_letter_policy" {
-    for_each = (lookup(each.value.subscription_details, "dead_letter_topic", "") != "") ? [each.value.subscription_details.dead_letter_topic] : []
+    for_each = (lookup(each.value.subscription_details, "dead_letter_topic", "") != "") ? [
+      each.value.subscription_details.dead_letter_topic
+    ] : []
     content {
       dead_letter_topic     = lookup(each.value.subscription_details, "dead_letter_topic", "")
       max_delivery_attempts = lookup(each.value.subscription_details, "max_delivery_attempts", "5")
@@ -108,7 +100,9 @@ resource "google_pubsub_subscription" "push_subscriptions" {
   }
 
   dynamic "retry_policy" {
-    for_each = (lookup(each.value.subscription_details, "maximum_backoff", "") != "") ? [each.value.subscription_details.maximum_backoff] : []
+    for_each = (lookup(each.value.subscription_details, "maximum_backoff", "") != "") ? [
+      each.value.subscription_details.maximum_backoff
+    ] : []
     content {
       maximum_backoff = lookup(each.value.subscription_details, "subscription_details.maximum_backoff", "")
       minimum_backoff = lookup(each.value.subscription_details, "subscription_details.minimum_backoff", "")
@@ -138,12 +132,12 @@ resource "google_pubsub_subscription" "push_subscriptions" {
 }
 
 resource "google_pubsub_subscription" "pull_subscriptions" {
-  for_each = var.create_subscriptions ? { for i in var.pull_subscriptions : i.subscription_details.name => i } : {}
+  for_each = var.create_subscriptions ? {for i in var.pull_subscriptions : i.subscription_details.name => i} : {}
 
-  name    = each.value.subscription_details.name
-  topic   = var.create_topic ? google_pubsub_topic.topic.0.name : var.topic
-  project = var.project_id
-  labels = merge(local.default_subscription_label, each.value.subscription_labels)
+  name                         = each.value.subscription_details.name
+  topic                        = var.create_topic ? google_pubsub_topic.topic.0.name : var.topic
+  project                      = var.project_id
+  labels                       = merge(local.default_subscription_label, each.value.subscription_labels)
   enable_exactly_once_delivery = lookup(
     each.value.subscription_details,
     "enable_exactly_once_delivery",
@@ -176,14 +170,18 @@ resource "google_pubsub_subscription" "pull_subscriptions" {
   )
   dynamic "expiration_policy" {
     // check if the 'expiration_policy' key exists, if yes, return a list containing it.
-    for_each = contains(keys(each.value.subscription_details), "expiration_policy") ? [each.value.subscription_details.expiration_policy] : []
+    for_each = contains(keys(each.value.subscription_details), "expiration_policy") ? [
+      each.value.subscription_details.expiration_policy
+    ] : []
     content {
       ttl = expiration_policy.value
     }
   }
 
   dynamic "dead_letter_policy" {
-    for_each = (lookup(each.value.subscription_details, "subscription_details.dead_letter_topic", "") != "") ? [each.value.subscription_details.dead_letter_topic] : []
+    for_each = (lookup(each.value.subscription_details, "subscription_details.dead_letter_topic", "") != "") ? [
+      each.value.subscription_details.dead_letter_topic
+    ] : []
     content {
       dead_letter_topic     = lookup(each.value.subscription_details, "dead_letter_topic", "")
       max_delivery_attempts = lookup(each.value.subscription_details, "max_delivery_attempts", "5")
@@ -191,7 +189,9 @@ resource "google_pubsub_subscription" "pull_subscriptions" {
   }
 
   dynamic "retry_policy" {
-    for_each = (lookup(each.value.subscription_details, "maximum_backoff", "") != "") ? [each.value.subscription_details.maximum_backoff] : []
+    for_each = (lookup(each.value.subscription_details, "maximum_backoff", "") != "") ? [
+      each.value.subscription_details.maximum_backoff
+    ] : []
     content {
       maximum_backoff = lookup(each.value.subscription_details, "maximum_backoff", "")
       minimum_backoff = lookup(each.value.subscription_details, "minimum_backoff", "")
@@ -204,25 +204,25 @@ resource "google_pubsub_subscription" "pull_subscriptions" {
 }
 
 resource "google_pubsub_subscription_iam_member" "pull_subscription_sa_binding_subscriber" {
-  for_each = var.create_subscriptions ? { for i in var.pull_subscriptions : i.subscription_details.name => i if lookup(i, "service_account", null) != null } : {}
+  for_each = var.create_subscriptions ? {for i in var.pull_subscriptions : i.subscription_details.name => i if lookup(i, "service_account", null) != null} : {}
 
   project      = var.project_id
   subscription = each.value.subscription_details.name
   role         = "roles/pubsub.subscriber"
   member       = "serviceAccount:${each.value.subscription_details.service_account}"
-  depends_on = [
+  depends_on   = [
     google_pubsub_subscription.pull_subscriptions,
   ]
 }
 
 resource "google_pubsub_subscription_iam_member" "pull_subscription_sa_binding_viewer" {
-  for_each = var.create_subscriptions ? { for i in var.pull_subscriptions : i.subscription_details.name => i if lookup(i, "service_account", null) != null } : {}
+  for_each = var.create_subscriptions ? {for i in var.pull_subscriptions : i.subscription_details.name => i if lookup(i, "service_account", null) != null} : {}
 
   project      = var.project_id
   subscription = each.value.subscription_details.name
   role         = "roles/pubsub.viewer"
   member       = "serviceAccount:${each.value.subscription_details.service_account}"
-  depends_on = [
+  depends_on   = [
     google_pubsub_subscription.pull_subscriptions,
   ]
 }

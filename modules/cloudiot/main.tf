@@ -14,11 +14,21 @@
  * limitations under the License.
  */
 
+provider "google" {
+  project                     = var.project_id
+  impersonate_service_account = "terraform@${var.project_id}.iam.gserviceaccount.com"
+}
+
+module "airship-providers" {
+  # version control of the various providers
+  source = "github.com/urbanairship/tf-modules-providers?ref=v1"
+}
+
 locals {
   state_notification_enabled = var.state_notification_config.topic != "" ? "enabled" : "disabled"
   state_notification_configs = {
     disabled = null
-    enabled = {
+    enabled  = {
       pubsub_topic_name = "projects/${var.project_id}/topics/${var.state_notification_config.topic}"
     }
   }
@@ -27,9 +37,11 @@ locals {
   event_notification_enabled = var.event_notification_config.topic != "" ? "enabled" : "disabled"
   event_notification_configs = {
     disabled = []
-    enabled = [{
-      pubsub_topic_name = "projects/${var.project_id}/topics/${var.event_notification_config.topic}"
-    }]
+    enabled  = [
+      {
+        pubsub_topic_name = "projects/${var.project_id}/topics/${var.event_notification_config.topic}"
+      }
+    ]
   }
   event_notification_config = local.event_notification_configs[local.event_notification_enabled]
 }
@@ -57,12 +69,14 @@ resource "google_cloudiot_registry" "default" {
   state_notification_config = local.state_notification_config
 
   dynamic "credentials" {
-    for_each = [for c in var.public_key_certificates : {
+    for_each = [
+    for c in var.public_key_certificates : {
       public_key_certificate = {
         format      = c.format
         certificate = c.certificate
       }
-    }]
+    }
+    ]
     content {
       public_key_certificate = credentials.value.public_key_certificate
     }
