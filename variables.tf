@@ -85,8 +85,7 @@ variable "topic_kms_key_name" {
 
 variable "grant_token_creator" {
   type        = bool
-  description = "Specify true if you want to add token creator role to the default Pub/Sub SA."
-  default     = true
+  description = "Deprecated - IMPORTANT: Remove (or move), if present, this module's `google_project_iam_member.token_creator_binding` resource from terraform state before explicitly setting value to false."
 }
 
 variable "schema" {

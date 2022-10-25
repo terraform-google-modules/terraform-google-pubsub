@@ -27,6 +27,7 @@ module "pubsub" {
     bar_label = "bar_value"
   }
 
+  grant_token_creator = false
 
   pull_subscriptions = [
     {

@@ -70,7 +70,7 @@ module "pubsub" {
 | bigquery\_subscriptions | The list of the bigquery push subscriptions. | `list(map(string))` | `[]` | no |
 | create\_subscriptions | Specify true if you want to create subscriptions. | `bool` | `true` | no |
 | create\_topic | Specify true if you want to create a topic. | `bool` | `true` | no |
-| grant\_token\_creator | Specify true if you want to add token creator role to the default Pub/Sub SA. | `bool` | `true` | no |
+| grant\_token\_creator | Deprecated - IMPORTANT: Remove (or move), if present, this module's `google_project_iam_member.token_creator_binding` resource from terraform state before explicitly setting value to false. | `bool` | n/a | yes |
 | message\_storage\_policy | A map of storage policies. Default - inherit from organization's Resource Location Restriction policy. | `map(any)` | `{}` | no |
 | project\_id | The project ID to manage the Pub/Sub resources. | `string` | n/a | yes |
 | pull\_subscriptions | The list of the pull subscriptions. | `list(map(string))` | `[]` | no |

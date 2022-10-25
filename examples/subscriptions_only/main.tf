@@ -30,6 +30,7 @@ module "pubsub" {
   create_subscriptions = true
   topic                = google_pubsub_topic.example.id
 
+  grant_token_creator = false
 
   pull_subscriptions = [
     {
