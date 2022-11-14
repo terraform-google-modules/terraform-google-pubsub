@@ -56,10 +56,10 @@ resource "google_project_iam_member" "token_creator_binding" {
 }
 
 resource "google_pubsub_topic_iam_member" "push_topic_binding" {
-  for_each = var.create_topic ? { for i in var.push_subscriptions : i.name => i } : {}
+  for_each = var.create_topic ? { for i in var.push_subscriptions : i.name => i if try(i.dead_letter_topic, "") != "" } : {}
 
   project = var.project_id
-  topic   = lookup(each.value, "dead_letter_topic", "projects/${var.project_id}/topics/${var.topic}")
+  topic   = each.value.dead_letter_topic
   role    = "roles/pubsub.publisher"
   member  = "serviceAccount:${local.pubsub_svc_account_email}"
   depends_on = [
@@ -68,10 +68,10 @@ resource "google_pubsub_topic_iam_member" "push_topic_binding" {
 }
 
 resource "google_pubsub_topic_iam_member" "pull_topic_binding" {
-  for_each = var.create_topic ? { for i in var.pull_subscriptions : i.name => i } : {}
+  for_each = var.create_topic ? { for i in var.pull_subscriptions : i.name => i if try(i.dead_letter_topic, "") != "" } : {}
 
   project = var.project_id
-  topic   = lookup(each.value, "dead_letter_topic", "projects/${var.project_id}/topics/${var.topic}")
+  topic   = each.value.dead_letter_topic
   role    = "roles/pubsub.publisher"
   member  = "serviceAccount:${local.pubsub_svc_account_email}"
   depends_on = [
@@ -80,7 +80,7 @@ resource "google_pubsub_topic_iam_member" "pull_topic_binding" {
 }
 
 resource "google_pubsub_subscription_iam_member" "pull_subscription_binding" {
-  for_each = var.create_subscriptions ? { for i in var.pull_subscriptions : i.name => i } : {}
+  for_each = var.create_subscriptions ? { for i in var.pull_subscriptions : i.name => i if try(i.dead_letter_topic, "") != "" } : {}
 
   project      = var.project_id
   subscription = each.value.name
@@ -92,7 +92,7 @@ resource "google_pubsub_subscription_iam_member" "pull_subscription_binding" {
 }
 
 resource "google_pubsub_subscription_iam_member" "push_subscription_binding" {
-  for_each = var.create_subscriptions ? { for i in var.push_subscriptions : i.name => i } : {}
+  for_each = var.create_subscriptions ? { for i in var.push_subscriptions : i.name => i if try(i.dead_letter_topic, "") != "" } : {}
 
   project      = var.project_id
   subscription = each.value.name
@@ -360,4 +360,3 @@ resource "google_pubsub_subscription_iam_member" "pull_subscription_sa_binding_v
     google_pubsub_subscription.pull_subscriptions,
   ]
 }
-
