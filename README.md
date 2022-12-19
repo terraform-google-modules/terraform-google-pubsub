@@ -49,6 +49,7 @@ module "pubsub" {
       service_account              = "service2@project2.iam.gserviceaccount.com"          // optional
       enable_exactly_once_delivery = true                                                 // optional
     }
+  ]
   bigquery_subscriptions = [
     {
       name                = "bigquery"              // required
