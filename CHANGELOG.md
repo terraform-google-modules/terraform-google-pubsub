@@ -7,6 +7,23 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [5.0.0](https://github.com/terraform-google-modules/terraform-google-pubsub/compare/v4.0.1...v5.0.0) (2022-12-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* ✨ added bigquery subscription capability, require TPG >= 4.32 #101
+
+### Features
+
+* ✨ added bigquery subscription capability, require TPG &gt;= 4.32 [#101](https://github.com/terraform-google-modules/terraform-google-pubsub/issues/101) ([466a9ec](https://github.com/terraform-google-modules/terraform-google-pubsub/commit/466a9ec1cb36e69d975072f22dd12e05a45fa233))
+
+
+### Bug Fixes
+
+* don't grant fwding permissions if no DLT present ([#108](https://github.com/terraform-google-modules/terraform-google-pubsub/issues/108)) ([52c3b13](https://github.com/terraform-google-modules/terraform-google-pubsub/commit/52c3b136a943dea13c57614f95d658581a884fbd))
+* fixes lint issues and generates metadata ([#117](https://github.com/terraform-google-modules/terraform-google-pubsub/issues/117)) ([5b08d0b](https://github.com/terraform-google-modules/terraform-google-pubsub/commit/5b08d0b14965c07a61011d28431dbb3cf258f1d5))
+
 ## [4.0.1](https://github.com/terraform-google-modules/terraform-google-pubsub/compare/v4.0.0...v4.0.1) (2022-08-06)
 
 
