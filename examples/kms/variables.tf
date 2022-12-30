@@ -29,13 +29,3 @@ variable "topic_labels" {
   description = "A map of labels to assign to the Pub/Sub topic"
   default     = {}
 }
-
-variable "kms_key_name" {
-  type        = string
-  description = "Name of KMS key to use for pubsub topic"
-}
-
-variable "kms_keyring_name" {
-  type        = string
-  description = "Name of KMS key ring to use for pubsub topic"
-}
