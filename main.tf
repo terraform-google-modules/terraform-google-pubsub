@@ -45,16 +45,6 @@ resource "google_project_iam_member" "bigquery_data_editor_binding" {
   member  = "serviceAccount:${local.pubsub_svc_account_email}"
 }
 
-resource "google_project_iam_member" "token_creator_binding" {
-  count   = var.grant_token_creator ? 1 : 0
-  project = var.project_id
-  role    = "roles/iam.serviceAccountTokenCreator"
-  member  = "serviceAccount:${local.pubsub_svc_account_email}"
-  depends_on = [
-    google_pubsub_subscription.push_subscriptions,
-  ]
-}
-
 resource "google_pubsub_topic_iam_member" "push_topic_binding" {
   for_each = var.create_topic ? { for i in var.push_subscriptions : i.name => i if try(i.dead_letter_topic, "") != "" } : {}
 

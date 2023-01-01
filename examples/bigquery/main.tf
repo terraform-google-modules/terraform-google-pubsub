@@ -27,8 +27,6 @@ module "pubsub" {
     bar_label = "bar_value"
   }
 
-  grant_token_creator = false
-
   bigquery_subscriptions = [
     {
       name  = "example_subscription"

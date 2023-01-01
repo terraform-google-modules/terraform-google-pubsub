@@ -62,7 +62,6 @@ module "iot" {
         ack_deadline_seconds = 20
       }
     ]
-    grant_token_creator = false
   }
   state_notification_config = {
     topic        = "cft-ci-iot-registry-state-topic"

@@ -83,11 +83,6 @@ variable "topic_kms_key_name" {
   default     = null
 }
 
-variable "grant_token_creator" {
-  type        = bool
-  description = "Deprecated - IMPORTANT: Remove (or move), if present, this module's `google_project_iam_member.token_creator_binding` resource from terraform state before explicitly setting value to false."
-}
-
 variable "schema" {
   type = object({
     name       = string

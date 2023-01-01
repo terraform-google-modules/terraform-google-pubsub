@@ -48,12 +48,11 @@ resource "google_project_iam_member" "project" {
 }
 
 module "pubsub" {
-  source              = "../../"
-  project_id          = var.project_id
-  topic               = var.topic_name
-  topic_labels        = var.topic_labels
-  topic_kms_key_name  = google_kms_crypto_key.my_crypto_key.id
-  grant_token_creator = false
+  source             = "../../"
+  project_id         = var.project_id
+  topic              = var.topic_name
+  topic_labels       = var.topic_labels
+  topic_kms_key_name = google_kms_crypto_key.my_crypto_key.id
 
   pull_subscriptions = [
     {

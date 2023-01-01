@@ -77,22 +77,20 @@ module "event_notification_topic" {
   source     = "../../"
   project_id = var.project_id
 
-  topic               = var.event_notification_config.topic
-  topic_labels        = var.event_notification_config.topic_labels
-  push_subscriptions  = var.event_notification_config.push_subscriptions
-  pull_subscriptions  = var.event_notification_config.pull_subscriptions
-  create_topic        = var.event_notification_config.create_topic
-  grant_token_creator = false
+  topic              = var.event_notification_config.topic
+  topic_labels       = var.event_notification_config.topic_labels
+  push_subscriptions = var.event_notification_config.push_subscriptions
+  pull_subscriptions = var.event_notification_config.pull_subscriptions
+  create_topic       = var.event_notification_config.create_topic
 }
 
 module "state_notification_topic" {
   source     = "../../"
   project_id = var.project_id
 
-  topic               = var.state_notification_config.topic
-  topic_labels        = var.state_notification_config.topic_labels
-  push_subscriptions  = var.state_notification_config.push_subscriptions
-  pull_subscriptions  = var.state_notification_config.pull_subscriptions
-  create_topic        = var.state_notification_config.create_topic
-  grant_token_creator = false
+  topic              = var.state_notification_config.topic
+  topic_labels       = var.state_notification_config.topic_labels
+  push_subscriptions = var.state_notification_config.push_subscriptions
+  pull_subscriptions = var.state_notification_config.pull_subscriptions
+  create_topic       = var.state_notification_config.create_topic
 }

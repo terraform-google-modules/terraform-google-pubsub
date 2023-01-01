@@ -57,11 +57,6 @@ spec:
     type: bool
     default: true
     required: false
-  - name: grant_token_creator
-    description: Specify true if you want to add token creator role to the default Pub/Sub SA.
-    type: bool
-    default: true
-    required: false
   - name: message_storage_policy
     description: A map of storage policies. Default - inherit from organization's Resource Location Restriction policy.
     type: map(any)
