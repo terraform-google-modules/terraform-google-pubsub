@@ -13,7 +13,7 @@ data "google_project" "project" {
 }
 
 locals {
-  default_subscription_label   = { "managed_by" : "terraform" }
+  default_subscription_label   = { "managed_by" : "terraform", "gl" : "pubsub" }
   default_ack_deadline_seconds = 10
 }
 
