@@ -155,6 +155,11 @@ resource "google_pubsub_subscription" "push_subscriptions" {
     "filter",
     null,
   )
+  enable_message_ordering = lookup(
+    each.value,
+    "enable_message_ordering",
+    null,
+  )
   dynamic "expiration_policy" {
     // check if the 'expiration_policy' key exists, if yes, return a list containing it.
     for_each = contains(keys(each.value), "expiration_policy") ? [each.value.expiration_policy] : []
