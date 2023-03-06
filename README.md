@@ -2,12 +2,20 @@
 
 This module makes it easy to create Google Cloud Pub/Sub topic and subscriptions associated with the topic.
 
+It automatically generates the following labels:
+
+- managed_by : terraform
+- gl : pubsub
+
 ## Compatibility
-This module is meant for use with Terraform 0.13+ and tested using Terraform 1.0+. If you find incompatibilities using Terraform >=0.13, please open an issue.
- If you haven't
+
+This module is meant for use with Terraform 0.13+ and tested using Terraform 1.0+. If you find incompatibilities using
+Terraform >=0.13, please open an issue.
+If you haven't
 [upgraded](https://www.terraform.io/upgrade-guides/0-13.html) and need a Terraform
 0.12.x-compatible version of this module, the last released version
-intended for Terraform 0.12.x is [v1.9.0](https://registry.terraform.io/modules/terraform-google-modules/-pubsub/google/v1.9.0).
+intended for Terraform 0.12.x
+is [v1.9.0](https://registry.terraform.io/modules/terraform-google-modules/-pubsub/google/v1.9.0).
 
 ## Usage
 
@@ -18,49 +26,50 @@ module "pubsub" {
   source  = "urbanairship/terraform-google-pubsub"
   version = "~> 1.8"
 
-  topic      = "tf-topic"
-  project_id = "my-pubsub-project"
+  topic              = "tf-topic"
+  project_id         = "my-pubsub-project"
   push_subscriptions = [
     {
       subscription_details {
-        name                       = "push"                                               // required
-        ack_deadline_seconds       = 20                                                   // optional
-        push_endpoint              = "https://example.com"                                // required
-        x-goog-version             = "v1beta1"                                            // optional
-        oidc_service_account_email = "sa@example.com"                                     // optional
-        audience                   = "example"                                            // optional
-        expiration_policy          = "1209600s"                                           // optional
-        dead_letter_topic          = "projects/my-pubsub-project/topics/example-dl-topic" // optional
-        max_delivery_attempts      = 5                                                    // optional
-        maximum_backoff            = "600s"                                               // optional
-        minimum_backoff            = "300s"                                               // optional
-        filter                     = "attributes.domain = \"com\""                        // optional
-      }
-     
-      subscription_labels        = { "mylabel" : "label"}                                   // optional
+    name                       = "push"                                               // required
+    ack_deadline_seconds       = 20                                                   // optional
+    push_endpoint              = "https://example.com"                                // required
+    x-goog-version             = "v1beta1"                                            // optional
+    oidc_service_account_email = "sa@example.com"                                     // optional
+    audience                   = "example"                                            // optional
+    expiration_policy          = "1209600s"                                           // optional
+    dead_letter_topic          = "projects/my-pubsub-project/topics/example-dl-topic" // optional
+    max_delivery_attempts      = 5                                                    // optional
+    maximum_backoff            = "600s"                                               // optional
+    minimum_backoff            = "300s"                                               // optional
+    filter                     = "attributes.domain = \"com\""                        // optional
+    }
+
+    subscription_labels        = { "mylabel" : "label" }                                   // optional
     }
   ]
   pull_subscriptions = [
     {
       subscription_details {
-        name                         = "pull"                                               // required
-        ack_deadline_seconds         = 20                                                   // optional
-        dead_letter_topic            = "projects/my-pubsub-project/topics/example-dl-topic" // optional
-        max_delivery_attempts        = 5                                                    // optional
-        maximum_backoff              = "600s"                                               // optional
-        minimum_backoff              = "300s"                                               // optional
-        filter                       = "attributes.domain = \"com\""                        // optional
-        enable_message_ordering      = true                                                 // optional
-        service_account              = "service2@project2.iam.gserviceaccount.com"          // optional
-        enable_exactly_once_delivery = true                                                 // optional
-      }          
-      subscription_labels          = {"mylabel" : "label"}                                   // optional
+    name                         = "pull"                                               // required
+    ack_deadline_seconds         = 20                                                   // optional
+    dead_letter_topic            = "projects/my-pubsub-project/topics/example-dl-topic" // optional
+    max_delivery_attempts        = 5                                                    // optional
+    maximum_backoff              = "600s"                                               // optional
+    minimum_backoff              = "300s"                                               // optional
+    filter                       = "attributes.domain = \"com\""                        // optional
+    enable_message_ordering      = true                                                 // optional
+    service_account              = "service2@project2.iam.gserviceaccount.com"          // optional
+    enable_exactly_once_delivery = true                                                 // optional
+    }
+    subscription_labels          = { "mylabel" : "label" }                                   // optional
     }
   ]
 }
 ```
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+
 ## Inputs
 
 | Name                                | Description                                                                                                    | Type                                                                                                                                    | Default | Required |
@@ -71,7 +80,7 @@ module "pubsub" {
 | project\_id                         | The project ID to manage the Pub/Sub resources.                                                                | `string`                                                                                                                                | n/a     |   yes    |
 | pull\_subscriptions                 | The list of the pull subscriptions.                                                                            | <pre>list(object({<br> subscription_details = map(string)<br> subscription_labels = map(string)<br>}))</pre>                            | `[]`    |    no    |
 | push\_subscriptions                 | The list of the push subscriptions.                                                                            | <pre>list(object({<br> subscription_details = map(string)<br> subscription_labels = map(string)<br>}))</pre>                            | `[]`    |    no    |
-| schema                              | Schema for the topic.                                                                                          | <pre>object({<br>    name       = string<br>    type       = string<br>    definition = string<br>    encoding   = string<br>  })</pre> | `null`  |    no    |
+| schema                              | Schema for the topic.                                                                                          | <pre>object({<br>    name = string<br>    type = string<br>    definition = string<br>    encoding = string<br>  })</pre> | `null`  |    no    |
 | subscription\_labels                | A map of labels to assign to every Pub/Sub subscription.                                                       | `map(string)`                                                                                                                           | `{}`    |    no    |
 | topic                               | The Pub/Sub topic name.                                                                                        | `string`                                                                                                                                | n/a     |   yes    |
 | topic\_kms\_key\_name               | The resource name of the Cloud KMS CryptoKey to be used to protect access to messages published on this topic. | `string`                                                                                                                                | `null`  |    no    |
@@ -108,7 +117,8 @@ In order to execute this module you must have a Service Account with the followi
 
 ### Enable APIs
 
-In order to operate with the Service Account you must activate the following APIs on the project where the Service Account was created:
+In order to operate with the Service Account you must activate the following APIs on the project where the Service
+Account was created:
 
 - Cloud Pub/Sub API
 
@@ -123,4 +133,5 @@ You can pass the service account credentials into this module by setting the fol
 See more [details](https://www.terraform.io/docs/providers/google/provider_reference.html#configuration-reference).
 
 [v0.2.0]: https://registry.terraform.io/modules/terraform-google-modules/pubsub/google/0.2.0
+
 [terraform-0.12-upgrade]: https://www.terraform.io/upgrade-guides/0-12.html
