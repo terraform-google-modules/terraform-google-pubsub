@@ -1,8 +1,3 @@
-provider "google" {
-  project                     = var.project_id
-  impersonate_service_account = "terraform@${var.project_id}.iam.gserviceaccount.com"
-}
-
 module "airship-providers" {
   # version control of the various providers
   source = "github.com/urbanairship/tf-modules-providers?ref=v1"
