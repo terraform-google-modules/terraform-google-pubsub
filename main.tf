@@ -21,6 +21,10 @@ data "google_project" "project" {
 locals {
   default_ack_deadline_seconds = 10
   pubsub_svc_account_email     = "service-${data.google_project.project.number}@gcp-sa-pubsub.iam.gserviceaccount.com"
+  schema = var.schema != null ? {
+    schema_id : google_pubsub_schema.schema.0.id
+    encoding : var.schema.encoding
+  } : var.schema_reference != null ? var.schema_reference : null
 }
 
 resource "google_pubsub_schema" "schema" {
@@ -119,9 +123,9 @@ resource "google_pubsub_topic" "topic" {
   }
 
   dynamic "schema_settings" {
-    for_each = var.schema != null ? [var.schema] : []
+    for_each = local.schema != null ? [local.schema] : []
     content {
-      schema   = google_pubsub_schema.schema[0].id
+      schema   = schema_settings.value.schema_id
       encoding = lookup(schema_settings.value, "encoding", null)
     }
   }

@@ -96,6 +96,15 @@ variable "schema" {
     definition = string
     encoding   = string
   })
-  description = "Schema for the topic."
+  description = "Schema for the topic. Exclusive with schema_id. If both are specified, schema will be used."
+  default     = null
+}
+
+variable "schema_reference" {
+  type = object({
+    schema_id = string
+    encoding  = string
+  })
+  description = "Schema id of an existing schema. Exclusive with schema. If both are specified, schema will be used."
   default     = null
 }

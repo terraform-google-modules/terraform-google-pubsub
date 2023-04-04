@@ -54,3 +54,7 @@ output "subscription_paths" {
   description = "The path list of Pub/Sub subscriptions"
 }
 
+output "schema_id" {
+  value       = length(google_pubsub_schema.schema) > 0 ? google_pubsub_schema.schema[0].id : ""
+  description = "The ID of the Pub/Sub topic schema"
+}
