@@ -195,6 +195,17 @@ resource "google_pubsub_subscription" "push_subscriptions" {
         audience              = lookup(each.value, "audience", "")
       }
     }
+
+    dynamic "pubsub_wrapper" {
+      for_each = (lookup(each.value, "pubsub_wrapper", "") != "") ? [true] : []
+    }
+
+    dynamic "no_wrapper" {
+      for_each = (lookup(each.value, "no_wrapper", "") != "") ? [true] : []
+      content {
+        write_metadata = lookup(each.value, "write_metadata", null)
+      }
+    }
   }
   depends_on = [
     google_pubsub_topic.topic,
