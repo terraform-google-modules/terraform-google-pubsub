@@ -196,10 +196,6 @@ resource "google_pubsub_subscription" "push_subscriptions" {
       }
     }
 
-    dynamic "pubsub_wrapper" {
-      for_each = lookup(each.value, "pubsub_wrapper", "") ? [true] : []
-    }
-
     dynamic "no_wrapper" {
       for_each = lookup(each.value, "no_wrapper", "") ? [true] : []
       content {
