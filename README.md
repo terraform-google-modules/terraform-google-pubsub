@@ -28,7 +28,6 @@ module "pubsub" {
       x-goog-version             = "v1beta1"                                            // optional
       oidc_service_account_email = "sa@example.com"                                     // optional
       audience                   = "example"                                            // optional
-      pubsub_wrapper             = true                                                 // optional
       no_wrapper                 = false                                                // optional
       no_wrapper_write_metadata  = false                                                // optional
       expiration_policy          = "1209600s"                                           // optional
