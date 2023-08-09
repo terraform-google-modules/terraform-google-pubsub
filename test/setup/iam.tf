@@ -16,7 +16,6 @@
 
 locals {
   int_required_roles = [
-    "roles/cloudiot.admin",
     "roles/pubsub.admin",
     "roles/resourcemanager.projectIamAdmin",
     "roles/bigquery.admin"
