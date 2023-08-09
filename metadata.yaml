@@ -27,14 +27,9 @@ spec:
   actuationTool:
     type: Terraform
     version: '>= 0.13'
-  subBlueprints:
-  - name: cloudiot
-    location: modules/cloudiot
   examples:
   - name: bigquery
     location: examples/bigquery
-  - name: cloudiot
-    location: examples/cloudiot
   - name: kms
     location: examples/kms
   - name: simple
@@ -129,12 +124,10 @@ spec:
   roles:
   - level: Project
     roles:
-    - roles/cloudiot.admin
     - roles/pubsub.admin
     - roles/resourcemanager.projectIamAdmin
     - roles/bigquery.admin
   services:
-  - cloudiot.googleapis.com
   - cloudresourcemanager.googleapis.com
   - pubsub.googleapis.com
   - serviceusage.googleapis.com

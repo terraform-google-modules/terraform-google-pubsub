@@ -25,7 +25,6 @@ module "project-ci-int-pubsub" {
   billing_account   = var.billing_account
 
   activate_apis = [
-    "cloudiot.googleapis.com",
     "cloudresourcemanager.googleapis.com",
     "pubsub.googleapis.com",
     "serviceusage.googleapis.com",
