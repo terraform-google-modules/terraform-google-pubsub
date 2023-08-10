@@ -16,7 +16,6 @@
 
 locals {
   int_required_roles = [
-    "roles/cloudiot.admin",
     "roles/pubsub.admin",
     "roles/resourcemanager.projectIamAdmin",
     "roles/bigquery.admin"
@@ -45,7 +44,7 @@ resource "google_service_account_key" "int_test" {
   service_account_id = google_service_account.int_test.id
 }
 
-// Even if granting roles/cloudiot.admin to the service account in advance,
+// Even if granting IAM roles to the service account in advance,
 // the roles cannot be applied immediately. As a result, our test will fail.
 // To avoid that, we use null_resource for `sleep`ing 60 seconds.
 resource "null_resource" "delay" {
