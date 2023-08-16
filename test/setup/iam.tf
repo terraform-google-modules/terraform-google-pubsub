@@ -18,7 +18,8 @@ locals {
   int_required_roles = [
     "roles/pubsub.admin",
     "roles/resourcemanager.projectIamAdmin",
-    "roles/bigquery.admin"
+    "roles/bigquery.admin",
+    "roles/storage.admin"
   ]
 }
 
