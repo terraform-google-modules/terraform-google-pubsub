@@ -46,6 +46,13 @@ module "pubsub" {
       ack_deadline_seconds = 20
       expiration_policy    = "1209600s" // two weeks
     },
+    {
+      name                 = "push_payload_unwrapping"
+      push_endpoint        = "https://${var.project_id}.appspot.com/"
+      no_wrapper           = { write_metadata = true }
+      ack_deadline_seconds = 20
+      expiration_policy    = "1209600s" // two weeks
+    },
   ]
 
 }
