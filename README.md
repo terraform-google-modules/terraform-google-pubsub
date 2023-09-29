@@ -59,6 +59,16 @@ module "pubsub" {
       drop_unknown_fields = false                   // optional
     }
   ]
+  cloud_storage_subscriptions = [
+    {
+      name                    = "cloud_storage"                          // required
+      bucket                  = google_storage_bucket.bucket-test.0.name // required
+      filename_prefix         = "test-"                                  // optional
+      filename_suffix         = "-ps"                                    // optional
+      max_duration            = "60s"                                    // optional
+      max_bytes               = 1024                                     // optional
+    }
+  ]
 }
 ```
 
@@ -75,6 +85,8 @@ module "pubsub" {
 | project\_id | The project ID to manage the Pub/Sub resources. | `string` | n/a | yes |
 | pull\_subscriptions | The list of the pull subscriptions. | `list(map(string))` | `[]` | no |
 | push\_subscriptions | The list of the push subscriptions. | `list(map(string))` | `[]` | no |
+| bigquery_subscriptions | The list of the bigquery subscriptions. | `list(map(string))` | `[]` | no |
+| cloud_storage_subscriptions | The list of the cloud storage subscriptions. | `list(map(string))` | `[]` | no |
 | schema | Schema for the topic. | <pre>object({<br>    name       = string<br>    type       = string<br>    definition = string<br>    encoding   = string<br>  })</pre> | `null` | no |
 | subscription\_labels | A map of labels to assign to every Pub/Sub subscription. | `map(string)` | `{}` | no |
 | topic | The Pub/Sub topic name. | `string` | n/a | yes |
