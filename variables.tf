@@ -59,6 +59,12 @@ variable "bigquery_subscriptions" {
   default     = []
 }
 
+variable "cloud_storage_subscriptions" {
+  type        = list(map(string))
+  description = "The list of the cloud storage push subscriptions."
+  default     = []
+}
+
 variable "subscription_labels" {
   type        = map(string)
   description = "A map of labels to assign to every Pub/Sub subscription."

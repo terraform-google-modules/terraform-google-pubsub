@@ -195,6 +195,13 @@ resource "google_pubsub_subscription" "push_subscriptions" {
         audience              = lookup(each.value, "audience", "")
       }
     }
+
+    dynamic "no_wrapper" {
+      for_each = (lookup(each.value, "write_metadata", "") != "") ? [true] : []
+      content {
+        write_metadata = lookup(each.value, "write_metadata", "")
+      }
+    }
   }
   depends_on = [
     google_pubsub_topic.topic,
@@ -359,4 +366,96 @@ resource "google_pubsub_subscription_iam_member" "pull_subscription_sa_binding_v
   depends_on = [
     google_pubsub_subscription.pull_subscriptions,
   ]
+}
+
+resource "google_pubsub_subscription" "cloud_storage_subscriptions" {
+  for_each = var.create_subscriptions ? { for i in var.cloud_storage_subscriptions : i.name => i } : {}
+
+  name    = each.value.name
+  topic   = var.create_topic ? google_pubsub_topic.topic[0].name : var.topic
+  project = var.project_id
+  labels  = var.subscription_labels
+  ack_deadline_seconds = lookup(
+    each.value,
+    "ack_deadline_seconds",
+    local.default_ack_deadline_seconds,
+  )
+  message_retention_duration = lookup(
+    each.value,
+    "message_retention_duration",
+    null,
+  )
+  retain_acked_messages = lookup(
+    each.value,
+    "retain_acked_messages",
+    null,
+  )
+  filter = lookup(
+    each.value,
+    "filter",
+    null,
+  )
+  enable_message_ordering = lookup(
+    each.value,
+    "enable_message_ordering",
+    null,
+  )
+  dynamic "expiration_policy" {
+    // check if the 'expiration_policy' key exists, if yes, return a list containing it.
+    for_each = contains(keys(each.value), "expiration_policy") ? [each.value.expiration_policy] : []
+    content {
+      ttl = expiration_policy.value
+    }
+  }
+
+  dynamic "dead_letter_policy" {
+    for_each = (lookup(each.value, "dead_letter_topic", "") != "") ? [each.value.dead_letter_topic] : []
+    content {
+      dead_letter_topic     = lookup(each.value, "dead_letter_topic", "")
+      max_delivery_attempts = lookup(each.value, "max_delivery_attempts", "5")
+    }
+  }
+
+  dynamic "retry_policy" {
+    for_each = (lookup(each.value, "maximum_backoff", "") != "") ? [each.value.maximum_backoff] : []
+    content {
+      maximum_backoff = lookup(each.value, "maximum_backoff", "")
+      minimum_backoff = lookup(each.value, "minimum_backoff", "")
+    }
+  }
+
+  cloud_storage_config {
+    bucket          = each.value["bucket"]
+    filename_prefix = lookup(each.value, "filename_prefix", "")
+    filename_suffix = lookup(each.value, "filename_suffix", "")
+    max_duration    = lookup(each.value, "max_duration", "")
+    max_bytes       = lookup(each.value, "max_bytes", null)
+
+    dynamic "avro_config" {
+      for_each = (lookup(each.value, "write_metadata", "") != "") ? [each.value.write_metadata] : []
+      content {
+        write_metadata = lookup(veach.value, "write_metadata", "")
+      }
+    }
+  }
+
+  depends_on = [
+    google_pubsub_topic.topic,
+  ]
+}
+
+resource "google_storage_bucket_iam_member" "cloud_storage_object_creator" {
+  for_each = var.create_subscriptions ? { for i in var.cloud_storage_subscriptions : i.name => i } : {}
+
+  bucket = each.value["bucket"]
+  role   = "roles/storage.objectCreator"
+  member = "serviceAccount:${local.pubsub_svc_account_email}"
+}
+
+resource "google_storage_bucket_iam_member" "cloud_storage_legacy_bucket_reader" {
+  for_each = var.create_subscriptions ? { for i in var.cloud_storage_subscriptions : i.name => i } : {}
+
+  bucket = each.value["bucket"]
+  role   = "roles/storage.legacyBucketReader"
+  member = "serviceAccount:${local.pubsub_svc_account_email}"
 }
