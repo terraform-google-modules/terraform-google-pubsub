@@ -1,4 +1,4 @@
-# Bigquery Example
+# Cloud Storage Example
 
 This example illustrates how to use the `pubsub` module.
 
