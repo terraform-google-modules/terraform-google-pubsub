@@ -26,7 +26,7 @@ module "pubsub" {
   cloud_storage_subscriptions = [
     {
       name   = "example_subscription"
-      bucket = "example_bucket"
+      bucket = var.bucket_name
     },
   ]
 
@@ -38,6 +38,6 @@ module "pubsub" {
 
 resource "google_storage_bucket" "test" {
   project  = var.project_id
-  name     = "example_bucket"
+  name     = var.bucket_name
   location = "europe-west1"
 }

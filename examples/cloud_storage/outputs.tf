@@ -19,12 +19,12 @@ output "project_id" {
   description = "The project ID"
 }
 
+output "bucket_name" {
+  value       = var.bucket_name
+  description = "The name of the Cloud Storage bucket created"
+}
+
 output "topic_name" {
   value       = module.pubsub.topic
   description = "The name of the Pub/Sub topic created"
-}
-
-output "topic_labels" {
-  value       = module.pubsub.topic_labels
-  description = "The labels of the Pub/Sub topic created"
 }

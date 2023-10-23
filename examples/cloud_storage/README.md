@@ -8,13 +8,14 @@ This example illustrates how to use the `pubsub` module.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | project\_id | The project ID to manage the Pub/Sub resources | `string` | n/a | yes |
+| bucket\_name | The name of the GCS bucket name to which to write messages | `string` | n/a | yes |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
 | project\_id | The project ID |
-| topic\_labels | The labels of the Pub/Sub topic created |
+| bucket\_name | The name of the Cloud Storage bucket created |
 | topic\_name | The name of the Pub/Sub topic created |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
