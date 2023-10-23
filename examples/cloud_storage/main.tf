@@ -1,5 +1,5 @@
 /**
- * Copyright 2018 Google LLC
+ * Copyright 2018-2023 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,6 +14,11 @@
  * limitations under the License.
  */
 
+resource "random_id" "bucket_suffix" {
+  count       = var.random_bucket_suffix ? 1 : 0
+  byte_length = 4
+}
+
 provider "google" {
   region = "europe-west1"
 }
@@ -26,18 +31,13 @@ module "pubsub" {
   cloud_storage_subscriptions = [
     {
       name   = "example_subscription"
-      bucket = var.bucket_name
+      bucket = google_storage_bucket.test.name
     },
   ]
-
-  depends_on = [
-    google_storage_bucket.test
-  ]
-
 }
 
 resource "google_storage_bucket" "test" {
   project  = var.project_id
-  name     = var.bucket_name
+  name     = var.random_bucket_suffix ? join("-", [var.bucket_name, random_id.bucket_suffix[0].id]) : var.bucket_name
   location = "europe-west1"
 }

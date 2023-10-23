@@ -18,7 +18,15 @@ variable "project_id" {
   type        = string
   description = "The project ID to manage the Pub/Sub resources"
 }
+
 variable "bucket_name" {
   type        = string
   description = "The name of the GCS bucket name to which to write messages"
+  default     = "test_bucket"
+}
+
+variable "random_bucket_suffix" {
+  type        = bool
+  description = "Add a randomized 4-character suffix to bucket name"
+  default     = true
 }

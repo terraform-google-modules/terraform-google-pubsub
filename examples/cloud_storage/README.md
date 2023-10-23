@@ -7,8 +7,9 @@ This example illustrates how to use the `pubsub` module.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| bucket\_name | The name of the GCS bucket name to which to write messages | `string` | n/a | yes |
+| bucket\_name | The name of the GCS bucket name to which to write messages | `string` | `"test_bucket"` | no |
 | project\_id | The project ID to manage the Pub/Sub resources | `string` | n/a | yes |
+| random\_bucket\_suffix | Add a randomized 4-character suffix to bucket name | `bool` | `true` | no |
 
 ## Outputs
 

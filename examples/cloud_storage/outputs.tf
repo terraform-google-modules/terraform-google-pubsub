@@ -1,5 +1,5 @@
 /**
- * Copyright 2018 Google LLC
+ * Copyright 2018-2023 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,7 +20,7 @@ output "project_id" {
 }
 
 output "bucket_name" {
-  value       = var.bucket_name
+  value       = google_storage_bucket.test.name
   description = "The name of the Cloud Storage bucket created"
 }
 
