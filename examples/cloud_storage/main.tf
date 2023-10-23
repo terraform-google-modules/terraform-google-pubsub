@@ -15,7 +15,6 @@
  */
 
 resource "random_id" "bucket_suffix" {
-  count       = var.random_bucket_suffix ? 1 : 0
   byte_length = 4
 }
 
@@ -38,6 +37,6 @@ module "pubsub" {
 
 resource "google_storage_bucket" "test" {
   project  = var.project_id
-  name     = var.random_bucket_suffix ? join("-", [var.bucket_name, random_id.bucket_suffix[0].id]) : var.bucket_name
+  name     = join("-", ["test_bucket", random_id.bucket_suffix.hex])
   location = "europe-west1"
 }
