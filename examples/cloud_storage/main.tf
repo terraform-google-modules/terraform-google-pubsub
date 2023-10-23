@@ -27,10 +27,16 @@ module "pubsub" {
   project_id = var.project_id
   topic      = "cft-tf-pubsub-topic-cloud-storage"
 
+  topic_labels = {
+    foo_label = "foo_value"
+  }
+
   cloud_storage_subscriptions = [
     {
       name   = "example_bucket_subscription"
       bucket = google_storage_bucket.test.name
+
+      ack_deadline_seconds = 300
     },
   ]
 }
