@@ -29,7 +29,7 @@ module "pubsub" {
 
   cloud_storage_subscriptions = [
     {
-      name   = "example_subscription"
+      name   = "example_bucket_subscription"
       bucket = google_storage_bucket.test.name
     },
   ]
