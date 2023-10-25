@@ -1,5 +1,5 @@
 /**
- * Copyright 2019 Google LLC
+ * Copyright 2018-2023 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,21 +14,17 @@
  * limitations under the License.
  */
 
-module "project-ci-int-pubsub" {
-  source  = "terraform-google-modules/project-factory/google"
-  version = "~> 14.0"
+output "project_id" {
+  value       = var.project_id
+  description = "The project ID"
+}
 
-  name              = "ci-int-pubsub"
-  random_project_id = true
-  org_id            = var.org_id
-  folder_id         = var.folder_id
-  billing_account   = var.billing_account
+output "bucket_name" {
+  value       = google_storage_bucket.test.name
+  description = "The name of the Cloud Storage bucket created"
+}
 
-  activate_apis = [
-    "cloudresourcemanager.googleapis.com",
-    "pubsub.googleapis.com",
-    "serviceusage.googleapis.com",
-    "bigquery.googleapis.com",
-    "storage.googleapis.com"
-  ]
+output "topic_name" {
+  value       = module.pubsub.topic
+  description = "The name of the Pub/Sub topic created"
 }
