@@ -1,5 +1,5 @@
 /**
- * Copyright 2021 Google LLC
+ * Copyright 2018-2023 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,12 +14,17 @@
  * limitations under the License.
  */
 
-terraform {
-  required_providers {
-    google = {
-      source  = "hashicorp/google"
-      version = "~> 4.1"
-    }
-  }
-  required_version = ">= 0.13"
+output "project_id" {
+  value       = var.project_id
+  description = "The project ID"
+}
+
+output "bucket_name" {
+  value       = google_storage_bucket.test.name
+  description = "The name of the Cloud Storage bucket created"
+}
+
+output "topic_name" {
+  value       = module.pubsub.topic
+  description = "The name of the Pub/Sub topic created"
 }

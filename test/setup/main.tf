@@ -29,5 +29,6 @@ module "project-ci-int-pubsub" {
     "pubsub.googleapis.com",
     "serviceusage.googleapis.com",
     "bigquery.googleapis.com",
+    "storage.googleapis.com"
   ]
 }

@@ -7,6 +7,24 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [6.0.0](https://github.com/terraform-google-modules/terraform-google-pubsub/compare/v5.0.0...v6.0.0) (2023-10-31)
+
+
+### ⚠ BREAKING CHANGES
+
+* **TPG>=4.78:** add cloud storage subscription support ([#145](https://github.com/terraform-google-modules/terraform-google-pubsub/issues/145))
+* remove iot ([#143](https://github.com/terraform-google-modules/terraform-google-pubsub/issues/143))
+
+### Features
+
+* **TPG>=4.78:** add cloud storage subscription support ([#145](https://github.com/terraform-google-modules/terraform-google-pubsub/issues/145)) ([95863ab](https://github.com/terraform-google-modules/terraform-google-pubsub/commit/95863ab6e5d09919adc8cbbb97f12e6e064ad892))
+
+
+### Bug Fixes
+
+* remove iot ([#143](https://github.com/terraform-google-modules/terraform-google-pubsub/issues/143)) ([dca11ae](https://github.com/terraform-google-modules/terraform-google-pubsub/commit/dca11aed04d76c44be9e7d58e5d4f6f9cee06b8f))
+* upgraded versions.tf to include minor bumps from tpg v5 ([#153](https://github.com/terraform-google-modules/terraform-google-pubsub/issues/153)) ([2bdbea6](https://github.com/terraform-google-modules/terraform-google-pubsub/commit/2bdbea6aeff1315a1aa8a6b52e7f7a8e82a54ec8))
+
 ## [5.0.0](https://github.com/terraform-google-modules/terraform-google-pubsub/compare/v4.0.1...v5.0.0) (2022-12-30)
 
 

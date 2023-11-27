@@ -20,12 +20,12 @@ terraform {
 
     google = {
       source  = "hashicorp/google"
-      version = ">= 4.77, < 5.0"
+      version = ">= 4.78, < 6"
     }
   }
 
   provider_meta "google" {
-    module_name = "blueprints/terraform/terraform-google-pubsub/v5.0.0"
+    module_name = "blueprints/terraform/terraform-google-pubsub/v6.0.0"
   }
 
 }

@@ -55,7 +55,13 @@ variable "pull_subscriptions" {
 
 variable "bigquery_subscriptions" {
   type        = list(map(string))
-  description = "The list of the bigquery push subscriptions."
+  description = "The list of the Bigquery push subscriptions."
+  default     = []
+}
+
+variable "cloud_storage_subscriptions" {
+  type        = list(map(string))
+  description = "The list of the Cloud Storage push subscriptions."
   default     = []
 }
 

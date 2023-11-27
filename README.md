@@ -16,7 +16,7 @@ This is a simple usage of the module. Please see also a simple setup provided in
 ```hcl
 module "pubsub" {
   source  = "terraform-google-modules/pubsub/google"
-  version = "~> 5.0"
+  version = "~> 6.0"
 
   topic      = "tf-topic"
   project_id = "my-pubsub-project"
@@ -61,6 +61,18 @@ module "pubsub" {
       drop_unknown_fields = false                   // optional
     }
   ]
+  cloud_storage_subscriptions = [
+    {
+      name            = "cloud-storage"  // required
+      bucket          = "example-bucket" // required
+      filename_prefix = "log_events_"    // optional
+      filename_suffix = ".avro"          // optional
+      max_duration    = "60s"            // optional
+      max_bytes       = "10000000"       // optional
+      output_format   = "avro"           // optional
+      write_metadata  = false            // optional
+    }
+  ]
 }
 ```
 
@@ -69,7 +81,8 @@ module "pubsub" {
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| bigquery\_subscriptions | The list of the bigquery push subscriptions. | `list(map(string))` | `[]` | no |
+| bigquery\_subscriptions | The list of the Bigquery push subscriptions. | `list(map(string))` | `[]` | no |
+| cloud\_storage\_subscriptions | The list of the Cloud Storage push subscriptions. | `list(map(string))` | `[]` | no |
 | create\_subscriptions | Specify true if you want to create subscriptions. | `bool` | `true` | no |
 | create\_topic | Specify true if you want to create a topic. | `bool` | `true` | no |
 | grant\_token\_creator | Specify true if you want to add token creator role to the default Pub/Sub SA. | `bool` | `true` | no |
