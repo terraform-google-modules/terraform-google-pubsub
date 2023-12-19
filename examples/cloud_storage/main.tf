@@ -23,7 +23,9 @@ provider "google" {
 }
 
 module "pubsub" {
-  source     = "../../"
+  source  = "terraform-google-modules/pubsub/google"
+  version = "~> 6.0"
+
   project_id = var.project_id
   topic      = "cft-tf-pubsub-topic-cloud-storage"
 
