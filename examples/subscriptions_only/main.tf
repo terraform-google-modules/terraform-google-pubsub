@@ -51,10 +51,13 @@ module "pubsub" {
     {
       name                 = "push_payload_unwrapping"
       push_endpoint        = "https://${var.project_id}.appspot.com/"
-      no_wrapper           = { write_metadata = true }
+      no_wrapper           = no_wrapper.test.name
       ack_deadline_seconds = 20
       expiration_policy    = "1209600s" // two weeks
     },
   ]
+}
 
+resource "no_wrapper" "test" {
+  write_metadata = true
 }
