@@ -24,7 +24,9 @@ resource "google_pubsub_topic" "example" {
 
 }
 module "pubsub" {
-  source               = "../../"
+  source  = "terraform-google-modules/pubsub/google"
+  version = "~> 6.0"
+
   project_id           = var.project_id
   create_topic         = false
   create_subscriptions = true
