@@ -7,6 +7,13 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [6.1.0](https://github.com/terraform-google-modules/terraform-google-pubsub/compare/v6.0.0...v6.1.0) (2024-03-20)
+
+
+### Features
+
+* add pubsub iam member for bigquery subscription dead letter topics ([#146](https://github.com/terraform-google-modules/terraform-google-pubsub/issues/146)) ([a413f03](https://github.com/terraform-google-modules/terraform-google-pubsub/commit/a413f03e533fc88c1a618b475f5196d421e1f9f1))
+
 ## [6.0.0](https://github.com/terraform-google-modules/terraform-google-pubsub/compare/v5.0.0...v6.0.0) (2023-10-31)
 
 
