@@ -28,6 +28,8 @@ module "pubsub" {
       x-goog-version             = "v1beta1"                                            // optional
       oidc_service_account_email = "sa@example.com"                                     // optional
       audience                   = "example"                                            // optional
+      no_wrapper                 = false                                                // optional
+      no_wrapper_write_metadata  = false                                                // optional
       expiration_policy          = "1209600s"                                           // optional
       dead_letter_topic          = "projects/my-pubsub-project/topics/example-dl-topic" // optional
       max_delivery_attempts      = 5                                                    // optional
