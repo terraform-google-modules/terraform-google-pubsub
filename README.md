@@ -83,6 +83,7 @@ module "pubsub" {
 | cloud\_storage\_subscriptions | The list of the Cloud Storage push subscriptions. | `list(map(string))` | `[]` | no |
 | create\_subscriptions | Specify true if you want to create subscriptions. | `bool` | `true` | no |
 | create\_topic | Specify true if you want to create a topic. | `bool` | `true` | no |
+| grant\_bigquery\_project\_roles | Specify true if you want to add bigquery.metadataViewer and bigquery.dataEditor roles to the default Pub/Sub SA. | `bool` | `true` | no |
 | grant\_token\_creator | Specify true if you want to add token creator role to the default Pub/Sub SA. | `bool` | `true` | no |
 | message\_storage\_policy | A map of storage policies. Default - inherit from organization's Resource Location Restriction policy. | `map(any)` | `{}` | no |
 | project\_id | The project ID to manage the Pub/Sub resources. | `string` | n/a | yes |
