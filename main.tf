@@ -108,6 +108,10 @@ resource "google_pubsub_subscription_iam_member" "pull_subscription_binding" {
   depends_on = [
     google_pubsub_subscription.pull_subscriptions,
   ]
+
+  lifecycle {
+    replace_triggered_by = [google_pubsub_subscription.pull_subscriptions]
+  }
 }
 
 resource "google_pubsub_subscription_iam_member" "push_subscription_binding" {
@@ -120,6 +124,10 @@ resource "google_pubsub_subscription_iam_member" "push_subscription_binding" {
   depends_on = [
     google_pubsub_subscription.push_subscriptions,
   ]
+
+  lifecycle {
+    replace_triggered_by = [google_pubsub_subscription.push_subscriptions]
+  }
 }
 
 resource "google_pubsub_subscription_iam_member" "bigquery_subscription_binding" {
@@ -454,6 +462,10 @@ resource "google_pubsub_subscription_iam_member" "pull_subscription_sa_binding_s
   depends_on = [
     google_pubsub_subscription.pull_subscriptions,
   ]
+
+  lifecycle {
+    replace_triggered_by = [google_pubsub_subscription.pull_subscriptions]
+  }
 }
 
 resource "google_pubsub_subscription_iam_member" "pull_subscription_sa_binding_viewer" {
@@ -466,4 +478,8 @@ resource "google_pubsub_subscription_iam_member" "pull_subscription_sa_binding_v
   depends_on = [
     google_pubsub_subscription.pull_subscriptions,
   ]
+
+  lifecycle {
+    replace_triggered_by = [google_pubsub_subscription.pull_subscriptions]
+  }
 }
