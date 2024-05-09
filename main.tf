@@ -365,6 +365,7 @@ resource "google_pubsub_subscription" "bigquery_subscriptions" {
   bigquery_config {
     table               = each.value["table"]
     use_topic_schema    = lookup(each.value, "use_topic_schema", false)
+    use_table_schema    = lookup(each.value, "use_table_schema", false)
     write_metadata      = lookup(each.value, "write_metadata", false)
     drop_unknown_fields = lookup(each.value, "drop_unknown_fields", false)
   }

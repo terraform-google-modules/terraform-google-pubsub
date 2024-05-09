@@ -55,6 +55,7 @@ module "pubsub" {
       name                = "bigquery"              // required
       table               = "project.dataset.table" // required
       use_topic_schema    = true                    // optional
+      use_table_schema    = false                   // optional
       write_metadata      = false                   // optional
       drop_unknown_fields = false                   // optional
     }
