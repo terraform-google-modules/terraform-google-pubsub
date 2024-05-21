@@ -110,7 +110,7 @@ resource "google_pubsub_subscription_iam_member" "pull_subscription_binding" {
   ]
 
   lifecycle {
-    replace_triggered_by = [google_pubsub_subscription.pull_subscriptions]
+    replace_triggered_by = [google_pubsub_subscription.pull_subscriptions[each.key]]
   }
 }
 
@@ -126,7 +126,7 @@ resource "google_pubsub_subscription_iam_member" "push_subscription_binding" {
   ]
 
   lifecycle {
-    replace_triggered_by = [google_pubsub_subscription.push_subscriptions]
+    replace_triggered_by = [google_pubsub_subscription.push_subscriptions[each.key]]
   }
 }
 
@@ -465,7 +465,7 @@ resource "google_pubsub_subscription_iam_member" "pull_subscription_sa_binding_s
   ]
 
   lifecycle {
-    replace_triggered_by = [google_pubsub_subscription.pull_subscriptions]
+    replace_triggered_by = [google_pubsub_subscription.pull_subscriptions[each.key]]
   }
 }
 
@@ -481,6 +481,6 @@ resource "google_pubsub_subscription_iam_member" "pull_subscription_sa_binding_v
   ]
 
   lifecycle {
-    replace_triggered_by = [google_pubsub_subscription.pull_subscriptions]
+    replace_triggered_by = [google_pubsub_subscription.pull_subscriptions[each.key]]
   }
 }
