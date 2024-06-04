@@ -34,8 +34,8 @@ module "pubsub" {
       maximum_backoff            = "600s"                                               // optional
       minimum_backoff            = "300s"                                               // optional
       filter                     = "attributes.domain = \"com\""                        // optional
-    }
-  ]
+      no_wrapper                 = "false"                                              // optional
+      no_wrapper_write_metadata  = "false"                                              // optional
   pull_subscriptions = [
     {
       name                         = "pull"                                               // required
