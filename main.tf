@@ -238,7 +238,7 @@ resource "google_pubsub_subscription" "push_subscriptions" {
     dynamic "no_wrapper" {
       for_each = (lookup(each.value, "no_wrapper", "") != "") ? [true] : []
       content {
-        write_metadata = tobool(lookup(each.value, "no_wrapper_write_metadata", "false"))
+        write_metadata = lookup(var.subscription, "no_wrapper_write_metadata", false) ? true : false
       }
     }
   }
