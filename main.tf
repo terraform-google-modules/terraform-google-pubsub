@@ -238,10 +238,13 @@ resource "google_pubsub_subscription" "push_subscriptions" {
     dynamic "no_wrapper" {
       for_each = (lookup(each.value, "no_wrapper", "") != "") ? [true] : []
       content {
-        write_metadata = lookup(var.subscription, "no_wrapper_write_metadata", false) ? true : false
+        write_metadata = lookup(each.value, "no_wrapper_write_metadata", false) ? true : false
       }
     }
   }
+
+  enable_message_ordering = lookup(each.value, "enable_message_ordering", null, )
+
   depends_on = [
     google_pubsub_topic.topic,
   ]
