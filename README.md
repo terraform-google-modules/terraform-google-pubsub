@@ -63,14 +63,15 @@ module "pubsub" {
   ]
   cloud_storage_subscriptions = [
     {
-      name            = "cloud-storage"  // required
-      bucket          = "example-bucket" // required
-      filename_prefix = "log_events_"    // optional
-      filename_suffix = ".avro"          // optional
-      max_duration    = "60s"            // optional
-      max_bytes       = "10000000"       // optional
-      output_format   = "avro"           // optional
-      write_metadata  = false            // optional
+      name                     = "cloud-storage"        // required
+      bucket                   = "example-bucket"       // required
+      filename_prefix          = "log_events_"          // optional
+      filename_suffix          = ".avro"                // optional
+      filename_datetime_format = "YYYY-MM-DD/hh_mm_ssZ" // optional
+      max_duration             = "60s"                  // optional
+      max_bytes                = "10000000"             // optional
+      output_format            = "avro"                 // optional
+      write_metadata           = false                  // optional
     }
   ]
 }
