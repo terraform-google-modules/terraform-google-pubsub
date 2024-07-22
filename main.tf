@@ -194,6 +194,11 @@ resource "google_pubsub_subscription" "push_subscriptions" {
     "filter",
     null,
   )
+  enable_message_ordering = lookup(
+    each.value,
+    "enable_message_ordering",
+    null,
+  )
   dynamic "expiration_policy" {
     // check if the 'expiration_policy' key exists, if yes, return a list containing it.
     for_each = contains(keys(each.value), "expiration_policy") ? [each.value.expiration_policy] : []
@@ -434,11 +439,12 @@ resource "google_pubsub_subscription" "cloud_storage_subscriptions" {
   }
 
   cloud_storage_config {
-    bucket          = each.value["bucket"]
-    filename_prefix = lookup(each.value, "filename_prefix", null)
-    filename_suffix = lookup(each.value, "filename_suffix", null)
-    max_duration    = lookup(each.value, "max_duration", null)
-    max_bytes       = lookup(each.value, "max_bytes", null)
+    bucket                   = each.value["bucket"]
+    filename_prefix          = lookup(each.value, "filename_prefix", null)
+    filename_suffix          = lookup(each.value, "filename_suffix", null)
+    filename_datetime_format = lookup(each.value, "filename_datetime_format", null)
+    max_duration             = lookup(each.value, "max_duration", null)
+    max_bytes                = lookup(each.value, "max_bytes", null)
     dynamic "avro_config" {
       for_each = (lookup(each.value, "output_format", "") == "avro") ? [true] : []
       content {
