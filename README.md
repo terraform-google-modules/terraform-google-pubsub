@@ -16,7 +16,7 @@ This is a simple usage of the module. Please see also a simple setup provided in
 ```hcl
 module "pubsub" {
   source  = "terraform-google-modules/pubsub/google"
-  version = "~> 6.0"
+  version = "~> 7.0"
 
   topic      = "tf-topic"
   project_id = "my-pubsub-project"
