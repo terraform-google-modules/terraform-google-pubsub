@@ -70,8 +70,10 @@ module "pubsub" {
       filename_datetime_format = "YYYY-MM-DD/hh_mm_ssZ" // optional
       max_duration             = "60s"                  // optional
       max_bytes                = "10000000"             // optional
+      max_messages             = "10000"                // optional
       output_format            = "avro"                 // optional
       write_metadata           = false                  // optional
+      use_topic_schema         = false                  // optional
     }
   ]
 }
