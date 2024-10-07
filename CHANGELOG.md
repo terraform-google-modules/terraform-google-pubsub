@@ -7,6 +7,29 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [7.0.0](https://github.com/terraform-google-modules/terraform-google-pubsub/compare/v6.0.0...v7.0.0) (2024-09-13)
+
+
+### ⚠ BREAKING CHANGES
+
+* **TPG>=5.31:** add cloud storage filename datetime format support ([#192](https://github.com/terraform-google-modules/terraform-google-pubsub/issues/192))
+* resolve Unforeseen Behavior when changing filter - missing bindings on first apply run #173 ([#174](https://github.com/terraform-google-modules/terraform-google-pubsub/issues/174))
+
+### Features
+
+* add enable_message_ordering attribute for push subscription ([#195](https://github.com/terraform-google-modules/terraform-google-pubsub/issues/195)) ([c310330](https://github.com/terraform-google-modules/terraform-google-pubsub/commit/c3103305a150c55a720b8d94e2ab6fc493efe9b3))
+* add pubsub iam member for bigquery subscription dead letter topics ([#146](https://github.com/terraform-google-modules/terraform-google-pubsub/issues/146)) ([a413f03](https://github.com/terraform-google-modules/terraform-google-pubsub/commit/a413f03e533fc88c1a618b475f5196d421e1f9f1))
+* **deps:** Update Terraform google to v6 ([#203](https://github.com/terraform-google-modules/terraform-google-pubsub/issues/203)) ([b02fd35](https://github.com/terraform-google-modules/terraform-google-pubsub/commit/b02fd351456a074a5d88c229147e8d1f8e18fe1b))
+* limit replace_triggered_by to changed subscription ([#191](https://github.com/terraform-google-modules/terraform-google-pubsub/issues/191)) ([deb704e](https://github.com/terraform-google-modules/terraform-google-pubsub/commit/deb704e0d0642435cc745edc3df1100abe0da527))
+* make granting service agent bigquery roles optional ([#183](https://github.com/terraform-google-modules/terraform-google-pubsub/issues/183)) ([9508971](https://github.com/terraform-google-modules/terraform-google-pubsub/commit/950897124678a26102c06aa92a3cb080a43df272))
+* Support use_table_schema bigquery option ([#180](https://github.com/terraform-google-modules/terraform-google-pubsub/issues/180)) ([834f204](https://github.com/terraform-google-modules/terraform-google-pubsub/commit/834f20481a6a634af91aed713e58b02ee6490dd9))
+* **TPG>=5.31:** add cloud storage filename datetime format support ([#192](https://github.com/terraform-google-modules/terraform-google-pubsub/issues/192)) ([46a264b](https://github.com/terraform-google-modules/terraform-google-pubsub/commit/46a264bd2c23c61e9138c467a191b745424b18dc))
+
+
+### Bug Fixes
+
+* resolve Unforeseen Behavior when changing filter - missing bindings on first apply run [#173](https://github.com/terraform-google-modules/terraform-google-pubsub/issues/173) ([#174](https://github.com/terraform-google-modules/terraform-google-pubsub/issues/174)) ([c496f56](https://github.com/terraform-google-modules/terraform-google-pubsub/commit/c496f56a31f76e23f8414a03e02ad09aa2188f14))
+
 ## [6.0.0](https://github.com/terraform-google-modules/terraform-google-pubsub/compare/v5.0.0...v6.0.0) (2023-10-31)
 
 

@@ -49,7 +49,7 @@ resource "google_project_iam_member" "project" {
 
 module "pubsub" {
   source  = "terraform-google-modules/pubsub/google"
-  version = "~> 6.0"
+  version = "~> 7.0"
 
   project_id         = var.project_id
   topic              = var.topic_name
