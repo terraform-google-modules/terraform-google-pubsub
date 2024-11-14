@@ -7,6 +7,17 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [8.0.0](https://github.com/terraform-google-modules/terraform-google-pubsub/compare/v7.0.0...v8.0.0) (2024-11-14)
+
+
+### ⚠ BREAKING CHANGES
+
+* **TPG>=6.2:** add cloud storage max_messages and use_topic_schema support ([#204](https://github.com/terraform-google-modules/terraform-google-pubsub/issues/204))
+
+### Features
+
+* **TPG>=6.2:** add cloud storage max_messages and use_topic_schema support ([#204](https://github.com/terraform-google-modules/terraform-google-pubsub/issues/204)) ([bc66597](https://github.com/terraform-google-modules/terraform-google-pubsub/commit/bc66597a04fcdd819b9b42bb2ec5cbec3d151524))
+
 ## [7.0.0](https://github.com/terraform-google-modules/terraform-google-pubsub/compare/v6.0.0...v7.0.0) (2024-09-13)
 
 
