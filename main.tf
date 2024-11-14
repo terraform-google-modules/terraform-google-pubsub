@@ -445,10 +445,12 @@ resource "google_pubsub_subscription" "cloud_storage_subscriptions" {
     filename_datetime_format = lookup(each.value, "filename_datetime_format", null)
     max_duration             = lookup(each.value, "max_duration", null)
     max_bytes                = lookup(each.value, "max_bytes", null)
+    max_messages             = lookup(each.value, "max_messages", null)
     dynamic "avro_config" {
       for_each = (lookup(each.value, "output_format", "") == "avro") ? [true] : []
       content {
-        write_metadata = lookup(each.value, "write_metadata", null)
+        write_metadata   = lookup(each.value, "write_metadata", null)
+        use_topic_schema = lookup(each.value, "use_topic_schema", null)
       }
     }
   }
