@@ -232,6 +232,13 @@ resource "google_pubsub_subscription" "push_subscriptions" {
       x-goog-version = lookup(each.value, "x-goog-version", "v1")
     }
 
+    dynamic "no_wrapper" {
+      for_each = (lookup(each.value, "no_wrapper", true) ? [true] : [])
+      content {
+        write_metadata = lookup(each.value, "write_metadata", true)
+      }
+    }
+
     dynamic "oidc_token" {
       for_each = (lookup(each.value, "oidc_service_account_email", "") != "") ? [true] : []
       content {
