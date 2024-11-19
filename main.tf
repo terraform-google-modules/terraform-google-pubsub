@@ -237,7 +237,7 @@ resource "google_pubsub_subscription" "push_subscriptions" {
       content {
         write_metadata = lookup(each.value, "write_metadata", true)
       }
-    }
+    } 
 
     dynamic "oidc_token" {
       for_each = (lookup(each.value, "oidc_service_account_email", "") != "") ? [true] : []
