@@ -38,10 +38,10 @@ module "pubsub" {
       name   = "example_bucket_subscription"
       bucket = google_storage_bucket.test.name
 
-      filename_prefix = "example_prefix_"
-      filename_suffix = "_example_suffix"
+      filename_prefix          = "example_prefix_"
+      filename_suffix          = "_example_suffix"
       filename_datetime_format = "YYYY-MM-DD/hh_mm_ssZ"
-      ack_deadline_seconds = 300
+      ack_deadline_seconds     = 300
     },
   ]
 }
