@@ -1,4 +1,4 @@
-# Copyright 2022 Google LLC
+# Copyright 2025 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -19,116 +19,124 @@ metadata:
   annotations:
     config.kubernetes.io/local-config: "true"
 spec:
-  title: terraform-google-pubsub
-  source:
-    repo: https://github.com/terraform-google-modules/terraform-google-pubsub
-    sourceType: git
-  version: 7.0.0
-  actuationTool:
-    type: Terraform
-    version: '>= 0.13'
-  examples:
-  - name: bigquery
-    location: examples/bigquery
-  - name: kms
-    location: examples/kms
-  - name: simple
-    location: examples/simple
-  - name: subscriptions_only
-    location: examples/subscriptions_only
-  variables:
-  - name: bigquery_subscriptions
-    description: The list of the bigquery push subscriptions.
-    type: list(map(string))
-    default: []
-    required: false
-  - name: create_subscriptions
-    description: Specify true if you want to create subscriptions.
-    type: bool
-    default: true
-    required: false
-  - name: create_topic
-    description: Specify true if you want to create a topic.
-    type: bool
-    default: true
-    required: false
-  - name: grant_token_creator
-    description: Specify true if you want to add token creator role to the default Pub/Sub SA.
-    type: bool
-    default: true
-    required: false
-  - name: message_storage_policy
-    description: A map of storage policies. Default - inherit from organization's Resource Location Restriction policy.
-    type: map(any)
-    default: {}
-    required: false
-  - name: project_id
-    description: The project ID to manage the Pub/Sub resources.
-    type: string
-    required: true
-  - name: pull_subscriptions
-    description: The list of the pull subscriptions.
-    type: list(map(string))
-    default: []
-    required: false
-  - name: push_subscriptions
-    description: The list of the push subscriptions.
-    type: list(map(string))
-    default: []
-    required: false
-  - name: schema
-    description: Schema for the topic.
-    type: |-
-      object({
-          name       = string
-          type       = string
-          definition = string
-          encoding   = string
-        })
-    required: false
-  - name: subscription_labels
-    description: A map of labels to assign to every Pub/Sub subscription.
-    type: map(string)
-    default: {}
-    required: false
-  - name: topic
-    description: The Pub/Sub topic name.
-    type: string
-    required: true
-  - name: topic_kms_key_name
-    description: The resource name of the Cloud KMS CryptoKey to be used to protect access to messages published on this topic.
-    type: string
-    required: false
-  - name: topic_labels
-    description: A map of labels to assign to the Pub/Sub topic.
-    type: map(string)
-    default: {}
-    required: false
-  - name: topic_message_retention_duration
-    description: The minimum duration in seconds to retain a message after it is published to the topic.
-    type: string
-    required: false
-  outputs:
-  - name: id
-    description: The ID of the Pub/Sub topic
-  - name: subscription_names
-    description: The name list of Pub/Sub subscriptions
-  - name: subscription_paths
-    description: The path list of Pub/Sub subscriptions
-  - name: topic
-    description: The name of the Pub/Sub topic
-  - name: topic_labels
-    description: Labels assigned to the Pub/Sub topic
-  - name: uri
-    description: The URI of the Pub/Sub topic
-  roles:
-  - level: Project
+  info:
+    title: terraform-google-pubsub
+    source:
+      repo: https://github.com/terraform-google-modules/terraform-google-pubsub
+      sourceType: git
+    version: 7.0.0
+    actuationTool:
+      flavor: Terraform
+      version: ">= 0.13"
+    description: {}
+  content:
+    examples:
+      - name: bigquery
+        location: examples/bigquery
+      - name: cloud_storage
+        location: examples/cloud_storage
+      - name: kms
+        location: examples/kms
+      - name: simple
+        location: examples/simple
+      - name: subscriptions_only
+        location: examples/subscriptions_only
+  interfaces:
+    variables:
+      - name: project_id
+        description: The project ID to manage the Pub/Sub resources.
+        varType: string
+        required: true
+      - name: topic
+        description: The Pub/Sub topic name.
+        varType: string
+        required: true
+      - name: create_topic
+        description: Specify true if you want to create a topic.
+        varType: bool
+        defaultValue: true
+      - name: create_subscriptions
+        description: Specify true if you want to create subscriptions.
+        varType: bool
+        defaultValue: true
+      - name: topic_labels
+        description: A map of labels to assign to the Pub/Sub topic.
+        varType: map(string)
+        defaultValue: {}
+      - name: push_subscriptions
+        description: The list of the push subscriptions.
+        varType: list(map(string))
+        defaultValue: []
+      - name: pull_subscriptions
+        description: The list of the pull subscriptions.
+        varType: list(map(string))
+        defaultValue: []
+      - name: bigquery_subscriptions
+        description: The list of the Bigquery push subscriptions.
+        varType: list(map(string))
+        defaultValue: []
+      - name: cloud_storage_subscriptions
+        description: The list of the Cloud Storage push subscriptions.
+        varType: list(map(string))
+        defaultValue: []
+      - name: subscription_labels
+        description: A map of labels to assign to every Pub/Sub subscription.
+        varType: map(string)
+        defaultValue: {}
+      - name: topic_message_retention_duration
+        description: The minimum duration in seconds to retain a message after it is published to the topic.
+        varType: string
+      - name: message_storage_policy
+        description: A map of storage policies. Default - inherit from organization's Resource Location Restriction policy.
+        varType: map(any)
+        defaultValue: {}
+      - name: topic_kms_key_name
+        description: The resource name of the Cloud KMS CryptoKey to be used to protect access to messages published on this topic.
+        varType: string
+      - name: grant_bigquery_project_roles
+        description: Specify true if you want to add bigquery.metadataViewer and bigquery.dataEditor roles to the default Pub/Sub SA.
+        varType: bool
+        defaultValue: true
+      - name: grant_token_creator
+        description: Specify true if you want to add token creator role to the default Pub/Sub SA.
+        varType: bool
+        defaultValue: true
+      - name: schema
+        description: Schema for the topic.
+        varType: |-
+          object({
+              name       = string
+              type       = string
+              definition = string
+              encoding   = string
+            })
+    outputs:
+      - name: id
+        description: The ID of the Pub/Sub topic
+      - name: subscription_names
+        description: The name list of Pub/Sub subscriptions
+      - name: subscription_paths
+        description: The path list of Pub/Sub subscriptions
+      - name: topic
+        description: The name of the Pub/Sub topic
+      - name: topic_labels
+        description: Labels assigned to the Pub/Sub topic
+      - name: uri
+        description: The URI of the Pub/Sub topic
+  requirements:
     roles:
-    - roles/pubsub.admin
-    - roles/resourcemanager.projectIamAdmin
-    - roles/bigquery.admin
-  services:
-  - cloudresourcemanager.googleapis.com
-  - pubsub.googleapis.com
-  - serviceusage.googleapis.com
-  - bigquery.googleapis.com
+      - level: Project
+        roles:
+          - roles/pubsub.admin
+          - roles/resourcemanager.projectIamAdmin
+          - roles/bigquery.admin
+          - roles/storage.admin
+    services:
+      - cloudresourcemanager.googleapis.com
+      - pubsub.googleapis.com
+      - serviceusage.googleapis.com
+      - bigquery.googleapis.com
+      - storage.googleapis.com
+    providerVersions:
+      - source: hashicorp/google
+        version: ">= 6.2, < 7"

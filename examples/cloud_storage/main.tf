@@ -38,10 +38,10 @@ module "pubsub" {
       name   = "example_bucket_subscription"
       bucket = google_storage_bucket.test.name
 
-      filename_prefix = "example_prefix_"
-      filename_suffix = "_example_suffix"
+      filename_prefix          = "example_prefix_"
+      filename_suffix          = "_example_suffix"
       filename_datetime_format = "YYYY-MM-DD/hh_mm_ssZ"
-      ack_deadline_seconds = 300
+      ack_deadline_seconds     = 300
     },
   ]
 }
@@ -50,4 +50,5 @@ resource "google_storage_bucket" "test" {
   project  = var.project_id
   name     = join("-", ["test_bucket", random_id.bucket_suffix.hex])
   location = "europe-west1"
+  uniform_bucket_level_access = true
 }

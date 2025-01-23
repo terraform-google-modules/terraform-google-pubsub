@@ -1,0 +1,77 @@
+# Copyright 2025 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+apiVersion: blueprints.cloud.google.com/v1alpha1
+kind: BlueprintMetadata
+metadata:
+  name: terraform-google-pubsub-display
+  annotations:
+    config.kubernetes.io/local-config: "true"
+spec:
+  info:
+    title: terraform-google-pubsub
+    source:
+      repo: https://github.com/ktinubu/terraform-google-pubsub.git
+      sourceType: git
+  ui:
+    input:
+      variables:
+        bigquery_subscriptions:
+          name: bigquery_subscriptions
+          title: Bigquery Subscriptions
+        cloud_storage_subscriptions:
+          name: cloud_storage_subscriptions
+          title: Cloud Storage Subscriptions
+        create_subscriptions:
+          name: create_subscriptions
+          title: Create Subscriptions
+        create_topic:
+          name: create_topic
+          title: Create Topic
+        grant_bigquery_project_roles:
+          name: grant_bigquery_project_roles
+          title: Grant Bigquery Project Roles
+        grant_token_creator:
+          name: grant_token_creator
+          title: Grant Token Creator
+        message_storage_policy:
+          name: message_storage_policy
+          title: Message Storage Policy
+        project_id:
+          name: project_id
+          title: Project Id
+        pull_subscriptions:
+          name: pull_subscriptions
+          title: Pull Subscriptions
+        push_subscriptions:
+          name: push_subscriptions
+          title: Push Subscriptions
+        schema:
+          name: schema
+          title: Schema
+        subscription_labels:
+          name: subscription_labels
+          title: Subscription Labels
+        topic:
+          name: topic
+          title: Topic
+        topic_kms_key_name:
+          name: topic_kms_key_name
+          title: Topic Kms Key Name
+        topic_labels:
+          name: topic_labels
+          title: Topic Labels
+        topic_message_retention_duration:
+          name: topic_message_retention_duration
+          title: Topic Message Retention Duration
