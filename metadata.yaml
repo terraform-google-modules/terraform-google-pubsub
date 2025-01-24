@@ -113,16 +113,25 @@ spec:
     outputs:
       - name: id
         description: The ID of the Pub/Sub topic
+        type: string
       - name: subscription_names
         description: The name list of Pub/Sub subscriptions
+        type:
+          - tuple
+          - []
       - name: subscription_paths
         description: The path list of Pub/Sub subscriptions
+        type:
+          - tuple
+          - []
       - name: topic
         description: The name of the Pub/Sub topic
+        type: string
       - name: topic_labels
         description: Labels assigned to the Pub/Sub topic
       - name: uri
         description: The URI of the Pub/Sub topic
+        type: string
   requirements:
     roles:
       - level: Project
