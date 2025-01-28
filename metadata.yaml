@@ -73,26 +73,34 @@ spec:
         defaultValue: []
       - name: bigquery_subscriptions
         description: The list of the Bigquery push subscriptions.
-        varType: list(map(string))
+        varType: |-
+          list(object({
+                        name : string,
+                        table : string,
+                        use_topic_schema : optional(bool, true),
+                        use_table_schema : optional(bool, false),
+                        write_metadata : optional(bool, false),
+                        drop_unknown_fields : optional(bool, false)
+                      }))
         defaultValue: []
-          connections:
+        connections:
           - source:
-              source: github.com/terraform-google-modules//terraform-google-bigquery
+              source: github.com/terraform-google-modules/terraform-google-bigquery
               version: ">= 9.0.0"
             spec:
               outputExpr: table_ids[0]
-              inputPath: ["table"]
+              inputPath: table
       - name: cloud_storage_subscriptions
         description: The list of the Cloud Storage push subscriptions.
         varType: list(map(string))
         defaultValue: []
-          connections:
+        connections:
           - source:
-              source: github.com/terraform-google-modules//terraform-google-cloud-storage
+              source: github.com/terraform-google-modules/terraform-google-cloud-storage
               version: ">= 9.0.1"
             spec:
-              inputPath: ["bucket"]
               outputExpr: name
+              inputPath: bucket
       - name: subscription_labels
         description: A map of labels to assign to every Pub/Sub subscription.
         varType: map(string)
@@ -107,13 +115,13 @@ spec:
       - name: topic_kms_key_name
         description: The resource name of the Cloud KMS CryptoKey to be used to protect access to messages published on this topic.
         varType: string
-          # connections:
-          # - source:
-          #     source: github.com/terraform-google-modules//terraform-google-kms
-          #     version: ">= 3.2.0"
-          #   spec:
-          #     outputExpr: keys(keys)[0]
-          #     inputPath: topic_kms_key_name
+        connections:
+          - source:
+              source: github.com/terraform-google-modules/terraform-google-kms
+              version: ">= 3.2.0"
+            spec:
+              outputExpr: keys(keys)[0]
+              inputPath: topic_kms_key_name
       - name: grant_bigquery_project_roles
         description: Specify true if you want to add bigquery.metadataViewer and bigquery.dataEditor roles to the default Pub/Sub SA.
         varType: bool

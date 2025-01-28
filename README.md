@@ -84,7 +84,7 @@ module "pubsub" {
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| bigquery\_subscriptions | The list of the Bigquery push subscriptions. | `list(map(string))` | `[]` | no |
+| bigquery\_subscriptions | The list of the Bigquery push subscriptions. | <pre>list(object({<br>              name : string,<br>              table : string,<br>              use_topic_schema : optional(bool, true),<br>              use_table_schema : optional(bool, false),<br>              write_metadata : optional(bool, false),<br>              drop_unknown_fields : optional(bool, false)<br>            }))</pre> | `[]` | no |
 | cloud\_storage\_subscriptions | The list of the Cloud Storage push subscriptions. | `list(map(string))` | `[]` | no |
 | create\_subscriptions | Specify true if you want to create subscriptions. | `bool` | `true` | no |
 | create\_topic | Specify true if you want to create a topic. | `bool` | `true` | no |

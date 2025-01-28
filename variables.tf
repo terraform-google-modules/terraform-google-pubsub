@@ -54,7 +54,14 @@ variable "pull_subscriptions" {
 }
 
 variable "bigquery_subscriptions" {
-  type        = list(map(string))
+  type = list(object({
+    name : string,
+    table : string,
+    use_topic_schema : optional(bool, true),
+    use_table_schema : optional(bool, false),
+    write_metadata : optional(bool, false),
+    drop_unknown_fields : optional(bool, false)
+  }))
   description = "The list of the Bigquery push subscriptions."
   default     = []
 }
