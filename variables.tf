@@ -67,7 +67,19 @@ variable "bigquery_subscriptions" {
 }
 
 variable "cloud_storage_subscriptions" {
-  type        = list(map(string))
+  type = list(object({
+    name : string,
+    bucket : string,
+    filename_prefix : optional(string),
+    filename_suffix : optional(string),
+    filename_datetime_format : optional(string),
+    max_duration : optional(string),
+    max_bytes : optional(string),
+    max_messages : optional(string),
+    output_format : optional(string),
+    write_metadata : optional(bool, false),
+    use_topic_schema : optional(bool, false),
+  }))
   description = "The list of the Cloud Storage push subscriptions."
   default     = []
 }

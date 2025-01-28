@@ -75,13 +75,13 @@ spec:
         description: The list of the Bigquery push subscriptions.
         varType: |-
           list(object({
-                        name : string,
-                        table : string,
-                        use_topic_schema : optional(bool, true),
-                        use_table_schema : optional(bool, false),
-                        write_metadata : optional(bool, false),
-                        drop_unknown_fields : optional(bool, false)
-                      }))
+              name : string,
+              table : string,
+              use_topic_schema : optional(bool, true),
+              use_table_schema : optional(bool, false),
+              write_metadata : optional(bool, false),
+              drop_unknown_fields : optional(bool, false)
+            }))
         defaultValue: []
         connections:
           - source:
@@ -92,11 +92,24 @@ spec:
               inputPath: table
       - name: cloud_storage_subscriptions
         description: The list of the Cloud Storage push subscriptions.
-        varType: list(map(string))
+        varType: |-
+          list(object({
+              name : string,
+              bucket : string,
+              filename_prefix : optional(string),
+              filename_suffix : optional(string),
+              filename_datetime_format : optional(string),
+              max_duration : optional(string),
+              max_bytes : optional(string),
+              max_messages : optional(string),
+              output_format : optional(string),
+              write_metadata : optional(bool, false),
+              use_topic_schema : optional(bool, false),
+            }))
         defaultValue: []
         connections:
           - source:
-              source: github.com/terraform-google-modules/terraform-google-cloud-storage
+              source: github.com/terraform-google-modules/terraform-google-cloud-storage//modules/simple_bucket
               version: ">= 9.0.1"
             spec:
               outputExpr: name
