@@ -22,7 +22,7 @@ spec:
   info:
     title: terraform-google-pubsub
     source:
-      repo: https://github.com/ktinubu/terraform-google-pubsub.git
+      repo: https://github.com/terraform-google-modules/terraform-google-pubsub
       sourceType: git
   ui:
     input:
@@ -75,3 +75,7 @@ spec:
         topic_message_retention_duration:
           name: topic_message_retention_duration
           title: Topic Message Retention Duration
+    runtime:
+      outputs:
+        service_uri:
+          visibility: VISIBILITY_ROOT
