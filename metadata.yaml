@@ -97,7 +97,7 @@ spec:
               source: github.com/terraform-google-modules/terraform-google-bigquery
               version: ">= 9.0.0"
             spec:
-              outputExpr: table_ids[0]
+              outputExpr: values(bigquery_external_tables)[0].id
               inputPath: table
       - name: cloud_storage_subscriptions
         description: The list of the Cloud Storage push subscriptions.
@@ -151,7 +151,7 @@ spec:
               source: github.com/terraform-google-modules/terraform-google-kms
               version: ">= 3.2.0"
             spec:
-              outputExpr: keys(keys)[0]
+              outputExpr: values(keys)[0].id
               inputPath: topic_kms_key_name
       - name: grant_bigquery_project_roles
         description: Specify true if you want to add bigquery.metadataViewer and bigquery.dataEditor roles to the default Pub/Sub SA.
