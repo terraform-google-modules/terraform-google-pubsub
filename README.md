@@ -35,6 +35,8 @@ module "pubsub" {
       minimum_backoff            = "300s"                                               // optional
       filter                     = "attributes.domain = \"com\""                        // optional
       enable_message_ordering    = true                                                 // optional
+      no_wrapper                 = false                                                // optional
+      write_metadata             = false                                                // optional
     }
   ]
   pull_subscriptions = [
