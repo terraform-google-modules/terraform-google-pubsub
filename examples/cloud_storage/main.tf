@@ -47,8 +47,8 @@ module "pubsub" {
 }
 
 resource "google_storage_bucket" "test" {
-  project  = var.project_id
-  name     = join("-", ["test_bucket", random_id.bucket_suffix.hex])
-  location = "europe-west1"
+  project                     = var.project_id
+  name                        = join("-", ["test_bucket", random_id.bucket_suffix.hex])
+  location                    = "europe-west1"
   uniform_bucket_level_access = true
 }
