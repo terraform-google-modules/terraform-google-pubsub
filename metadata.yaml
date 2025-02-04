@@ -146,13 +146,6 @@ spec:
       - name: topic_kms_key_name
         description: The resource name of the Cloud KMS CryptoKey to be used to protect access to messages published on this topic.
         varType: string
-        connections:
-          - source:
-              source: github.com/terraform-google-modules/terraform-google-kms
-              version: ">= 3.2.0"
-            spec:
-              outputExpr: values(keys)[0].id
-              inputPath: topic_kms_key_name
       - name: grant_bigquery_project_roles
         description: Specify true if you want to add bigquery.metadataViewer and bigquery.dataEditor roles to the default Pub/Sub SA.
         varType: bool
