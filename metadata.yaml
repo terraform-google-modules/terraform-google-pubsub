@@ -95,7 +95,7 @@ spec:
         connections:
           - source:
               source: github.com/terraform-google-modules/terraform-google-bigquery
-              version: ">= 9.0.0"
+              version: ">= 10.0.0"
             spec:
               outputExpr: external_table_ids[0]
               inputPath: table
