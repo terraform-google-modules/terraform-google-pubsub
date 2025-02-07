@@ -54,13 +54,50 @@ variable "pull_subscriptions" {
 }
 
 variable "bigquery_subscriptions" {
-  type        = list(map(string))
+  type = list(object({
+    name                       = string,
+    table                      = string,
+    use_topic_schema           = optional(bool, true),
+    use_table_schema           = optional(bool, false),
+    write_metadata             = optional(bool, false),
+    drop_unknown_fields        = optional(bool, false),
+    ack_deadline_seconds       = optional(number),
+    retain_acked_messages      = optional(bool, false),
+    message_retention_duration = optional(string),
+    enable_message_ordering    = optional(bool, false),
+    expiration_policy          = optional(string),
+    filter                     = optional(string),
+    dead_letter_topic          = optional(string),
+    maximum_backoff            = optional(string),
+    minimum_backoff            = optional(string)
+  }))
   description = "The list of the Bigquery push subscriptions."
   default     = []
 }
 
 variable "cloud_storage_subscriptions" {
-  type        = list(map(string))
+  type = list(object({
+    name                       = string,
+    bucket                     = string,
+    filename_prefix            = optional(string),
+    filename_suffix            = optional(string),
+    filename_datetime_format   = optional(string),
+    max_duration               = optional(string),
+    max_bytes                  = optional(string),
+    max_messages               = optional(string),
+    output_format              = optional(string),
+    write_metadata             = optional(bool, false),
+    use_topic_schema           = optional(bool, false),
+    ack_deadline_seconds       = optional(number),
+    retain_acked_messages      = optional(bool, false),
+    message_retention_duration = optional(string),
+    enable_message_ordering    = optional(bool, false),
+    expiration_policy          = optional(string),
+    filter                     = optional(string),
+    dead_letter_topic          = optional(string),
+    maximum_backoff            = optional(string),
+    minimum_backoff            = optional(string)
+  }))
   description = "The list of the Cloud Storage push subscriptions."
   default     = []
 }
