@@ -182,6 +182,9 @@ spec:
         type: string
       - name: topic_labels
         description: Labels assigned to the Pub/Sub topic
+        type:
+          - map
+          - string
       - name: uri
         description: The URI of the Pub/Sub topic
         type: string
