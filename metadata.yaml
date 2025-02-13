@@ -169,20 +169,10 @@ spec:
         type: string
       - name: subscription_names
         description: The name list of Pub/Sub subscriptions
-        type:
-          - tuple
-          - - string
-            - string
-            - string
-            - string
+        type: list(string)
       - name: subscription_paths
         description: The path list of Pub/Sub subscriptions
-        type:
-          - tuple
-          - - string
-            - string
-            - string
-            - string
+        type: list(string)
       - name: topic
         description: The name of the Pub/Sub topic
         type: string
