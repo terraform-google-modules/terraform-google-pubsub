@@ -48,7 +48,18 @@ variable "push_subscriptions" {
 }
 
 variable "pull_subscriptions" {
-  type        = list(map(string))
+  type = list(object({
+    name                         = string,
+    ack_deadline_seconds         = optional(number),
+    dead_letter_topic            = optional(string),
+    max_delivery_attempts        = optional(number),
+    maximum_backoff              = optional(number),
+    minimum_backoff              = optional(number),
+    filter                       = optional(string),
+    enable_message_ordering      = optional(bool, false),
+    service_account              = optional(string),
+    enable_exactly_once_delivery = optional(bool, false),
+  }))
   description = "The list of the pull subscriptions."
   default     = []
 }

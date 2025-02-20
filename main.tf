@@ -75,7 +75,7 @@ resource "google_pubsub_topic_iam_member" "push_topic_binding" {
 }
 
 resource "google_pubsub_topic_iam_member" "pull_topic_binding" {
-  for_each = var.create_topic ? { for i in var.pull_subscriptions : i.name => i if try(i.dead_letter_topic, "") != "" } : {}
+  for_each = var.create_topic ? { for i in var.pull_subscriptions : i.name => i if i.dead_letter_topic != null } : {}
 
   project = var.project_id
   topic   = each.value.dead_letter_topic
@@ -99,7 +99,7 @@ resource "google_pubsub_topic_iam_member" "bigquery_topic_binding" {
 }
 
 resource "google_pubsub_subscription_iam_member" "pull_subscription_binding" {
-  for_each = var.create_subscriptions ? { for i in var.pull_subscriptions : i.name => i if try(i.dead_letter_topic, "") != "" } : {}
+  for_each = var.create_subscriptions ? { for i in var.pull_subscriptions : i.name => i if i.dead_letter_topic != null } : {}
 
   project      = var.project_id
   subscription = each.value.name
@@ -462,7 +462,7 @@ resource "google_pubsub_subscription" "cloud_storage_subscriptions" {
 }
 
 resource "google_pubsub_subscription_iam_member" "pull_subscription_sa_binding_subscriber" {
-  for_each = var.create_subscriptions ? { for i in var.pull_subscriptions : i.name => i if lookup(i, "service_account", null) != null } : {}
+  for_each = var.create_subscriptions ? { for i in var.pull_subscriptions : i.name => i if i.service_account != null } : {}
 
   project      = var.project_id
   subscription = each.value.name
@@ -478,7 +478,7 @@ resource "google_pubsub_subscription_iam_member" "pull_subscription_sa_binding_s
 }
 
 resource "google_pubsub_subscription_iam_member" "pull_subscription_sa_binding_viewer" {
-  for_each = var.create_subscriptions ? { for i in var.pull_subscriptions : i.name => i if lookup(i, "service_account", null) != null } : {}
+  for_each = var.create_subscriptions ? { for i in var.pull_subscriptions : i.name => i if i.service_account != null } : {}
 
   project      = var.project_id
   subscription = each.value.name
