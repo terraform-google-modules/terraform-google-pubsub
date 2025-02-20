@@ -42,7 +42,21 @@ variable "topic_labels" {
 }
 
 variable "push_subscriptions" {
-  type        = list(map(string))
+  type = list(object({
+    name                       = string,
+    ack_deadline_seconds       = optional(number),
+    push_endpoint              = optional(string),
+    x-goog-version             = optional(string),
+    oidc_service_account_email = optional(string),
+    audience                   = optional(string),
+    expiration_policy          = optional(string),
+    dead_letter_topic          = optional(string),
+    max_delivery_attempts      = optional(number),
+    maximum_backoff            = optional(string),
+    minimum_backoff            = optional(string),
+    filter                     = optional(string),
+    enable_message_ordering    = optional(bool, false),
+  }))
   description = "The list of the push subscriptions."
   default     = []
 }

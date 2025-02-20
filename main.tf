@@ -63,7 +63,7 @@ resource "google_project_iam_member" "token_creator_binding" {
 }
 
 resource "google_pubsub_topic_iam_member" "push_topic_binding" {
-  for_each = var.create_topic ? { for i in var.push_subscriptions : i.name => i if try(i.dead_letter_topic, "") != "" } : {}
+  for_each = var.create_topic ? { for i in var.push_subscriptions : i.name => i if i.dead_letter_topic != null } : {}
 
   project = var.project_id
   topic   = each.value.dead_letter_topic
@@ -115,7 +115,7 @@ resource "google_pubsub_subscription_iam_member" "pull_subscription_binding" {
 }
 
 resource "google_pubsub_subscription_iam_member" "push_subscription_binding" {
-  for_each = var.create_subscriptions ? { for i in var.push_subscriptions : i.name => i if try(i.dead_letter_topic, "") != "" } : {}
+  for_each = var.create_subscriptions ? { for i in var.push_subscriptions : i.name => i if i.dead_letter_topic != null } : {}
 
   project      = var.project_id
   subscription = each.value.name
@@ -131,7 +131,7 @@ resource "google_pubsub_subscription_iam_member" "push_subscription_binding" {
 }
 
 resource "google_pubsub_subscription_iam_member" "bigquery_subscription_binding" {
-  for_each = var.create_subscriptions ? { for i in var.bigquery_subscriptions : i.name => i if try(i.dead_letter_topic, "") != "" } : {}
+  for_each = var.create_subscriptions ? { for i in var.bigquery_subscriptions : i.name => i if i.dead_letter_topic != null } : {}
 
   project      = var.project_id
   subscription = each.value.name
