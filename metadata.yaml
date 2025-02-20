@@ -82,6 +82,31 @@ spec:
               enable_message_ordering    = optional(bool, false),
             }))
         defaultValue: []
+        connections:
+          - source:
+              source: github.com/GoogleCloudPlatform/terraform-google-cloud-run//modules/v2
+              version: ">= 0.13"
+            spec:
+              outputExpr: service_uri
+              inputPath: push_endpoint
+          - source:
+              source: github.com/GoogleCloudPlatform/terraform-google-cloud-run//modules/v2
+              version: ">= 0.13"
+            spec:
+              outputExpr: service_account_id.email
+              inputPath: oidc_service_account_email
+          - source:
+              source: github.com/terraform-google-modules/terraform-google-vm//modules/instance_template
+              version: ">= 13.2.0"
+            spec:
+              outputExpr: service_account_info.service_account_output
+              inputPath: oidc_service_account_email
+          - source:
+              source: github.com/terraform-google-modules/terraform-google-service-accounts//modules/simple-sa
+              version: ">= 4.4"
+            spec:
+              outputExpr: account_details.email
+              inputPath: oidc_service_account_email
       - name: pull_subscriptions
         description: The list of the pull subscriptions.
         varType: |-
@@ -98,6 +123,25 @@ spec:
               enable_exactly_once_delivery = optional(bool, false),
             }))
         defaultValue: []
+        connections:
+          - source:
+              source: github.com/GoogleCloudPlatform/terraform-google-cloud-run//modules/v2
+              version: ">= 0.13"
+            spec:
+              outputExpr: service_account_id.member
+              inputPath: service_account
+          - source:
+              source: github.com/terraform-google-modules/terraform-google-vm//modules/instance_template
+              version: ">= 13.2.0"
+            spec:
+              outputExpr: service_account_info.member
+              inputPath: service_account
+          - source:
+              source: github.com/terraform-google-modules/terraform-google-service-accounts//modules/simple-sa
+              version: ">= 4.4"
+            spec:
+              outputExpr: iam_email
+              inputPath: service_account
       - name: bigquery_subscriptions
         description: The list of the Bigquery push subscriptions.
         varType: |-
