@@ -171,17 +171,20 @@ spec:
         description: The name list of Pub/Sub subscriptions
         type:
           - tuple
-          - []
+          - - string
       - name: subscription_paths
         description: The path list of Pub/Sub subscriptions
         type:
           - tuple
-          - []
+          - - string
       - name: topic
         description: The name of the Pub/Sub topic
         type: string
       - name: topic_labels
         description: Labels assigned to the Pub/Sub topic
+        type:
+          - map
+          - string
       - name: uri
         description: The URI of the Pub/Sub topic
         type: string
