@@ -87,7 +87,7 @@ resource "google_pubsub_topic_iam_member" "pull_topic_binding" {
 }
 
 resource "google_pubsub_topic_iam_member" "bigquery_topic_binding" {
-  for_each = var.create_topic ? { for i in var.bigquery_subscriptions : i.name => i if try(i.dead_letter_topic, "") != "" } : {}
+  for_each = var.create_topic ? { for i in var.bigquery_subscriptions : i.name => i if i.dead_letter_topic != null } : {}
 
   project = var.project_id
   topic   = each.value.dead_letter_topic
@@ -352,14 +352,14 @@ resource "google_pubsub_subscription" "bigquery_subscriptions" {
   )
   dynamic "expiration_policy" {
     // check if the 'expiration_policy' key exists, if yes, return a list containing it.
-    for_each = contains(keys(each.value), "expiration_policy") ? [each.value.expiration_policy] : []
+    for_each = each.value.expiration_policy != null ? [each.value.expiration_policy] : []
     content {
       ttl = expiration_policy.value
     }
   }
 
   dynamic "dead_letter_policy" {
-    for_each = (lookup(each.value, "dead_letter_topic", "") != "") ? [each.value.dead_letter_topic] : []
+    for_each = each.value.dead_letter_topic != null ? [each.value.dead_letter_topic] : []
     content {
       dead_letter_topic     = lookup(each.value, "dead_letter_topic", "")
       max_delivery_attempts = lookup(each.value, "max_delivery_attempts", "5")
@@ -423,14 +423,14 @@ resource "google_pubsub_subscription" "cloud_storage_subscriptions" {
   )
   dynamic "expiration_policy" {
     // check if the 'expiration_policy' key exists, if yes, return a list containing it.
-    for_each = contains(keys(each.value), "expiration_policy") ? [each.value.expiration_policy] : []
+    for_each = each.value.expiration_policy != null ? [each.value.expiration_policy] : []
     content {
       ttl = expiration_policy.value
     }
   }
 
   dynamic "dead_letter_policy" {
-    for_each = (lookup(each.value, "dead_letter_topic", "") != "") ? [each.value.dead_letter_topic] : []
+    for_each = each.value.dead_letter_topic != null ? [each.value.dead_letter_topic] : []
     content {
       dead_letter_topic     = lookup(each.value, "dead_letter_topic", "")
       max_delivery_attempts = lookup(each.value, "max_delivery_attempts", "5")

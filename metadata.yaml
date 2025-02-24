@@ -73,12 +73,65 @@ spec:
         defaultValue: []
       - name: bigquery_subscriptions
         description: The list of the Bigquery push subscriptions.
-        varType: list(map(string))
+        varType: |-
+          list(object({
+              name                       = string,
+              table                      = string,
+              use_topic_schema           = optional(bool, true),
+              use_table_schema           = optional(bool, false),
+              write_metadata             = optional(bool, false),
+              drop_unknown_fields        = optional(bool, false),
+              ack_deadline_seconds       = optional(number),
+              retain_acked_messages      = optional(bool, false),
+              message_retention_duration = optional(string),
+              enable_message_ordering    = optional(bool, false),
+              expiration_policy          = optional(string),
+              filter                     = optional(string),
+              dead_letter_topic          = optional(string),
+              maximum_backoff            = optional(string),
+              minimum_backoff            = optional(string)
+            }))
         defaultValue: []
+        connections:
+          - source:
+              source: github.com/terraform-google-modules/terraform-google-bigquery
+              version: ">= 10.0.0"
+            spec:
+              outputExpr: external_table_ids[0]
+              inputPath: table
       - name: cloud_storage_subscriptions
         description: The list of the Cloud Storage push subscriptions.
-        varType: list(map(string))
+        varType: |-
+          list(object({
+              name                       = string,
+              bucket                     = string,
+              filename_prefix            = optional(string),
+              filename_suffix            = optional(string),
+              filename_datetime_format   = optional(string),
+              max_duration               = optional(string),
+              max_bytes                  = optional(string),
+              max_messages               = optional(string),
+              output_format              = optional(string),
+              write_metadata             = optional(bool, false),
+              use_topic_schema           = optional(bool, false),
+              ack_deadline_seconds       = optional(number),
+              retain_acked_messages      = optional(bool, false),
+              message_retention_duration = optional(string),
+              enable_message_ordering    = optional(bool, false),
+              expiration_policy          = optional(string),
+              filter                     = optional(string),
+              dead_letter_topic          = optional(string),
+              maximum_backoff            = optional(string),
+              minimum_backoff            = optional(string)
+            }))
         defaultValue: []
+        connections:
+          - source:
+              source: github.com/terraform-google-modules/terraform-google-cloud-storage//modules/simple_bucket
+              version: ">= 9.0.1"
+            spec:
+              outputExpr: name
+              inputPath: bucket
       - name: subscription_labels
         description: A map of labels to assign to every Pub/Sub subscription.
         varType: map(string)
@@ -118,17 +171,20 @@ spec:
         description: The name list of Pub/Sub subscriptions
         type:
           - tuple
-          - []
+          - - string
       - name: subscription_paths
         description: The path list of Pub/Sub subscriptions
         type:
           - tuple
-          - []
+          - - string
       - name: topic
         description: The name of the Pub/Sub topic
         type: string
       - name: topic_labels
         description: Labels assigned to the Pub/Sub topic
+        type:
+          - map
+          - string
       - name: uri
         description: The URI of the Pub/Sub topic
         type: string
