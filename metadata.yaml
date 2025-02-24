@@ -89,7 +89,7 @@ spec:
               source: github.com/GoogleCloudPlatform/terraform-google-cloud-run//modules/v2
               version: ">= 0.13"
             spec:
-              outputExpr: { "name": service_name, "push_endpoint": service_uri, "oidc_service_account_email": service_account_id.email }
+              outputExpr: "{ \"name\": service_name, \"push_endpoint\": service_uri, \"oidc_service_account_email\": service_account_id.email }"
       - name: pull_subscriptions
         description: The list of the pull subscriptions.
         varType: |-
@@ -134,7 +134,7 @@ spec:
               source: github.com/terraform-google-modules/terraform-google-bigquery
               version: ">= 10.0.0"
             spec:
-              outputExpr: { "name": external_table_ids[0], "table": external_table_ids[0]}
+              outputExpr: "{ \"name\": external_table_ids[0], \"table\": external_table_ids[0]}"
       - name: cloud_storage_subscriptions
         description: The list of the Cloud Storage push subscriptions.
         varType: |-
@@ -166,7 +166,7 @@ spec:
               source: github.com/terraform-google-modules/terraform-google-cloud-storage//modules/simple_bucket
               version: ">= 9.0.1"
             spec:
-              outputExpr: { "name": name, "bucket": name}
+              outputExpr: "{ \"name\": name, \"bucket\": name}"
       - name: subscription_labels
         description: A map of labels to assign to every Pub/Sub subscription.
         varType: map(string)
