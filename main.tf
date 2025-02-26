@@ -314,35 +314,15 @@ resource "google_pubsub_subscription" "pull_subscriptions" {
 resource "google_pubsub_subscription" "bigquery_subscriptions" {
   for_each = var.create_subscriptions ? { for i in var.bigquery_subscriptions : i.name => i } : {}
 
-  name    = each.value.name
-  topic   = var.create_topic ? google_pubsub_topic.topic[0].name : var.topic
-  project = var.project_id
-  labels  = var.subscription_labels
-  ack_deadline_seconds = lookup(
-    each.value,
-    "ack_deadline_seconds",
-    local.default_ack_deadline_seconds,
-  )
-  message_retention_duration = lookup(
-    each.value,
-    "message_retention_duration",
-    null,
-  )
-  retain_acked_messages = lookup(
-    each.value,
-    "retain_acked_messages",
-    null,
-  )
-  filter = lookup(
-    each.value,
-    "filter",
-    null,
-  )
-  enable_message_ordering = lookup(
-    each.value,
-    "enable_message_ordering",
-    null,
-  )
+  name                       = each.value.name
+  topic                      = var.create_topic ? google_pubsub_topic.topic[0].name : var.topic
+  project                    = var.project_id
+  labels                     = var.subscription_labels
+  ack_deadline_seconds       = each.value.ack_deadline_seconds != null ? each.value.ack_deadline_seconds : local.default_ack_deadline_seconds
+  message_retention_duration = each.value.message_retention_duration
+  retain_acked_messages      = each.value.retain_acked_messages
+  filter                     = each.value.filter
+  enable_message_ordering    = each.value.enable_message_ordering
   dynamic "expiration_policy" {
     // check if the 'expiration_policy' key exists, if yes, return a list containing it.
     for_each = each.value.expiration_policy != null ? [each.value.expiration_policy] : []
@@ -354,25 +334,25 @@ resource "google_pubsub_subscription" "bigquery_subscriptions" {
   dynamic "dead_letter_policy" {
     for_each = each.value.dead_letter_topic != null ? [each.value.dead_letter_topic] : []
     content {
-      dead_letter_topic     = lookup(each.value, "dead_letter_topic", "")
-      max_delivery_attempts = lookup(each.value, "max_delivery_attempts", "5")
+      dead_letter_topic     = each.value.dead_letter_topic != null ? each.value.dead_letter_topic : ""
+      max_delivery_attempts = each.value.max_delivery_attempts != null ? each.value.max_delivery_attempts : "5"
     }
   }
 
   dynamic "retry_policy" {
-    for_each = (lookup(each.value, "maximum_backoff", "") != "") ? [each.value.maximum_backoff] : []
+    for_each = each.value.maximum_backoff != null ? [each.value.maximum_backoff] : []
     content {
-      maximum_backoff = lookup(each.value, "maximum_backoff", "")
-      minimum_backoff = lookup(each.value, "minimum_backoff", "")
+      maximum_backoff = each.value.maximum_backoff != null ? each.value.maximum_backoff : ""
+      minimum_backoff = each.value.minimum_backoff != null ? each.value.minimum_backoff : ""
     }
   }
 
   bigquery_config {
     table               = each.value["table"]
-    use_topic_schema    = lookup(each.value, "use_topic_schema", false)
-    use_table_schema    = lookup(each.value, "use_table_schema", false)
-    write_metadata      = lookup(each.value, "write_metadata", false)
-    drop_unknown_fields = lookup(each.value, "drop_unknown_fields", false)
+    use_topic_schema    = each.value.use_topic_schema != null ? each.value.use_topic_schema : false
+    use_table_schema    = each.value.use_table_schema != null ? each.value.use_table_schema : false
+    write_metadata      = each.value.write_metadata != null ? each.value.write_metadata : false
+    drop_unknown_fields = each.value.drop_unknown_fields != null ? each.value.drop_unknown_fields : false
   }
 
   depends_on = [
@@ -385,35 +365,15 @@ resource "google_pubsub_subscription" "bigquery_subscriptions" {
 resource "google_pubsub_subscription" "cloud_storage_subscriptions" {
   for_each = var.create_subscriptions ? { for i in var.cloud_storage_subscriptions : i.name => i } : {}
 
-  name    = each.value.name
-  topic   = var.create_topic ? google_pubsub_topic.topic[0].name : var.topic
-  project = var.project_id
-  labels  = var.subscription_labels
-  ack_deadline_seconds = lookup(
-    each.value,
-    "ack_deadline_seconds",
-    local.default_ack_deadline_seconds,
-  )
-  message_retention_duration = lookup(
-    each.value,
-    "message_retention_duration",
-    null,
-  )
-  retain_acked_messages = lookup(
-    each.value,
-    "retain_acked_messages",
-    null,
-  )
-  filter = lookup(
-    each.value,
-    "filter",
-    null,
-  )
-  enable_message_ordering = lookup(
-    each.value,
-    "enable_message_ordering",
-    null,
-  )
+  name                       = each.value.name
+  topic                      = var.create_topic ? google_pubsub_topic.topic[0].name : var.topic
+  project                    = var.project_id
+  labels                     = var.subscription_labels
+  ack_deadline_seconds       = each.value.ack_deadline_seconds != null ? each.value.ack_deadline_seconds : local.default_ack_deadline_seconds
+  message_retention_duration = each.value.message_retention_duration
+  retain_acked_messages      = each.value.retain_acked_messages
+  filter                     = each.value.filter
+  enable_message_ordering    = each.value.enable_message_ordering
   dynamic "expiration_policy" {
     // check if the 'expiration_policy' key exists, if yes, return a list containing it.
     for_each = each.value.expiration_policy != null ? [each.value.expiration_policy] : []
@@ -425,32 +385,32 @@ resource "google_pubsub_subscription" "cloud_storage_subscriptions" {
   dynamic "dead_letter_policy" {
     for_each = each.value.dead_letter_topic != null ? [each.value.dead_letter_topic] : []
     content {
-      dead_letter_topic     = lookup(each.value, "dead_letter_topic", "")
-      max_delivery_attempts = lookup(each.value, "max_delivery_attempts", "5")
+      dead_letter_topic     = each.value.dead_letter_topic != null ? each.value.dead_letter_topic : ""
+      max_delivery_attempts = each.value.max_delivery_attempts != null ? each.value.max_delivery_attempts : "5"
     }
   }
 
   dynamic "retry_policy" {
-    for_each = (lookup(each.value, "maximum_backoff", "") != "") ? [each.value.maximum_backoff] : []
+    for_each = each.value.maximum_backoff != null ? [each.value.maximum_backoff] : []
     content {
-      maximum_backoff = lookup(each.value, "maximum_backoff", "")
-      minimum_backoff = lookup(each.value, "minimum_backoff", "")
+      maximum_backoff = each.value.maximum_backoff != null ? each.value.maximum_backoff : ""
+      minimum_backoff = each.value.minimum_backoff != null ? each.value.minimum_backoff : ""
     }
   }
 
   cloud_storage_config {
     bucket                   = each.value["bucket"]
-    filename_prefix          = lookup(each.value, "filename_prefix", null)
-    filename_suffix          = lookup(each.value, "filename_suffix", null)
-    filename_datetime_format = lookup(each.value, "filename_datetime_format", null)
-    max_duration             = lookup(each.value, "max_duration", null)
-    max_bytes                = lookup(each.value, "max_bytes", null)
-    max_messages             = lookup(each.value, "max_messages", null)
+    filename_prefix          = each.value.filename_prefix
+    filename_suffix          = each.value.filename_suffix
+    filename_datetime_format = each.value.filename_datetime_format
+    max_duration             = each.value.max_duration
+    max_bytes                = each.value.max_bytes
+    max_messages             = each.value.max_messages
     dynamic "avro_config" {
-      for_each = (lookup(each.value, "output_format", "") == "avro") ? [true] : []
+      for_each = (each.value.output_format == "avro") ? [true] : []
       content {
-        write_metadata   = lookup(each.value, "write_metadata", null)
-        use_topic_schema = lookup(each.value, "use_topic_schema", null)
+        write_metadata   = each.value.write_metadata
+        use_topic_schema = each.value.use_topic_schema
       }
     }
   }
