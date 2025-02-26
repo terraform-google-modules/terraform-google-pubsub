@@ -131,7 +131,7 @@ resource "google_pubsub_subscription_iam_member" "push_subscription_binding" {
 }
 
 resource "google_pubsub_subscription_iam_member" "bigquery_subscription_binding" {
-  for_each = var.create_subscriptions ? { for i in var.bigquery_subscriptions : i.name => i if try(i.dead_letter_topic, "") != "" } : {}
+  for_each = var.create_subscriptions ? { for i in var.bigquery_subscriptions : i.name => i if i.dead_letter_topic != null } : {}
 
   project      = var.project_id
   subscription = each.value.name
