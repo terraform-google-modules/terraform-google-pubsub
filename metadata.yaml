@@ -77,9 +77,9 @@ spec:
           list(object({
               name                       = string,
               table                      = string,
-              use_topic_schema           = optional(bool)
+              use_topic_schema           = optional(bool),
               use_table_schema           = optional(bool),
-              write_metadata             = optional(bool)
+              write_metadata             = optional(bool),
               drop_unknown_fields        = optional(bool),
               ack_deadline_seconds       = optional(number),
               retain_acked_messages      = optional(bool),
