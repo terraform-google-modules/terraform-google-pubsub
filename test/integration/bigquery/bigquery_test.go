@@ -49,7 +49,7 @@ func TestBigquery(t *testing.T) {
 		assert.Equal("", op.Get("deadLetterPolicy.deadLetterTopic").String(), "has expected dead_letter_topic")
 		assert.Equal("", op.Get("deadLetterPolicy.maxDeliveryAttempts").String(), "has expected dead_letter_topic")
 		assert.Equal("", op.Get("retryPolicy.maximumBackoff").String(), "has expected maximum_backoff")
-		assert.Equal("incorrect", op.Get("retryPolicy.minimumBackoff").String(), "has expected minimum_backoff")
+		assert.Equal("", op.Get("retryPolicy.minimumBackoff").String(), "has expected minimum_backoff")
 		assert.Equal(false, op.Get("bigqueryConfig.useTopicSchema").Bool(), "has expected use_topic_schema")
 		assert.Equal(false, op.Get("bigqueryConfig.useTableSchema").Bool(), "has expected use_table_schema")
 		assert.Equal(false, op.Get("bigqueryConfig.writeMetadata").Bool(), "has expected write_metadata")
