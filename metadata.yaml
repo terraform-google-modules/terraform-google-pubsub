@@ -65,11 +65,48 @@ spec:
         defaultValue: {}
       - name: push_subscriptions
         description: The list of the push subscriptions.
-        varType: list(map(string))
+        varType: |-
+          list(object({
+              name                       = string,
+              ack_deadline_seconds       = optional(number),
+              push_endpoint              = optional(string),
+              x-goog-version             = optional(string),
+              oidc_service_account_email = optional(string),
+              audience                   = optional(string),
+              expiration_policy          = optional(string),
+              dead_letter_topic          = optional(string),
+              retain_acked_messages      = optional(bool),
+              message_retention_duration = optional(string),
+              max_delivery_attempts      = optional(number),
+              maximum_backoff            = optional(string),
+              minimum_backoff            = optional(string),
+              filter                     = optional(string),
+              enable_message_ordering    = optional(bool),
+            }))
         defaultValue: []
+        connections:
+          - source:
+              source: github.com/GoogleCloudPlatform/terraform-google-cloud-run//modules/v2
+              version: ">= 0.13"
+            spec:
+              outputExpr: "{ \"name\": service_name, \"push_endpoint\": service_uri, \"oidc_service_account_email\": service_account_id.email }"
       - name: pull_subscriptions
         description: The list of the pull subscriptions.
-        varType: list(map(string))
+        varType: |-
+          list(object({
+              name                         = string,
+              ack_deadline_seconds         = optional(number),
+              dead_letter_topic            = optional(string),
+              max_delivery_attempts        = optional(number),
+              retain_acked_messages        = optional(bool),
+              message_retention_duration   = optional(string),
+              maximum_backoff              = optional(number),
+              minimum_backoff              = optional(number),
+              filter                       = optional(string),
+              enable_message_ordering      = optional(bool),
+              service_account              = optional(string),
+              enable_exactly_once_delivery = optional(bool),
+            }))
         defaultValue: []
       - name: bigquery_subscriptions
         description: The list of the Bigquery push subscriptions.
@@ -97,8 +134,7 @@ spec:
               source: github.com/terraform-google-modules/terraform-google-bigquery
               version: ">= 10.0.0"
             spec:
-              outputExpr: external_table_ids[0]
-              inputPath: table
+              outputExpr: "{ \"name\": external_table_ids[0], \"table\": external_table_ids[0]}"
       - name: cloud_storage_subscriptions
         description: The list of the Cloud Storage push subscriptions.
         varType: |-
@@ -130,8 +166,7 @@ spec:
               source: github.com/terraform-google-modules/terraform-google-cloud-storage//modules/simple_bucket
               version: ">= 9.0.1"
             spec:
-              outputExpr: name
-              inputPath: bucket
+              outputExpr: "{ \"name\": name, \"bucket\": name}"
       - name: subscription_labels
         description: A map of labels to assign to every Pub/Sub subscription.
         varType: map(string)

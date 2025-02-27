@@ -42,13 +42,42 @@ variable "topic_labels" {
 }
 
 variable "push_subscriptions" {
-  type        = list(map(string))
+  type = list(object({
+    name                       = string,
+    ack_deadline_seconds       = optional(number),
+    push_endpoint              = optional(string),
+    x-goog-version             = optional(string),
+    oidc_service_account_email = optional(string),
+    audience                   = optional(string),
+    expiration_policy          = optional(string),
+    dead_letter_topic          = optional(string),
+    retain_acked_messages      = optional(bool),
+    message_retention_duration = optional(string),
+    max_delivery_attempts      = optional(number),
+    maximum_backoff            = optional(string),
+    minimum_backoff            = optional(string),
+    filter                     = optional(string),
+    enable_message_ordering    = optional(bool),
+  }))
   description = "The list of the push subscriptions."
   default     = []
 }
 
 variable "pull_subscriptions" {
-  type        = list(map(string))
+  type = list(object({
+    name                         = string,
+    ack_deadline_seconds         = optional(number),
+    dead_letter_topic            = optional(string),
+    max_delivery_attempts        = optional(number),
+    retain_acked_messages        = optional(bool),
+    message_retention_duration   = optional(string),
+    maximum_backoff              = optional(number),
+    minimum_backoff              = optional(number),
+    filter                       = optional(string),
+    enable_message_ordering      = optional(bool),
+    service_account              = optional(string),
+    enable_exactly_once_delivery = optional(bool),
+  }))
   description = "The list of the pull subscriptions."
   default     = []
 }
