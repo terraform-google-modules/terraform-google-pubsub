@@ -363,10 +363,10 @@ resource "google_pubsub_subscription" "cloud_storage_subscriptions" {
     max_bytes                = each.value.max_bytes
     max_messages             = each.value.max_messages
     dynamic "avro_config" {
-      for_each = (lookup(each.value, "output_format", "") == "avro") ? [true] : []
+      for_each = (each.value.output_format == "avro") ? [true] : []
       content {
-        write_metadata   = lookup(each.value, "write_metadata", null)
-        use_topic_schema = lookup(each.value, "use_topic_schema", null)
+        write_metadata   = each.value.write_metadata
+        use_topic_schema = each.value.use_topic_schema
       }
     }
   }
