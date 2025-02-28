@@ -42,13 +42,42 @@ variable "topic_labels" {
 }
 
 variable "push_subscriptions" {
-  type        = list(map(string))
+  type = list(object({
+    name                       = string,
+    ack_deadline_seconds       = optional(number),
+    push_endpoint              = optional(string),
+    x-goog-version             = optional(string),
+    oidc_service_account_email = optional(string),
+    audience                   = optional(string),
+    expiration_policy          = optional(string),
+    dead_letter_topic          = optional(string),
+    retain_acked_messages      = optional(bool),
+    message_retention_duration = optional(string),
+    max_delivery_attempts      = optional(number),
+    maximum_backoff            = optional(string),
+    minimum_backoff            = optional(string),
+    filter                     = optional(string),
+    enable_message_ordering    = optional(bool),
+  }))
   description = "The list of the push subscriptions."
   default     = []
 }
 
 variable "pull_subscriptions" {
-  type        = list(map(string))
+  type = list(object({
+    name                         = string,
+    ack_deadline_seconds         = optional(number),
+    dead_letter_topic            = optional(string),
+    max_delivery_attempts        = optional(number),
+    retain_acked_messages        = optional(bool),
+    message_retention_duration   = optional(string),
+    maximum_backoff              = optional(number),
+    minimum_backoff              = optional(number),
+    filter                       = optional(string),
+    enable_message_ordering      = optional(bool),
+    service_account              = optional(string),
+    enable_exactly_once_delivery = optional(bool),
+  }))
   description = "The list of the pull subscriptions."
   default     = []
 }
@@ -57,14 +86,14 @@ variable "bigquery_subscriptions" {
   type = list(object({
     name                       = string,
     table                      = string,
-    use_topic_schema           = optional(bool, true),
-    use_table_schema           = optional(bool, false),
-    write_metadata             = optional(bool, false),
-    drop_unknown_fields        = optional(bool, false),
+    use_topic_schema           = optional(bool),
+    use_table_schema           = optional(bool),
+    write_metadata             = optional(bool),
+    drop_unknown_fields        = optional(bool),
     ack_deadline_seconds       = optional(number),
-    retain_acked_messages      = optional(bool, false),
+    retain_acked_messages      = optional(bool),
     message_retention_duration = optional(string),
-    enable_message_ordering    = optional(bool, false),
+    enable_message_ordering    = optional(bool),
     expiration_policy          = optional(string),
     filter                     = optional(string),
     dead_letter_topic          = optional(string),
@@ -86,12 +115,12 @@ variable "cloud_storage_subscriptions" {
     max_bytes                  = optional(string),
     max_messages               = optional(string),
     output_format              = optional(string),
-    write_metadata             = optional(bool, false),
-    use_topic_schema           = optional(bool, false),
+    write_metadata             = optional(bool),
+    use_topic_schema           = optional(bool),
     ack_deadline_seconds       = optional(number),
-    retain_acked_messages      = optional(bool, false),
+    retain_acked_messages      = optional(bool),
     message_retention_duration = optional(string),
-    enable_message_ordering    = optional(bool, false),
+    enable_message_ordering    = optional(bool),
     expiration_policy          = optional(string),
     filter                     = optional(string),
     dead_letter_topic          = optional(string),
