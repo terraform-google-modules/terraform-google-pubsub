@@ -7,6 +7,25 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [8.0.0](https://github.com/terraform-google-modules/terraform-google-pubsub/compare/v7.0.0...v8.0.0) (2025-03-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* **TPG>=6.2:** add cloud storage max_messages and use_topic_schema support ([#204](https://github.com/terraform-google-modules/terraform-google-pubsub/issues/204))
+
+### Features
+
+* **TPG>=6.2:** add cloud storage max_messages and use_topic_schema support ([#204](https://github.com/terraform-google-modules/terraform-google-pubsub/issues/204)) ([bc66597](https://github.com/terraform-google-modules/terraform-google-pubsub/commit/bc66597a04fcdd819b9b42bb2ec5cbec3d151524))
+
+
+### Bug Fixes
+
+* **deps:** bump TF v1.3+ ([#212](https://github.com/terraform-google-modules/terraform-google-pubsub/issues/212)) ([70bf8b1](https://github.com/terraform-google-modules/terraform-google-pubsub/commit/70bf8b1bfc4bc7abde78cf13f5a0ced0b51e0cfa))
+* migrate bigquery_subscription and cloud_storage_subscription variables to objects ([#222](https://github.com/terraform-google-modules/terraform-google-pubsub/issues/222)) ([8b06b62](https://github.com/terraform-google-modules/terraform-google-pubsub/commit/8b06b62d0c656160f620ffbff124ff62d228a85b))
+* migrate pull_subscriptions and push_subscriptions to object lists ([#224](https://github.com/terraform-google-modules/terraform-google-pubsub/issues/224)) ([f239247](https://github.com/terraform-google-modules/terraform-google-pubsub/commit/f23924757405313c452a9bd94f888a09b1093636))
+* return bigquery subscription use_topic_schema variable default value back to false ([#225](https://github.com/terraform-google-modules/terraform-google-pubsub/issues/225)) ([10b8b6b](https://github.com/terraform-google-modules/terraform-google-pubsub/commit/10b8b6bb723296b610bd6113d9c6f622bd6f64ed))
+
 ## [7.0.0](https://github.com/terraform-google-modules/terraform-google-pubsub/compare/v6.0.0...v7.0.0) (2024-09-13)
 
 
