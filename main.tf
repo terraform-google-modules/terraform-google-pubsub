@@ -213,7 +213,7 @@ resource "google_pubsub_subscription" "push_subscriptions" {
     }
 
     dynamic "no_wrapper" {
-      for_each = (lookup(each.value, "no_wrapper", true) ? [true] : [])
+      for_each = (lookup(each.value, "no_wrapper", null) != null ? [true] : [])
       content {
         write_metadata = lookup(each.value, "write_metadata", true)
       }
