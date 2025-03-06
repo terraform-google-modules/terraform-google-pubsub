@@ -27,7 +27,7 @@ spec:
     version: 7.0.0
     actuationTool:
       flavor: Terraform
-      version: ">= 0.13"
+      version: ">= 1.3"
     description: {}
   content:
     examples:
@@ -100,8 +100,8 @@ spec:
               max_delivery_attempts        = optional(number),
               retain_acked_messages        = optional(bool),
               message_retention_duration   = optional(string),
-              maximum_backoff              = optional(number),
-              minimum_backoff              = optional(number),
+              maximum_backoff              = optional(string),
+              minimum_backoff              = optional(string),
               filter                       = optional(string),
               enable_message_ordering      = optional(bool),
               service_account              = optional(string),
