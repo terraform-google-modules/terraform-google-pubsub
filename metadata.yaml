@@ -82,6 +82,7 @@ spec:
               minimum_backoff            = optional(string),
               filter                     = optional(string),
               enable_message_ordering    = optional(bool),
+              labels                     = optional(map(string)),
             }))
         defaultValue: []
         connections:
@@ -106,6 +107,7 @@ spec:
               enable_message_ordering      = optional(bool),
               service_account              = optional(string),
               enable_exactly_once_delivery = optional(bool),
+              labels                       = optional(map(string)),
             }))
         defaultValue: []
       - name: bigquery_subscriptions
@@ -126,7 +128,8 @@ spec:
               filter                     = optional(string),
               dead_letter_topic          = optional(string),
               maximum_backoff            = optional(string),
-              minimum_backoff            = optional(string)
+              minimum_backoff            = optional(string),
+              labels                     = optional(map(string)),
             }))
         defaultValue: []
         connections:
@@ -158,7 +161,8 @@ spec:
               filter                     = optional(string),
               dead_letter_topic          = optional(string),
               maximum_backoff            = optional(string),
-              minimum_backoff            = optional(string)
+              minimum_backoff            = optional(string),
+              labels                     = optional(map(string)),
             }))
         defaultValue: []
         connections:

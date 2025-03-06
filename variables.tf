@@ -58,6 +58,7 @@ variable "push_subscriptions" {
     minimum_backoff            = optional(string),
     filter                     = optional(string),
     enable_message_ordering    = optional(bool),
+    labels                     = optional(map(string)),
   }))
   description = "The list of the push subscriptions."
   default     = []
@@ -77,6 +78,7 @@ variable "pull_subscriptions" {
     enable_message_ordering      = optional(bool),
     service_account              = optional(string),
     enable_exactly_once_delivery = optional(bool),
+    labels                       = optional(map(string)),
   }))
   description = "The list of the pull subscriptions."
   default     = []
@@ -98,7 +100,8 @@ variable "bigquery_subscriptions" {
     filter                     = optional(string),
     dead_letter_topic          = optional(string),
     maximum_backoff            = optional(string),
-    minimum_backoff            = optional(string)
+    minimum_backoff            = optional(string),
+    labels                     = optional(map(string)),
   }))
   description = "The list of the Bigquery push subscriptions."
   default     = []
@@ -125,7 +128,8 @@ variable "cloud_storage_subscriptions" {
     filter                     = optional(string),
     dead_letter_topic          = optional(string),
     maximum_backoff            = optional(string),
-    minimum_backoff            = optional(string)
+    minimum_backoff            = optional(string),
+    labels                     = optional(map(string)),
   }))
   description = "The list of the Cloud Storage push subscriptions."
   default     = []
