@@ -27,7 +27,7 @@ spec:
     version: 8.0.0
     actuationTool:
       flavor: Terraform
-      version: ">= 0.13"
+      version: ">= 1.3"
     description: {}
   content:
     examples:
@@ -82,6 +82,7 @@ spec:
               minimum_backoff            = optional(string),
               filter                     = optional(string),
               enable_message_ordering    = optional(bool),
+              labels                     = optional(map(string)),
             }))
         defaultValue: []
         connections:
@@ -100,12 +101,13 @@ spec:
               max_delivery_attempts        = optional(number),
               retain_acked_messages        = optional(bool),
               message_retention_duration   = optional(string),
-              maximum_backoff              = optional(number),
-              minimum_backoff              = optional(number),
+              maximum_backoff              = optional(string),
+              minimum_backoff              = optional(string),
               filter                       = optional(string),
               enable_message_ordering      = optional(bool),
               service_account              = optional(string),
               enable_exactly_once_delivery = optional(bool),
+              labels                       = optional(map(string)),
             }))
         defaultValue: []
       - name: bigquery_subscriptions
@@ -126,7 +128,8 @@ spec:
               filter                     = optional(string),
               dead_letter_topic          = optional(string),
               maximum_backoff            = optional(string),
-              minimum_backoff            = optional(string)
+              minimum_backoff            = optional(string),
+              labels                     = optional(map(string)),
             }))
         defaultValue: []
         connections:
@@ -158,7 +161,8 @@ spec:
               filter                     = optional(string),
               dead_letter_topic          = optional(string),
               maximum_backoff            = optional(string),
-              minimum_backoff            = optional(string)
+              minimum_backoff            = optional(string),
+              labels                     = optional(map(string)),
             }))
         defaultValue: []
         connections:
