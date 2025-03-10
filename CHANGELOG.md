@@ -7,6 +7,13 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [8.0.1](https://github.com/terraform-google-modules/terraform-google-pubsub/compare/v8.0.0...v8.0.1) (2025-03-10)
+
+
+### Bug Fixes
+
+* use string for maximum_backoff and minimum_backoff for pull subscriptions ([#229](https://github.com/terraform-google-modules/terraform-google-pubsub/issues/229)) ([e4eea2a](https://github.com/terraform-google-modules/terraform-google-pubsub/commit/e4eea2a57917ce652a52de8fb831a138f99d016d))
+
 ## [8.0.0](https://github.com/terraform-google-modules/terraform-google-pubsub/compare/v7.0.0...v8.0.0) (2025-03-05)
 
 
