@@ -36,6 +36,11 @@ module "pubsub" {
       ack_deadline_seconds         = 10
       enable_exactly_once_delivery = true
     },
+    {
+      name            = "pull2"
+      minimum_backoff = "10s"
+      maximum_backoff = "600s"
+    },
   ]
 
   push_subscriptions = [
