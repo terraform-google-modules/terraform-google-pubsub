@@ -51,6 +51,11 @@ module "pubsub" {
       ack_deadline_seconds = 20
       expiration_policy    = "1209600s" // two weeks
     },
+    {
+      name           = "push-default-expiration"
+      push_endpoint  = "https://${var.project_id}.appspot.com/"
+      x-goog-version = "v1beta1"
+    },
   ]
 
   schema = {

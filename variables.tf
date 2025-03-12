@@ -67,6 +67,7 @@ variable "pull_subscriptions" {
   type = list(object({
     name                         = string,
     ack_deadline_seconds         = optional(number),
+    expiration_policy            = optional(string),
     dead_letter_topic            = optional(string),
     max_delivery_attempts        = optional(number),
     retain_acked_messages        = optional(bool),
