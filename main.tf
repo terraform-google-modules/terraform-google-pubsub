@@ -181,7 +181,7 @@ resource "google_pubsub_subscription" "push_subscriptions" {
   enable_message_ordering    = each.value.enable_message_ordering
   dynamic "expiration_policy" {
     // check if the 'expiration_policy' key exists, if yes, return a list containing it.
-    for_each = contains(keys(each.value), "expiration_policy") ? [each.value.expiration_policy] : []
+    for_each = each.value.expiration_policy != null ? [each.value.expiration_policy] : []
     content {
       ttl = expiration_policy.value
     }
@@ -240,7 +240,7 @@ resource "google_pubsub_subscription" "pull_subscriptions" {
   enable_message_ordering      = each.value.enable_message_ordering
   dynamic "expiration_policy" {
     // check if the 'expiration_policy' key exists, if yes, return a list containing it.
-    for_each = contains(keys(each.value), "expiration_policy") ? [each.value.expiration_policy] : []
+    for_each = each.value.expiration_policy != null ? [each.value.expiration_policy] : []
     content {
       ttl = expiration_policy.value
     }
