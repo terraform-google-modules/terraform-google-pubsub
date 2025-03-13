@@ -58,6 +58,10 @@ spec:
         description: The Pub/Sub topic name.
         varType: string
         required: true
+      - name: create_subscriptions
+        description: Specify true if you want to create subscriptions.
+        varType: bool
+        defaultValue: true
       - name: push_subscriptions
         description: The list of the push subscriptions.
         varType: |-
