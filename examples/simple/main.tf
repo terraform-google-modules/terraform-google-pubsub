@@ -37,9 +37,10 @@ module "pubsub" {
       enable_exactly_once_delivery = true
     },
     {
-      name            = "pull2"
-      minimum_backoff = "10s"
-      maximum_backoff = "600s"
+      name              = "pull2"
+      minimum_backoff   = "10s"
+      maximum_backoff   = "600s"
+      expiration_policy = "1209600s" // two weeks
     },
   ]
 
