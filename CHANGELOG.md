@@ -7,6 +7,13 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [8.0.2](https://github.com/terraform-google-modules/terraform-google-pubsub/compare/v8.0.1...v8.0.2) (2025-03-14)
+
+
+### Bug Fixes
+
+* re-enable expiration_policy for pull subscription, fix push subscription generation with empty expiration_policy ([#232](https://github.com/terraform-google-modules/terraform-google-pubsub/issues/232)) ([5f793ad](https://github.com/terraform-google-modules/terraform-google-pubsub/commit/5f793added4f1cbf1d9184f6a3273b581f281a91))
+
 ## [8.0.1](https://github.com/terraform-google-modules/terraform-google-pubsub/compare/v8.0.0...v8.0.1) (2025-03-10)
 
 
