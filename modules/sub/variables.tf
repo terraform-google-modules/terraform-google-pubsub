@@ -24,12 +24,6 @@ variable "topic" {
   description = "The Pub/Sub topic name."
 }
 
-variable "create_subscriptions" {
-  type        = bool
-  description = "Specify true if you want to create subscriptions."
-  default     = true
-}
-
 variable "push_subscriptions" {
   type = list(object({
     name                       = string,
