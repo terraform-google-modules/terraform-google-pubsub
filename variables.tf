@@ -98,6 +98,7 @@ variable "bigquery_subscriptions" {
     expiration_policy          = optional(string),
     filter                     = optional(string),
     dead_letter_topic          = optional(string),
+    max_delivery_attempts      = optional(number),
     maximum_backoff            = optional(string),
     minimum_backoff            = optional(string)
   }))
@@ -125,6 +126,7 @@ variable "cloud_storage_subscriptions" {
     expiration_policy          = optional(string),
     filter                     = optional(string),
     dead_letter_topic          = optional(string),
+    max_delivery_attempts      = optional(number),
     maximum_backoff            = optional(string),
     minimum_backoff            = optional(string)
   }))
