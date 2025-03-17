@@ -71,6 +71,7 @@ module "sub" {
 
 | Name | Description |
 |------|-------------|
+| pull\_subscription\_env\_vars | Map of pull subscription IDs, keyed by project\_subscription name for environment variables. |
 | subscription\_names | The name list of Pub/Sub subscriptions |
 | subscription\_paths | The path list of Pub/Sub subscriptions |
 

@@ -42,6 +42,8 @@ spec:
         location: examples/cloud_storage-separate-pub-sub
       - name: kms
         location: examples/kms
+      - name: push_subscription-separate-pub-sub
+        location: examples/push_subscription-separate-pub-sub
       - name: simple
         location: examples/simple
       - name: simple-separate-pub-sub
@@ -58,6 +60,12 @@ spec:
         description: The Pub/Sub topic name.
         varType: string
         required: true
+        connections:
+          - source:
+              source: github.com/terraform-google-modules/terraform-google-pubsub//modules/pub
+              version: ">= 7.0.0"
+            spec:
+              outputExpr: topic
       - name: push_subscriptions
         description: The list of the push subscriptions.
         varType: |-
@@ -79,6 +87,12 @@ spec:
               enable_message_ordering    = optional(bool),
             }))
         defaultValue: []
+        connections:
+          - source:
+              source: github.com/GoogleCloudPlatform/terraform-google-cloud-run//modules/v2
+              version: ">= 0.13"
+            spec:
+              outputExpr: "{ \"name\": apphub_service_uri.service_id, \"push_endpoint\": service_uri, \"oidc_service_account_email\": service_account_id.email }"
       - name: pull_subscriptions
         description: The list of the pull subscriptions.
         varType: |-
@@ -98,6 +112,17 @@ spec:
               enable_exactly_once_delivery = optional(bool),
             }))
         defaultValue: []
+        connections:
+          - source:
+              source: github.com/GoogleCloudPlatform/terraform-google-cloud-run//modules/v2
+              version: ">= 0.13"
+            spec:
+              outputExpr: "{ \"name\": service_name, \"service_account\": service_account_id.email }"
+          - source:
+              source: github.com/terraform-google-modules/terraform-google-service-accounts//modules/simple-sa
+              version: ">= 4.4"
+            spec:
+              outputExpr: "{ \"name\": account_details.id, \"service_account\": account_details.email }"
       - name: bigquery_subscriptions
         description: The list of the Bigquery push subscriptions.
         varType: |-
@@ -119,6 +144,12 @@ spec:
               minimum_backoff            = optional(string)
             }))
         defaultValue: []
+        connections:
+          - source:
+              source: github.com/terraform-google-modules/terraform-google-bigquery
+              version: ">= 10.0.0"
+            spec:
+              outputExpr: "{ \"name\": external_table_ids[0], \"table\": external_table_ids[0]}"
       - name: cloud_storage_subscriptions
         description: The list of the Cloud Storage push subscriptions.
         varType: |-
@@ -145,6 +176,12 @@ spec:
               minimum_backoff            = optional(string)
             }))
         defaultValue: []
+        connections:
+          - source:
+              source: github.com/terraform-google-modules/terraform-google-cloud-storage//modules/simple_bucket
+              version: ">= 9.0.1"
+            spec:
+              outputExpr: "{ \"name\": name, \"bucket\": name}"
       - name: subscription_labels
         description: A map of labels to assign to every Pub/Sub subscription.
         varType: map(string)
@@ -158,6 +195,8 @@ spec:
         varType: bool
         defaultValue: true
     outputs:
+      - name: pull_subscription_env_vars
+        description: Map of pull subscription IDs, keyed by project_subscription name for environment variables.
       - name: subscription_names
         description: The name list of Pub/Sub subscriptions
       - name: subscription_paths
@@ -170,12 +209,19 @@ spec:
           - roles/resourcemanager.projectIamAdmin
           - roles/bigquery.admin
           - roles/storage.admin
+          - roles/run.admin
+          - roles/iam.serviceAccountAdmin
+          - roles/iam.serviceAccountUser
+          - roles/resourcemanager.projectIamAdmin
+          - roles/logging.viewer
     services:
       - cloudresourcemanager.googleapis.com
       - pubsub.googleapis.com
       - serviceusage.googleapis.com
       - bigquery.googleapis.com
       - storage.googleapis.com
+      - run.googleapis.com
+      - iam.googleapis.com
     providerVersions:
       - source: hashicorp/google
         version: ">= 6.2, < 7"

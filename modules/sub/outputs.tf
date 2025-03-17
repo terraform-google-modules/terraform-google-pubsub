@@ -36,3 +36,10 @@ output "subscription_paths" {
   description = "The path list of Pub/Sub subscriptions"
 }
 
+output "pull_subscription_env_vars" {
+  value = {
+    for k, v in google_pubsub_subscription.pull_subscriptions : replace(upper("${v.project}_${v.name}"), "-", "_") => v.id
+  }
+
+  description = "Map of pull subscription IDs, keyed by project_subscription name for environment variables."
+}

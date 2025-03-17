@@ -46,6 +46,8 @@ spec:
         location: examples/cloud_storage-separate-pub-sub
       - name: kms
         location: examples/kms
+      - name: push_subscription-separate-pub-sub
+        location: examples/push_subscription-separate-pub-sub
       - name: simple
         location: examples/simple
       - name: simple-separate-pub-sub
@@ -243,12 +245,19 @@ spec:
           - roles/resourcemanager.projectIamAdmin
           - roles/bigquery.admin
           - roles/storage.admin
+          - roles/run.admin
+          - roles/iam.serviceAccountAdmin
+          - roles/iam.serviceAccountUser
+          - roles/resourcemanager.projectIamAdmin
+          - roles/logging.viewer
     services:
       - cloudresourcemanager.googleapis.com
       - pubsub.googleapis.com
       - serviceusage.googleapis.com
       - bigquery.googleapis.com
       - storage.googleapis.com
+      - run.googleapis.com
+      - iam.googleapis.com
     providerVersions:
       - source: hashicorp/google
         version: ">= 6.2, < 7"
