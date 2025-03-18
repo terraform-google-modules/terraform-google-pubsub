@@ -105,6 +105,7 @@ module "pubsub" {
 
 | Name | Description |
 |------|-------------|
+| env\_vars | Map of pull subscription IDs, keyed by project\_subscription name for environment variables. |
 | id | The ID of the Pub/Sub topic |
 | subscription\_names | The name list of Pub/Sub subscriptions |
 | subscription\_paths | The path list of Pub/Sub subscriptions |
