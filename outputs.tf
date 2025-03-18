@@ -56,3 +56,12 @@ output "subscription_paths" {
   description = "The path list of Pub/Sub subscriptions"
 }
 
+output "env_vars" {
+  value = merge(
+    { for k, v in google_pubsub_subscription.pull_subscriptions : replace(upper("SUB_ID_${v.project}_${v.name}"), "-", "_") => v.id },
+    { replace(upper("TOPIC_ID_${var.project_id}_${var.topic}"), "-", "_") : length(google_pubsub_topic.topic) > 0 ? google_pubsub_topic.topic[0].id : "" }
+  )
+
+  description = "Map of pull subscription IDs, keyed by project_subscription name for environment variables."
+}
+
