@@ -7,6 +7,20 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [8.1.0](https://github.com/terraform-google-modules/terraform-google-pubsub/compare/v8.0.1...v8.1.0) (2025-03-18)
+
+
+### Features
+
+* Add missing attribute to bigquery subscription and cloud storage subscription variables ([#238](https://github.com/terraform-google-modules/terraform-google-pubsub/issues/238)) ([ce061a0](https://github.com/terraform-google-modules/terraform-google-pubsub/commit/ce061a0b0651e1d85d09c13d4471cb94e29c2a17))
+* add new output variable env_vars ([#241](https://github.com/terraform-google-modules/terraform-google-pubsub/issues/241)) ([9afa4af](https://github.com/terraform-google-modules/terraform-google-pubsub/commit/9afa4af690e59f877b2dd48fb07203b95c416f89))
+* Add submodules for pub and sub ([#234](https://github.com/terraform-google-modules/terraform-google-pubsub/issues/234)) ([0e44fc6](https://github.com/terraform-google-modules/terraform-google-pubsub/commit/0e44fc67a302abb3b266e136e7f0f1c44b4987cd))
+
+
+### Bug Fixes
+
+* re-enable expiration_policy for pull subscription, fix push subscription generation with empty expiration_policy ([#232](https://github.com/terraform-google-modules/terraform-google-pubsub/issues/232)) ([5f793ad](https://github.com/terraform-google-modules/terraform-google-pubsub/commit/5f793added4f1cbf1d9184f6a3273b581f281a91))
+
 ## [8.0.1](https://github.com/terraform-google-modules/terraform-google-pubsub/compare/v8.0.0...v8.0.1) (2025-03-10)
 
 
