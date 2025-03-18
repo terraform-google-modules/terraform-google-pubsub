@@ -37,6 +37,9 @@ spec:
         project_id:
           name: project_id
           title: Project Id
+        publisher_service_accounts:
+          name: publisher_service_accounts
+          title: Publisher Service Accounts
         schema:
           name: schema
           title: Schema

@@ -19,7 +19,12 @@ locals {
     "roles/pubsub.admin",
     "roles/resourcemanager.projectIamAdmin",
     "roles/bigquery.admin",
-    "roles/storage.admin"
+    "roles/storage.admin",
+    "roles/run.admin",
+    "roles/iam.serviceAccountAdmin",
+    "roles/iam.serviceAccountUser",
+    "roles/resourcemanager.projectIamAdmin",
+    "roles/logging.viewer"
   ]
 }
 

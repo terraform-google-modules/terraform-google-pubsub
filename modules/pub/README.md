@@ -41,6 +41,7 @@ module "pub" {
 |------|-------------|------|---------|:--------:|
 | message\_storage\_policy | A map of storage policies. Default - inherit from organization's Resource Location Restriction policy. | `map(any)` | `{}` | no |
 | project\_id | The project ID to manage the Pub/Sub resources. | `string` | n/a | yes |
+| publisher\_service\_accounts | Service account email which required roles/pubsub.publisher role. | <pre>list(object({<br>    id              = string<br>    service_account = string<br>  }))</pre> | `[]` | no |
 | schema | Schema for the topic. | <pre>object({<br>    name       = string<br>    type       = string<br>    definition = string<br>    encoding   = string<br>  })</pre> | `null` | no |
 | topic | The Pub/Sub topic name. | `string` | n/a | yes |
 | topic\_kms\_key\_name | The resource name of the Cloud KMS CryptoKey to be used to protect access to messages published on this topic. | `string` | `null` | no |

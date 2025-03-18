@@ -45,3 +45,12 @@ resource "google_pubsub_topic" "topic" {
   }
   depends_on = [google_pubsub_schema.schema]
 }
+
+resource "google_pubsub_topic_iam_member" "sa_binding_publisher" {
+  for_each = { for i in var.publisher_service_accounts : i.id => i if i.service_account != null }
+
+  project = var.project_id
+  topic   = var.topic
+  role    = "roles/pubsub.publisher"
+  member  = "serviceAccount:${each.value.service_account}"
+}

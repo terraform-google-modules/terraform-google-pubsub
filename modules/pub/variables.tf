@@ -58,3 +58,12 @@ variable "schema" {
   description = "Schema for the topic."
   default     = null
 }
+
+variable "publisher_service_accounts" {
+  type = list(object({
+    id              = string
+    service_account = string
+  }))
+  description = "Service account email which required roles/pubsub.publisher role."
+  default     = []
+}

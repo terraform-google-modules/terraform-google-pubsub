@@ -1,5 +1,5 @@
 /**
- * Copyright 2019 Google LLC
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,23 +14,17 @@
  * limitations under the License.
  */
 
-module "project-ci-int-pubsub" {
-  source  = "terraform-google-modules/project-factory/google"
-  version = "~> 18.0"
+output "project_id" {
+  value       = var.project_id
+  description = "The project ID"
+}
 
-  name              = "ci-int-pubsub"
-  random_project_id = true
-  org_id            = var.org_id
-  folder_id         = var.folder_id
-  billing_account   = var.billing_account
+output "topic_name" {
+  value       = module.pub.topic
+  description = "The name of the Pub/Sub topic created"
+}
 
-  activate_apis = [
-    "cloudresourcemanager.googleapis.com",
-    "pubsub.googleapis.com",
-    "serviceusage.googleapis.com",
-    "bigquery.googleapis.com",
-    "storage.googleapis.com",
-    "run.googleapis.com",
-    "iam.googleapis.com"
-  ]
+output "topic_labels" {
+  value       = module.pub.topic_labels
+  description = "The labels of the Pub/Sub topic created"
 }
