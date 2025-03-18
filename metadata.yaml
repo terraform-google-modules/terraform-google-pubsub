@@ -30,26 +30,15 @@ spec:
       version: ">= 1.3"
     description: {}
   content:
-    subBlueprints:
-      - name: pub
-        location: modules/pub
-      - name: sub
-        location: modules/sub
     examples:
       - name: bigquery
         location: examples/bigquery
-      - name: bigquery-separate-pub-sub
-        location: examples/bigquery-separate-pub-sub
       - name: cloud_storage
         location: examples/cloud_storage
-      - name: cloud_storage-separate-pub-sub
-        location: examples/cloud_storage-separate-pub-sub
       - name: kms
         location: examples/kms
       - name: simple
         location: examples/simple
-      - name: simple-separate-pub-sub
-        location: examples/simple-separate-pub-sub
       - name: subscriptions_only
         location: examples/subscriptions_only
   interfaces:
