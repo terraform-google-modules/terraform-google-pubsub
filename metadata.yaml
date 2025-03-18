@@ -30,26 +30,15 @@ spec:
       version: ">= 1.3"
     description: {}
   content:
-    subBlueprints:
-      - name: pub
-        location: modules/pub
-      - name: sub
-        location: modules/sub
     examples:
       - name: bigquery
         location: examples/bigquery
-      - name: bigquery-separate-pub-sub
-        location: examples/bigquery-separate-pub-sub
       - name: cloud_storage
         location: examples/cloud_storage
-      - name: cloud_storage-separate-pub-sub
-        location: examples/cloud_storage-separate-pub-sub
       - name: kms
         location: examples/kms
       - name: simple
         location: examples/simple
-      - name: simple-separate-pub-sub
-        location: examples/simple-separate-pub-sub
       - name: subscriptions_only
         location: examples/subscriptions_only
   interfaces:
@@ -76,7 +65,24 @@ spec:
         defaultValue: {}
       - name: push_subscriptions
         description: The list of the push subscriptions.
-        varType: "list(object({\r\n    name                       = string,\r\n    ack_deadline_seconds       = optional(number),\r\n    push_endpoint              = optional(string),\r\n    x-goog-version             = optional(string),\r\n    oidc_service_account_email = optional(string),\r\n    audience                   = optional(string),\r\n    expiration_policy          = optional(string),\r\n    dead_letter_topic          = optional(string),\r\n    retain_acked_messages      = optional(bool),\r\n    message_retention_duration = optional(string),\r\n    max_delivery_attempts      = optional(number),\r\n    maximum_backoff            = optional(string),\r\n    minimum_backoff            = optional(string),\r\n    filter                     = optional(string),\r\n    enable_message_ordering    = optional(bool),\r\n  }))"
+        varType: |-
+          list(object({
+              name                       = string,
+              ack_deadline_seconds       = optional(number),
+              push_endpoint              = optional(string),
+              x-goog-version             = optional(string),
+              oidc_service_account_email = optional(string),
+              audience                   = optional(string),
+              expiration_policy          = optional(string),
+              dead_letter_topic          = optional(string),
+              retain_acked_messages      = optional(bool),
+              message_retention_duration = optional(string),
+              max_delivery_attempts      = optional(number),
+              maximum_backoff            = optional(string),
+              minimum_backoff            = optional(string),
+              filter                     = optional(string),
+              enable_message_ordering    = optional(bool),
+            }))
         defaultValue: []
         connections:
           - source:
@@ -86,7 +92,22 @@ spec:
               outputExpr: "{ \"name\": apphub_service_uri.service_id, \"push_endpoint\": service_uri, \"oidc_service_account_email\": service_account_id.email }"
       - name: pull_subscriptions
         description: The list of the pull subscriptions.
-        varType: "list(object({\r\n    name                         = string,\r\n    ack_deadline_seconds         = optional(number),\r\n    expiration_policy            = optional(string),\r\n    dead_letter_topic            = optional(string),\r\n    max_delivery_attempts        = optional(number),\r\n    retain_acked_messages        = optional(bool),\r\n    message_retention_duration   = optional(string),\r\n    maximum_backoff              = optional(string),\r\n    minimum_backoff              = optional(string),\r\n    filter                       = optional(string),\r\n    enable_message_ordering      = optional(bool),\r\n    service_account              = optional(string),\r\n    enable_exactly_once_delivery = optional(bool),\r\n  }))"
+        varType: |-
+          list(object({
+              name                         = string,
+              ack_deadline_seconds         = optional(number),
+              expiration_policy            = optional(string),
+              dead_letter_topic            = optional(string),
+              max_delivery_attempts        = optional(number),
+              retain_acked_messages        = optional(bool),
+              message_retention_duration   = optional(string),
+              maximum_backoff              = optional(string),
+              minimum_backoff              = optional(string),
+              filter                       = optional(string),
+              enable_message_ordering      = optional(bool),
+              service_account              = optional(string),
+              enable_exactly_once_delivery = optional(bool),
+            }))
         defaultValue: []
         connections:
           - source:
@@ -101,7 +122,25 @@ spec:
               outputExpr: "{ \"name\": account_details.id, \"service_account\": account_details.email }"
       - name: bigquery_subscriptions
         description: The list of the Bigquery push subscriptions.
-        varType: "list(object({\r\n    name                       = string,\r\n    table                      = string,\r\n    use_topic_schema           = optional(bool),\r\n    use_table_schema           = optional(bool),\r\n    write_metadata             = optional(bool),\r\n    drop_unknown_fields        = optional(bool),\r\n    ack_deadline_seconds       = optional(number),\r\n    retain_acked_messages      = optional(bool),\r\n    message_retention_duration = optional(string),\r\n    enable_message_ordering    = optional(bool),\r\n    expiration_policy          = optional(string),\r\n    filter                     = optional(string),\r\n    dead_letter_topic          = optional(string),\r\n    max_delivery_attempts      = optional(number),\r\n    maximum_backoff            = optional(string),\r\n    minimum_backoff            = optional(string)\r\n  }))"
+        varType: |-
+          list(object({
+              name                       = string,
+              table                      = string,
+              use_topic_schema           = optional(bool),
+              use_table_schema           = optional(bool),
+              write_metadata             = optional(bool),
+              drop_unknown_fields        = optional(bool),
+              ack_deadline_seconds       = optional(number),
+              retain_acked_messages      = optional(bool),
+              message_retention_duration = optional(string),
+              enable_message_ordering    = optional(bool),
+              expiration_policy          = optional(string),
+              filter                     = optional(string),
+              dead_letter_topic          = optional(string),
+              max_delivery_attempts      = optional(number),
+              maximum_backoff            = optional(string),
+              minimum_backoff            = optional(string)
+            }))
         defaultValue: []
         connections:
           - source:
@@ -111,7 +150,30 @@ spec:
               outputExpr: "{ \"name\": external_table_ids[0], \"table\": external_table_ids[0]}"
       - name: cloud_storage_subscriptions
         description: The list of the Cloud Storage push subscriptions.
-        varType: "list(object({\r\n    name                       = string,\r\n    bucket                     = string,\r\n    filename_prefix            = optional(string),\r\n    filename_suffix            = optional(string),\r\n    filename_datetime_format   = optional(string),\r\n    max_duration               = optional(string),\r\n    max_bytes                  = optional(string),\r\n    max_messages               = optional(string),\r\n    output_format              = optional(string),\r\n    write_metadata             = optional(bool),\r\n    use_topic_schema           = optional(bool),\r\n    ack_deadline_seconds       = optional(number),\r\n    retain_acked_messages      = optional(bool),\r\n    message_retention_duration = optional(string),\r\n    enable_message_ordering    = optional(bool),\r\n    expiration_policy          = optional(string),\r\n    filter                     = optional(string),\r\n    dead_letter_topic          = optional(string),\r\n    max_delivery_attempts      = optional(number),\r\n    maximum_backoff            = optional(string),\r\n    minimum_backoff            = optional(string)\r\n  }))"
+        varType: |-
+          list(object({
+              name                       = string,
+              bucket                     = string,
+              filename_prefix            = optional(string),
+              filename_suffix            = optional(string),
+              filename_datetime_format   = optional(string),
+              max_duration               = optional(string),
+              max_bytes                  = optional(string),
+              max_messages               = optional(string),
+              output_format              = optional(string),
+              write_metadata             = optional(bool),
+              use_topic_schema           = optional(bool),
+              ack_deadline_seconds       = optional(number),
+              retain_acked_messages      = optional(bool),
+              message_retention_duration = optional(string),
+              enable_message_ordering    = optional(bool),
+              expiration_policy          = optional(string),
+              filter                     = optional(string),
+              dead_letter_topic          = optional(string),
+              max_delivery_attempts      = optional(number),
+              maximum_backoff            = optional(string),
+              minimum_backoff            = optional(string)
+            }))
         defaultValue: []
         connections:
           - source:
@@ -143,7 +205,13 @@ spec:
         defaultValue: true
       - name: schema
         description: Schema for the topic.
-        varType: "object({\r\n    name       = string\r\n    type       = string\r\n    definition = string\r\n    encoding   = string\r\n  })"
+        varType: |-
+          object({
+              name       = string
+              type       = string
+              definition = string
+              encoding   = string
+            })
     outputs:
       - name: env_vars
         description: Map of pull subscription IDs, keyed by project_subscription name for environment variables.
