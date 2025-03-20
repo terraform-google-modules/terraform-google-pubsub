@@ -120,34 +120,6 @@ spec:
               version: ">= 4.4"
             spec:
               outputExpr: "{ \"name\": account_details.id, \"service_account\": account_details.email }"
-      - name: bigquery_subscriptions
-        description: The list of the Bigquery push subscriptions.
-        varType: |-
-          list(object({
-              name                       = string,
-              table                      = string,
-              use_topic_schema           = optional(bool),
-              use_table_schema           = optional(bool),
-              write_metadata             = optional(bool),
-              drop_unknown_fields        = optional(bool),
-              ack_deadline_seconds       = optional(number),
-              retain_acked_messages      = optional(bool),
-              message_retention_duration = optional(string),
-              enable_message_ordering    = optional(bool),
-              expiration_policy          = optional(string),
-              filter                     = optional(string),
-              dead_letter_topic          = optional(string),
-              max_delivery_attempts      = optional(number),
-              maximum_backoff            = optional(string),
-              minimum_backoff            = optional(string)
-            }))
-        defaultValue: []
-        connections:
-          - source:
-              source: github.com/terraform-google-modules/terraform-google-bigquery
-              version: ">= 10.0.0"
-            spec:
-              outputExpr: "{ \"name\": table_ids[0], \"table\": table_ids[0]}"
       - name: cloud_storage_subscriptions
         description: The list of the Cloud Storage push subscriptions.
         varType: |-
