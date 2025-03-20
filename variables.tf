@@ -58,6 +58,8 @@ variable "push_subscriptions" {
     minimum_backoff            = optional(string),
     filter                     = optional(string),
     enable_message_ordering    = optional(bool),
+    no_wrapper                 = optional(bool),
+    write_metadata             = optional(bool),
   }))
   description = "The list of the push subscriptions."
   default     = []
