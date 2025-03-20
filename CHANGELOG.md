@@ -7,6 +7,13 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [8.1.1](https://github.com/terraform-google-modules/terraform-google-pubsub/compare/v8.1.0...v8.1.1) (2025-03-20)
+
+
+### Bug Fixes
+
+* Update metadata to remove connection with bigquery ([#248](https://github.com/terraform-google-modules/terraform-google-pubsub/issues/248)) ([c29d2d5](https://github.com/terraform-google-modules/terraform-google-pubsub/commit/c29d2d538d562ba1acf6ac06898781f08904d0ff))
+
 ## [8.1.0](https://github.com/terraform-google-modules/terraform-google-pubsub/compare/v8.0.1...v8.1.0) (2025-03-18)
 
 
