@@ -219,6 +219,12 @@ resource "google_pubsub_subscription" "push_subscriptions" {
         audience              = each.value.audience != null ? each.value.audience : ""
       }
     }
+    dynamic "no_wrapper" {
+      for_each = each.value.no_wrapper == true ? [true] : []
+      content {
+        write_metadata = each.value.write_metadata == true ? true : false
+      }
+    }
   }
   depends_on = [
     google_pubsub_topic.topic,
