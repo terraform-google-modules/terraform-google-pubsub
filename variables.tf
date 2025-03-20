@@ -60,7 +60,6 @@ variable "push_subscriptions" {
     enable_message_ordering    = optional(bool),
     no_wrapper                 = optional(bool),
     write_metadata             = optional(bool),
-    test                       = block
   }))
   description = "The list of the push subscriptions."
   default     = []
