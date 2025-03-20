@@ -24,7 +24,7 @@ spec:
     source:
       repo: https://github.com/terraform-google-modules/terraform-google-pubsub
       sourceType: git
-    version: 8.1.0
+    version: 8.1.1
     actuationTool:
       flavor: Terraform
       version: ">= 1.3"
@@ -92,12 +92,6 @@ spec:
         description: The list of the Bigquery push subscriptions.
         varType: "list(object({\r\n    name                       = string,\r\n    table                      = string,\r\n    use_topic_schema           = optional(bool),\r\n    use_table_schema           = optional(bool),\r\n    write_metadata             = optional(bool),\r\n    drop_unknown_fields        = optional(bool),\r\n    ack_deadline_seconds       = optional(number),\r\n    retain_acked_messages      = optional(bool),\r\n    message_retention_duration = optional(string),\r\n    enable_message_ordering    = optional(bool),\r\n    expiration_policy          = optional(string),\r\n    filter                     = optional(string),\r\n    dead_letter_topic          = optional(string),\r\n    max_delivery_attempts      = optional(number),\r\n    maximum_backoff            = optional(string),\r\n    minimum_backoff            = optional(string)\r\n  }))"
         defaultValue: []
-        connections:
-          - source:
-              source: github.com/terraform-google-modules/terraform-google-bigquery
-              version: ">= 10.0.0"
-            spec:
-              outputExpr: "{ \"name\": external_table_ids[0], \"table\": external_table_ids[0]}"
       - name: cloud_storage_subscriptions
         description: The list of the Cloud Storage push subscriptions.
         varType: "list(object({\r\n    name                       = string,\r\n    bucket                     = string,\r\n    filename_prefix            = optional(string),\r\n    filename_suffix            = optional(string),\r\n    filename_datetime_format   = optional(string),\r\n    max_duration               = optional(string),\r\n    max_bytes                  = optional(string),\r\n    max_messages               = optional(string),\r\n    output_format              = optional(string),\r\n    write_metadata             = optional(bool),\r\n    use_topic_schema           = optional(bool),\r\n    ack_deadline_seconds       = optional(number),\r\n    retain_acked_messages      = optional(bool),\r\n    message_retention_duration = optional(string),\r\n    enable_message_ordering    = optional(bool),\r\n    expiration_policy          = optional(string),\r\n    filter                     = optional(string),\r\n    dead_letter_topic          = optional(string),\r\n    max_delivery_attempts      = optional(number),\r\n    maximum_backoff            = optional(string),\r\n    minimum_backoff            = optional(string)\r\n  }))"
