@@ -142,12 +142,6 @@ spec:
               minimum_backoff            = optional(string)
             }))
         defaultValue: []
-        connections:
-          - source:
-              source: github.com/terraform-google-modules/terraform-google-bigquery
-              version: ">= 10.0.0"
-            spec:
-              outputExpr: "{ \"name\": external_table_ids[0], \"table\": external_table_ids[0]}"
       - name: cloud_storage_subscriptions
         description: The list of the Cloud Storage push subscriptions.
         varType: |-
