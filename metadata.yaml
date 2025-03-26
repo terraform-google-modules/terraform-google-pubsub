@@ -147,7 +147,7 @@ spec:
               source: github.com/terraform-google-modules/terraform-google-bigquery
               version: ">= 10.0.0"
             spec:
-              outputExpr: "{ \"name\": external_table_ids[0], \"table\": external_table_ids[0]}"
+              outputExpr: "{ \"name\": table_ids[0], \"table\": project\":\"env_vars.BIGQUERY_DATASET\".\"table_ids[0]}"
       - name: cloud_storage_subscriptions
         description: The list of the Cloud Storage push subscriptions.
         varType: |-
