@@ -7,6 +7,13 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [8.1.2](https://github.com/terraform-google-modules/terraform-google-pubsub/compare/v8.1.1...v8.1.2) (2025-04-01)
+
+
+### Features
+
+* Add missing attribute no_wrapper option to push subscription ([#249](https://github.com/terraform-google-modules/terraform-google-pubsub/issues/249)) ([295df92](https://github.com/terraform-google-modules/terraform-google-pubsub/commit/295df925d7d5b80c47c483836189563a9d4baee5))
+
 ## [8.1.1](https://github.com/terraform-google-modules/terraform-google-pubsub/compare/v8.1.0...v8.1.1) (2025-03-20)
 
 
