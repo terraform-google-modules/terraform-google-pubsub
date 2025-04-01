@@ -225,7 +225,15 @@ resource "google_pubsub_subscription" "push_subscriptions" {
         write_metadata = each.value.write_metadata != null ? each.value.write_metadata : false
       }
     }
+
+    dynamic "no_wrapper" {
+      for_each = (lookup(each.value, "write_metadata", "") != "") ? [true] : []
+      content {
+        write_metadata = lookup(each.value, "write_metadata", "")
+      }
+    }
   }
+
   depends_on = [
     google_pubsub_topic.topic,
   ]
