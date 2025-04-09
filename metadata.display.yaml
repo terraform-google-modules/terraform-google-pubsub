@@ -69,7 +69,7 @@ spec:
         topic:
           name: topic
           title: Topic
-          regexValidation: ^(?!goog)[a-zA-Z][a-zA-Z0-9\-._~%+]{0,254}$
+          regexValidation: ^([a-fh-zA-FH-Z][a-zA-Z0-9\-._~%+]{0,254}|[gG]($|[^oO][a-zA-Z0-9\-._~%+]{0,253}|[oO]($|[^oO][a-zA-Z0-9\-._~%+]{0,252}|[oO]($|[^gG][a-zA-Z0-9\-._~%+]{0,251}))))$
           validation: "ID must start with a letter, and contain only the following characters: letters, numbers, dashes (-), periods (.), underscores (_), tildes (~), percents (%) or plus signs (+). Cannot start with goog. ID must be at most 255 characters long."
         topic_kms_key_name:
           name: topic_kms_key_name
