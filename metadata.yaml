@@ -120,6 +120,10 @@ spec:
         description: Specify true if you want to add bigquery.metadataViewer and bigquery.dataEditor roles to the default Pub/Sub SA.
         varType: bool
         defaultValue: true
+      - name: grant_cloud_storage_project_roles
+        description: Specify true if you want to add storage.admin role to the default Pub/Sub SA.
+        varType: bool
+        defaultValue: true
       - name: grant_token_creator
         description: Specify true if you want to add token creator role to the default Pub/Sub SA.
         varType: bool
