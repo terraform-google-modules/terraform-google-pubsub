@@ -46,7 +46,7 @@ resource "google_project_iam_member" "bigquery_data_editor_binding" {
 }
 
 resource "google_project_iam_member" "storage_admin_binding" {
-  count   = length(var.cloud_storage_subscriptions) != 0 ? 1 : 0
+  count   = var.grant_cloud_storage_project_roles && length(var.cloud_storage_subscriptions) != 0 ? 1 : 0
   project = var.project_id
   role    = "roles/storage.admin"
   member  = "serviceAccount:${local.pubsub_svc_account_email}"

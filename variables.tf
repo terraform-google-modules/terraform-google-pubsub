@@ -166,6 +166,12 @@ variable "grant_bigquery_project_roles" {
   default     = true
 }
 
+variable "grant_cloud_storage_project_roles" {
+  type        = bool
+  description = "Specify true if you want to add storage.admin role to the default Pub/Sub SA."
+  default     = true
+}
+
 variable "grant_token_creator" {
   type        = bool
   description = "Specify true if you want to add token creator role to the default Pub/Sub SA."
