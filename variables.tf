@@ -58,6 +58,8 @@ variable "push_subscriptions" {
     minimum_backoff            = optional(string),
     filter                     = optional(string),
     enable_message_ordering    = optional(bool),
+    no_wrapper                 = optional(bool),
+    write_metadata             = optional(bool),
   }))
   description = "The list of the push subscriptions."
   default     = []
@@ -67,12 +69,13 @@ variable "pull_subscriptions" {
   type = list(object({
     name                         = string,
     ack_deadline_seconds         = optional(number),
+    expiration_policy            = optional(string),
     dead_letter_topic            = optional(string),
     max_delivery_attempts        = optional(number),
     retain_acked_messages        = optional(bool),
     message_retention_duration   = optional(string),
-    maximum_backoff              = optional(number),
-    minimum_backoff              = optional(number),
+    maximum_backoff              = optional(string),
+    minimum_backoff              = optional(string),
     filter                       = optional(string),
     enable_message_ordering      = optional(bool),
     service_account              = optional(string),
@@ -97,6 +100,7 @@ variable "bigquery_subscriptions" {
     expiration_policy          = optional(string),
     filter                     = optional(string),
     dead_letter_topic          = optional(string),
+    max_delivery_attempts      = optional(number),
     maximum_backoff            = optional(string),
     minimum_backoff            = optional(string)
   }))
@@ -124,6 +128,7 @@ variable "cloud_storage_subscriptions" {
     expiration_policy          = optional(string),
     filter                     = optional(string),
     dead_letter_topic          = optional(string),
+    max_delivery_attempts      = optional(number),
     maximum_backoff            = optional(string),
     minimum_backoff            = optional(string)
   }))

@@ -7,6 +7,60 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [8.1.2](https://github.com/terraform-google-modules/terraform-google-pubsub/compare/v8.1.1...v8.1.2) (2025-04-01)
+
+
+### Features
+
+* Add missing attribute no_wrapper option to push subscription ([#249](https://github.com/terraform-google-modules/terraform-google-pubsub/issues/249)) ([295df92](https://github.com/terraform-google-modules/terraform-google-pubsub/commit/295df925d7d5b80c47c483836189563a9d4baee5))
+
+## [8.1.1](https://github.com/terraform-google-modules/terraform-google-pubsub/compare/v8.1.0...v8.1.1) (2025-03-20)
+
+
+### Bug Fixes
+
+* Update metadata to remove connection with bigquery ([#248](https://github.com/terraform-google-modules/terraform-google-pubsub/issues/248)) ([c29d2d5](https://github.com/terraform-google-modules/terraform-google-pubsub/commit/c29d2d538d562ba1acf6ac06898781f08904d0ff))
+
+## [8.1.0](https://github.com/terraform-google-modules/terraform-google-pubsub/compare/v8.0.1...v8.1.0) (2025-03-18)
+
+
+### Features
+
+* Add missing attribute to bigquery subscription and cloud storage subscription variables ([#238](https://github.com/terraform-google-modules/terraform-google-pubsub/issues/238)) ([ce061a0](https://github.com/terraform-google-modules/terraform-google-pubsub/commit/ce061a0b0651e1d85d09c13d4471cb94e29c2a17))
+* add new output variable env_vars ([#241](https://github.com/terraform-google-modules/terraform-google-pubsub/issues/241)) ([9afa4af](https://github.com/terraform-google-modules/terraform-google-pubsub/commit/9afa4af690e59f877b2dd48fb07203b95c416f89))
+* Add submodules for pub and sub ([#234](https://github.com/terraform-google-modules/terraform-google-pubsub/issues/234)) ([0e44fc6](https://github.com/terraform-google-modules/terraform-google-pubsub/commit/0e44fc67a302abb3b266e136e7f0f1c44b4987cd))
+
+
+### Bug Fixes
+
+* re-enable expiration_policy for pull subscription, fix push subscription generation with empty expiration_policy ([#232](https://github.com/terraform-google-modules/terraform-google-pubsub/issues/232)) ([5f793ad](https://github.com/terraform-google-modules/terraform-google-pubsub/commit/5f793added4f1cbf1d9184f6a3273b581f281a91))
+
+## [8.0.1](https://github.com/terraform-google-modules/terraform-google-pubsub/compare/v8.0.0...v8.0.1) (2025-03-10)
+
+
+### Bug Fixes
+
+* use string for maximum_backoff and minimum_backoff for pull subscriptions ([#229](https://github.com/terraform-google-modules/terraform-google-pubsub/issues/229)) ([e4eea2a](https://github.com/terraform-google-modules/terraform-google-pubsub/commit/e4eea2a57917ce652a52de8fb831a138f99d016d))
+
+## [8.0.0](https://github.com/terraform-google-modules/terraform-google-pubsub/compare/v7.0.0...v8.0.0) (2025-03-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* **TPG>=6.2:** add cloud storage max_messages and use_topic_schema support ([#204](https://github.com/terraform-google-modules/terraform-google-pubsub/issues/204))
+
+### Features
+
+* **TPG>=6.2:** add cloud storage max_messages and use_topic_schema support ([#204](https://github.com/terraform-google-modules/terraform-google-pubsub/issues/204)) ([bc66597](https://github.com/terraform-google-modules/terraform-google-pubsub/commit/bc66597a04fcdd819b9b42bb2ec5cbec3d151524))
+
+
+### Bug Fixes
+
+* **deps:** bump TF v1.3+ ([#212](https://github.com/terraform-google-modules/terraform-google-pubsub/issues/212)) ([70bf8b1](https://github.com/terraform-google-modules/terraform-google-pubsub/commit/70bf8b1bfc4bc7abde78cf13f5a0ced0b51e0cfa))
+* migrate bigquery_subscription and cloud_storage_subscription variables to objects ([#222](https://github.com/terraform-google-modules/terraform-google-pubsub/issues/222)) ([8b06b62](https://github.com/terraform-google-modules/terraform-google-pubsub/commit/8b06b62d0c656160f620ffbff124ff62d228a85b))
+* migrate pull_subscriptions and push_subscriptions to object lists ([#224](https://github.com/terraform-google-modules/terraform-google-pubsub/issues/224)) ([f239247](https://github.com/terraform-google-modules/terraform-google-pubsub/commit/f23924757405313c452a9bd94f888a09b1093636))
+* return bigquery subscription use_topic_schema variable default value back to false ([#225](https://github.com/terraform-google-modules/terraform-google-pubsub/issues/225)) ([10b8b6b](https://github.com/terraform-google-modules/terraform-google-pubsub/commit/10b8b6bb723296b610bd6113d9c6f622bd6f64ed))
+
 ## [7.0.0](https://github.com/terraform-google-modules/terraform-google-pubsub/compare/v6.0.0...v7.0.0) (2024-09-13)
 
 

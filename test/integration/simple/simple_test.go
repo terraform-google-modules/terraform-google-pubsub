@@ -64,6 +64,11 @@ func TestSimple(t *testing.T) {
 		assert.Equal("", op.Get("pushConfig.oidcToken.serviceAccountEmail").String(), "has expected oidcToken.service_account_email")
 		assert.Equal("", op.Get("pushConfig.oidcToken.audience").String(), "has expected oidcToken.audience")
 
+		op = gcloud.Runf(t, "pubsub subscriptions describe pull2 --project=%s", projectId)
+		assert.Equal("600s", op.Get("retryPolicy.maximumBackoff").String(), "has expected maximum_backoff")
+		assert.Equal("10s", op.Get("retryPolicy.minimumBackoff").String(), "has expected minimum_backoff")
+		assert.Equal("1209600s", op.Get("expirationPolicy.ttl").String(), "has expected expiration_policy")
+
 		op = gcloud.Runf(t, "pubsub schemas describe example --project=%s", projectId)
 		assert.Equal(fmt.Sprintf("projects/%s/schemas/example", projectId), op.Get("name").String(), "has expected name")
 

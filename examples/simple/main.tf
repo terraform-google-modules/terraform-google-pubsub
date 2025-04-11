@@ -36,6 +36,12 @@ module "pubsub" {
       ack_deadline_seconds         = 10
       enable_exactly_once_delivery = true
     },
+    {
+      name              = "pull2"
+      minimum_backoff   = "10s"
+      maximum_backoff   = "600s"
+      expiration_policy = "1209600s" // two weeks
+    },
   ]
 
   push_subscriptions = [
@@ -45,6 +51,11 @@ module "pubsub" {
       x-goog-version       = "v1beta1"
       ack_deadline_seconds = 20
       expiration_policy    = "1209600s" // two weeks
+    },
+    {
+      name           = "push-default-expiration"
+      push_endpoint  = "https://${var.project_id}.appspot.com/"
+      x-goog-version = "v1beta1"
     },
   ]
 
