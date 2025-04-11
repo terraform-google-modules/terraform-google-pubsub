@@ -47,6 +47,8 @@ module "pubsub" {
       x-goog-version       = "v1beta1"
       ack_deadline_seconds = 20
       expiration_policy    = "1209600s" // two weeks
+      no_wrapper           = false
+      write_metadata       = false
     },
   ]
 
