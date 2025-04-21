@@ -42,6 +42,9 @@ spec:
         grant_bigquery_project_roles:
           name: grant_bigquery_project_roles
           title: Grant Bigquery Project Roles
+        grant_cloud_storage_project_roles:
+          name: grant_cloud_storage_project_roles
+          title: Grant Cloud Storage Project Roles
         grant_token_creator:
           name: grant_token_creator
           title: Grant Token Creator
