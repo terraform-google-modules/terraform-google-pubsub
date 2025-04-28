@@ -7,6 +7,19 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [8.2.0](https://github.com/terraform-google-modules/terraform-google-pubsub/compare/v8.1.2...v8.2.0) (2025-04-22)
+
+
+### Features
+
+* Add conditional storage iam binding ([#255](https://github.com/terraform-google-modules/terraform-google-pubsub/issues/255)) ([4fca125](https://github.com/terraform-google-modules/terraform-google-pubsub/commit/4fca125ba08508fa796ed7b64563c9534643c60b))
+* Adding bigquery connection ([#258](https://github.com/terraform-google-modules/terraform-google-pubsub/issues/258)) ([a521f4e](https://github.com/terraform-google-modules/terraform-google-pubsub/commit/a521f4e678dfc828fadb54a60661146da9a4ade1))
+
+
+### Bug Fixes
+
+* fixed topic regex to make it compatible with golang re2 ([#254](https://github.com/terraform-google-modules/terraform-google-pubsub/issues/254)) ([4e92a87](https://github.com/terraform-google-modules/terraform-google-pubsub/commit/4e92a870373df7323a1c7ab1ddad48b030e8b3f7))
+
 ## [8.1.2](https://github.com/terraform-google-modules/terraform-google-pubsub/compare/v8.1.1...v8.1.2) (2025-04-01)
 
 
