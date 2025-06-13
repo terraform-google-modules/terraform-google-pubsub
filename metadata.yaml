@@ -84,7 +84,7 @@ spec:
               enable_message_ordering    = optional(bool),
               no_wrapper                 = optional(bool),
               write_metadata             = optional(bool),
-              message_transforms         = optional(list(object(
+              message_transforms = optional(list(object(
                 {
                   disabled = optional(bool)
                   transform = object({
@@ -120,7 +120,7 @@ spec:
               enable_message_ordering      = optional(bool),
               service_account              = optional(string),
               enable_exactly_once_delivery = optional(bool),
-              message_transforms           = optional(list(object(
+              message_transforms = optional(list(object(
                 {
                   disabled = optional(bool)
                   transform = object({
@@ -164,7 +164,7 @@ spec:
               max_delivery_attempts      = optional(number),
               maximum_backoff            = optional(string),
               minimum_backoff            = optional(string),
-              message_transforms         = optional(list(object(
+              message_transforms = optional(list(object(
                 {
                   disabled = optional(bool)
                   transform = object({
@@ -208,7 +208,7 @@ spec:
               max_delivery_attempts      = optional(number),
               maximum_backoff            = optional(string),
               minimum_backoff            = optional(string),
-              message_transforms         = optional(list(object(
+              message_transforms = optional(list(object(
                 {
                   disabled = optional(bool)
                   transform = object({
@@ -262,6 +262,20 @@ spec:
               definition = string
               encoding   = string
             })
+      - name: topic_single_message_transforms
+        description: Single message transforms to apply to a topic
+        varType: |-
+          optional(list(object(
+                {
+                  disabled = optional(bool)
+                  transform = object({
+                    javascript_udf = optional(object({
+                      function_name = string
+                      code          = string
+                    }))
+                  })
+                }
+              )))
     outputs:
       - name: env_vars
         description: Map of pull subscription IDs, keyed by project_subscription name for environment variables.
