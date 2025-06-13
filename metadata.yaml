@@ -265,7 +265,7 @@ spec:
       - name: topic_single_message_transforms
         description: Single message transforms to apply to a topic
         varType: |-
-          optional(list(object(
+          list(object(
                 {
                   disabled = optional(bool)
                   transform = object({
@@ -275,7 +275,8 @@ spec:
                     }))
                   })
                 }
-              )))
+              ))
+        defaultValue: []
     outputs:
       - name: env_vars
         description: Map of pull subscription IDs, keyed by project_subscription name for environment variables.
