@@ -61,7 +61,7 @@ variable "push_subscriptions" {
     enable_message_ordering    = optional(bool),
     no_wrapper                 = optional(bool),
     write_metadata             = optional(bool),
-    message_transforms         = optional(list(object(
+    message_transforms = optional(list(object(
       {
         disabled = optional(bool)
         transform = object({
@@ -92,7 +92,7 @@ variable "pull_subscriptions" {
     enable_message_ordering      = optional(bool),
     service_account              = optional(string),
     enable_exactly_once_delivery = optional(bool),
-    message_transforms           = optional(list(object(
+    message_transforms = optional(list(object(
       {
         disabled = optional(bool)
         transform = object({
@@ -126,7 +126,7 @@ variable "bigquery_subscriptions" {
     max_delivery_attempts      = optional(number),
     maximum_backoff            = optional(string),
     minimum_backoff            = optional(string),
-    message_transforms         = optional(list(object(
+    message_transforms = optional(list(object(
       {
         disabled = optional(bool)
         transform = object({
@@ -165,7 +165,7 @@ variable "cloud_storage_subscriptions" {
     max_delivery_attempts      = optional(number),
     maximum_backoff            = optional(string),
     minimum_backoff            = optional(string),
-    message_transforms         = optional(list(object(
+    message_transforms = optional(list(object(
       {
         disabled = optional(bool)
         transform = object({
