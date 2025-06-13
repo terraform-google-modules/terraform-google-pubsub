@@ -41,6 +41,20 @@ variable "topic_labels" {
   default     = {}
 }
 
+variable "single_message_transform" {
+  type = object({
+    disabled = optional(bool)
+    transform = object({
+      javascript_udf = object({
+        function_name = string
+        code = string
+      })
+    })
+  })
+  description = "Single message transform to attach to a topic or subscription."
+  default = null
+}
+
 variable "push_subscriptions" {
   type = list(object({
     name                       = string,
@@ -59,7 +73,8 @@ variable "push_subscriptions" {
     filter                     = optional(string),
     enable_message_ordering    = optional(bool),
     no_wrapper                 = optional(bool),
-    write_metadata             = optional(bool)
+    write_metadata             = optional(bool),
+    message_transforms         = optional(list(message_transform.type))
   }))
   description = "The list of the push subscriptions."
   default     = []
@@ -189,16 +204,3 @@ variable "schema" {
   default     = null
 }
 
-variable "single_message_transform" {
-  type = object({
-    disabled = optional(bool)
-    transform = object({
-      javascript_udf = object({
-        function_name = string
-        code = string
-      })
-    })
-  })
-  description = "Single message transform to attach to a topic or subscription."
-  default = null
-}
