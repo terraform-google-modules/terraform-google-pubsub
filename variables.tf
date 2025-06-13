@@ -60,6 +60,7 @@ variable "push_subscriptions" {
     enable_message_ordering    = optional(bool),
     no_wrapper                 = optional(bool),
     write_metadata             = optional(bool),
+    message_transforms         = optional(list(message_transforms))
   }))
   description = "The list of the push subscriptions."
   default     = []
@@ -80,6 +81,7 @@ variable "pull_subscriptions" {
     enable_message_ordering      = optional(bool),
     service_account              = optional(string),
     enable_exactly_once_delivery = optional(bool),
+    message_transforms           = optional(list(message_transforms))
   }))
   description = "The list of the pull subscriptions."
   default     = []
@@ -102,7 +104,8 @@ variable "bigquery_subscriptions" {
     dead_letter_topic          = optional(string),
     max_delivery_attempts      = optional(number),
     maximum_backoff            = optional(string),
-    minimum_backoff            = optional(string)
+    minimum_backoff            = optional(string),
+    message_transforms         = optional(list(message_transforms))
   }))
   description = "The list of the Bigquery push subscriptions."
   default     = []
@@ -130,7 +133,8 @@ variable "cloud_storage_subscriptions" {
     dead_letter_topic          = optional(string),
     max_delivery_attempts      = optional(number),
     maximum_backoff            = optional(string),
-    minimum_backoff            = optional(string)
+    minimum_backoff            = optional(string),
+    message_transforms         = optional(list(message_transforms))
   }))
   description = "The list of the Cloud Storage push subscriptions."
   default     = []
@@ -187,4 +191,18 @@ variable "schema" {
   })
   description = "Schema for the topic."
   default     = null
+}
+
+variable "single_message_transform" {
+  type = object({
+    disabled = optional(bool)
+    transform = object({
+      javascript_udf = object({
+        function_name = string
+        code = string
+      })
+    })
+  })
+  description = "Single message transform to attach to a topic or subscription."
+  default = null
 }

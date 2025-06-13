@@ -164,6 +164,19 @@ resource "google_pubsub_topic" "topic" {
       encoding = lookup(schema_settings.value, "encoding", null)
     }
   }
+
+  dynamic "message_transforms" {
+    for_each = each.value.message_transforms != null ? [each.value.message_transforms] : []
+
+    content {
+      disabled = each.value.message_transforms.disabled
+      javascript_udf {
+        function_name = each.value.message_transforms.transform.javascript_udf.function_name
+        code = each.value.message_transforms.transform.javascript_udf.code
+      }
+    }
+  }
+
   depends_on = [google_pubsub_schema.schema]
 }
 
@@ -226,6 +239,19 @@ resource "google_pubsub_subscription" "push_subscriptions" {
       }
     }
   }
+
+  dynamic "message_transforms" {
+    for_each = each.value.message_transforms != null ? [each.value.message_transforms] : []
+
+    content {
+      disabled = each.value.message_transforms.disabled
+      javascript_udf {
+        function_name = each.value.message_transforms.transform.javascript_udf.function_name
+        code = each.value.message_transforms.transform.javascript_udf.code
+      }
+    }
+  }
+
   depends_on = [
     google_pubsub_topic.topic,
   ]
@@ -265,6 +291,18 @@ resource "google_pubsub_subscription" "pull_subscriptions" {
     content {
       maximum_backoff = each.value.maximum_backoff != null ? each.value.maximum_backoff : ""
       minimum_backoff = each.value.minimum_backoff != null ? each.value.minimum_backoff : "5"
+    }
+  }
+
+  dynamic "message_transforms" {
+    for_each = each.value.message_transforms != null ? [each.value.message_transforms] : []
+
+    content {
+      disabled = each.value.message_transforms.disabled
+      javascript_udf {
+        function_name = each.value.message_transforms.transform.javascript_udf.function_name
+        code = each.value.message_transforms.transform.javascript_udf.code
+      }
     }
   }
 
@@ -315,6 +353,18 @@ resource "google_pubsub_subscription" "bigquery_subscriptions" {
     use_table_schema    = each.value.use_table_schema != null ? each.value.use_table_schema : false
     write_metadata      = each.value.write_metadata != null ? each.value.write_metadata : false
     drop_unknown_fields = each.value.drop_unknown_fields != null ? each.value.drop_unknown_fields : false
+  }
+
+  dynamic "message_transforms" {
+    for_each = each.value.message_transforms != null ? [each.value.message_transforms] : []
+
+    content {
+      disabled = each.value.message_transforms.disabled
+      javascript_udf {
+        function_name = each.value.message_transforms.transform.javascript_udf.function_name
+        code = each.value.message_transforms.transform.javascript_udf.code
+      }
+    }
   }
 
   depends_on = [
@@ -373,6 +423,18 @@ resource "google_pubsub_subscription" "cloud_storage_subscriptions" {
       content {
         write_metadata   = each.value.write_metadata
         use_topic_schema = each.value.use_topic_schema
+      }
+    }
+  }
+
+  dynamic "message_transforms" {
+    for_each = each.value.message_transforms != null ? [each.value.message_transforms] : []
+
+    content {
+      disabled = each.value.message_transforms.disabled
+      javascript_udf {
+        function_name = each.value.message_transforms.transform.javascript_udf.function_name
+        code = each.value.message_transforms.transform.javascript_udf.code
       }
     }
   }
