@@ -236,17 +236,17 @@ variable "schema" {
 
 variable "topic_single_message_transforms" {
   type = list(object(
-      {
-        disabled = optional(bool)
-        transform = object({
-          javascript_udf = optional(object({
-            function_name = string
-            code          = string
-          }))
-        })
-      }
-    ))
+    {
+      disabled = optional(bool)
+      transform = object({
+        javascript_udf = optional(object({
+          function_name = string
+          code          = string
+        }))
+      })
+    }
+  ))
   description = "Single message transforms to apply to a topic"
-  default = []
+  default     = []
 }
 
