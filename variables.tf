@@ -65,10 +65,10 @@ variable "push_subscriptions" {
       {
         disabled = optional(bool)
         transform = object({
-          javascript_udf = object({
+          javascript_udf = optional(object({
             function_name = string
             code          = string
-          })
+          }))
         })
       }
     )))
@@ -92,14 +92,14 @@ variable "pull_subscriptions" {
     enable_message_ordering      = optional(bool),
     service_account              = optional(string),
     enable_exactly_once_delivery = optional(bool),
-    message_transforms         = optional(list(object(
+    message_transforms           = optional(list(object(
       {
         disabled = optional(bool)
         transform = object({
-          javascript_udf = object({
+          javascript_udf = optional(object({
             function_name = string
             code          = string
-          })
+          }))
         })
       }
     )))
@@ -130,10 +130,10 @@ variable "bigquery_subscriptions" {
       {
         disabled = optional(bool)
         transform = object({
-          javascript_udf = object({
+          javascript_udf = optional(object({
             function_name = string
             code          = string
-          })
+          }))
         })
       }
     )))
@@ -169,10 +169,10 @@ variable "cloud_storage_subscriptions" {
       {
         disabled = optional(bool)
         transform = object({
-          javascript_udf = object({
+          javascript_udf = optional(object({
             function_name = string
             code          = string
-          })
+          }))
         })
       }
     )))

@@ -172,7 +172,7 @@ resource "google_pubsub_topic" "topic" {
       disabled = each.value.message_transforms.disabled
       javascript_udf {
         function_name = each.value.message_transforms.transform.javascript_udf.function_name
-        code = each.value.message_transforms.transform.javascript_udf.code
+        code          = each.value.message_transforms.transform.javascript_udf.code
       }
     }
   }
@@ -247,7 +247,7 @@ resource "google_pubsub_subscription" "push_subscriptions" {
       disabled = each.value.message_transforms.disabled
       javascript_udf {
         function_name = each.value.message_transforms.transform.javascript_udf.function_name
-        code = each.value.message_transforms.transform.javascript_udf.code
+        code          = each.value.message_transforms.transform.javascript_udf.code
       }
     }
   }
@@ -301,7 +301,7 @@ resource "google_pubsub_subscription" "pull_subscriptions" {
       disabled = each.value.message_transforms.disabled
       javascript_udf {
         function_name = each.value.message_transforms.transform.javascript_udf.function_name
-        code = each.value.message_transforms.transform.javascript_udf.code
+        code          = each.value.message_transforms.transform.javascript_udf.code
       }
     }
   }
@@ -362,7 +362,7 @@ resource "google_pubsub_subscription" "bigquery_subscriptions" {
       disabled = each.value.message_transforms.disabled
       javascript_udf {
         function_name = each.value.message_transforms.transform.javascript_udf.function_name
-        code = each.value.message_transforms.transform.javascript_udf.code
+        code          = each.value.message_transforms.transform.javascript_udf.code
       }
     }
   }
@@ -434,7 +434,7 @@ resource "google_pubsub_subscription" "cloud_storage_subscriptions" {
       disabled = each.value.message_transforms.disabled
       javascript_udf {
         function_name = each.value.message_transforms.transform.javascript_udf.function_name
-        code = each.value.message_transforms.transform.javascript_udf.code
+        code          = each.value.message_transforms.transform.javascript_udf.code
       }
     }
   }
