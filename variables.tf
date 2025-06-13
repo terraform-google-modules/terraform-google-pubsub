@@ -235,7 +235,7 @@ variable "schema" {
 }
 
 variable "topic_single_message_transforms" {
-  type = optional(list(object(
+  type = list(object(
       {
         disabled = optional(bool)
         transform = object({
@@ -245,8 +245,8 @@ variable "topic_single_message_transforms" {
           }))
         })
       }
-    )))
+    ))
   description = "Single message transforms to apply to a topic"
-  default = null
+  default = []
 }
 
