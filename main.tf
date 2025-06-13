@@ -166,13 +166,12 @@ resource "google_pubsub_topic" "topic" {
   }
 
   dynamic "message_transforms" {
-    for_each = each.value.message_transforms != null ? [each.value.message_transforms] : []
-
+    for_each = var.topic_single_message_transforms
     content {
-      disabled = each.value.message_transforms.disabled
+      disabled = each.value.disabled
       javascript_udf {
-        function_name = each.value.message_transforms.transform.javascript_udf.function_name
-        code          = each.value.message_transforms.transform.javascript_udf.code
+        function_name = each.value.transform.javascript_udf.function_name
+        code          = each.valuetransform.javascript_udf.code
       }
     }
   }
