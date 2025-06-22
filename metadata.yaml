@@ -266,16 +266,16 @@ spec:
         description: Single message transforms to apply to a topic
         varType: |-
           list(object(
-                {
-                  disabled = optional(bool)
-                  transform = object({
-                    javascript_udf = optional(object({
-                      function_name = string
-                      code          = string
-                    }))
-                  })
-                }
-              ))
+              {
+                disabled = optional(bool)
+                transform = object({
+                  javascript_udf = optional(object({
+                    function_name = string
+                    code          = string
+                  }))
+                })
+              }
+            ))
         defaultValue: []
     outputs:
       - name: env_vars

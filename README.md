@@ -101,7 +101,7 @@ module "pubsub" {
 | topic\_kms\_key\_name | The resource name of the Cloud KMS CryptoKey to be used to protect access to messages published on this topic. | `string` | `null` | no |
 | topic\_labels | A map of labels to assign to the Pub/Sub topic. | `map(string)` | `{}` | no |
 | topic\_message\_retention\_duration | The minimum duration in seconds to retain a message after it is published to the topic. | `string` | `null` | no |
-| topic\_single\_message\_transforms | Single message transforms to apply to a topic | <pre>list(object(<br>      {<br>        disabled = optional(bool)<br>        transform = object({<br>          javascript_udf = optional(object({<br>            function_name = string<br>            code          = string<br>          }))<br>        })<br>      }<br>    ))</pre> | `[]` | no |
+| topic\_single\_message\_transforms | Single message transforms to apply to a topic | <pre>list(object(<br>    {<br>      disabled = optional(bool)<br>      transform = object({<br>        javascript_udf = optional(object({<br>          function_name = string<br>          code          = string<br>        }))<br>      })<br>    }<br>  ))</pre> | `[]` | no |
 
 ## Outputs
 
