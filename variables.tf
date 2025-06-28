@@ -188,3 +188,9 @@ variable "schema" {
   description = "Schema for the topic."
   default     = null
 }
+
+variable "topic_publishers" {
+  type        = list(string)
+  description = "List of more members that can publish message to topic"
+  default     = []
+}

@@ -80,6 +80,9 @@ spec:
         topic_message_retention_duration:
           name: topic_message_retention_duration
           title: Topic Message Retention Duration
+        topic_publishers:
+          name: topic_publishers
+          title: Topic Publishers
     runtime:
       outputs:
         service_uri:
