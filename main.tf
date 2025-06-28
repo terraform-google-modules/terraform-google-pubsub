@@ -98,6 +98,19 @@ resource "google_pubsub_topic_iam_member" "bigquery_topic_binding" {
   ]
 }
 
+resource "google_pubsub_topic_iam_member" "topic_publishers" {
+  for_each = { for i in var.topic_publishers : i => i }
+
+  project = var.project_id
+  topic   = google_pubsub_topic.topic[0].id
+  role    = "roles/pubsub.publisher"
+  member  = each.value
+  depends_on = [
+    google_pubsub_topic.topic,
+  ]
+}
+
+
 resource "google_pubsub_subscription_iam_member" "pull_subscription_binding" {
   for_each = var.create_subscriptions ? { for i in var.pull_subscriptions : i.name => i if i.dead_letter_topic != null } : {}
 
