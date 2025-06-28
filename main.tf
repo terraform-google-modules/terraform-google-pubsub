@@ -98,8 +98,8 @@ resource "google_pubsub_topic_iam_member" "bigquery_topic_binding" {
   ]
 }
 
-resource "google_pubsub_topic_iam_member" "topic_publishers" {
-  for_each = { for i in var.topic_publishers : i => i }
+resource "google_pubsub_topic_iam_member" "topic_publishers_binding" {
+  for_each = var.create_topic ? { for i in var.topic_publishers : i => i } : {}
 
   project = var.project_id
   topic   = google_pubsub_topic.topic[0].id
