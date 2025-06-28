@@ -142,6 +142,18 @@ resource "google_pubsub_subscription_iam_member" "bigquery_subscription_binding"
   ]
 }
 
+resource "google_pubsub_topic_iam_member" "topic_publishers_binding" {
+  for_each = var.create_topic ? { for i in var.topic_publishers : i => i } : {}
+
+  project = var.project_id
+  topic   = google_pubsub_topic.topic[0].id
+  role    = "roles/pubsub.publisher"
+  member  = each.value
+  depends_on = [
+    google_pubsub_topic.topic,
+  ]
+}
+
 resource "google_pubsub_topic" "topic" {
   count                      = var.create_topic ? 1 : 0
   project                    = var.project_id
