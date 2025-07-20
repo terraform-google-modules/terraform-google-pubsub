@@ -14,6 +14,18 @@
  * limitations under the License.
  */
 
+locals {
+  per_module_services = {
+    root = [
+      "cloudresourcemanager.googleapis.com",
+      "pubsub.googleapis.com",
+      "serviceusage.googleapis.com",
+      "bigquery.googleapis.com",
+      "storage.googleapis.com"
+    ]
+  }
+}
+
 module "project-ci-int-pubsub" {
   source  = "terraform-google-modules/project-factory/google"
   version = "~> 18.0"
@@ -24,11 +36,5 @@ module "project-ci-int-pubsub" {
   folder_id         = var.folder_id
   billing_account   = var.billing_account
 
-  activate_apis = [
-    "cloudresourcemanager.googleapis.com",
-    "pubsub.googleapis.com",
-    "serviceusage.googleapis.com",
-    "bigquery.googleapis.com",
-    "storage.googleapis.com"
-  ]
+  activate_apis = tolist(toset(flatten(values(local.per_module_services))))
 }
