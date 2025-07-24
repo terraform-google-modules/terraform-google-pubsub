@@ -15,12 +15,16 @@
  */
 
 locals {
-  int_required_roles = [
-    "roles/pubsub.admin",
-    "roles/resourcemanager.projectIamAdmin",
-    "roles/bigquery.admin",
-    "roles/storage.admin"
-  ]
+  per_module_roles = {
+    root = [
+      "roles/pubsub.admin",
+      "roles/resourcemanager.projectIamAdmin",
+      "roles/bigquery.admin",
+      "roles/storage.admin"
+    ]
+  }
+
+  int_required_roles = tolist(toset(flatten(values(local.per_module_roles))))
 }
 
 resource "random_id" "random_suffix" {
