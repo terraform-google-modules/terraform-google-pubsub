@@ -39,7 +39,7 @@ spec:
             table:
               name: table
               title: Bigquery Table
-              regexValidation: ^[a-z][a-z0-9-]{4,28}[a-z0-9]\.[a-zA-Z0-9_]{1,1000}[a-zA-Z0-9_]{0,24}\.[a-zA-Z0-9_]{1,1000}[a-zA-Z0-9_]{0,24}$ 
+              regexValidation: ^[a-z][a-z0-9-]{4,28}[a-z0-9]\.[a-zA-Z0-9_]{1,1000}[a-zA-Z0-9_]{0,24}\.[a-zA-Z0-9_]{1,1000}[a-zA-Z0-9_]{0,24}$
               validation: BigQuery table name must be a full resource path in the format {projectId}.{datasetId}.{tableId}.
             dead_letter_topic:
               name: dead_letter_topic
