@@ -1,8 +1,3 @@
-module "airship-providers" {
-  # version control of the various providers
-  source = "github.com/urbanairship/tf-modules-providers?ref=v1"
-}
-
 data "google_project" "project" {
   project_id = var.project_id
 }
@@ -47,7 +42,7 @@ resource "google_pubsub_topic" "topic" {
 }
 
 resource "google_pubsub_subscription" "push_subscriptions" {
-  for_each = var.create_subscriptions ? {for i in var.push_subscriptions : i.subscription_details.name => i} : {}
+  for_each = var.create_subscriptions ? { for i in var.push_subscriptions : i.subscription_details.name => i } : {}
 
   name    = each.value.subscription_details.name
   topic   = var.create_topic ? google_pubsub_topic.topic.0.name : var.topic
@@ -127,12 +122,12 @@ resource "google_pubsub_subscription" "push_subscriptions" {
 }
 
 resource "google_pubsub_subscription" "pull_subscriptions" {
-  for_each = var.create_subscriptions ? {for i in var.pull_subscriptions : i.subscription_details.name => i} : {}
+  for_each = var.create_subscriptions ? { for i in var.pull_subscriptions : i.subscription_details.name => i } : {}
 
-  name                         = each.value.subscription_details.name
-  topic                        = var.create_topic ? google_pubsub_topic.topic.0.name : var.topic
-  project                      = var.project_id
-  labels                       = merge(local.default_subscription_label, each.value.subscription_labels)
+  name    = each.value.subscription_details.name
+  topic   = var.create_topic ? google_pubsub_topic.topic.0.name : var.topic
+  project = var.project_id
+  labels  = merge(local.default_subscription_label, each.value.subscription_labels)
   enable_exactly_once_delivery = lookup(
     each.value.subscription_details,
     "enable_exactly_once_delivery",
@@ -199,25 +194,25 @@ resource "google_pubsub_subscription" "pull_subscriptions" {
 }
 
 resource "google_pubsub_subscription_iam_member" "pull_subscription_sa_binding_subscriber" {
-  for_each = var.create_subscriptions ? {for i in var.pull_subscriptions : i.subscription_details.name => i if lookup(i, "service_account", null) != null} : {}
+  for_each = var.create_subscriptions ? { for i in var.pull_subscriptions : i.subscription_details.name => i if lookup(i, "service_account", null) != null } : {}
 
   project      = var.project_id
   subscription = each.value.subscription_details.name
   role         = "roles/pubsub.subscriber"
   member       = "serviceAccount:${each.value.subscription_details.service_account}"
-  depends_on   = [
+  depends_on = [
     google_pubsub_subscription.pull_subscriptions,
   ]
 }
 
 resource "google_pubsub_subscription_iam_member" "pull_subscription_sa_binding_viewer" {
-  for_each = var.create_subscriptions ? {for i in var.pull_subscriptions : i.subscription_details.name => i if lookup(i, "service_account", null) != null} : {}
+  for_each = var.create_subscriptions ? { for i in var.pull_subscriptions : i.subscription_details.name => i if lookup(i, "service_account", null) != null } : {}
 
   project      = var.project_id
   subscription = each.value.subscription_details.name
   role         = "roles/pubsub.viewer"
   member       = "serviceAccount:${each.value.subscription_details.service_account}"
-  depends_on   = [
+  depends_on = [
     google_pubsub_subscription.pull_subscriptions,
   ]
 }
