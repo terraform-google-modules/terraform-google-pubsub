@@ -39,17 +39,17 @@ spec:
             table:
               name: table
               title: Bigquery Table
-              regexValidation: "^[a-z][a-z0-9-]{4,28}[a-z0-9]\\.[a-zA-Z0-9_]{1,1000}[a-zA-Z0-9_]{0,24}\\.[a-zA-Z0-9_]{1,1000}[a-zA-Z0-9_]{0,24}$"
+              regexValidation: "^[a-z][a-z0-9-]{4,28}[a-z0-9].[a-zA-Z0-9_]{1,1000}[a-zA-Z0-9_]{0,24}.[a-zA-Z0-9_]{1,1000}[a-zA-Z0-9_]{0,24}$"
               validation: BigQuery table name must be a full resource path in the format {projectId}.{datasetId}.{tableId}.
             dead_letter_topic:
               name: dead_letter_topic
               title: Dead Letter Topic
-              regexValidation: "^projects/([a-z][a-z0-9-]{4,28}[a-z0-9])/topics/([a-z0-9\\-._~%+]{1,255})$"
+              regexValidation: "^projects/([a-z][a-z0-9-]{4,28}[a-z0-9])/topics/([a-z0-9-._~%+]{1,255})$"
               validation: "ID must start with a letter, and contain only the following characters: letters, numbers, dashes (-), periods (.), underscores (_), tildes (~), percents (%) or plus signs (+). Cannot start with goog. ID must be at most 255 characters long."
             filter:
               name: filter
               title: Filter
-              regexValidation: "^(?:NOT[[:space:]]+)?(?:attributes\\.[a-zA-Z_]+(?:[a-zA-Z0-9_]*)[[:space:]]*=[[:space:]]*\\\".*?\\\"|hasPrefix\\(attributes\\.[a-zA-Z_]+(?:[a-zA-Z0-9_]*),[[:space:]]*\\\".*?\\\"\\))(?:[[:space:]]+(?:AND|OR)[[:space:]]+(?:NOT[[:space:]]+)?(?:attributes\\.[a-zA-Z_]+(?:[a-zA-Z0-9_]*)[[:space:]]*=[[:space:]]*\\\".*?\\\"|hasPrefix\\(attributes\\.[a-zA-Z_]+(?:[a-zA-Z0-9_]*),[[:space:]]*\\\".*?\\\"\\)))*$"
+              regexValidation: '^(?:NOT[[:space:]]+)?(?:attributes.[a-zA-Z_]+(?:[a-zA-Z0-9_]*)[[:space:]]*=[[:space:]]*".*?"|hasPrefix(attributes.[a-zA-Z_]+(?:[a-zA-Z0-9_]*),[[:space:]]*".*?"))(?:[[:space:]]+(?:AND|OR)[[:space:]]+(?:NOT[[:space:]]+)?(?:attributes.[a-zA-Z_]+(?:[a-zA-Z0-9_]*)[[:space:]]*=[[:space:]]*".*?"|hasPrefix(attributes.[a-zA-Z_]+(?:[a-zA-Z0-9_]*),[[:space:]]*".*?")))*$'
               validation: "Filter expressions must be a string containing one or more expressions with the format: 'attribute_name = \"string\"' combined with AND/OR. For example, 'attributes.key1 = \"value1\" AND attributes.key2 = \"value2\"'."
         cloud_storage_subscriptions:
           name: cloud_storage_subscriptions
