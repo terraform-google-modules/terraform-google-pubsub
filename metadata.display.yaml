@@ -46,11 +46,6 @@ spec:
               title: Dead Letter Topic
               regexValidation: "^projects/([a-z][a-z0-9-]{4,28}[a-z0-9])/topics/([a-z0-9-._~%+]{1,255})$"
               validation: "ID must start with a letter, and contain only the following characters: letters, numbers, dashes (-), periods (.), underscores (_), tildes (~), percents (%) or plus signs (+). Cannot start with goog. ID must be at most 255 characters long."
-            filter:
-              name: filter
-              title: Filter
-              regexValidation: '^(?:NOT[[:space:]]+)?(?:attributes.[a-zA-Z_]+(?:[a-zA-Z0-9_]*)[[:space:]]*=[[:space:]]*".*?"|hasPrefix(attributes.[a-zA-Z_]+(?:[a-zA-Z0-9_]*),[[:space:]]*".*?"))(?:[[:space:]]+(?:AND|OR)[[:space:]]+(?:NOT[[:space:]]+)?(?:attributes.[a-zA-Z_]+(?:[a-zA-Z0-9_]*)[[:space:]]*=[[:space:]]*".*?"|hasPrefix(attributes.[a-zA-Z_]+(?:[a-zA-Z0-9_]*),[[:space:]]*".*?")))*$'
-              validation: "Filter expressions must be a string containing one or more expressions with the format: 'attribute_name = \"string\"' combined with AND/OR. For example, 'attributes.key1 = \"value1\" AND attributes.key2 = \"value2\"'."
         cloud_storage_subscriptions:
           name: cloud_storage_subscriptions
           title: Cloud Storage Subscriptions
@@ -70,11 +65,6 @@ spec:
               title: Dead Letter Topic
               regexValidation: "^projects/([a-z][a-z0-9-]{4,28}[a-z0-9])/topics/([a-z0-9\\-._~%+]{1,255})$"
               validation: "ID must start with a letter, and contain only the following characters: letters, numbers, dashes (-), periods (.), underscores (_), tildes (~), percents (%) or plus signs (+). Cannot start with goog. ID must be at most 255 characters long."
-            filter:
-              name: filter
-              title: Filter
-              regexValidation: "^(?:NOT[[:space:]]+)?(?:attributes\\.[a-zA-Z_]+(?:[a-zA-Z0-9_]*)[[:space:]]*=[[:space:]]*\\\".*?\\\"|hasPrefix\\(attributes\\.[a-zA-Z_]+(?:[a-zA-Z0-9_]*),[[:space:]]*\\\".*?\\\"\\))(?:[[:space:]]+(?:AND|OR)[[:space:]]+(?:NOT[[:space:]]+)?(?:attributes\\.[a-zA-Z_]+(?:[a-zA-Z0-9_]*)[[:space:]]*=[[:space:]]*\\\".*?\\\"|hasPrefix\\(attributes\\.[a-zA-Z_]+(?:[a-zA-Z0-9_]*),[[:space:]]*\\\".*?\\\"\\)))*$"
-              validation: "Filter expressions must be a string containing one or more expressions with the format: 'attribute_name = \"string\"' combined with AND/OR. For example, 'attributes.key1 = \"value1\" AND attributes.key2 = \"value2\"'."
         create_subscriptions:
           name: create_subscriptions
           title: Create Subscriptions
@@ -110,11 +100,6 @@ spec:
               title: Dead Letter Topic
               regexValidation: "^projects/([a-z][a-z0-9-]{4,28}[a-z0-9])/topics/([a-z0-9\\-._~%+]{1,255})$"
               validation: "ID must start with a letter, and contain only the following characters: letters, numbers, dashes (-), periods (.), underscores (_), tildes (~), percents (%) or plus signs (+). Cannot start with goog. ID must be at most 255 characters long."
-            filter:
-              name: filter
-              title: Filter
-              regexValidation: "^(?:NOT[[:space:]]+)?(?:attributes\\.[a-zA-Z_]+(?:[a-zA-Z0-9_]*)[[:space:]]*=[[:space:]]*\\\".*?\\\"|hasPrefix\\(attributes\\.[a-zA-Z_]+(?:[a-zA-Z0-9_]*),[[:space:]]*\\\".*?\\\"\\))(?:[[:space:]]+(?:AND|OR)[[:space:]]+(?:NOT[[:space:]]+)?(?:attributes\\.[a-zA-Z_]+(?:[a-zA-Z0-9_]*)[[:space:]]*=[[:space:]]*\\\".*?\\\"|hasPrefix\\(attributes\\.[a-zA-Z_]+(?:[a-zA-Z0-9_]*),[[:space:]]*\\\".*?\\\"\\)))*$"
-              validation: "Filter expressions must be a string containing one or more expressions with the format: 'attribute_name = \"string\"' combined with AND/OR. For example, 'attributes.key1 = \"value1\" AND attributes.key2 = \"value2\"'."
             service_account:
               name: service_account
               title: Service Account
@@ -144,11 +129,6 @@ spec:
               title: OIDC Service Account Email
               regexValidation: "^[a-z][a-z0-9-]{4,28}[a-z0-9]@[a-z][a-z0-9-]{4,28}[a-z0-9]\\.iam\\.gserviceaccount\\.com$"
               validation: "OIDC service account email must be a valid email address in the format: SA_NAME@PROJECT_ID.iam.gserviceaccount.com."
-            filter:
-              name: filter
-              title: Filter
-              regexValidation: "^(?:NOT[[:space:]]+)?(?:attributes\\.[a-zA-Z_]+(?:[a-zA-Z0-9_]*)[[:space:]]*=[[:space:]]*\\\".*?\\\"|hasPrefix\\(attributes\\.[a-zA-Z_]+(?:[a-zA-Z0-9_]*),[[:space:]]*\\\".*?\\\"\\))(?:[[:space:]]+(?:AND|OR)[[:space:]]+(?:NOT[[:space:]]+)?(?:attributes\\.[a-zA-Z_]+(?:[a-zA-Z0-9_]*)[[:space:]]*=[[:space:]]*\\\".*?\\\"|hasPrefix\\(attributes\\.[a-zA-Z_]+(?:[a-zA-Z0-9_]*),[[:space:]]*\\\".*?\\\"\\)))*$"
-              validation: "Filter expressions must be a string containing one or more expressions with the format: 'attribute_name = \"string\"' combined with AND/OR. For example, 'attributes.key1 = \"value1\" AND attributes.key2 = \"value2\"'."
         schema:
           name: schema
           title: Schema
