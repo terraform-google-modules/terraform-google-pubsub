@@ -33,12 +33,12 @@ spec:
           properties:
             name:
               name: name
-              title: Subscription Name
+              title: Name
               regexValidation: ^[a-z][a-z0-9-]{1,253}[a-z0-9]$
               validation: Subscription name must start with a lowercase letter, be between 3 and 255 characters, and contain only lowercase letters, numbers, and hyphens.
             table:
               name: table
-              title: Bigquery Table
+              title: Table
               regexValidation: "^[a-z][a-z0-9-]{4,28}[a-z0-9]\\.[a-zA-Z0-9_]{1,1000}[a-zA-Z0-9_]{0,24}\\.[a-zA-Z0-9_]{1,1000}[a-zA-Z0-9_]{0,24}$"
               validation: BigQuery table name must be a full resource path in the format {projectId}.{datasetId}.{tableId}.
             dead_letter_topic:
@@ -57,7 +57,7 @@ spec:
               validation: Subscription name must start with a lowercase letter, be between 3 and 255 characters, and contain only lowercase letters, numbers, and hyphens.
             bucket:
               name: bucket
-              title: GCS Bucket
+              title: Bucket
               regexValidation: "^[a-z0-9][a-z0-9\\._-]{1,61}[a-z0-9]$"
               validation: Bucket name must start and end with a lowercase letter or number, contain between 3 and 63 characters, and contain only lowercase letters, numbers, dashes, underscores, and dots.
             dead_letter_topic:
@@ -92,7 +92,7 @@ spec:
           properties:
             name:
               name: name
-              title: Subscription Name
+              title: Name
               regexValidation: ^[a-z][a-z0-9-]{1,253}[a-z0-9]$
               validation: Subscription name must start with a lowercase letter, be between 3 and 255 characters, and contain only lowercase letters, numbers, and hyphens.
             dead_letter_topic:
@@ -111,7 +111,7 @@ spec:
           properties:
             name:
               name: name
-              title: Subscription Name
+              title: Name
               regexValidation: ^[a-z][a-z0-9-]{1,253}[a-z0-9]$
               validation: Subscription name must start with a lowercase letter, be between 3 and 255 characters, and contain only lowercase letters, numbers, and hyphens.
             push_endpoint:
@@ -135,12 +135,12 @@ spec:
           properties:
             name:
               name: name
-              title: Schema Name
+              title: Name
               regexValidation: ^[a-z][a-z0-9-]{1,253}[a-z0-9]$
               validation: Schema name must start with a lowercase letter, be between 3 and 255 characters, and contain only lowercase letters, numbers, and hyphens.
             type:
               name: type
-              title: Schema Type
+              title: Type
               enumValueLabels:
                 - label: TYPE_UNSPECIFIED
                   value: TYPE_UNSPECIFIED
@@ -150,7 +150,7 @@ spec:
                   value: AVRO
             encoding:
               name: encoding
-              title: Schema Encoding
+              title: Encoding
               enumValueLabels:
                 - label: Binary
                   value: BINARY
