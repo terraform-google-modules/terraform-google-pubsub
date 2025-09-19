@@ -152,7 +152,7 @@ spec:
               name: encoding
               title: Encoding
               enumValueLabels:
-                - label: Binary
+                - label: BINARY
                   value: BINARY
                 - label: JSON
                   value: JSON
