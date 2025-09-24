@@ -46,6 +46,18 @@ spec:
               title: Dead Letter Topic
               regexValidation: "^projects/([a-z][a-z0-9-]{4,28}[a-z0-9])/topics/([a-z0-9-._~%+]{1,255})$"
               validation: "ID must start with a letter, and contain only the following characters: letters, numbers, dashes (-), periods (.), underscores (_), tildes (~), percents (%) or plus signs (+). Cannot start with goog. ID must be at most 255 characters long."
+            ack_deadline_seconds:
+              name: ack_deadline_seconds
+              title: Acknowledge Deadline Seconds
+              min: 10
+              max: 600
+              subtext: The number of seconds the subscriber has to acknowledge the message. Minimum 10 seconds, maximum 600 seconds.
+            max_delivery_attempts:
+              name: max_delivery_attempts
+              title: Maximum Delivery Attempts
+              min: 5
+              max: 100
+              subtext: The maximum number of delivery attempts. Must be between 5 and 100.
         cloud_storage_subscriptions:
           name: cloud_storage_subscriptions
           title: Cloud Storage Subscriptions
@@ -65,6 +77,18 @@ spec:
               title: Dead Letter Topic
               regexValidation: "^projects/([a-z][a-z0-9-]{4,28}[a-z0-9])/topics/([a-z0-9\\-._~%+]{1,255})$"
               validation: "ID must start with a letter, and contain only the following characters: letters, numbers, dashes (-), periods (.), underscores (_), tildes (~), percents (%) or plus signs (+). Cannot start with goog. ID must be at most 255 characters long."
+            ack_deadline_seconds:
+              name: ack_deadline_seconds
+              title: Acknowledge Deadline Seconds
+              min: 10
+              max: 600
+              subtext: The number of seconds the subscriber has to acknowledge the message. Minimum 10 seconds, maximum 600 seconds.
+            max_delivery_attempts:
+              name: max_delivery_attempts
+              title: Maximum Delivery Attempts
+              min: 5
+              max: 100
+              subtext: The maximum number of delivery attempts. Must be between 5 and 100.
         create_subscriptions:
           name: create_subscriptions
           title: Create Subscriptions
@@ -105,6 +129,18 @@ spec:
               title: Service Account
               regexValidation: "^[a-z][a-z0-9-]{4,28}[a-z0-9]@[a-z][a-z0-9-]{4,28}[a-z0-9]\\.iam\\.gserviceaccount\\.com$"
               validation: "Service account must be a valid email address in the format: SA_NAME@PROJECT_ID.iam.gserviceaccount.com."
+            ack_deadline_seconds:
+              name: ack_deadline_seconds
+              title: Acknowledge Deadline Seconds
+              min: 10
+              max: 600
+              subtext: The number of seconds the subscriber has to acknowledge the message. Minimum 10 seconds, maximum 600 seconds.
+            max_delivery_attempts:
+              name: max_delivery_attempts
+              title: Maximum Delivery Attempts
+              min: 5
+              max: 100
+              subtext: The maximum number of delivery attempts. Must be between 5 and 100.
         push_subscriptions:
           name: push_subscriptions
           title: Push Subscriptions
@@ -129,6 +165,18 @@ spec:
               title: OIDC Service Account Email
               regexValidation: "^[a-z][a-z0-9-]{4,28}[a-z0-9]@[a-z][a-z0-9-]{4,28}[a-z0-9]\\.iam\\.gserviceaccount\\.com$"
               validation: "OIDC service account email must be a valid email address in the format: SA_NAME@PROJECT_ID.iam.gserviceaccount.com."
+            ack_deadline_seconds:
+              name: ack_deadline_seconds
+              title: Acknowledge Deadline Seconds
+              min: 10
+              max: 600
+              subtext: The number of seconds the subscriber has to acknowledge the message. Minimum 10 seconds, maximum 600 seconds.
+            max_delivery_attempts:
+              name: max_delivery_attempts
+              title: Maximum Delivery Attempts
+              min: 5
+              max: 100
+              subtext: The maximum number of delivery attempts. Must be between 5 and 100.
         schema:
           name: schema
           title: Schema
