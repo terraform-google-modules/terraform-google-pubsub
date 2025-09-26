@@ -173,7 +173,7 @@ resource "google_pubsub_subscription" "push_subscriptions" {
   name                       = each.value.name
   topic                      = var.create_topic ? google_pubsub_topic.topic[0].name : var.topic
   project                    = var.project_id
-  labels                     = var.subscription_labels
+  labels                     = merge(var.subscription_labels, lookup(each.value, "labels", null))
   ack_deadline_seconds       = each.value.ack_deadline_seconds != null ? each.value.ack_deadline_seconds : local.default_ack_deadline_seconds
   message_retention_duration = each.value.message_retention_duration
   retain_acked_messages      = each.value.retain_acked_messages
@@ -237,7 +237,7 @@ resource "google_pubsub_subscription" "pull_subscriptions" {
   name                         = each.value.name
   topic                        = var.create_topic ? google_pubsub_topic.topic[0].name : var.topic
   project                      = var.project_id
-  labels                       = var.subscription_labels
+  labels                       = merge(var.subscription_labels, lookup(each.value, "labels", null))
   enable_exactly_once_delivery = each.value.enable_exactly_once_delivery
   ack_deadline_seconds         = each.value.ack_deadline_seconds != null ? each.value.ack_deadline_seconds : local.default_ack_deadline_seconds
   message_retention_duration   = each.value.message_retention_duration
@@ -279,7 +279,7 @@ resource "google_pubsub_subscription" "bigquery_subscriptions" {
   name                       = each.value.name
   topic                      = var.create_topic ? google_pubsub_topic.topic[0].name : var.topic
   project                    = var.project_id
-  labels                     = var.subscription_labels
+  labels                     = merge(var.subscription_labels, lookup(each.value, "labels", null))
   ack_deadline_seconds       = each.value.ack_deadline_seconds != null ? each.value.ack_deadline_seconds : local.default_ack_deadline_seconds
   message_retention_duration = each.value.message_retention_duration
   retain_acked_messages      = each.value.retain_acked_messages
@@ -330,7 +330,7 @@ resource "google_pubsub_subscription" "cloud_storage_subscriptions" {
   name                       = each.value.name
   topic                      = var.create_topic ? google_pubsub_topic.topic[0].name : var.topic
   project                    = var.project_id
-  labels                     = var.subscription_labels
+  labels                     = merge(var.subscription_labels, lookup(each.value, "labels", null))
   ack_deadline_seconds       = each.value.ack_deadline_seconds != null ? each.value.ack_deadline_seconds : local.default_ack_deadline_seconds
   message_retention_duration = each.value.message_retention_duration
   retain_acked_messages      = each.value.retain_acked_messages
