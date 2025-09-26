@@ -84,6 +84,7 @@ spec:
               enable_message_ordering    = optional(bool),
               no_wrapper                 = optional(bool),
               write_metadata             = optional(bool),
+              labels                     = optional(map(string)),
             }))
         defaultValue: []
         connections:
@@ -109,6 +110,7 @@ spec:
               enable_message_ordering      = optional(bool),
               service_account              = optional(string),
               enable_exactly_once_delivery = optional(bool),
+              labels                       = optional(map(string)),
             }))
         defaultValue: []
         connections:
@@ -141,7 +143,8 @@ spec:
               dead_letter_topic          = optional(string),
               max_delivery_attempts      = optional(number),
               maximum_backoff            = optional(string),
-              minimum_backoff            = optional(string)
+              minimum_backoff            = optional(string),
+              labels                     = optional(map(string)),
             }))
         defaultValue: []
         connections:
@@ -174,7 +177,8 @@ spec:
               dead_letter_topic          = optional(string),
               max_delivery_attempts      = optional(number),
               maximum_backoff            = optional(string),
-              minimum_backoff            = optional(string)
+              minimum_backoff            = optional(string),
+              labels                     = optional(map(string)),
             }))
         defaultValue: []
         connections:
@@ -264,4 +268,4 @@ spec:
       - storage.googleapis.com
     providerVersions:
       - source: hashicorp/google
-        version: ">= 6.2, < 7"
+        version: ">= 6.2, < 8"

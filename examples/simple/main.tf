@@ -29,12 +29,20 @@ module "pubsub" {
     bar_label = "bar_value"
   }
 
+  subscription_labels = {
+    foo_label = "foo_value"
+    bar_label = "bar_value"
+  }
 
   pull_subscriptions = [
     {
       name                         = "pull"
       ack_deadline_seconds         = 10
       enable_exactly_once_delivery = true
+      labels = {
+        foo_label = "foo_overwrite"
+        baz_label = "baz_value"
+      }
     },
     {
       name              = "pull2"
