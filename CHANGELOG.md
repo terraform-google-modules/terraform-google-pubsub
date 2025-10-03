@@ -7,6 +7,13 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [8.3.2](https://github.com/terraform-google-modules/terraform-google-pubsub/compare/v8.3.1...v8.3.2) (2025-09-30)
+
+
+### Bug Fixes
+
+* added missing validations ([#273](https://github.com/terraform-google-modules/terraform-google-pubsub/issues/273)) ([736fcb3](https://github.com/terraform-google-modules/terraform-google-pubsub/commit/736fcb3b0a93051673e42f44ced2ed43ea562953))
+
 ## [8.3.1](https://github.com/terraform-google-modules/terraform-google-pubsub/compare/v8.3.0...v8.3.1) (2025-09-22)
 
 
