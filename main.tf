@@ -170,10 +170,13 @@ resource "google_pubsub_topic" "topic" {
 resource "google_pubsub_subscription" "push_subscriptions" {
   for_each = var.create_subscriptions ? { for i in var.push_subscriptions : i.name => i } : {}
 
-  name                       = each.value.name
-  topic                      = var.create_topic ? google_pubsub_topic.topic[0].name : var.topic
-  project                    = var.project_id
-  labels                     = var.subscription_labels
+  name    = each.value.name
+  topic   = var.create_topic ? google_pubsub_topic.topic[0].name : var.topic
+  project = var.project_id
+  labels = merge(
+    var.subscription_labels,         # global default labels
+    lookup(each.value, "labels", {}) # subscription-specific labels
+  )
   ack_deadline_seconds       = each.value.ack_deadline_seconds != null ? each.value.ack_deadline_seconds : local.default_ack_deadline_seconds
   message_retention_duration = each.value.message_retention_duration
   retain_acked_messages      = each.value.retain_acked_messages
