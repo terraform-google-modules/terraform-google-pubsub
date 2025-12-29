@@ -206,10 +206,8 @@ resource "google_pubsub_subscription" "push_subscriptions" {
   push_config {
     push_endpoint = each.value["push_endpoint"]
 
-    // FIXME: This should be programmable, but nested map isn't supported at this time.
-    //   https://github.com/hashicorp/terraform/issues/2114
-    attributes = {
-      x-goog-version = each.value.minimum_backoff != null ? "x-goog-version" : "v1"
+    attributes = each.value.attributes != null ? each.value.attributes : {
+      x-goog-version = lookup(each.value, "x-goog-version", "v1")
     }
 
     dynamic "oidc_token" {
