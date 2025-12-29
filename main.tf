@@ -310,11 +310,12 @@ resource "google_pubsub_subscription" "bigquery_subscriptions" {
   }
 
   bigquery_config {
-    table               = each.value["table"]
-    use_topic_schema    = each.value.use_topic_schema != null ? each.value.use_topic_schema : false
-    use_table_schema    = each.value.use_table_schema != null ? each.value.use_table_schema : false
-    write_metadata      = each.value.write_metadata != null ? each.value.write_metadata : false
-    drop_unknown_fields = each.value.drop_unknown_fields != null ? each.value.drop_unknown_fields : false
+    table                 = each.value["table"]
+    use_topic_schema      = each.value.use_topic_schema != null ? each.value.use_topic_schema : false
+    use_table_schema      = each.value.use_table_schema != null ? each.value.use_table_schema : false
+    write_metadata        = each.value.write_metadata != null ? each.value.write_metadata : false
+    drop_unknown_fields   = each.value.drop_unknown_fields != null ? each.value.drop_unknown_fields : false
+    service_account_email = each.value.service_account_email
   }
 
   depends_on = [
