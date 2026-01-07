@@ -7,6 +7,13 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [8.4.0](https://github.com/terraform-google-modules/terraform-google-pubsub/compare/v8.3.2...v8.4.0) (2026-01-07)
+
+
+### Features
+
+* **pub_sub:** Add compute_instance module to metadata.yaml ([#283](https://github.com/terraform-google-modules/terraform-google-pubsub/issues/283)) ([facd5a1](https://github.com/terraform-google-modules/terraform-google-pubsub/commit/facd5a1407282fb413d63c1cbca65161a1953157))
+
 ## [8.3.2](https://github.com/terraform-google-modules/terraform-google-pubsub/compare/v8.3.1...v8.3.2) (2025-09-30)
 
 
