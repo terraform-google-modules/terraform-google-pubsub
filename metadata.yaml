@@ -126,7 +126,7 @@ spec:
               source: github.com/terraform-google-modules/terraform-google-vm//modules/compute_instance
               version: ">= 14.1.0"
             spec:
-              outputExpr: "{ \"name\": \"compute-instance-sub\", \"service_account\": instances_details[0].service_account[0].email }"
+              outputExpr: "{ \"name\": \"compute-instance-sub\", \"service_account\": service_account_email }"
       - name: bigquery_subscriptions
         description: The list of the Bigquery push subscriptions.
         varType: |-
