@@ -7,6 +7,13 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [8.6.0](https://github.com/terraform-google-modules/terraform-google-pubsub/compare/v8.5.0...v8.6.0) (2026-01-16)
+
+
+### Features
+
+* Adding connection to kms for pubsub topic ([#288](https://github.com/terraform-google-modules/terraform-google-pubsub/issues/288)) ([4065677](https://github.com/terraform-google-modules/terraform-google-pubsub/commit/406567745f275e621dff55d784fba0dbe7fbf88e))
+
 ## [8.5.0](https://github.com/terraform-google-modules/terraform-google-pubsub/compare/v8.4.0...v8.5.0) (2026-01-08)
 
 
