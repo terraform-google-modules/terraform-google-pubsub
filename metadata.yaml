@@ -205,7 +205,7 @@ spec:
         connections:
           - source:
               source: github.com/terraform-google-modules/terraform-google-kms
-              version: ">= 4.1.1"
+              version: ">= 4.1.2"
             spec:
                 outputExpr: key_id_list[0]
       - name: grant_bigquery_project_roles
