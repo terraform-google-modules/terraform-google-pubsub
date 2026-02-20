@@ -14,6 +14,11 @@
  * limitations under the License.
  */
 
+# Force reference to make plan fail
+locals {
+  force_failure = data.google_project.intentionally_invalid_project.number
+}
+
 data "google_project" "project" {
   project_id = var.project_id
 }
