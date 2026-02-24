@@ -7,6 +7,13 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [8.6.1](https://github.com/terraform-google-modules/terraform-google-pubsub/compare/v8.6.0...v8.6.1) (2026-02-24)
+
+
+### Bug Fixes
+
+* Updating KMS version ([#290](https://github.com/terraform-google-modules/terraform-google-pubsub/issues/290)) ([68cebcb](https://github.com/terraform-google-modules/terraform-google-pubsub/commit/68cebcb98d715f4e4d5abf9e27d6503935757e00))
+
 ## [8.6.0](https://github.com/terraform-google-modules/terraform-google-pubsub/compare/v8.5.0...v8.6.0) (2026-01-16)
 
 
