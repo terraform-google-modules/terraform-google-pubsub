@@ -102,7 +102,8 @@ variable "bigquery_subscriptions" {
     dead_letter_topic          = optional(string),
     max_delivery_attempts      = optional(number),
     maximum_backoff            = optional(string),
-    minimum_backoff            = optional(string)
+    minimum_backoff            = optional(string),
+    service_account_email      = optional(string)
   }))
   description = "The list of the Bigquery push subscriptions."
   default     = []

@@ -55,6 +55,7 @@ func TestBigquery(t *testing.T) {
 		assert.Equal(false, op.Get("bigqueryConfig.writeMetadata").Bool(), "has expected write_metadata")
 		assert.Equal(false, op.Get("bigqueryConfig.dropUnknownFields").Bool(), "has expected drop_unknown_fields")
 		assert.Equal(false, op.Get("bigqueryConfig.retainAckedMessages").Bool(), "has expected retain_acked")
+		assert.Equal("", op.Get("bigqueryConfig.serviceAccountEmail").String(), "has expected service_account_email")
 	})
 
 	bpt.Test()
