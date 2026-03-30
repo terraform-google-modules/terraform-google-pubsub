@@ -1,4 +1,4 @@
-# Copyright 2025 Google LLC
+# Copyright 2026 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -146,7 +146,8 @@ spec:
               dead_letter_topic          = optional(string),
               max_delivery_attempts      = optional(number),
               maximum_backoff            = optional(string),
-              minimum_backoff            = optional(string)
+              minimum_backoff            = optional(string),
+              service_account_email      = optional(string)
             }))
         defaultValue: []
         connections:
@@ -207,7 +208,7 @@ spec:
               source: github.com/terraform-google-modules/terraform-google-kms
               version: ">= 4.1.2"
             spec:
-                outputExpr: key_id_list[0]
+              outputExpr: key_id_list[0]
       - name: grant_bigquery_project_roles
         description: Specify true if you want to add bigquery.metadataViewer and bigquery.dataEditor roles to the default Pub/Sub SA.
         varType: bool
@@ -275,4 +276,4 @@ spec:
       - storage.googleapis.com
     providerVersions:
       - source: hashicorp/google
-        version: ">= 6.2, < 7"
+        version: ">= 6.2, < 8"

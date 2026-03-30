@@ -1,4 +1,4 @@
-# Copyright 2025 Google LLC
+# Copyright 2026 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -31,6 +31,23 @@ spec:
           name: bigquery_subscriptions
           title: Bigquery Subscriptions
           properties:
+            ack_deadline_seconds:
+              name: ack_deadline_seconds
+              title: Acknowledge Deadline Seconds
+              min: 10
+              max: 600
+              subtext: The number of seconds the subscriber has to acknowledge the message. Minimum 10 seconds, maximum 600 seconds.
+            dead_letter_topic:
+              name: dead_letter_topic
+              title: Dead Letter Topic
+              regexValidation: ^projects/([a-z][a-z0-9-]{4,28}[a-z0-9])/topics/([a-z0-9-._~%+]{1,255})$
+              validation: "ID must start with a letter, and contain only the following characters: letters, numbers, dashes (-), periods (.), underscores (_), tildes (~), percents (%) or plus signs (+). Cannot start with goog. ID must be at most 255 characters long."
+            max_delivery_attempts:
+              name: max_delivery_attempts
+              title: Maximum Delivery Attempts
+              min: 5
+              max: 100
+              subtext: The maximum number of delivery attempts. Must be between 5 and 100.
             name:
               name: name
               title: Name
@@ -39,56 +56,39 @@ spec:
             table:
               name: table
               title: Table
-              regexValidation: "^[a-z][a-z0-9-]{4,28}[a-z0-9]\\.[a-zA-Z0-9_]{1,1000}[a-zA-Z0-9_]{0,24}\\.[a-zA-Z0-9_]{1,1000}[a-zA-Z0-9_]{0,24}$"
+              regexValidation: ^[a-z][a-z0-9-]{4,28}[a-z0-9]\.[a-zA-Z0-9_]{1,1000}[a-zA-Z0-9_]{0,24}\.[a-zA-Z0-9_]{1,1000}[a-zA-Z0-9_]{0,24}$
               validation: BigQuery table name must be a full resource path in the format {projectId}.{datasetId}.{tableId}.
-            dead_letter_topic:
-              name: dead_letter_topic
-              title: Dead Letter Topic
-              regexValidation: "^projects/([a-z][a-z0-9-]{4,28}[a-z0-9])/topics/([a-z0-9-._~%+]{1,255})$"
-              validation: "ID must start with a letter, and contain only the following characters: letters, numbers, dashes (-), periods (.), underscores (_), tildes (~), percents (%) or plus signs (+). Cannot start with goog. ID must be at most 255 characters long."
+        cloud_storage_subscriptions:
+          name: cloud_storage_subscriptions
+          title: Cloud Storage Subscriptions
+          properties:
             ack_deadline_seconds:
               name: ack_deadline_seconds
               title: Acknowledge Deadline Seconds
               min: 10
               max: 600
               subtext: The number of seconds the subscriber has to acknowledge the message. Minimum 10 seconds, maximum 600 seconds.
+            bucket:
+              name: bucket
+              title: Bucket
+              regexValidation: ^[a-z0-9][a-z0-9\._-]{1,61}[a-z0-9]$
+              validation: Bucket name must start and end with a lowercase letter or number, contain between 3 and 63 characters, and contain only lowercase letters, numbers, dashes, underscores, and dots.
+            dead_letter_topic:
+              name: dead_letter_topic
+              title: Dead Letter Topic
+              regexValidation: ^projects/([a-z][a-z0-9-]{4,28}[a-z0-9])/topics/([a-z0-9\-._~%+]{1,255})$
+              validation: "ID must start with a letter, and contain only the following characters: letters, numbers, dashes (-), periods (.), underscores (_), tildes (~), percents (%) or plus signs (+). Cannot start with goog. ID must be at most 255 characters long."
             max_delivery_attempts:
               name: max_delivery_attempts
               title: Maximum Delivery Attempts
               min: 5
               max: 100
               subtext: The maximum number of delivery attempts. Must be between 5 and 100.
-        cloud_storage_subscriptions:
-          name: cloud_storage_subscriptions
-          title: Cloud Storage Subscriptions
-          properties:
             name:
               name: name
               title: Subscription Name
               regexValidation: ^[a-z][a-z0-9-]{1,253}[a-z0-9]$
               validation: Subscription name must start with a lowercase letter, be between 3 and 255 characters, and contain only lowercase letters, numbers, and hyphens.
-            bucket:
-              name: bucket
-              title: Bucket
-              regexValidation: "^[a-z0-9][a-z0-9\\._-]{1,61}[a-z0-9]$"
-              validation: Bucket name must start and end with a lowercase letter or number, contain between 3 and 63 characters, and contain only lowercase letters, numbers, dashes, underscores, and dots.
-            dead_letter_topic:
-              name: dead_letter_topic
-              title: Dead Letter Topic
-              regexValidation: "^projects/([a-z][a-z0-9-]{4,28}[a-z0-9])/topics/([a-z0-9\\-._~%+]{1,255})$"
-              validation: "ID must start with a letter, and contain only the following characters: letters, numbers, dashes (-), periods (.), underscores (_), tildes (~), percents (%) or plus signs (+). Cannot start with goog. ID must be at most 255 characters long."
-            ack_deadline_seconds:
-              name: ack_deadline_seconds
-              title: Acknowledge Deadline Seconds
-              min: 10
-              max: 600
-              subtext: The number of seconds the subscriber has to acknowledge the message. Minimum 10 seconds, maximum 600 seconds.
-            max_delivery_attempts:
-              name: max_delivery_attempts
-              title: Maximum Delivery Attempts
-              min: 5
-              max: 100
-              subtext: The maximum number of delivery attempts. Must be between 5 and 100.
         create_subscriptions:
           name: create_subscriptions
           title: Create Subscriptions
@@ -114,73 +114,83 @@ spec:
           name: pull_subscriptions
           title: Pull Subscriptions
           properties:
-            name:
-              name: name
-              title: Name
-              regexValidation: ^[a-z][a-z0-9-]{1,253}[a-z0-9]$
-              validation: Subscription name must start with a lowercase letter, be between 3 and 255 characters, and contain only lowercase letters, numbers, and hyphens.
-            dead_letter_topic:
-              name: dead_letter_topic
-              title: Dead Letter Topic
-              regexValidation: "^projects/([a-z][a-z0-9-]{4,28}[a-z0-9])/topics/([a-z0-9\\-._~%+]{1,255})$"
-              validation: "ID must start with a letter, and contain only the following characters: letters, numbers, dashes (-), periods (.), underscores (_), tildes (~), percents (%) or plus signs (+). Cannot start with goog. ID must be at most 255 characters long."
-            service_account:
-              name: service_account
-              title: Service Account
-              regexValidation: "^[a-z][a-z0-9-]{4,28}[a-z0-9]@[a-z][a-z0-9-]{4,28}[a-z0-9]\\.iam\\.gserviceaccount\\.com$"
-              validation: "Service account must be a valid email address in the format: SA_NAME@PROJECT_ID.iam.gserviceaccount.com."
             ack_deadline_seconds:
               name: ack_deadline_seconds
               title: Acknowledge Deadline Seconds
               min: 10
               max: 600
               subtext: The number of seconds the subscriber has to acknowledge the message. Minimum 10 seconds, maximum 600 seconds.
+            dead_letter_topic:
+              name: dead_letter_topic
+              title: Dead Letter Topic
+              regexValidation: ^projects/([a-z][a-z0-9-]{4,28}[a-z0-9])/topics/([a-z0-9\-._~%+]{1,255})$
+              validation: "ID must start with a letter, and contain only the following characters: letters, numbers, dashes (-), periods (.), underscores (_), tildes (~), percents (%) or plus signs (+). Cannot start with goog. ID must be at most 255 characters long."
             max_delivery_attempts:
               name: max_delivery_attempts
               title: Maximum Delivery Attempts
               min: 5
               max: 100
               subtext: The maximum number of delivery attempts. Must be between 5 and 100.
+            name:
+              name: name
+              title: Name
+              regexValidation: ^[a-z][a-z0-9-]{1,253}[a-z0-9]$
+              validation: Subscription name must start with a lowercase letter, be between 3 and 255 characters, and contain only lowercase letters, numbers, and hyphens.
+            service_account:
+              name: service_account
+              title: Service Account
+              regexValidation: ^[a-z][a-z0-9-]{4,28}[a-z0-9]@[a-z][a-z0-9-]{4,28}[a-z0-9]\.iam\.gserviceaccount\.com$
+              validation: "Service account must be a valid email address in the format: SA_NAME@PROJECT_ID.iam.gserviceaccount.com."
         push_subscriptions:
           name: push_subscriptions
           title: Push Subscriptions
           properties:
-            name:
-              name: name
-              title: Name
-              regexValidation: ^[a-z][a-z0-9-]{1,253}[a-z0-9]$
-              validation: Subscription name must start with a lowercase letter, be between 3 and 255 characters, and contain only lowercase letters, numbers, and hyphens.
-            push_endpoint:
-              name: push_endpoint
-              title: Push Endpoint
-              regexValidation: "^https:\\/\\/[a-zA-Z0-9-.]+\\.[a-zA-Z]{2,}(\\/[^?#]*)?$"
-              validation: "Push endpoint must be a valid HTTPS URL."
-            dead_letter_topic:
-              name: dead_letter_topic
-              title: Dead Letter Topic
-              regexValidation: "^projects/([a-z][a-z0-9-]{4,28}[a-z0-9])/topics/([a-z0-9\\-._~%+]{1,255})$"
-              validation: "ID must start with a letter, and contain only the following characters: letters, numbers, dashes (-), periods (.), underscores (_), tildes (~), percents (%) or plus signs (+). Cannot start with goog. ID must be at most 255 characters long."
-            oidc_service_account_email:
-              name: oidc_service_account_email
-              title: OIDC Service Account Email
-              regexValidation: "^[a-z][a-z0-9-]{4,28}[a-z0-9]@[a-z][a-z0-9-]{4,28}[a-z0-9]\\.iam\\.gserviceaccount\\.com$"
-              validation: "OIDC service account email must be a valid email address in the format: SA_NAME@PROJECT_ID.iam.gserviceaccount.com."
             ack_deadline_seconds:
               name: ack_deadline_seconds
               title: Acknowledge Deadline Seconds
               min: 10
               max: 600
               subtext: The number of seconds the subscriber has to acknowledge the message. Minimum 10 seconds, maximum 600 seconds.
+            dead_letter_topic:
+              name: dead_letter_topic
+              title: Dead Letter Topic
+              regexValidation: ^projects/([a-z][a-z0-9-]{4,28}[a-z0-9])/topics/([a-z0-9\-._~%+]{1,255})$
+              validation: "ID must start with a letter, and contain only the following characters: letters, numbers, dashes (-), periods (.), underscores (_), tildes (~), percents (%) or plus signs (+). Cannot start with goog. ID must be at most 255 characters long."
             max_delivery_attempts:
               name: max_delivery_attempts
               title: Maximum Delivery Attempts
               min: 5
               max: 100
               subtext: The maximum number of delivery attempts. Must be between 5 and 100.
+            name:
+              name: name
+              title: Name
+              regexValidation: ^[a-z][a-z0-9-]{1,253}[a-z0-9]$
+              validation: Subscription name must start with a lowercase letter, be between 3 and 255 characters, and contain only lowercase letters, numbers, and hyphens.
+            oidc_service_account_email:
+              name: oidc_service_account_email
+              title: OIDC Service Account Email
+              regexValidation: ^[a-z][a-z0-9-]{4,28}[a-z0-9]@[a-z][a-z0-9-]{4,28}[a-z0-9]\.iam\.gserviceaccount\.com$
+              validation: "OIDC service account email must be a valid email address in the format: SA_NAME@PROJECT_ID.iam.gserviceaccount.com."
+            push_endpoint:
+              name: push_endpoint
+              title: Push Endpoint
+              regexValidation: ^https:\/\/[a-zA-Z0-9-.]+\.[a-zA-Z]{2,}(\/[^?#]*)?$
+              validation: Push endpoint must be a valid HTTPS URL.
         schema:
           name: schema
           title: Schema
           properties:
+            encoding:
+              name: encoding
+              title: Encoding
+              enumValueLabels:
+                - label: BINARY
+                  value: BINARY
+                - label: JSON
+                  value: JSON
+                - label: ENCODING_UNSPECIFIED
+                  value: ENCODING_UNSPECIFIED
             name:
               name: name
               title: Name
@@ -196,16 +206,6 @@ spec:
                   value: PROTOCOL_BUFFER
                 - label: AVRO
                   value: AVRO
-            encoding:
-              name: encoding
-              title: Encoding
-              enumValueLabels:
-                - label: BINARY
-                  value: BINARY
-                - label: JSON
-                  value: JSON
-                - label: ENCODING_UNSPECIFIED
-                  value: ENCODING_UNSPECIFIED
         subscription_labels:
           name: subscription_labels
           title: Subscription Labels
