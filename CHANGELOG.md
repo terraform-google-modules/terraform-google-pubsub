@@ -7,6 +7,18 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [8.7.0](https://github.com/terraform-google-modules/terraform-google-pubsub/compare/v8.6.0...v8.7.0) (2026-03-30)
+
+
+### Features
+
+* Add custom service account on Bigquery subscription ([#294](https://github.com/terraform-google-modules/terraform-google-pubsub/issues/294)) ([2208fac](https://github.com/terraform-google-modules/terraform-google-pubsub/commit/2208fac4af53344b665c3ae725ae2d60da31c806))
+
+
+### Bug Fixes
+
+* Updating KMS version ([#290](https://github.com/terraform-google-modules/terraform-google-pubsub/issues/290)) ([68cebcb](https://github.com/terraform-google-modules/terraform-google-pubsub/commit/68cebcb98d715f4e4d5abf9e27d6503935757e00))
+
 ## [8.6.0](https://github.com/terraform-google-modules/terraform-google-pubsub/compare/v8.5.0...v8.6.0) (2026-01-16)
 
 
