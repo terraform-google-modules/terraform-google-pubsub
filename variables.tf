@@ -19,6 +19,12 @@ variable "project_id" {
   description = "The project ID to manage the Pub/Sub resources."
 }
 
+variable "pubsub_svc_account_email" {
+  type        = string
+  description = "Specific Pub/Sub service agent email. This is useful if you are using non-standard service agents (or a non-default universe domain). Leave empty to use the default Google Cloud Platform service agent."
+  default     = null
+}
+
 variable "topic" {
   type        = string
   description = "The Pub/Sub topic name."

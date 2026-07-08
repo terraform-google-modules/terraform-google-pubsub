@@ -20,7 +20,12 @@ data "google_project" "project" {
 
 locals {
   default_ack_deadline_seconds = 10
-  pubsub_svc_account_email     = "service-${data.google_project.project.number}@gcp-sa-pubsub.iam.gserviceaccount.com"
+
+  pubsub_svc_account_email = (
+    var.pubsub_svc_account_email != null ?
+    var.pubsub_svc_account_email
+    : "service-${data.google_project.project.number}@gcp-sa-pubsub.iam.gserviceaccount.com"
+  )
 }
 
 resource "google_pubsub_schema" "schema" {
