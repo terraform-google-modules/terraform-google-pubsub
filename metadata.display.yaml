@@ -110,6 +110,9 @@ spec:
         project_id:
           name: project_id
           title: Project Id
+        pubsub_svc_account_email:
+          name: pubsub_svc_account_email
+          title: Pubsub Svc Account Email
         pull_subscriptions:
           name: pull_subscriptions
           title: Pull Subscriptions
