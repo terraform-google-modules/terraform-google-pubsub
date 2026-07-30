@@ -47,6 +47,9 @@ spec:
         description: The project ID to manage the Pub/Sub resources.
         varType: string
         required: true
+      - name: pubsub_svc_account_email
+        description: Specific Pub/Sub service agent email. This is useful if you are using non-standard service agents (or a non-default universe domain). Leave empty to use the default Google Cloud Platform service agent.
+        varType: string
       - name: topic
         description: The Pub/Sub topic name.
         varType: string
