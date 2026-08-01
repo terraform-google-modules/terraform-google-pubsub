@@ -7,6 +7,13 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [8.8.0](https://github.com/terraform-google-modules/terraform-google-pubsub/compare/v8.7.0...v8.8.0) (2026-07-30)
+
+
+### Features
+
+* add variable to override Pub/Sub service agent email ([#296](https://github.com/terraform-google-modules/terraform-google-pubsub/issues/296)) ([c57c968](https://github.com/terraform-google-modules/terraform-google-pubsub/commit/c57c9689c8186d131d334022cbef93d3f7cce028))
+
 ## [8.7.0](https://github.com/terraform-google-modules/terraform-google-pubsub/compare/v8.6.0...v8.7.0) (2026-03-30)
 
 
