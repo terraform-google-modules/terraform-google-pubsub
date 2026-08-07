@@ -195,3 +195,12 @@ variable "schema" {
   description = "Schema for the topic."
   default     = null
 }
+
+variable "existing_schema" {
+  description = "Bind the topic to a pre-existing Pub/Sub schema that is not managed by this module. Mutually exclusive with `schema`."
+  type = object({
+    name     = string
+    encoding = optional(string, "JSON")
+  })
+  default = null
+}
