@@ -233,6 +233,13 @@ spec:
               definition = string
               encoding   = string
             })
+      - name: existing_schema
+        description: Bind the topic to a pre-existing Pub/Sub schema that is not managed by this module. Mutually exclusive with `schema`.
+        varType: |-
+          object({
+              name     = string
+              encoding = optional(string, "JSON")
+            })
     outputs:
       - name: env_vars
         description: Map of pull subscription IDs, keyed by project_subscription name for environment variables.
@@ -267,10 +274,10 @@ spec:
     roles:
       - level: Project
         roles:
+          - roles/storage.admin
           - roles/pubsub.admin
           - roles/resourcemanager.projectIamAdmin
           - roles/bigquery.admin
-          - roles/storage.admin
     services:
       - bigquery.googleapis.com
       - cloudresourcemanager.googleapis.com
