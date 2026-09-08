@@ -95,6 +95,9 @@ spec:
         create_topic:
           name: create_topic
           title: Create Topic
+        existing_schema:
+          name: existing_schema
+          title: Existing Schema
         grant_bigquery_project_roles:
           name: grant_bigquery_project_roles
           title: Grant Bigquery Project Roles

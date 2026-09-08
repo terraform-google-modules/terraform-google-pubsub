@@ -26,6 +26,18 @@ locals {
     var.pubsub_svc_account_email
     : "service-${data.google_project.project.number}@gcp-sa-pubsub.iam.gserviceaccount.com"
   )
+
+  created_schema_id = one(google_pubsub_schema.schema[*].id)
+
+  topic_schema_settings = (
+    var.schema != null ? {
+      schema   = local.created_schema_id
+      encoding = lookup(var.schema, "encoding", null)
+      } : var.existing_schema != null ? {
+      schema   = "projects/${var.project_id}/schemas/${var.existing_schema.name}"
+      encoding = var.existing_schema.encoding
+    } : null
+  )
 }
 
 resource "google_pubsub_schema" "schema" {
@@ -163,10 +175,16 @@ resource "google_pubsub_topic" "topic" {
   }
 
   dynamic "schema_settings" {
-    for_each = var.schema != null ? [var.schema] : []
+    for_each = local.topic_schema_settings != null ? [local.topic_schema_settings] : []
     content {
-      schema   = google_pubsub_schema.schema[0].id
-      encoding = lookup(schema_settings.value, "encoding", null)
+      schema   = schema_settings.value.schema
+      encoding = schema_settings.value.encoding
+    }
+  }
+  lifecycle {
+    precondition {
+      condition     = !(var.schema != null && var.existing_schema != null)
+      error_message = "Set either `schema` (creates a new schema) or `existing_schema` (references an existing one), not both."
     }
   }
   depends_on = [google_pubsub_schema.schema]
