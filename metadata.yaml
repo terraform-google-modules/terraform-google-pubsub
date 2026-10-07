@@ -50,6 +50,7 @@ spec:
       - name: pubsub_svc_account_email
         description: Specific Pub/Sub service agent email. This is useful if you are using non-standard service agents (or a non-default universe domain). Leave empty to use the default Google Cloud Platform service agent.
         varType: string
+        defaultValue: null
       - name: topic
         description: The Pub/Sub topic name.
         varType: string
@@ -199,6 +200,7 @@ spec:
       - name: topic_message_retention_duration
         description: The minimum duration in seconds to retain a message after it is published to the topic.
         varType: string
+        defaultValue: null
       - name: message_storage_policy
         description: A map of storage policies. Default - inherit from organization's Resource Location Restriction policy.
         varType: map(any)
@@ -206,6 +208,7 @@ spec:
       - name: topic_kms_key_name
         description: The resource name of the Cloud KMS CryptoKey to be used to protect access to messages published on this topic.
         varType: string
+        defaultValue: null
         connections:
           - source:
               source: github.com/terraform-google-modules/terraform-google-kms
@@ -233,6 +236,7 @@ spec:
               definition = string
               encoding   = string
             })
+        defaultValue: null
     outputs:
       - name: env_vars
         description: Map of pull subscription IDs, keyed by project_subscription name for environment variables.
