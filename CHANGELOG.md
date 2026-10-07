@@ -7,6 +7,13 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [8.8.1](https://github.com/terraform-google-modules/terraform-google-pubsub/compare/v8.8.0...v8.8.1) (2026-10-07)
+
+
+### Bug Fixes
+
+* populate null defaultValue in pubsub blueprint metadata ([#302](https://github.com/terraform-google-modules/terraform-google-pubsub/issues/302)) ([8814088](https://github.com/terraform-google-modules/terraform-google-pubsub/commit/8814088a1dd21c4a4b757f1e03830b7f6ad5a89a))
+
 ## [8.8.0](https://github.com/terraform-google-modules/terraform-google-pubsub/compare/v8.7.0...v8.8.0) (2026-07-30)
 
 

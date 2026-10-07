@@ -25,7 +25,7 @@ terraform {
   }
 
   provider_meta "google" {
-    module_name = "blueprints/terraform/terraform-google-pubsub/v8.8.0"
+    module_name = "blueprints/terraform/terraform-google-pubsub/v8.8.1"
   }
 
 }
