@@ -7,6 +7,13 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [8.9.0](https://github.com/terraform-google-modules/terraform-google-pubsub/compare/v8.8.1...v8.9.0) (2026-10-07)
+
+
+### Features
+
+* **deps:** Update Terraform google to v8 ([#300](https://github.com/terraform-google-modules/terraform-google-pubsub/issues/300)) ([6cf1860](https://github.com/terraform-google-modules/terraform-google-pubsub/commit/6cf1860af9c1ccd7228f0ac5e75b4c6755f75d17))
+
 ## [8.8.1](https://github.com/terraform-google-modules/terraform-google-pubsub/compare/v8.8.0...v8.8.1) (2026-10-07)
 
 
