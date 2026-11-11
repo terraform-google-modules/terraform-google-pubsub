@@ -204,7 +204,7 @@ resource "google_pubsub_subscription" "push_subscriptions" {
     for_each = each.value.maximum_backoff != null || each.value.minimum_backoff != null ? [true] : []
     content {
       maximum_backoff = each.value.maximum_backoff
-      minimum_backoff = each.value.minimum_backoff != null ? each.value.minimum_backoff : "5"
+      minimum_backoff = each.value.minimum_backoff
     }
   }
 
@@ -269,7 +269,7 @@ resource "google_pubsub_subscription" "pull_subscriptions" {
     for_each = each.value.maximum_backoff != null || each.value.minimum_backoff != null ? [true] : []
     content {
       maximum_backoff = each.value.maximum_backoff
-      minimum_backoff = each.value.minimum_backoff != null ? each.value.minimum_backoff : "5"
+      minimum_backoff = each.value.minimum_backoff
     }
   }
 

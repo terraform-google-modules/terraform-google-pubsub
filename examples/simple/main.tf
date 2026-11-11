@@ -42,6 +42,10 @@ module "pubsub" {
       maximum_backoff   = "600s"
       expiration_policy = "1209600s" // two weeks
     },
+    {
+      name            = "pull3"
+      minimum_backoff = "20s"
+    },
   ]
 
   push_subscriptions = [

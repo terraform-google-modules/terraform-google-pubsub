@@ -69,6 +69,10 @@ func TestSimple(t *testing.T) {
 		assert.Equal("10s", op.Get("retryPolicy.minimumBackoff").String(), "has expected minimum_backoff")
 		assert.Equal("1209600s", op.Get("expirationPolicy.ttl").String(), "has expected expiration_policy")
 
+		// Only minimum_backoff is set, so the module must still create the retry policy.
+		op = gcloud.Runf(t, "pubsub subscriptions describe pull3 --project=%s", projectId)
+		assert.Equal("20s", op.Get("retryPolicy.minimumBackoff").String(), "has expected minimum_backoff")
+
 		op = gcloud.Runf(t, "pubsub schemas describe example --project=%s", projectId)
 		assert.Equal(fmt.Sprintf("projects/%s/schemas/example", projectId), op.Get("name").String(), "has expected name")
 
