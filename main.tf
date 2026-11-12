@@ -201,10 +201,10 @@ resource "google_pubsub_subscription" "push_subscriptions" {
   }
 
   dynamic "retry_policy" {
-    for_each = each.value.maximum_backoff != null ? [each.value.maximum_backoff] : []
+    for_each = each.value.maximum_backoff != null || each.value.minimum_backoff != null ? [true] : []
     content {
-      maximum_backoff = each.value.maximum_backoff != null ? each.value.maximum_backoff : ""
-      minimum_backoff = each.value.minimum_backoff != null ? each.value.minimum_backoff : "5"
+      maximum_backoff = each.value.maximum_backoff
+      minimum_backoff = each.value.minimum_backoff
     }
   }
 
@@ -266,10 +266,10 @@ resource "google_pubsub_subscription" "pull_subscriptions" {
   }
 
   dynamic "retry_policy" {
-    for_each = each.value.maximum_backoff != null ? [each.value.maximum_backoff] : []
+    for_each = each.value.maximum_backoff != null || each.value.minimum_backoff != null ? [true] : []
     content {
-      maximum_backoff = each.value.maximum_backoff != null ? each.value.maximum_backoff : ""
-      minimum_backoff = each.value.minimum_backoff != null ? each.value.minimum_backoff : "5"
+      maximum_backoff = each.value.maximum_backoff
+      minimum_backoff = each.value.minimum_backoff
     }
   }
 
@@ -307,10 +307,10 @@ resource "google_pubsub_subscription" "bigquery_subscriptions" {
   }
 
   dynamic "retry_policy" {
-    for_each = each.value.maximum_backoff != null ? [each.value.maximum_backoff] : []
+    for_each = each.value.maximum_backoff != null || each.value.minimum_backoff != null ? [true] : []
     content {
-      maximum_backoff = each.value.maximum_backoff != null ? each.value.maximum_backoff : ""
-      minimum_backoff = each.value.minimum_backoff != null ? each.value.minimum_backoff : ""
+      maximum_backoff = each.value.maximum_backoff
+      minimum_backoff = each.value.minimum_backoff
     }
   }
 
@@ -359,10 +359,10 @@ resource "google_pubsub_subscription" "cloud_storage_subscriptions" {
   }
 
   dynamic "retry_policy" {
-    for_each = each.value.maximum_backoff != null ? [each.value.maximum_backoff] : []
+    for_each = each.value.maximum_backoff != null || each.value.minimum_backoff != null ? [true] : []
     content {
-      maximum_backoff = each.value.maximum_backoff != null ? each.value.maximum_backoff : ""
-      minimum_backoff = each.value.minimum_backoff != null ? each.value.minimum_backoff : ""
+      maximum_backoff = each.value.maximum_backoff
+      minimum_backoff = each.value.minimum_backoff
     }
   }
 
