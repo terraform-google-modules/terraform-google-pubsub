@@ -7,6 +7,13 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [8.9.1](https://github.com/terraform-google-modules/terraform-google-pubsub/compare/v8.9.0...v8.9.1) (2026-11-12)
+
+
+### Bug Fixes
+
+* create retry_policy when only minimum_backoff is set ([#309](https://github.com/terraform-google-modules/terraform-google-pubsub/issues/309)) ([7886a42](https://github.com/terraform-google-modules/terraform-google-pubsub/commit/7886a422f74ade1a76106f06719cd7fc81bf1667))
+
 ## [8.9.0](https://github.com/terraform-google-modules/terraform-google-pubsub/compare/v8.8.1...v8.9.0) (2026-11-11)
 
 
