@@ -64,6 +64,11 @@ func TestSimple(t *testing.T) {
 		assert.Equal("", op.Get("pushConfig.oidcToken.serviceAccountEmail").String(), "has expected oidcToken.service_account_email")
 		assert.Equal("", op.Get("pushConfig.oidcToken.audience").String(), "has expected oidcToken.audience")
 
+		// dead_letter_topic is set without max_delivery_attempts, so the module default applies.
+		op = gcloud.Runf(t, "pubsub subscriptions describe push-dead-letter --project=%s", projectId)
+		assert.Equal(fmt.Sprintf("projects/%s/topics/cft-tf-pubsub-dead-letter", projectId), op.Get("deadLetterPolicy.deadLetterTopic").String(), "has expected dead_letter_topic")
+		assert.Equal("5", op.Get("deadLetterPolicy.maxDeliveryAttempts").String(), "has expected max_delivery_attempts")
+
 		op = gcloud.Runf(t, "pubsub subscriptions describe pull2 --project=%s", projectId)
 		assert.Equal("600s", op.Get("retryPolicy.maximumBackoff").String(), "has expected maximum_backoff")
 		assert.Equal("10s", op.Get("retryPolicy.minimumBackoff").String(), "has expected minimum_backoff")

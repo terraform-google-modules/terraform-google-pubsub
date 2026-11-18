@@ -196,7 +196,7 @@ resource "google_pubsub_subscription" "push_subscriptions" {
     for_each = each.value.dead_letter_topic != null ? [each.value.dead_letter_topic] : []
     content {
       dead_letter_topic     = each.value.dead_letter_topic != null ? each.value.dead_letter_topic : ""
-      max_delivery_attempts = each.value.max_delivery_attempts != null ? each.value.max_delivery_attempts : ""
+      max_delivery_attempts = each.value.max_delivery_attempts != null ? each.value.max_delivery_attempts : "5"
     }
   }
 

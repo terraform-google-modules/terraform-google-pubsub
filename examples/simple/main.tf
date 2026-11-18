@@ -18,6 +18,11 @@ provider "google" {
   region = "us-central1"
 }
 
+resource "google_pubsub_topic" "dead_letter" {
+  project = var.project_id
+  name    = "cft-tf-pubsub-dead-letter"
+}
+
 module "pubsub" {
   source  = "terraform-google-modules/pubsub/google"
   version = "~> 8.0"
@@ -60,6 +65,12 @@ module "pubsub" {
       name           = "push-default-expiration"
       push_endpoint  = "https://${var.project_id}.appspot.com/"
       x-goog-version = "v1beta1"
+    },
+    {
+      // max_delivery_attempts is not set, so the module default (5) applies.
+      name              = "push-dead-letter"
+      push_endpoint     = "https://${var.project_id}.appspot.com/"
+      dead_letter_topic = "projects/${var.project_id}/topics/${google_pubsub_topic.dead_letter.name}"
     },
   ]
 
